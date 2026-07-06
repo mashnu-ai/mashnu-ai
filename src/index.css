@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* Configure Tailwind v4 manual class-based dark mode */
+@variant dark (&:where(.dark, .dark *));
+
+:root, .dark {
+  --color-bg-main: #FBFBFD; /* Apple Store light background */
+  --color-bg-card: #FFFFFF; /* Pure white card/tile */
+  --color-border-main: #E8E8ED; /* Soft hairline border */
+  --color-border-hover: #D2D2D7;
+  --color-text-main: #1D1D1F; /* Bold Apple primary dark grey/black */
+  --color-text-sub: #424245; /* Clean subtitle grey */
+  --color-text-muted: #6E6E73; /* Higher contrast muted grey */
+  --color-text-bright: #1D1D1F;
+  --color-primary-accent: #1D1D1F; /* Sleek Black */
+  --color-primary-accent-hover: #8E8E93; /* Silver */
+  --color-primary-accent-light: rgba(142, 142, 147, 0.08); /* Silver Light */
+}
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Custom Theme variables */
+  --color-bg-main: var(--color-bg-main);
+  --color-bg-card: var(--color-bg-card);
+  --color-border-main: var(--color-border-main);
+  --color-border-hover: var(--color-border-hover);
+  --color-text-main: var(--color-text-main);
+  --color-text-sub: var(--color-text-sub);
+  --color-text-muted: var(--color-text-muted);
+  --color-primary-accent: var(--color-primary-accent);
+  --color-primary-accent-hover: var(--color-primary-accent-hover);
+  --color-primary-accent-light: var(--color-primary-accent-light);
+
+  /* Override tailwind variables to force single light theme */
+  --color-slate-950: var(--color-bg-main);
+  --color-slate-900: var(--color-bg-card);
+  --color-slate-800: var(--color-border-main);
+  --color-slate-700: var(--color-border-hover);
+  --color-slate-400: var(--color-text-muted);
+  --color-slate-300: var(--color-text-sub);
+  --color-slate-200: var(--color-text-main);
+  --color-slate-100: var(--color-text-main);
+  --color-slate-50: var(--color-text-bright);
+
+  /* Map accents to Silver/Black theme */
+  --color-cyan-300: var(--color-primary-accent-light);
+  --color-cyan-400: var(--color-primary-accent-light);
+  --color-cyan-500: var(--color-primary-accent);
+  --color-cyan-600: var(--color-primary-accent-hover);
+  
+  --color-indigo-500: var(--color-primary-accent);
+  --color-indigo-600: var(--color-primary-accent-hover);
+  --color-indigo-950: var(--color-bg-main);
+
+  --color-emerald-400: var(--color-primary-accent);
+  --color-emerald-500: var(--color-primary-accent);
+  --color-teal-400: var(--color-primary-accent);
+  --color-purple-400: var(--color-primary-accent);
+  --color-amber-400: var(--color-primary-accent);
+  --color-amber-500: var(--color-primary-accent);
+}
+
+/* Monochromatic override of hardcoded blue helper classes to silver/black */
+.text-\[\#0071E3\] {
+  color: #1D1D1F !important;
+}
+.bg-\[\#0071E3\] {
+  background-color: #1D1D1F !important;
+}
+.bg-\[\#0071E3\]\/20 {
+  background-color: rgba(142, 142, 147, 0.2) !important; /* Silver tint */
+}
+.bg-\[\#0071E3\]\/5 {
+  background-color: rgba(142, 142, 147, 0.05) !important; /* Light silver tint */
+}
+.bg-\[\#0071E3\]\/15 {
+  background-color: rgba(142, 142, 147, 0.15) !important; /* Light silver tint */
+}
+.border-\[\#0071E3\] {
+  border-color: #1D1D1F !important;
+}
+.border-\[\#0071E3\]\/10 {
+  border-color: rgba(142, 142, 147, 0.10) !important;
+}
+.border-\[\#0071E3\]\/15 {
+  border-color: rgba(142, 142, 147, 0.15) !important;
+}
+.border-t-\[\#0071E3\] {
+  border-top-color: #1D1D1F !important;
+}
+.hover\:text-\[\#0071E3\]:hover {
+  color: #8E8E93 !important; /* Silver hover */
+}
+.group:hover .group-hover\:text-\[\#0071E3\] {
+  color: #8E8E93 !important; /* Silver hover */
+}
+.group-hover\:underline {
+  text-decoration-line: underline !important;
+}
+.focus\:border-\[\#0071E3\]:focus {
+  border-color: #1D1D1F !important;
+}
+::selection, .selection\:bg-\[\#0071E3\]\/20 *::selection {
+  background-color: rgba(142, 142, 147, 0.2) !important;
+}
+
+/* Custom transitions and scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-main);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-hover);
+}
+
+/* Additional utility animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes flowDash {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-flow-dash {
+  animation: flowDash 1.2s linear infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 12s linear infinite;
+}
