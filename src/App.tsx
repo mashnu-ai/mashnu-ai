@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Terminal, Layers, BarChart3, Landmark } from 'lucide-react';
+import { Building2, Layers, BarChart3, Landmark } from 'lucide-react';
 import { ScrollReveal } from './components/ScrollReveal';
 import CommandPalette from './components/CommandPalette';
 
 // Modular Sections
 import Hero from './components/Hero';
 import TrustBar from './components/TrustBar';
-import CompilerPlayground from './components/CompilerPlayground';
+import CompanyOverview from './components/CompanyOverview';
 import ProductSuite from './components/ProductSuite';
 import LatencyBenchmarks from './components/LatencyBenchmarks';
 import VisionTimeline from './components/VisionTimeline';
@@ -31,7 +31,7 @@ import Contact from './pages/Contact';
 import Assistant from './pages/Assistant';
 
 function AppLayout() {
-  const [activeTab, setActiveTab] = useState<'compiler' | 'roadmap' | 'benchmarks' | 'vision'>('compiler');
+  const [activeTab, setActiveTab] = useState<'company' | 'roadmap' | 'benchmarks' | 'vision'>('company');
   const { path } = useRouter();
 
   if (path !== '/') {
@@ -95,13 +95,13 @@ function AppLayout() {
             <div className="flex items-center justify-center border-b border-[#E2E8F0] pb-4 mb-6">
               <div className="grid grid-cols-2 md:grid-cols-4 w-full max-w-3xl gap-1 bg-[#F1F5F9] p-1 rounded-full">
                 <button
-                  onClick={() => setActiveTab('compiler')}
+                  onClick={() => setActiveTab('company')}
                   className={`py-2 text-[12px] font-sans rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
-                    activeTab === 'compiler' ? 'bg-white text-[#0F172A] font-semibold shadow-sm' : 'text-[#64748B] hover:text-[#0F172A]'
+                    activeTab === 'company' ? 'bg-white text-[#0F172A] font-semibold shadow-sm' : 'text-[#64748B] hover:text-[#0F172A]'
                   }`}
                 >
-                  <Terminal className="w-3.5 h-3.5 text-[#2563EB]" />
-                  <span>Compiler Playground</span>
+                  <Building2 className="w-3.5 h-3.5 text-[#2563EB]" />
+                  <span>About Mashnu</span>
                 </button>
                 <button
                   onClick={() => setActiveTab('roadmap')}
@@ -110,7 +110,7 @@ function AppLayout() {
                   }`}
                 >
                   <Layers className="w-3.5 h-3.5 text-[#2563EB]" />
-                  <span>Enterprise Suite</span>
+                  <span>Our Products</span>
                 </button>
                 <button
                   onClick={() => setActiveTab('benchmarks')}
@@ -143,7 +143,7 @@ function AppLayout() {
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  {activeTab === 'compiler' && <CompilerPlayground />}
+                  {activeTab === 'company' && <CompanyOverview />}
                   {activeTab === 'roadmap' && <ProductSuite />}
                   {activeTab === 'benchmarks' && <LatencyBenchmarks />}
                   {activeTab === 'vision' && <VisionTimeline />}
