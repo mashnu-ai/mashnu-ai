@@ -72,13 +72,13 @@ export default function HeroPipelineGraph() {
     },
     {
       id: 'llm',
-      label: 'Gemini Reasoning Core',
+      label: 'Claude Reasoning Core',
       icon: <Cpu className={`w-5 h-5 text-purple-400 ${shouldReduceMotion ? '' : 'animate-pulse'}`} />,
       x: 520,
       y: 280,
       color: 'purple',
       status: 'Streaming Tokens',
-      metric: 'Models: Gemini 3.5 Pro'
+      metric: 'Model: Claude Fable 5'
     },
     {
       id: 'action',
@@ -143,19 +143,19 @@ export default function HeroPipelineGraph() {
           <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1020 360">
             <defs>
               <linearGradient id="activeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#10b981" />
-                <stop offset="50%" stopColor="#06b6d4" />
-                <stop offset="100%" stopColor="#8b5cf6" />
+                <stop offset="0%" stopColor="#4F7D5A" />
+                <stop offset="50%" stopColor="#C15F3C" />
+                <stop offset="100%" stopColor="#75617A" />
               </linearGradient>
             </defs>
 
             {/* Static background lines */}
-            <path d={getCurvePath(120, 180, 320, 180)} fill="none" stroke="#1e293b" strokeWidth="2" />
-            <path d={getCurvePath(320, 180, 520, 80)} fill="none" stroke="#1e293b" strokeWidth="2" />
-            <path d={getCurvePath(320, 180, 520, 280)} fill="none" stroke="#1e293b" strokeWidth="2" />
-            <path d={getCurvePath(520, 80, 720, 180)} fill="none" stroke="#1e293b" strokeWidth="2" />
-            <path d={getCurvePath(520, 280, 720, 180)} fill="none" stroke="#1e293b" strokeWidth="2" />
-            <path d={getCurvePath(720, 180, 900, 180)} fill="none" stroke="#1e293b" strokeWidth="2" />
+            <path d={getCurvePath(120, 180, 320, 180)} fill="none" stroke="#2A2519" strokeWidth="2" />
+            <path d={getCurvePath(320, 180, 520, 80)} fill="none" stroke="#2A2519" strokeWidth="2" />
+            <path d={getCurvePath(320, 180, 520, 280)} fill="none" stroke="#2A2519" strokeWidth="2" />
+            <path d={getCurvePath(520, 80, 720, 180)} fill="none" stroke="#2A2519" strokeWidth="2" />
+            <path d={getCurvePath(520, 280, 720, 180)} fill="none" stroke="#2A2519" strokeWidth="2" />
+            <path d={getCurvePath(720, 180, 900, 180)} fill="none" stroke="#2A2519" strokeWidth="2" />
 
             {/* Glowing active flow trails */}
             {activeStep >= 0 && (
@@ -174,7 +174,7 @@ export default function HeroPipelineGraph() {
                 <path
                   d={getCurvePath(320, 180, 520, 80)}
                   fill="none"
-                  stroke="#06b6d4"
+                  stroke="#C15F3C"
                   strokeWidth="2"
                   strokeDasharray="6 4"
                   className="animate-flow-dash"
@@ -182,7 +182,7 @@ export default function HeroPipelineGraph() {
                 <path
                   d={getCurvePath(320, 180, 520, 280)}
                   fill="none"
-                  stroke="#8b5cf6"
+                  stroke="#75617A"
                   strokeWidth="2"
                   strokeDasharray="6 4"
                   className="animate-flow-dash"
@@ -194,7 +194,7 @@ export default function HeroPipelineGraph() {
                 <path
                   d={getCurvePath(520, 80, 720, 180)}
                   fill="none"
-                  stroke="#6366f1"
+                  stroke="#3F6459"
                   strokeWidth="2"
                   strokeDasharray="6 4"
                   className="animate-flow-dash"
@@ -202,7 +202,7 @@ export default function HeroPipelineGraph() {
                 <path
                   d={getCurvePath(520, 280, 720, 180)}
                   fill="none"
-                  stroke="#a855f7"
+                  stroke="#75617A"
                   strokeWidth="2"
                   strokeDasharray="6 4"
                   className="animate-flow-dash"
@@ -213,7 +213,7 @@ export default function HeroPipelineGraph() {
               <path
                 d={getCurvePath(720, 180, 900, 180)}
                 fill="none"
-                stroke="#f59e0b"
+                stroke="#B08430"
                 strokeWidth="2.5"
                 strokeDasharray="8 6"
                 className="animate-flow-dash"
@@ -286,7 +286,7 @@ export default function HeroPipelineGraph() {
 
                 {/* Pulsing indicator ring on the current step */}
                 {((index === activeStep) || (node.id === 'rag' && activeStep === 2) || (node.id === 'llm' && activeStep === 2)) && !shouldReduceMotion && (
-                  <span className={`absolute -inset-1 rounded-2xl border-2 border-${node.color}-500/20 animate-pulse pointer-events-none`} />
+                  <span className="absolute -inset-1 rounded-2xl border-2 border-[#C15F3C]/25 animate-pulse pointer-events-none" />
                 )}
               </motion.div>
             );

@@ -159,7 +159,7 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
               markerHeight="6"
               orient="auto-start-reverse"
             >
-              <path d="M 0 0 L 10 5 L 0 10 z" fill="#334155" />
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#4C463B" />
             </marker>
             <marker
               id="arrow-active"
@@ -170,7 +170,7 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
               markerHeight="6"
               orient="auto-start-reverse"
             >
-              <path d="M 0 0 L 10 5 L 0 10 z" fill="#06b6d4" />
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#C15F3C" />
             </marker>
           </defs>
 
@@ -184,7 +184,7 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
                 <path
                   d={edge.pathData}
                   fill="none"
-                  stroke={isActive ? '#06b6d4' : '#1e293b'}
+                  stroke={isActive ? '#C15F3C' : '#2A2519'}
                   strokeWidth={isActive ? 2 : 1.5}
                   markerEnd={isActive ? 'url(#arrow-active)' : 'url(#arrow)'}
                   className="transition-colors duration-300"
@@ -197,12 +197,12 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
                       width="110"
                       height="16"
                       rx="4"
-                      fill="#0b1329"
-                      stroke={isActive ? '#06b6d4/30' : '#1e293b'}
+                      fill="#26221A"
+                      stroke={isActive ? '#C15F3C/30' : '#2A2519'}
                       strokeWidth="1"
                     />
                     <text
-                      fill={isActive ? '#22d3ee' : '#64748b'}
+                      fill={isActive ? '#D08055' : '#8B8271'}
                       fontSize="9"
                       fontFamily="monospace"
                       textAnchor="middle"
@@ -246,10 +246,10 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
                   height="50"
                   rx="2"
                   fill={
-                    node.type === 'trigger' ? '#10b981' :
-                    node.type === 'condition' ? '#f59e0b' :
-                    node.type === 'model' ? '#06b6d4' :
-                    node.type === 'rag' ? '#6366f1' : '#64748b'
+                    node.type === 'trigger' ? '#4F7D5A' :
+                    node.type === 'condition' ? '#B08430' :
+                    node.type === 'model' ? '#C15F3C' :
+                    node.type === 'rag' ? '#3F6459' : '#8B8271'
                   }
                 />
 
@@ -257,7 +257,7 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
                 <text
                   x="-58"
                   y="-4"
-                  fill="#f8fafc"
+                  fill="#F7F3EB"
                   fontSize="11"
                   fontWeight="600"
                   fontFamily="sans-serif"
@@ -270,7 +270,7 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
                 <text
                   x="-58"
                   y="12"
-                  fill="#94a3b8"
+                  fill="#A39A87"
                   fontSize="9"
                   fontFamily="monospace"
                   dominantBaseline="middle"
@@ -280,9 +280,9 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
 
                 {/* Icon Placement on Right */}
                 <g transform="translate(52, 0)">
-                  <circle r="12" fill="#0f172a" stroke={isSelected ? '#06b6d4/60' : '#1e293b'} strokeWidth="1" />
+                  <circle r="12" fill="#211D16" stroke={isSelected ? 'rgba(193, 95, 60, 0.6)' : '#2A2519'} strokeWidth="1" />
                   <g transform="translate(-8, -8)">
-                    {React.cloneElement(getNodeIcon(node.type) as React.ReactElement, { className: 'w-4 h-4' })}
+                    {React.cloneElement(getNodeIcon(node.type) as React.ReactElement<{ className?: string }>, { className: 'w-4 h-4' })}
                   </g>
                 </g>
               </g>

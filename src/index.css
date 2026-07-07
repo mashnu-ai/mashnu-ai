@@ -1,29 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Archivo:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 /* Configure Tailwind v4 manual class-based dark mode */
 @variant dark (&:where(.dark, .dark *));
 
+/*
+  Mashnu AI design language — "warm editorial meets engineering console".
+  Warm paper surfaces, serif display type, one copper accent, and
+  JetBrains Mono retained for the telemetry/engineering identity.
+*/
 :root, .dark {
-  --color-bg-main: #FBFBFD; /* Apple Store light background */
-  --color-bg-card: #FFFFFF; /* Pure white card/tile */
-  --color-border-main: #E8E8ED; /* Soft hairline border */
-  --color-border-hover: #D2D2D7;
-  --color-text-main: #1D1D1F; /* Bold Apple primary dark grey/black */
-  --color-text-sub: #424245; /* Clean subtitle grey */
-  --color-text-muted: #6E6E73; /* Higher contrast muted grey */
-  --color-text-bright: #1D1D1F;
-  --color-primary-accent: #1D1D1F; /* Sleek Black */
-  --color-primary-accent-hover: #8E8E93; /* Silver */
-  --color-primary-accent-light: rgba(142, 142, 147, 0.08); /* Silver Light */
+  --color-bg-main: #F7F3EB;        /* warm paper page background */
+  --color-bg-card: #FCFAF5;        /* warm white card surface */
+  --color-border-main: #E5DED0;    /* warm hairline */
+  --color-border-hover: #D2C9B6;
+  --color-text-main: #211D16;      /* warm ink */
+  --color-text-sub: #4C463B;
+  --color-text-muted: #6F6757;
+  --color-text-bright: #191612;
+  --color-primary-accent: #C15F3C;        /* Mashnu copper */
+  --color-primary-accent-hover: #A64D2D;
+  --color-primary-accent-light: rgba(193, 95, 60, 0.09);
+  --color-sage: #4F7D5A;           /* success / live */
+  --color-ochre: #B08430;          /* warning / warm gold */
+  --color-plum: #75617A;           /* debug / tertiary */
 }
 
 @theme {
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  --font-sans: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  --font-display: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
 
-  /* Custom Theme variables */
+  /* Custom theme variables */
   --color-bg-main: var(--color-bg-main);
   --color-bg-card: var(--color-bg-card);
   --color-border-main: var(--color-border-main);
@@ -35,80 +43,103 @@
   --color-primary-accent-hover: var(--color-primary-accent-hover);
   --color-primary-accent-light: var(--color-primary-accent-light);
 
-  /* Override tailwind variables to force single light theme */
+  /* Warm every plain white surface */
+  --color-white: #FCFAF5;
+
+  /* Remap the legacy slate scale (dark-theme era classes) onto warm paper/ink */
   --color-slate-950: var(--color-bg-main);
   --color-slate-900: var(--color-bg-card);
   --color-slate-800: var(--color-border-main);
   --color-slate-700: var(--color-border-hover);
+  --color-slate-600: var(--color-text-muted);
+  --color-slate-500: var(--color-text-muted);
   --color-slate-400: var(--color-text-muted);
   --color-slate-300: var(--color-text-sub);
   --color-slate-200: var(--color-text-main);
   --color-slate-100: var(--color-text-main);
   --color-slate-50: var(--color-text-bright);
 
-  /* Map accents to Silver/Black theme */
-  --color-cyan-300: var(--color-primary-accent-light);
-  --color-cyan-400: var(--color-primary-accent-light);
+  /* Legacy cyan accent classes → Mashnu copper */
+  --color-cyan-300: #D08055;
+  --color-cyan-400: var(--color-primary-accent);
   --color-cyan-500: var(--color-primary-accent);
   --color-cyan-600: var(--color-primary-accent-hover);
-  
+
+  --color-teal-400: var(--color-sage);
+  --color-teal-500: var(--color-sage);
+
+  --color-indigo-400: var(--color-plum);
   --color-indigo-500: var(--color-primary-accent);
   --color-indigo-600: var(--color-primary-accent-hover);
   --color-indigo-950: var(--color-bg-main);
 
-  --color-emerald-400: var(--color-primary-accent);
-  --color-emerald-500: var(--color-primary-accent);
-  --color-teal-400: var(--color-primary-accent);
-  --color-purple-400: var(--color-primary-accent);
-  --color-amber-400: var(--color-primary-accent);
-  --color-amber-500: var(--color-primary-accent);
+  --color-purple-400: var(--color-plum);
+
+  /* Status hues, warmed for a light paper background */
+  --color-emerald-50: #EDF0E4;
+  --color-emerald-100: #DCE3CC;
+  --color-emerald-300: #6F9877;
+  --color-emerald-400: var(--color-sage);
+  --color-emerald-500: var(--color-sage);
+  --color-emerald-600: #3F6449;
+
+  --color-amber-400: var(--color-ochre);
+  --color-amber-500: var(--color-ochre);
+
+  --color-rose-400: #9C4F5C;
+  --color-rose-500: #9C4F5C;
+  --color-rose-950: #4A2430;
+
+  /* Straggler cool families → warm equivalents */
+  --color-blue-50: #F3EDE1;
+  --color-blue-100: #E5DED0;
+  --color-blue-300: #D08055;
+  --color-blue-400: var(--color-primary-accent);
+  --color-blue-500: var(--color-primary-accent);
+  --color-blue-600: var(--color-primary-accent-hover);
+  --color-violet-400: var(--color-plum);
+  --color-violet-500: var(--color-plum);
+  --color-pink-400: #9C4F5C;
+  --color-pink-500: #9C4F5C;
+  --color-orange-400: var(--color-ochre);
+
+  --color-red-50: #F9EAE3;
+  --color-red-100: #F0D6CB;
+  --color-red-300: #A8422E;
+  --color-red-400: #A8422E;
+  --color-red-500: #B23A24;
+  --color-red-600: #9E3420;
+  --color-red-700: #8E3520;
+  --color-red-950: #6E2415;
 }
 
-/* Monochromatic override of hardcoded blue helper classes to silver/black */
-.text-\[\#0071E3\] {
-  color: #1D1D1F !important;
-}
-.bg-\[\#0071E3\] {
-  background-color: #1D1D1F !important;
-}
-.bg-\[\#0071E3\]\/20 {
-  background-color: rgba(142, 142, 147, 0.2) !important; /* Silver tint */
-}
-.bg-\[\#0071E3\]\/5 {
-  background-color: rgba(142, 142, 147, 0.05) !important; /* Light silver tint */
-}
-.bg-\[\#0071E3\]\/15 {
-  background-color: rgba(142, 142, 147, 0.15) !important; /* Light silver tint */
-}
-.border-\[\#0071E3\] {
-  border-color: #1D1D1F !important;
-}
-.border-\[\#0071E3\]\/10 {
-  border-color: rgba(142, 142, 147, 0.10) !important;
-}
-.border-\[\#0071E3\]\/15 {
-  border-color: rgba(142, 142, 147, 0.15) !important;
-}
-.border-t-\[\#0071E3\] {
-  border-top-color: #1D1D1F !important;
-}
-.hover\:text-\[\#0071E3\]:hover {
-  color: #8E8E93 !important; /* Silver hover */
-}
-.group:hover .group-hover\:text-\[\#0071E3\] {
-  color: #8E8E93 !important; /* Silver hover */
-}
-.group-hover\:underline {
-  text-decoration-line: underline !important;
-}
-.focus\:border-\[\#0071E3\]:focus {
-  border-color: #1D1D1F !important;
-}
-::selection, .selection\:bg-\[\#0071E3\]\/20 *::selection {
-  background-color: rgba(142, 142, 147, 0.2) !important;
+/* Editorial base layer: serif display headings, warm ink body */
+@layer base {
+  body {
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 72;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary-accent);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: rgba(193, 95, 60, 0.18);
+    color: var(--color-text-bright);
+  }
 }
 
-/* Custom transitions and scrollbar */
+/* Custom scrollbar, warmed */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -117,14 +148,14 @@
   background: var(--color-bg-main);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border-main);
+  background: var(--color-border-hover);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-border-hover);
+  background: var(--color-text-muted);
 }
 
-/* Additional utility animations */
+/* Utility animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
@@ -151,4 +182,19 @@
 
 .animate-spin-slow {
   animation: spinSlow 12s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-flow-dash,
+  .animate-spin-slow,
+  .animate-pulse,
+  .animate-ping,
+  .animate-bounce,
+  .animate-spin {
+    animation: none !important;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
 }

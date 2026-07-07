@@ -71,7 +71,7 @@ export default function Pricing() {
             </div>
             <div className="space-y-1.5">
               <h4 className="text-slate-200 font-bold font-display">2. Flat Retainers + Raw Compute</h4>
-              <p>We charge a predictable flat implementation and maintenance fee. All underlying token usage from Gemini or vector lookups is billed transparently at raw cost.</p>
+              <p>We charge a predictable flat implementation and maintenance fee. All underlying token usage from Claude or vector lookups is billed transparently at raw cost.</p>
             </div>
             <div className="space-y-1.5">
               <h4 className="text-slate-200 font-bold font-display">3. Risk-Free Proof-of-Concept</h4>
@@ -121,7 +121,7 @@ export default function Pricing() {
               </div>
               <div className="p-3.5 bg-slate-900/20 border border-slate-900 rounded-lg text-[10.5px] leading-relaxed text-slate-400 font-sans">
                 <Info className="w-3.5 h-3.5 text-cyan-400 inline mr-1.5 shrink-0 -mt-0.5" />
-                <strong>Calculation logic:</strong> Assumes a manual customer/database lookup takes an operator 5 minutes on average at $24/hour ($2.00/triage cost). Mashnu AI token cost assumes average context sizes of 4,000 tokens utilizing Google Gemini 1.5 Flash pass-through rates.
+                <strong>Calculation logic:</strong> Assumes a manual customer/database lookup takes an operator 5 minutes on average at $24/hour ($2.00/triage cost). Mashnu AI token cost assumes average context sizes of 4,000 tokens utilizing Claude Haiku 4.5 pass-through rates.
               </div>
             </div>
 

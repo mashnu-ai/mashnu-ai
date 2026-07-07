@@ -45,7 +45,7 @@ export default function LatencyBenchmarks() {
             <span className="text-xs text-slate-500 font-mono">Uptime</span>
           </div>
           <p className="text-[11px] text-slate-400 font-sans leading-relaxed">
-            Failover routing protocols instantly migrate active LLM contexts across Google Gemini, Anthropic Claude, and our private, air-gapped Llama servers on AWS.
+            Failover routing protocols instantly migrate active LLM contexts across Anthropic Claude, Google Gemini, and our private, air-gapped Llama servers on AWS.
           </p>
         </div>
 
@@ -71,7 +71,7 @@ export default function LatencyBenchmarks() {
             </div>
             <div className="h-8 rounded bg-slate-900/50 border border-cyan-500/30 flex overflow-hidden font-mono text-[9px] text-slate-950 select-none">
               <div className="bg-emerald-400 flex items-center justify-center font-bold" style={{ width: '15%' }} title="Deepgram STT (80ms)">STT (80ms)</div>
-              <div className="bg-cyan-400 flex items-center justify-center font-bold" style={{ width: '45%' }} title="Gemini-3.5-Flash (220ms)">Inference Router (220ms)</div>
+              <div className="bg-cyan-400 flex items-center justify-center font-bold" style={{ width: '45%' }} title="Claude Haiku 4.5 (220ms)">Inference Router (220ms)</div>
               <div className="bg-indigo-400 flex items-center justify-center font-bold" style={{ width: '25%' }} title="Cartesia/ElevenLabs Stream (120ms)">TTS Stream (120ms)</div>
               <div className="bg-teal-400 flex items-center justify-center font-bold" style={{ width: '15%' }} title="Buffer Overlap (60ms)">Network (60ms)</div>
             </div>

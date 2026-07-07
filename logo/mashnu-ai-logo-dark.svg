@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" width="520" height="140">
+  <defs>
+    <linearGradient id="rise" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D08055"/>
+      <stop offset="100%" stop-color="#D08055"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="520" height="140" rx="16" fill="#211D16"/>
+
+  <g transform="translate(14,10)">
+    <path d="M 18 104 L 40 40 L 62 76 L 86 24 L 106 96"
+          fill="none" stroke="url(#rise)" stroke-width="5.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+
+    <circle cx="29"  cy="72" r="3.4" fill="#D08055"/>
+    <circle cx="51"  cy="58" r="3.4" fill="#E0B49A"/>
+    <circle cx="74"  cy="50" r="3.4" fill="#D08055"/>
+    <circle cx="96"  cy="60" r="3.4" fill="#D08055"/>
+
+    <circle cx="40"  cy="40" r="6" fill="#D08055"/>
+    <circle cx="62"  cy="76" r="6" fill="#C15F3C"/>
+    <circle cx="86"  cy="24" r="7" fill="#D08055"/>
+    <circle cx="106" cy="96" r="5" fill="#EFE9DD"/>
+
+    <circle cx="18" cy="104" r="7" fill="#B08430"/>
+    <circle cx="18" cy="104" r="11" fill="none" stroke="#B08430" stroke-width="1.6" opacity="0.5"/>
+  </g>
+
+  <g font-family="'Poppins','Inter','Segoe UI',system-ui,sans-serif">
+    <text x="152" y="86" font-size="46" font-weight="700" fill="#F7F3EB" letter-spacing="0.5">Mashnu</text>
+    <text x="352" y="86" font-size="46" font-weight="700" fill="url(#rise)" letter-spacing="1">AI</text>
+    <text x="154" y="112" font-size="13.5" font-weight="500" fill="#A39A87" letter-spacing="4.2">BUILT FROM THE GROUND UP</text>
+  </g>
+</svg>

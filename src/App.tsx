@@ -36,7 +36,7 @@ function AppLayout() {
 
   if (path !== '/') {
     return (
-      <div className="min-h-screen bg-[#FBFBFD] text-[#1D1D1F] font-sans selection:bg-[#0071E3]/20 selection:text-[#0071E3] flex flex-col justify-between">
+      <div className="min-h-screen bg-[#F7F3EB] text-[#211D16] font-sans selection:bg-[#C15F3C]/20 selection:text-[#C15F3C] flex flex-col justify-between">
         <Navbar />
         <div className="grow overflow-hidden">
           <AnimatePresence mode="wait">
@@ -68,7 +68,7 @@ function AppLayout() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FBFBFD] text-[#1D1D1F] font-sans selection:bg-[#0071E3]/20 selection:text-[#0071E3]">
+    <div className="min-h-screen bg-[#F7F3EB] text-[#211D16] font-sans selection:bg-[#C15F3C]/20 selection:text-[#C15F3C]">
       
       <Navbar />
 
@@ -89,45 +89,45 @@ function AppLayout() {
 
         {/* MAIN TABBED VIEW CONTAINER */}
         <ScrollReveal yOffset={25} duration={0.35}>
-          <div id="product-suite-anchor" className="border border-[#E8E8ED] rounded-3xl bg-white p-4 sm:p-6 shadow-sm scroll-mt-24">
+          <div id="product-suite-anchor" className="border border-[#E5DED0] rounded-3xl bg-white p-4 sm:p-6 shadow-sm scroll-mt-24">
           
             {/* TAB HEADERS (Segmented Control style) */}
-            <div className="flex items-center justify-center border-b border-[#E8E8ED] pb-4 mb-6">
-              <div className="grid grid-cols-2 md:grid-cols-4 w-full max-w-3xl gap-1 bg-[#F5F5F7] p-1 rounded-full">
+            <div className="flex items-center justify-center border-b border-[#E5DED0] pb-4 mb-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 w-full max-w-3xl gap-1 bg-[#EFE9DD] p-1 rounded-full">
                 <button
                   onClick={() => setActiveTab('compiler')}
                   className={`py-2 text-[12px] font-sans rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
-                    activeTab === 'compiler' ? 'bg-white text-[#1D1D1F] font-semibold shadow-sm' : 'text-[#6E6E73] hover:text-[#1D1D1F]'
+                    activeTab === 'compiler' ? 'bg-white text-[#211D16] font-semibold shadow-sm' : 'text-[#6F6757] hover:text-[#211D16]'
                   }`}
                 >
-                  <Terminal className="w-3.5 h-3.5 text-[#0071E3]" />
+                  <Terminal className="w-3.5 h-3.5 text-[#C15F3C]" />
                   <span>Compiler Playground</span>
                 </button>
                 <button
                   onClick={() => setActiveTab('roadmap')}
                   className={`py-2 text-[12px] font-sans rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
-                    activeTab === 'roadmap' ? 'bg-white text-[#1D1D1F] font-semibold shadow-sm' : 'text-[#6E6E73] hover:text-[#1D1D1F]'
+                    activeTab === 'roadmap' ? 'bg-white text-[#211D16] font-semibold shadow-sm' : 'text-[#6F6757] hover:text-[#211D16]'
                   }`}
                 >
-                  <Layers className="w-3.5 h-3.5 text-[#0071E3]" />
+                  <Layers className="w-3.5 h-3.5 text-[#C15F3C]" />
                   <span>Enterprise Suite</span>
                 </button>
                 <button
                   onClick={() => setActiveTab('benchmarks')}
                   className={`py-2 text-[12px] font-sans rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
-                    activeTab === 'benchmarks' ? 'bg-white text-[#1D1D1F] font-semibold shadow-sm' : 'text-[#6E6E73] hover:text-[#1D1D1F]'
+                    activeTab === 'benchmarks' ? 'bg-white text-[#211D16] font-semibold shadow-sm' : 'text-[#6F6757] hover:text-[#211D16]'
                   }`}
                 >
-                  <BarChart3 className="w-3.5 h-3.5 text-[#0071E3]" />
+                  <BarChart3 className="w-3.5 h-3.5 text-[#C15F3C]" />
                   <span>Latency Benchmarks</span>
                 </button>
                 <button
                   onClick={() => setActiveTab('vision')}
                   className={`py-2 text-[12px] font-sans rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer ${
-                    activeTab === 'vision' ? 'bg-white text-[#1D1D1F] font-semibold shadow-sm' : 'text-[#6E6E73] hover:text-[#1D1D1F]'
+                    activeTab === 'vision' ? 'bg-white text-[#211D16] font-semibold shadow-sm' : 'text-[#6F6757] hover:text-[#211D16]'
                   }`}
                 >
-                  <Landmark className="w-3.5 h-3.5 text-[#0071E3]" />
+                  <Landmark className="w-3.5 h-3.5 text-[#C15F3C]" />
                   <span>Vision Manifesto</span>
                 </button>
               </div>
