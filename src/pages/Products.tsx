@@ -14,8 +14,6 @@ interface ProductItem {
   status: string;
   description: string;
   specs: string[];
-  latency: string;
-  accuracy: string;
   icon: React.ReactNode;
   whatItDoes: string;
   whoItsFor: string;
@@ -36,8 +34,6 @@ const PRODUCTS: ProductItem[] = [
       'Custom Voice Activity Detection (VAD) ignoring heavy background noise',
       'Native EHR (AthenaHealth, Epic) and CRM (Salesforce) integrations'
     ],
-    latency: '< 480ms P50',
-    accuracy: '98.6% Triage Precision',
     icon: <Phone className="w-5 h-5 text-emerald-600" />,
     whatItDoes: "Handles high-volume inbound and outbound telephone calls, pulling and pushing patient EHR data (e.g. AthenaHealth) or CRM status (e.g. Salesforce) to schedule appointments and perform triage.",
     whoItsFor: "Medical practices, retail businesses, logistics dispatch offices, and enterprise call-center managers.",
@@ -56,8 +52,6 @@ const PRODUCTS: ProductItem[] = [
       'Direct Shopify, WooCommerce, and NetSuite active inventory sync',
       'Dynamic CRM hub creation and HubSpot pipeline synchronization'
     ],
-    latency: '< 1.2s Roundtrip',
-    accuracy: '99.1% Intent Scoring',
     icon: <MessageSquare className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Operates as an automated conversational sales and customer care associate over the WhatsApp Business API, processing multi-modal inputs like invoices or screenshots.",
     whoItsFor: "Direct-to-Consumer (DTC) brands, regional distributors, and proactive client relations teams.",
@@ -76,12 +70,10 @@ const PRODUCTS: ProductItem[] = [
       'Streaming token output with latency under 100ms from core nodes',
       'Custom corporate brand compliance filter preventing safety breaches'
     ],
-    latency: '< 100ms TTFT',
-    accuracy: '99.4% Safety Factualness',
     icon: <Globe className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Renders as an interactive on-site widget to address complex, multi-tier visitor queries, referencing internal policy documents in real time and routing high-value leads.",
     whoItsFor: "Customer support executives, digital product managers, and administrative leads.",
-    technicalDifferentiator: "Built with localized compliance and safety guardrail checks compiled into the core prompt layout, guaranteeing zero hallucinations or brand violations.",
+    technicalDifferentiator: "Built with compliance and safety guardrails at the prompt layer to reduce off-brand or unsafe responses before they reach a customer.",
     ctaText: "Book AI Chatbot Demo"
   },
   {
@@ -96,8 +88,6 @@ const PRODUCTS: ProductItem[] = [
       'Dynamic page indexing creating micro-RAG nodes for in-page queries',
       'CRM integration with instant lead profile scoring and calendar sync'
     ],
-    latency: 'Real-time client-side',
-    accuracy: '94.2% Context Relevance',
     icon: <Sparkles className="w-5 h-5 text-amber-600" />,
     whatItDoes: "Tracks user interaction patterns such as dwell time, scroll depth, and page navigation to proactively overlay custom support windows and increase conversions.",
     whoItsFor: "Growth marketing teams, sales development representatives (SDRs), and conversion-rate optimization (CRO) leads.",
@@ -116,8 +106,6 @@ const PRODUCTS: ProductItem[] = [
       'AI-driven custom follow-ups created automatically from call logs',
       'Structured task extraction linking deal notes directly to Jira/linear'
     ],
-    latency: 'Asynchronous Cron',
-    accuracy: '98.9% Field Sync Match',
     icon: <Settings className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Acts as a backend automated worker that executes deep CRM sanitization, transcribes team meetings, extracts actionable follow-ups, and auto-assigns tickets.",
     whoItsFor: "Revenue Operations (RevOps) leaders, sales operations administrators, and customer success coordinators.",
@@ -136,8 +124,6 @@ const PRODUCTS: ProductItem[] = [
       'Automated customer tier-level validation and service-level agreement (SLA) alerts',
       'Intelligent, multi-language translation and custom tone mapping'
     ],
-    latency: '< 800ms API dispatch',
-    accuracy: '97.2% SLA Compliance',
     icon: <Shield className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Injects as a background service into standard ticketing queues, reading inbound customer inquiries, looking up resolution guidelines in the RAG repository, and compiling draft responses.",
     whoItsFor: "Customer success managers, IT support directors, and customer experience operations teams.",
@@ -156,8 +142,6 @@ const PRODUCTS: ProductItem[] = [
       'Automatic duplicate merging and field normalization across Salesforce & HubSpot',
       'AI-driven custom sales outreach sequences tailored to lead technographic footprints'
     ],
-    latency: 'Asynchronous Pipeline',
-    accuracy: '99.2% Enrichment Precision',
     icon: <Layers className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Scans database records, enriches missing fields (e.g., funding rounds, tech stack, employee count) using public records and LLM web-search APIs, and updates CRM layouts.",
     whoItsFor: "Sales development teams, growth marketing executives, and revenue operations directors.",
@@ -170,14 +154,12 @@ const PRODUCTS: ProductItem[] = [
     phase: 'Build Phase 3: Operational Orchestration',
     phaseDesc: 'Transitioning from reactive frontends to proactive, continuous backend database operations.',
     status: 'Beta Testing',
-    description: 'Industrial-grade Retrieval-Augmented Generation engines designed for zero-leakage search over 10,000+ proprietary internal operational standard procedures and manuals.',
+    description: 'Retrieval-Augmented Generation engines built for accurate, cited search over your internal SOPs, manuals, and policy documents.',
     specs: [
       'Parent-Child recursive chunk mapping preserving structural relationships',
       'Dense vector (Qdrant) + BM25 keyword matching hybrid retrieval',
       'Granular permission scopes mirroring Windows Active Directory/LDAP'
     ],
-    latency: '< 210ms Query Speed',
-    accuracy: '99.6% Retrieval Precision',
     icon: <Database className="w-5 h-5 text-indigo-600" />,
     whatItDoes: "Powers semantic enterprise search over large collections of internal documents (e.g. manuals, policy folders, SOPs), giving accurate, cited answers.",
     whoItsFor: "Compliance officers, product support specialists, internal training coordinators, and HR administrators.",
@@ -196,8 +178,6 @@ const PRODUCTS: ProductItem[] = [
       'Parallel sub-task execution with auto-verification checks',
       'Strict Human-in-the-Loop thresholds requiring validation'
     ],
-    latency: 'Sub-minute pipelines',
-    accuracy: '99.8% Code Integrity',
     icon: <Network className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Integrates complex multi-step corporate operations (e.g. processing a freight order, matching invoices, and executing ledger entries) into coordinated agent teams.",
     whoItsFor: "Supply chain managers, financial ledger auditors, and ERP system integrators.",
@@ -216,8 +196,6 @@ const PRODUCTS: ProductItem[] = [
       'Visual drag-and-drop workflow canvas editing agent DAG topologies',
       'Full open telemetry trace logging mapping latency bottlenecks'
     ],
-    latency: '< 10ms Platform API',
-    accuracy: '99.99% Node Uptime',
     icon: <Layers className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "A centralized cloud dashboard that allows corporate IT personnel to instantly configure, hot-swap, inspect, and scale customized AI agents.",
     whoItsFor: "Chief Information Officers (CIOs), network engineers, and system administrators.",
@@ -236,8 +214,6 @@ const PRODUCTS: ProductItem[] = [
       'Highly optimized model weight caching minimizing cold-start latency',
       'Load-balanced distributed agent queuing avoiding throttling risks'
     ],
-    latency: '< 15ms Edge Overhead',
-    accuracy: '100% Core Availability',
     icon: <Cpu className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Executes deep neural net processing and inference tasks closer to the user, maximizing UI responsiveness and reducing database wait cycles.",
     whoItsFor: "Real-time gaming companies, global booking providers, and high-volume digital portals.",
@@ -256,8 +232,6 @@ const PRODUCTS: ProductItem[] = [
       'Evaluation pipeline benchmarking fine-tuned weights against GPT-4',
       'Air-gapped secure deployment to isolated enterprise virtual clouds'
     ],
-    latency: '< 40ms Inference TTFT',
-    accuracy: '99.7% Brand Compliance',
     icon: <Code className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Builds proprietary model intelligence by fine-tuning open-source foundations (e.g. Llama 3) on secure enterprise datasets.",
     whoItsFor: "Information security executives, model researchers, and specialized regulatory compliance teams.",
@@ -296,7 +270,7 @@ export default function Products() {
           The 12-Item Product Suite
         </h1>
         <p className="text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto">
-          We engineer custom autonomous pipelines that connect native business logic with robust, air-gapped AI components.
+          We engineer custom AI agents that connect to your existing systems — CRM, EHR, ticketing, and internal docs — instead of generic chat widgets bolted onto the front end.
         </p>
       </header>
 
@@ -396,18 +370,6 @@ export default function Products() {
                                 </li>
                               ))}
                             </ul>
-                          </div>
-                        </div>
-
-                        {/* Technical Meta Footer using clean plain sentences */}
-                        <div className="pt-4 border-t border-[#E2E8F0] flex items-center justify-between text-[11px] text-[#64748B] bg-[#F1F5F9] px-4 py-2.5 rounded-xl">
-                          <div>
-                            <span className="text-[#0F172A] font-medium block">System Latency</span>
-                            <span>We deliver {product.latency}.</span>
-                          </div>
-                          <div className="text-right">
-                            <span className="text-[#0F172A] font-medium block">Target Precision</span>
-                            <span>Validated at {product.accuracy}.</span>
                           </div>
                         </div>
 

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Check, Shield, Settings, Send, AlertCircle, UserCheck } from 'lucide-react';
+import { Check, Settings, Send, CheckCircle2 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 
 export default function LeadCapture() {
-  // Lead submission form states
   const [leadName, setLeadName] = useState('');
   const [leadEmail, setLeadEmail] = useState('');
   const [leadCompany, setLeadCompany] = useState('');
@@ -13,18 +12,16 @@ export default function LeadCapture() {
   const [leadVolume, setLeadVolume] = useState('< 10k actions/month');
   const [leadSystem, setLeadSystem] = useState('Manual spreadsheets/operations');
   const [isSubmittingLead, setIsSubmittingLead] = useState(false);
-  const [leadReport, setLeadReport] = useState<any | null>(null);
+  const [submitted, setSubmitted] = useState(false);
 
-  // Run lead assessment via API
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!leadUseCase.trim()) return;
 
     setIsSubmittingLead(true);
-    setLeadReport(null);
 
     try {
-      const res = await fetch('/api/qualify-lead', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -39,11 +36,10 @@ export default function LeadCapture() {
       });
 
       if (!res.ok) {
-        throw new Error('Failed to generate technical report.');
+        throw new Error('Failed to send message.');
       }
 
-      const data = await res.json();
-      setLeadReport(data);
+      setSubmitted(true);
     } catch (err) {
       console.error(err);
     } finally {
@@ -53,48 +49,41 @@ export default function LeadCapture() {
 
   return (
     <section id="lead-capture" className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-6 scroll-mt-24">
-      
-      {/* Left Lead Info */}
+
+      {/* Left Info */}
       <ScrollReveal as="div" className="lg:col-span-5 flex flex-col justify-between space-y-6 p-6 rounded-2xl border border-slate-900 bg-white" yOffset={20} duration={0.25}>
         <div className="space-y-3">
-          <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest block font-bold">Systems Engineering Deep Dive</span>
+          <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest block font-bold">Talk to an engineer</span>
           <h2 className="text-2xl sm:text-3xl font-bold font-display tracking-tight text-slate-900 leading-tight">
-            Request an Operational <br />
-            Feasibility Appraisal
+            Describe what you want <br />
+            to automate
           </h2>
           <p className="text-xs text-slate-400 leading-relaxed font-sans">
-            Submit your operational specifications to generate a structured technical feasibility report. Our systems analyzer maps proposed integrations, details state-machine topology models, and projects critical-path execution speeds based on historical performance.
+            No auto-generated reports, no jargon-filled scoring. Tell us the workflow and an engineer will reply personally with an honest read on fit and rough approach.
           </p>
         </div>
 
         <div className="space-y-3 pt-4 border-t border-slate-900">
           <div className="flex items-start gap-2 text-xs">
             <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-            <span className="text-slate-700">Detailed custom database and model mapping recommendations</span>
+            <span className="text-slate-700">A real reply from an engineer, not a bot</span>
           </div>
           <div className="flex items-start gap-2 text-xs">
             <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-            <span className="text-slate-700">Instant latency bottleneck evaluations and P50 expectations</span>
+            <span className="text-slate-700">Honest feedback if we're not the right fit</span>
           </div>
           <div className="flex items-start gap-2 text-xs">
             <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-            <span className="text-slate-700">Priority scheduling with Mashnu's lead architects</span>
+            <span className="text-slate-700">Usually a reply within one business day</span>
           </div>
-        </div>
-
-        <div className="p-4 bg-slate-50 rounded-xl border border-slate-900 text-slate-400 flex items-center gap-3">
-          <Shield className="w-5 h-5 text-cyan-400 shrink-0" />
-          <p className="text-[10px] leading-relaxed font-sans">
-            Mashnu AI is 100% compliant with HIPAA, SOC2 Type II, and GDPR guidelines. Your proposed operational logs are air-gapped and never utilized to train public weights.
-          </p>
         </div>
       </ScrollReveal>
 
-      {/* Right Lead Capture Form */}
+      {/* Right Form */}
       <ScrollReveal as="div" className="lg:col-span-7 border border-slate-900 rounded-2xl bg-white p-6 flex flex-col justify-between relative" yOffset={20} duration={0.25}>
-        
+
         <AnimatePresence mode="wait">
-          {!leadReport ? (
+          {!submitted ? (
             <motion.form
               key="lead-form"
               initial={{ opacity: 0 }}
@@ -116,12 +105,12 @@ export default function LeadCapture() {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Corporate Email</label>
+                  <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Work Email</label>
                   <input
                     type="email"
                     value={leadEmail}
                     onChange={(e) => setLeadEmail(e.target.value)}
-                    placeholder="e.g. sarah@cyberdyne.com"
+                    placeholder="e.g. sarah@company.com"
                     className="w-full px-3 py-1.5 text-xs bg-slate-50 rounded border border-slate-800 text-slate-800 focus:outline-none focus:border-cyan-500 font-sans"
                     required
                   />
@@ -135,7 +124,7 @@ export default function LeadCapture() {
                     type="text"
                     value={leadCompany}
                     onChange={(e) => setLeadCompany(e.target.value)}
-                    placeholder="e.g. Cyberdyne Systems"
+                    placeholder="e.g. Acme Inc."
                     className="w-full px-3 py-1.5 text-xs bg-slate-50 rounded border border-slate-800 text-slate-800 focus:outline-none focus:border-cyan-500 font-sans"
                     required
                   />
@@ -155,7 +144,7 @@ export default function LeadCapture() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Estimated Transaction Scale</label>
+                  <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Rough Monthly Volume</label>
                   <select
                     value={leadVolume}
                     onChange={(e) => setLeadVolume(e.target.value)}
@@ -183,14 +172,11 @@ export default function LeadCapture() {
               </div>
 
               <div className="space-y-1.5">
-                <div className="flex justify-between items-center">
-                  <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Operational Automation Target (Use-case)</label>
-                  <span className="text-[9px] text-slate-500">Provide detailed specs for accuracy</span>
-                </div>
+                <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">What do you want to automate?</label>
                 <textarea
                   value={leadUseCase}
                   onChange={(e) => setLeadUseCase(e.target.value)}
-                  placeholder="Explain what operation needs automation (e.g., 'Reconcile invoice PDFs against Hubspot deals, trigger instant billing webhooks on Stripe if matched')"
+                  placeholder="Explain what operation needs automation (e.g., 'Reconcile invoice PDFs against HubSpot deals, trigger a billing webhook on Stripe if matched')"
                   className="w-full h-24 px-3 py-2 text-xs bg-slate-50 rounded border border-slate-800 text-slate-800 placeholder:text-slate-600 focus:outline-none focus:border-cyan-500 font-sans resize-none"
                   required
                 />
@@ -204,105 +190,39 @@ export default function LeadCapture() {
                 {isSubmittingLead ? (
                   <>
                     <Settings className="w-4 h-4 animate-spin" />
-                    <span>Compiling Feasibility Analysis...</span>
+                    <span>Sending...</span>
                   </>
                 ) : (
                   <>
                     <Send className="w-4 h-4" />
-                    <span>Request instant systems appraisal and callback</span>
+                    <span>Send message</span>
                   </>
                 )}
               </button>
             </motion.form>
           ) : (
             <motion.div
-              key="lead-report"
+              key="lead-sent"
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
-              className="space-y-5"
+              className="flex flex-col items-center justify-center text-center space-y-4 h-full py-12"
             >
-              <div className="flex items-center justify-between border-b border-slate-900 pb-3">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 text-emerald-400">
-                    <Check className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold font-mono text-emerald-400 uppercase tracking-wider">Feasibility Analysis Compiled</h4>
-                    <span className="text-[9px] text-slate-500">Mashnu Autonomous Auditor v2.0</span>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setLeadReport(null)}
-                  className="text-[10px] font-mono text-slate-500 hover:text-slate-700 uppercase underline cursor-pointer"
-                >
-                  Audit another process
-                </button>
+              <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center border border-emerald-200">
+                <CheckCircle2 className="w-6 h-6 text-emerald-500" />
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[10px] space-y-1">
-                  <span className="text-slate-500 block uppercase">FEASIBILITY SCORE</span>
-                  <div className="flex items-baseline gap-1.5">
-                    <span className="text-2xl font-bold text-cyan-400">{leadReport.feasibilityRating}</span>
-                    <span className="text-slate-500 text-[10px]">/ 10</span>
-                  </div>
-                </div>
-
-                <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[10px] space-y-1">
-                  <span className="text-slate-500 block uppercase font-bold">ARCHITECTURE LAYER</span>
-                  <span className="text-slate-800 font-bold block truncate">{leadReport.architectureTier}</span>
-                </div>
-
-                <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[10px] space-y-1">
-                  <span className="text-slate-500 block uppercase font-bold">PLATFORM ROADMAP FIT</span>
-                  <span className="text-slate-800 font-bold block truncate">{leadReport.platformReuseFit}</span>
-                </div>
-              </div>
-
               <div className="space-y-1.5">
-                <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block font-bold">Structural Assessment</span>
-                <p className="text-xs text-slate-700 leading-relaxed font-sans bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-                  {leadReport.technicalAssessment}
+                <h4 className="text-base font-bold font-display text-slate-900">Message sent</h4>
+                <p className="text-xs text-slate-400 leading-relaxed font-sans max-w-sm">
+                  Thanks — we've got your message. An engineer will reply to your email, usually within a business day.
                 </p>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block font-bold">Suggested Technical Stack</span>
-                  <div className="flex flex-wrap gap-1">
-                    {leadReport.suggestedStack.map((tech: string, i: number) => (
-                      <span key={i} className="px-2 py-0.5 text-[9.5px] font-mono rounded bg-slate-900 text-cyan-300 border border-slate-800">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="space-y-1.5">
-                  <span className="text-[10px] font-mono text-red-400 uppercase tracking-widest block font-bold">Primary Latency Risk</span>
-                  <div className="p-2.5 rounded bg-red-950/10 border border-red-500/20 flex gap-2">
-                    <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
-                    <p className="text-[10px] text-red-300 leading-normal">{leadReport.latencyRisk}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-3 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-3">
-                <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>Appraisal generated successfully in real-time</span>
-                </div>
-                <a 
-                  href="https://calendly.com/mashnu-ai" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 rounded bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold text-xs tracking-wider transition-all flex items-center gap-1.5 cursor-pointer font-sans"
-                >
-                  <UserCheck className="w-4 h-4" />
-                  <span>Book discovery callback with Architect</span>
-                </a>
-              </div>
+              <button
+                onClick={() => setSubmitted(false)}
+                className="text-[10px] font-mono text-slate-500 hover:text-slate-700 uppercase underline cursor-pointer"
+              >
+                Send another message
+              </button>
             </motion.div>
           )}
         </AnimatePresence>

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from '../components/Router';
-import { 
-  HeartPulse, ShoppingBag, Truck, Scale, ShieldCheck, ArrowRight, Check, Play,
-  Phone, MessageSquare, Database, FileText, ChevronRight, Terminal, Clock
+import {
+  HeartPulse, ShoppingBag, Truck, Scale, ArrowRight, Check,
+  Database, Terminal
 } from 'lucide-react';
 
 interface SolutionCase {
@@ -13,7 +13,6 @@ interface SolutionCase {
   problem: string;
   solution: string;
   mappedProducts: string[];
-  metrics: { value: string; label: string }[];
   specs: string[];
   icon: React.ReactNode;
   sampleFlow: string[];
@@ -27,14 +26,9 @@ const SOLUTIONS: SolutionCase[] = [
     problem: 'Pediatric medical groups experience massive call volumes during morning rushes, leading to high abandon rates, long patient hold times, and receptionist burnout.',
     solution: 'Deploy stateful AI Voice Agents integrated directly with electronic health record (EHR) platforms via secure API channels to verify patient eligibility, reschedule appointments, and handle clinical triage.',
     mappedProducts: ['AI Voice Agents', 'AI Chatbots', 'Website AI Assistants'],
-    metrics: [
-      { value: '82%', label: 'Inbound Call Resolution' },
-      { value: '480ms', label: 'STT+TTS Voice Latency' },
-      { value: '98.6%', label: 'Triage Categorization' }
-    ],
     specs: [
       'AthenaHealth, Epic, and Cerner FHIR API scheduling integration',
-      'HIPAA compliant and SOC2 Type II air-gapped patient verification',
+      'Built to support HIPAA-aligned patient verification workflows',
       'Automatic routing to registered nurses based on clinical keyword flags'
     ],
     sampleFlow: [
@@ -52,11 +46,6 @@ const SOLUTIONS: SolutionCase[] = [
     problem: 'Premium retail brands struggle to convert high-intent ad traffic. Simple email loops and basic FAQ chatbots fail to provide actual consultative sizing assistance and inventory updates.',
     solution: 'Embed a conversational WhatsApp commerce agent that matches buyer sizing criteria with real-time Shopify inventory and commits custom pipeline deals directly to HubSpot.',
     mappedProducts: ['WhatsApp AI Agents', 'Website AI Assistants', 'CRM Automation Orchestrator'],
-    metrics: [
-      { value: '+24%', label: 'Shopify Checkout Conversion' },
-      { value: '1.2s', label: 'Average Response Time' },
-      { value: '99.1%', label: 'Intent Extraction Accuracy' }
-    ],
     specs: [
       'Shopify Plus & WooCommerce active catalog and inventory sync',
       'HubSpot and Salesforce CRM contact creation and deal mapping',
@@ -77,11 +66,6 @@ const SOLUTIONS: SolutionCase[] = [
     problem: 'Logistics accounts payable departments manually cross-reference thousands of carrier invoice PDFs with dispatcher databases, leading to costly billing overcharges.',
     solution: 'Establish a multi-agent backend data pipeline that automatically ingests carrier invoices, extracts metadata, queries dispatches in Postgres, and scores price variances.',
     mappedProducts: ['Enterprise RAG Architectures', 'Multi-Agent Systems', 'CRM Automation Orchestrator'],
-    metrics: [
-      { value: '92%', label: 'Manual Accounting Hours Saved' },
-      { value: 'Sub-10s', label: 'PDF Parsing & Ingestion' },
-      { value: '99.8%', label: 'Ledger Audit Precision' }
-    ],
     specs: [
       'Multi-agent pipeline running layout-aware text extraction (PyPDF/OCR)',
       'Deterministic database lookup cross-referencing carrier container IDs',
@@ -98,15 +82,10 @@ const SOLUTIONS: SolutionCase[] = [
   {
     id: 'compliance',
     industry: 'Corporate Compliance & Legal Operations',
-    title: 'Zero-Leakage RAG for Technical Standard Operating Procedures',
+    title: 'Cited RAG Search for Standard Operating Procedures',
     problem: 'Compliance officers spend hours looking up regulatory warnings and corporate guidelines, frequently making reference mistakes that lead to costly audit warnings.',
-    solution: 'Compile a hybrid Qdrant dense vector and BM25 keyword-matched retrieval pipeline over internal regulatory corpuses, guaranteeing verified sources with legal warning citations.',
+    solution: 'Build a hybrid Qdrant dense vector and BM25 keyword-matched retrieval pipeline over internal regulatory corpuses, so every answer cites its source document and paragraph.',
     mappedProducts: ['Enterprise RAG Architectures', 'AI Chatbots', 'Custom LLM Fine-Tuning Platform'],
-    metrics: [
-      { value: '99.6%', label: 'Retrieval Source Precision' },
-      { value: '< 210ms', label: 'Compliance Lookup Latency' },
-      { value: '0%', label: 'Hallucination / Leakage Rate' }
-    ],
     specs: [
       'Parent-Child recursive chunk mapping ensuring visual hierarchy context',
       'Active document permissions syncing with Windows Active Directory/LDAP',
@@ -127,11 +106,6 @@ const SOLUTIONS: SolutionCase[] = [
     problem: 'Sales and relations teams spend dozens of hours manually entering lead data, transcribing client calls, logging opportunity statuses, and sorting support tickets.',
     solution: 'Deploy a high-speed multi-agent CRM orchestrator that intercepts incoming webhooks, enriches lead metadata, updates opportunity fields in HubSpot/Salesforce, and drafts ticket replies.',
     mappedProducts: ['CRM Automation Orchestrator', 'AI Helpdesk & Ticketing Agent', 'CRM Lead Enrichment & Pipeline Engine'],
-    metrics: [
-      { value: '98.9%', label: 'CRM Sync Accuracy' },
-      { value: 'Sub-5s', label: 'Real-Time Sync Speed' },
-      { value: '94.2%', label: 'Manual Admin Hours Saved' }
-    ],
     specs: [
       'Two-way custom Salesforce and HubSpot REST API synchronizations with concurrency locks',
       'Dynamic email draft compiler pulling context from past conversations and RAG solutions',
@@ -253,18 +227,8 @@ export default function Solutions() {
 
             </div>
 
-            {/* Right Flow & Performance Metrics Column */}
+            {/* Right Flow Column */}
             <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
-              
-              {/* Metrics Grid */}
-              <div className="grid grid-cols-3 gap-4 border border-slate-900 rounded-xl bg-white p-4">
-                {activeSolution.metrics.map((metric, idx) => (
-                  <div key={idx} className="text-center font-mono p-2">
-                    <span className="text-2xl font-extrabold text-cyan-400 block tracking-tight font-display">{metric.value}</span>
-                    <span className="text-[9px] text-slate-500 uppercase tracking-wide block leading-snug mt-1">{metric.label}</span>
-                  </div>
-                ))}
-              </div>
 
               {/* Execution Flow Diagram */}
               <div className="border border-slate-200 rounded-xl bg-white p-5 space-y-4">
@@ -296,17 +260,17 @@ export default function Solutions() {
         <section className="border border-slate-900 rounded-2xl bg-gradient-to-br from-slate-950 via-slate-950 to-slate-900 p-8 sm:p-10 text-center space-y-5">
           <div className="max-w-2xl mx-auto space-y-4">
             <h2 className="text-2xl font-bold font-display tracking-tight text-white">
-              Need a Custom System Feasibility Audit?
+              Don't see your exact workflow?
             </h2>
             <p className="text-xs text-slate-400 leading-relaxed font-sans">
-              Our lead engineers can compile a comprehensive technical architecture recommendation tailored exactly to your unique workflow, detailing expected database connections and P50 latencies.
+              Most of what we build doesn't fit a template. Talk to an engineer about what you're trying to automate and we'll tell you honestly whether it's a good fit.
             </p>
             <div className="pt-2">
               <Link
                 to="/contact"
                 className="inline-flex px-5 py-2.5 rounded bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold text-xs tracking-wider transition-all items-center gap-1.5 shadow-lg shadow-cyan-500/10"
               >
-                Request Systems Appraisal
+                Talk to an engineer
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>

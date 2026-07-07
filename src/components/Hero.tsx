@@ -28,7 +28,7 @@ export default function Hero({ onBookDemoClick, onSeePlatformClick }: HeroProps)
 
       <ScrollReveal yOffset={20} duration={0.24}>
         <p className="text-base sm:text-lg text-text-sub font-sans max-w-2xl mx-auto leading-relaxed">
-          Mashnu is a state-machine orchestration engine. We coordinate streaming voice pipelines, WhatsApp conversation states, and legacy CRM systems to run high-frequency customer operations — without human intervention.
+          We build AI voice agents, WhatsApp automation, and back-office agents that connect directly to your CRM, EHR, or support desk — so calls get answered, tickets get resolved, and records stay in sync without a person doing it manually.
         </p>
       </ScrollReveal>
 

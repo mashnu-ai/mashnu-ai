@@ -128,35 +128,6 @@ export function simulateStep(compiledAgent: any, userInput: string) {
   };
 }
 
-export function qualifyLead(useCase: string, company?: string, estimatedVolume?: string, currentSystem?: string) {
-  const seed = hashString(useCase);
-  const isInvoice = /\b(invoice|freight|ledger|reconcil\w*)\b/i.test(useCase);
-  const isVoice = !isInvoice && /\b(voice|call|phone|patient)\b/i.test(useCase);
-  const isRag = /\b(rag|knowledge|search|sop|compliance)\b/i.test(useCase);
-
-  const architectureTier = isInvoice
-    ? "Document Processing & Reconciliation Pipeline"
-    : isVoice
-      ? "Low-Latency Voice Streaming Agent"
-      : isRag
-        ? "Standard RAG & LLM Retrieval System"
-        : "Complex Multi-Agent Cascade";
-
-  return {
-    feasibilityRating: 6 + (Math.abs(seed) % 4),
-    architectureTier,
-    technicalAssessment: `Based on the described workflow${company ? ` for ${company}` : ""}, this use-case fits a ${architectureTier.toLowerCase()}. Expected token volume and request pattern are compatible with standard streaming webhook concurrency, and the primary engineering considerations are context window sizing and database read performance at your target scale (${estimatedVolume || "not specified"}).`,
-    suggestedStack: isInvoice
-      ? ["LangGraph", "PostgreSQL", "PDF extraction pipeline", "Webhook queue workers"]
-      : isVoice
-        ? ["Low-latency STT/TTS", "LangGraph", "EHR/CRM API integration", "Real-time state sync"]
-        : ["LangGraph", "Qdrant Vector DB", "FastAPI Webhooks", "RAG chunking pipeline"],
-    latencyRisk: isVoice
-      ? "Voice round-trip latency is the primary bottleneck; mitigate with streaming STT/TTS and edge-deployed inference."
-      : "Database read performance under concurrent load is the primary bottleneck; mitigate with connection pooling and read replicas.",
-    platformReuseFit: `This aligns with Mashnu's core platform roadmap item covering ${architectureTier.toLowerCase()}, reusing existing ${currentSystem ? `integrations with ${currentSystem}` : "connector infrastructure"}.`,
-  };
-}
 
 export function assistantChat(messages: { role: string; content: string }[]) {
   const lastUserMessage = [...messages].reverse().find((m) => m.role === "user");

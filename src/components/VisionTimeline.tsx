@@ -9,14 +9,14 @@ export default function VisionTimeline() {
       <div className="relative p-6 sm:p-8 rounded-2xl border border-slate-900 bg-gradient-to-br from-slate-950 via-slate-950 to-slate-900 text-slate-700 font-serif leading-relaxed text-base italic space-y-4">
         <div className="absolute top-4 left-4 text-4xl text-cyan-500/20 font-serif select-none pointer-events-none">“</div>
         <p className="relative z-10 pl-4 font-sans not-italic text-sm text-slate-400">
-          <strong className="text-slate-900 block text-base font-display font-bold not-italic tracking-tight mb-2">Our Stance Against the AI Consulting Trap</strong>
-          The market is flooded with generic "AI development boutiques" that bill $250/hour to spin up basic LangChain tutorials and present them as enterprise software. They leave clients with massive, unmaintainable node spaghetti.
+          <strong className="text-slate-900 block text-base font-display font-bold not-italic tracking-tight mb-2">Platforms, not one-off projects</strong>
+          A lot of AI consulting is a demo wrapped around a chat prompt — quick to build, hard to maintain, and thrown away the moment requirements change.
         </p>
         <p className="relative z-10 pl-4 font-sans not-italic text-sm text-slate-400">
-          At Mashnu AI, we reject this pattern completely. We are engineering-first product builders. We only partner with select international enterprise clients because every single workflow, connector, and safety guardrail we build for them is designed to be committed back into our core micro-agent framework.
+          We build differently. Every workflow, connector, and guardrail we build for a client is designed to be reusable — it gets built back into our core platform, not thrown away after the project ends.
         </p>
         <p className="relative z-10 pl-4 font-sans not-italic text-sm text-slate-400">
-          We compete directly on latency metrics, database lookup throughput, and factual retrieval accuracies. If you are an investor, developer, or enterprise operator who believes AI employees should be engineered like mission-critical databases rather than dynamic chat prompts, we are building this platform for you.
+          If you think AI agents handling real business operations should be engineered with the same rigor as production infrastructure — not prompted together and hoped for the best — that's who we're building this for.
         </p>
         
         <div className="pt-4 border-t border-slate-900 not-italic flex items-center justify-between">

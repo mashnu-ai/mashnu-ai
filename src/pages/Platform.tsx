@@ -366,7 +366,7 @@ export default function Platform() {
                     <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg flex items-center gap-3 text-xs">
                       <Lock className="w-4 h-4 text-cyan-400 shrink-0" />
                       <p className="text-slate-400 font-sans text-[11px]">
-                        Enterprise code modules are delivered inside air-gapped container repositories, meeting strict ISO-27001, SOC2 Type II compliance rules.
+                        Enterprise modules are deployed into isolated container environments, built to support common compliance requirements like ISO 27001 and SOC 2.
                       </p>
                     </div>
                   </div>

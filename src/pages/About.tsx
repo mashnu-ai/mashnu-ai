@@ -111,7 +111,7 @@ export default function About() {
                 Because every webhook handler, vector chunk parser, and Voice VAD node we deploy for a client runs as a parameter-validated node on our platform, our clients benefit from continuous reliability, security patches, and instant hardware-level model upgrades.
               </p>
               <p>
-                This ensures your business automation maintains absolute compliance, runs in air-gapped secure environments, and adapts to future post-silicon scaling without rewriting your core operational rules.
+                That means fixes and model upgrades reach your automation without you having to rewrite your integration or your core operational rules.
               </p>
             </div>
           </div>

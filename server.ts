@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
-import { compileAgent, simulateStep, qualifyLead, assistantChat } from "./src/server/agentLogic";
+import { compileAgent, simulateStep, assistantChat } from "./src/server/agentLogic";
 
 // This server has no external AI API dependency and no API keys required.
 // The "compiler", "simulator", "lead qualifier", and "assistant" endpoints
@@ -48,19 +48,21 @@ async function startServer() {
     }
   });
 
-  // API Route: Enterprise Lead Architectural Feasibility Assessment
-  app.post("/api/qualify-lead", async (req, res) => {
+  // API Route: Contact form submission (no fabricated analysis — just accepts the message)
+  app.post("/api/contact", async (req, res) => {
     try {
-      const { company, useCase, estimatedVolume, currentSystem } = req.body;
+      const { fullName, email, company, useCase } = req.body;
 
-      if (!useCase) {
-        return res.status(400).json({ error: "The useCase field is required for technical assessment." });
+      if (!useCase || !email) {
+        return res.status(400).json({ error: "Please include your email and a description of what you want to automate." });
       }
 
-      res.json(qualifyLead(useCase, company, estimatedVolume, currentSystem));
+      console.log(`[Contact] New inquiry from ${fullName || "unknown"} <${email}> at ${company || "unknown company"}: ${useCase.slice(0, 200)}`);
+
+      res.json({ received: true });
     } catch (error: any) {
-      console.error("Lead qualification error:", error);
-      res.status(500).json({ error: error?.message || "Failed to analyze proposed use-case." });
+      console.error("Contact form error:", error);
+      res.status(500).json({ error: error?.message || "Failed to send your message." });
     }
   });
 
