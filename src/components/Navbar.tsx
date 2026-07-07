@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useRouter } from './Router';
 import { Menu, X } from 'lucide-react';
+import BrandMark from './BrandMark';
 
 export default function Navbar() {
   const { path } = useRouter();
@@ -36,9 +37,7 @@ export default function Navbar() {
         {/* Brand Logo & Name */}
         <div className="flex items-center gap-3">
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-lg bg-primary-accent flex items-center justify-center shadow-sm group-hover:bg-primary-accent-hover transition-colors">
-              <span className="font-display font-semibold text-base text-[#FCFAF5]">M</span>
-            </div>
+            <BrandMark className="w-9 h-9 transition-transform duration-200 group-hover:scale-105" />
             <span className="font-display font-semibold text-lg tracking-tight text-[#211D16]">
               Mashnu
               <span className="font-mono text-[10px] font-medium text-primary-accent uppercase tracking-widest ml-1.5 align-middle">AI</span>

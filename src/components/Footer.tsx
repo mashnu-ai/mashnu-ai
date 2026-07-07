@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from './Router';
 import { Shield } from 'lucide-react';
+import BrandMark from './BrandMark';
 
 export default function Footer() {
   return (
@@ -11,14 +12,15 @@ export default function Footer() {
           {/* Logo / Company Bio column */}
           <div className="lg:col-span-4 space-y-4">
             <Link to="/" className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#C15F3C] flex items-center justify-center">
-                <span className="font-display font-semibold text-sm text-[#FCFAF5]">M</span>
-              </div>
+              <BrandMark className="w-9 h-9" />
               <span className="font-display font-semibold text-lg tracking-tight text-[#211D16]">
                 Mashnu
                 <span className="font-mono text-[10px] font-medium text-[#C15F3C] uppercase tracking-widest ml-1.5 align-middle">AI</span>
               </span>
             </Link>
+            <span className="block text-[9px] font-mono uppercase tracking-[0.32em] text-[#8B8271]">
+              Built from the ground up
+            </span>
             <p className="text-xs text-[#6F6757] font-sans leading-relaxed max-w-sm">
               Mashnu AI engineers highly reliable, low-latency autonomous AI voice, conversational messaging, and back-office multi-agent pipelines for enterprise and mid-market operations.
             </p>
