@@ -21,7 +21,7 @@ export default function Footer() {
               Built from the ground up
             </span>
             <p className="text-xs text-[#64748B] font-sans leading-relaxed max-w-sm">
-              Mashnu AI builds AI voice agents, WhatsApp automation, and back-office multi-agent pipelines for enterprise and mid-market operations.
+              Mashnu AI builds a personal AI assistant for real life — and the AI voice, WhatsApp, and back-office agents that power it for businesses too.
             </p>
           </div>
 

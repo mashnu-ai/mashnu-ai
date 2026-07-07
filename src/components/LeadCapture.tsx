@@ -6,11 +6,8 @@ import { ScrollReveal } from './ScrollReveal';
 export default function LeadCapture() {
   const [leadName, setLeadName] = useState('');
   const [leadEmail, setLeadEmail] = useState('');
-  const [leadCompany, setLeadCompany] = useState('');
-  const [leadRole, setLeadRole] = useState('');
+  const [leadInterest, setLeadInterest] = useState('For myself');
   const [leadUseCase, setLeadUseCase] = useState('');
-  const [leadVolume, setLeadVolume] = useState('< 10k actions/month');
-  const [leadSystem, setLeadSystem] = useState('Manual spreadsheets/operations');
   const [isSubmittingLead, setIsSubmittingLead] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -27,11 +24,8 @@ export default function LeadCapture() {
         body: JSON.stringify({
           fullName: leadName,
           email: leadEmail,
-          company: leadCompany,
-          role: leadRole,
+          company: `Assistant early access — interest: ${leadInterest}`,
           useCase: leadUseCase,
-          estimatedVolume: leadVolume,
-          currentSystem: leadSystem
         })
       });
 
@@ -53,28 +47,28 @@ export default function LeadCapture() {
       {/* Left Info */}
       <ScrollReveal as="div" className="lg:col-span-5 flex flex-col justify-between space-y-6 p-6 rounded-2xl border border-slate-900 bg-white" yOffset={20} duration={0.25}>
         <div className="space-y-3">
-          <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest block font-bold">Talk to an engineer</span>
+          <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest block font-bold">Early access</span>
           <h2 className="text-2xl sm:text-3xl font-bold font-display tracking-tight text-slate-900 leading-tight">
-            Describe what you want <br />
-            to automate
+            Tell us what you'd <br />
+            hand off first
           </h2>
           <p className="text-xs text-slate-400 leading-relaxed font-sans">
-            No auto-generated reports, no jargon-filled scoring. Tell us the workflow and an engineer will reply personally with an honest read on fit and rough approach.
+            The assistant is rolling out gradually while we get it right. Tell us what you'd want it to take off your plate — calls, messages, reminders, the daily admin — and we'll reach out as we onboard people.
           </p>
         </div>
 
         <div className="space-y-3 pt-4 border-t border-slate-900">
           <div className="flex items-start gap-2 text-xs">
             <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-            <span className="text-slate-700">A real reply from an engineer, not a bot</span>
+            <span className="text-slate-700">A real reply from our team, not an auto-responder</span>
           </div>
           <div className="flex items-start gap-2 text-xs">
             <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-            <span className="text-slate-700">Honest feedback if we're not the right fit</span>
+            <span className="text-slate-700">Works for individuals and small businesses alike</span>
           </div>
           <div className="flex items-start gap-2 text-xs">
             <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-            <span className="text-slate-700">Usually a reply within one business day</span>
+            <span className="text-slate-700">Honest word on timing — no fake waitlist games</span>
           </div>
         </div>
       </ScrollReveal>
@@ -105,78 +99,38 @@ export default function LeadCapture() {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Work Email</label>
+                  <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Email</label>
                   <input
                     type="email"
                     value={leadEmail}
                     onChange={(e) => setLeadEmail(e.target.value)}
-                    placeholder="e.g. sarah@company.com"
+                    placeholder="e.g. sarah@example.com"
                     className="w-full px-3 py-1.5 text-xs bg-slate-50 rounded border border-slate-800 text-slate-800 focus:outline-none focus:border-cyan-500 font-sans"
                     required
                   />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Company Name</label>
-                  <input
-                    type="text"
-                    value={leadCompany}
-                    onChange={(e) => setLeadCompany(e.target.value)}
-                    placeholder="e.g. Acme Inc."
-                    className="w-full px-3 py-1.5 text-xs bg-slate-50 rounded border border-slate-800 text-slate-800 focus:outline-none focus:border-cyan-500 font-sans"
-                    required
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Your Title / Role</label>
-                  <input
-                    type="text"
-                    value={leadRole}
-                    onChange={(e) => setLeadRole(e.target.value)}
-                    placeholder="e.g. Director of Operations"
-                    className="w-full px-3 py-1.5 text-xs bg-slate-50 rounded border border-slate-800 text-slate-800 focus:outline-none focus:border-cyan-500 font-sans"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Rough Monthly Volume</label>
-                  <select
-                    value={leadVolume}
-                    onChange={(e) => setLeadVolume(e.target.value)}
-                    className="w-full bg-white text-xs py-1.5 px-2 border border-slate-200 rounded text-slate-900 focus:outline-none focus:border-blue-500 font-mono"
-                  >
-                    <option value="< 10k actions/month">&lt; 10,000 requests/month</option>
-                    <option value="10k-100k actions/month">10,000 to 100,000 requests/month</option>
-                    <option value="100k-1M actions/month">100,000 to 1,000,000 requests/month</option>
-                    <option value="1M+ actions/month">1,000,000+ requests/month</option>
-                  </select>
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Current Operating Stack</label>
-                  <select
-                    value={leadSystem}
-                    onChange={(e) => setLeadSystem(e.target.value)}
-                    className="w-full bg-white text-xs py-1.5 px-2 border border-slate-200 rounded text-slate-900 focus:outline-none focus:border-blue-500 font-mono"
-                  >
-                    <option value="Manual spreadsheets/operations">Manual spreadsheets/operators</option>
-                    <option value="Offshore BPO contractors">Offshore BPO contractors</option>
-                    <option value="Legacy software scripts (Python/SQL)">Legacy software scripts</option>
-                    <option value="V1 AI wraps (Zapier / Custom GPTs)">V1 wrappers (Zapier/GPTs)</option>
-                  </select>
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">What do you want to automate?</label>
+                <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Who is it for?</label>
+                <select
+                  value={leadInterest}
+                  onChange={(e) => setLeadInterest(e.target.value)}
+                  className="w-full bg-white text-xs py-1.5 px-2 border border-slate-200 rounded text-slate-900 focus:outline-none focus:border-blue-500 font-sans"
+                >
+                  <option value="For myself">For myself</option>
+                  <option value="For my family / household">For my family or household</option>
+                  <option value="For my business">For my business</option>
+                  <option value="Both personal and business">Both personal and business</option>
+                </select>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">What would you hand off to an assistant?</label>
                 <textarea
                   value={leadUseCase}
                   onChange={(e) => setLeadUseCase(e.target.value)}
-                  placeholder="Explain what operation needs automation (e.g., 'Reconcile invoice PDFs against HubSpot deals, trigger a billing webhook on Stripe if matched')"
+                  placeholder="e.g. 'Answer calls when I'm busy and take proper messages', 'Reply to customer WhatsApp messages after hours', 'Keep track of appointments and remind me'"
                   className="w-full h-24 px-3 py-2 text-xs bg-slate-50 rounded border border-slate-800 text-slate-800 placeholder:text-slate-600 focus:outline-none focus:border-cyan-500 font-sans resize-none"
                   required
                 />
@@ -195,7 +149,7 @@ export default function LeadCapture() {
                 ) : (
                   <>
                     <Send className="w-4 h-4" />
-                    <span>Send message</span>
+                    <span>Request early access</span>
                   </>
                 )}
               </button>
@@ -212,16 +166,16 @@ export default function LeadCapture() {
                 <CheckCircle2 className="w-6 h-6 text-emerald-500" />
               </div>
               <div className="space-y-1.5">
-                <h4 className="text-base font-bold font-display text-slate-900">Message sent</h4>
+                <h4 className="text-base font-bold font-display text-slate-900">You're on the list</h4>
                 <p className="text-xs text-slate-400 leading-relaxed font-sans max-w-sm">
-                  Thanks — we've got your message. An engineer will reply to your email, usually within a business day.
+                  Thanks — we've got your request. We'll email you with an honest update on timing, usually within a business day.
                 </p>
               </div>
               <button
                 onClick={() => setSubmitted(false)}
                 className="text-[10px] font-mono text-slate-500 hover:text-slate-700 uppercase underline cursor-pointer"
               >
-                Send another message
+                Send another request
               </button>
             </motion.div>
           )}
