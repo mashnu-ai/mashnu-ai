@@ -1,408 +1,556 @@
 import React, { useState } from 'react';
 import { Link } from '../components/Router';
-import { 
-  Compass, ShieldCheck, Cpu, Terminal, Hammer, HelpCircle, ArrowRight, 
-  Lightbulb, Users2, Filter, CheckCircle2, ChevronDown, ChevronUp, AlertCircle, Sparkles, Send, Brain
+import {
+  GraduationCap, Users2, ShieldCheck, ArrowRight, CheckCircle2,
+  ChevronDown, ChevronUp, AlertCircle, Sparkles, Send, Clock, Globe2, Award
 } from 'lucide-react';
 
-interface JobRole {
-  id: string;
-  title: string;
-  department: 'Engineering' | 'Research' | 'Operations';
-  location: string;
-  compensation: string;
-  stack: string[];
-  description: string;
-  responsibilities: string[];
-  requirements: string[];
+// ---------------------------------------------------------------------------
+// Program data
+// ---------------------------------------------------------------------------
+
+interface AgeTier {
+  name: string;
+  ageRange: string;
+  purpose: string;
+  learningAreas: string[];
+  restrictions: string[];
+  deliverables: string[];
 }
 
-const OPEN_ROLES: JobRole[] = [
+const AGE_TIERS: AgeTier[] = [
   {
-    id: 'voice-engineer',
-    title: "Sovereign Voice Systems Engineer",
-    department: "Engineering",
-    location: "Sovereign Labs (Remote / London / SF)",
-    compensation: "$180k - $240k • 0.5% - 1.2% Equity",
-    stack: ["WebRTC", "C++", "Rust", "PCM Audio", "VAD", "TypeScript"],
-    description: "Architect and optimize our streaming audio runtime. You will be responsible for keeping live duplex voice agent latency under 400ms by engineering raw socket buffers and localized voice activity detection filters.",
-    responsibilities: [
-      "Minimize end-to-end voice roundtrips by bypassing legacy HTTP streaming routes",
-      "Optimize local WebRTC transport nodes and implement high-density audio compression streams",
-      "Build strict safety locks that instantly interrupt agent responses when customer speech resumes"
+    name: 'Young Innovators Program',
+    ageRange: 'Ages 12-13',
+    purpose: 'A first look at how computers and AI work, built entirely around learning.',
+    learningAreas: [
+      'Block-based coding with Scratch',
+      'Introduction to basic Python',
+      'How everyday AI tools work and where they are used',
+      'Digital safety and responsible technology use',
     ],
-    requirements: [
-      "Deep understanding of digital signal processing (DSP), sample rates, and PCM formats",
-      "Proven track record of deploying raw socket servers under high concurrent user loads",
-      "Obsessive focus on microsecond performance gains"
-    ]
+    restrictions: [
+      'No commercial or client work of any kind',
+      'Requires written consent from a parent or guardian',
+      'Fully supervised sessions only',
+    ],
+    deliverables: [
+      'Participation certificate',
+      'A small personal project to keep',
+      'Written progress notes for parents',
+    ],
   },
   {
-    id: 'wasm-architect',
-    title: "WASM Edge Inference Architect",
-    department: "Research",
-    location: "Sovereign Labs (Remote / Paris)",
-    compensation: "$190k - $250k • 0.6% - 1.5% Equity",
-    stack: ["WebAssembly", "Rust", "ONNX", "SIMD", "Caching", "Llama.cpp"],
-    description: "Compile and bundle open-weight model runtimes directly into local WASM enclaves. Your work will enable high-speed model inference directly inside edge routers and distributed client servers.",
-    responsibilities: [
-      "Translate heavy PyTorch weights into optimized, static-compiled WASM binaries",
-      "Leverage SIMD instructions to accelerate model matrix calculations inside local sandboxes",
-      "Design a decentralized weight-adapter caching protocol that holds key layers close to clients"
+    name: 'Student Technology Fellowship',
+    ageRange: 'Ages 14-17',
+    purpose: 'Supervised, educational projects that build real technical foundations without client involvement.',
+    learningAreas: [
+      'Python fundamentals and simple scripts',
+      'Introduction to how AI models and chatbots behave',
+      'Building small practice projects end to end',
+      'Version control and working with code',
     ],
-    requirements: [
-      "Expert-level competency in Rust and WebAssembly compilation flags",
-      "Experience optimizing model quantization parameters (GGML, GPTQ) for low-memory devices",
-      "A passion for liberating intelligence from central hyper-scaler cloud locks"
-    ]
+    restrictions: [
+      'No client or production work',
+      'Parent or guardian consent required for anyone under 18',
+      'All work reviewed and guided by a mentor',
+    ],
+    deliverables: [
+      'Completion certificate',
+      'A documented practice project for a portfolio',
+      'Mentor feedback summary',
+    ],
   },
   {
-    id: 'agent-compiler',
-    title: "Multi-Agent System Compiler Engineer",
-    department: "Engineering",
-    location: "Sovereign Labs (Remote / SF)",
-    compensation: "$170k - $220k • 0.4% - 1.0% Equity",
-    stack: ["TypeScript", "Zod", "LangGraph", "Directed Acyclic Graphs (DAGs)", "PostgreSQL"],
-    description: "Build robust, deterministic execution paths for multi-agent Directed Acyclic Graphs (DAGs). You will construct the compiler that translates user prompts into strictly validated agent tasks.",
-    responsibilities: [
-      "Design zero-flicker state-consistent routers that coordinate asynchronous agent handoffs",
-      "Implement strict declarative schema validators (Zod) at every API and tool node boundary",
-      "Build advanced logging and instrumentation hooks that trace tool latency down to the millisecond"
+    name: 'Professional Internship',
+    ageRange: 'Ages 18+',
+    purpose: 'Real, supervised project work for those ready to build alongside our team.',
+    learningAreas: [
+      'Contributing to supervised AI voice, WhatsApp, or multi-agent projects',
+      'Working with real tools, APIs, and codebases',
+      'Prompt design and testing for agent behavior',
+      'Collaborating through weekly reviews',
     ],
-    requirements: [
-      "Deep experience managing state-machines and complex logical graph networks",
-      "A refusal to use loose JSON objects, preferring strongly-typed, verifiable structures",
-      "Proven history of building multi-tenant SaaS API routes"
-    ]
-  }
+    restrictions: [
+      'Educational and unpaid; not an offer of employment',
+      'No guarantee of a job or pre-placement offer',
+      'Open to students, graduates, and career switchers of any background',
+    ],
+    deliverables: [
+      'Internship certificate',
+      'A portfolio of supervised project work',
+      'A reference from your mentor on request',
+    ],
+  },
+];
+
+const JOURNEY_STEPS = [
+  { step: 'Application', description: 'Tell us who you are and what you want to learn.' },
+  { step: 'Eligibility Review', description: 'We confirm your tier, age requirements, and any consent needed.' },
+  { step: 'Orientation', description: 'Get set up with your tools, mentor, and first goals.' },
+  { step: 'Weekly Tasks & Reviews', description: 'Work through guided tasks with regular feedback.' },
+  { step: 'Project Work', description: 'Apply what you have learned to a real, supervised project.' },
+  { step: 'Final Evaluation', description: 'Review your progress and project with your mentor.' },
+  { step: 'Certificate', description: 'Receive a certificate recognizing what you completed.' },
+];
+
+const PROGRAM_LEVELS = [
+  { name: 'Foundation', description: 'Learn the basics of coding and how AI tools work through small guided exercises. Suits complete beginners.' },
+  { name: 'Intermediate', description: 'Build small projects end to end and get comfortable with real tools and code.' },
+  { name: 'Advanced', description: 'Take on more involved practice projects with less hand-holding and deeper technical work.' },
+  { name: 'Professional', description: 'Contribute to real supervised project work alongside the team over a longer commitment.' },
+];
+
+interface Track {
+  id: string;
+  title: string;
+  overview: string;
+  skillsLearned: string[];
+  prerequisites: string;
+  sampleProjects: string[];
+  tools: string[];
+  difficulty: 'Beginner-friendly' | 'Intermediate' | 'Some experience helpful';
+  featured?: boolean;
+}
+
+const TRACKS: Track[] = [
+  {
+    id: 'ai-agent-engineering',
+    title: 'AI & Agent Engineering',
+    overview: 'Work alongside our engineers building and refining LangGraph agent pipelines and RAG workflows that power real client deployments.',
+    skillsLearned: [
+      'Designing multi-step agent flows with LangGraph',
+      'Building and evaluating RAG pipelines end to end',
+      'Prompt engineering and systematic prompt evaluation',
+      'Writing Python services and endpoints with FastAPI',
+    ],
+    prerequisites: 'Basic Python and genuine curiosity about how LLM agents work; no degree required.',
+    sampleProjects: [
+      'Build a small tool-using agent that answers questions over a document set',
+      'Add and test a new node in an existing LangGraph pipeline',
+      'Create a prompt evaluation harness to compare responses across variants',
+    ],
+    tools: ['Python', 'LangGraph', 'FastAPI', 'Qdrant'],
+    difficulty: 'Some experience helpful',
+    featured: true,
+  },
+  {
+    id: 'software-engineering',
+    title: 'Software Engineering',
+    overview: 'Help build the interfaces and backend services that clients and our team use every day, across frontend and API work.',
+    skillsLearned: [
+      'Building components with React and TypeScript',
+      'Writing and consuming REST APIs',
+      'Working in a real Git-based team workflow',
+      'Debugging across the frontend and backend',
+    ],
+    prerequisites: 'Some familiarity with JavaScript or Python; no degree required.',
+    sampleProjects: [
+      'Build a small dashboard view against an existing API',
+      'Add a new endpoint and wire it into the frontend',
+      'Fix and test bugs reported from real usage',
+    ],
+    tools: ['React', 'TypeScript', 'Python', 'Git'],
+    difficulty: 'Beginner-friendly',
+    featured: true,
+  },
+  {
+    id: 'voice-conversational-ai',
+    title: 'Voice & Conversational AI',
+    overview: 'Help build and test voice agent conversation flows and basic WhatsApp automation for client use cases.',
+    skillsLearned: [
+      'Designing conversation flows for voice and chat agents',
+      'Working with speech-to-text and text-to-speech pipelines',
+      'Basics of the WhatsApp Business API and message handling',
+      'Testing and iterating on real conversation transcripts',
+    ],
+    prerequisites: 'Curiosity about conversational AI and clear written communication; no degree required.',
+    sampleProjects: [
+      'Map and refine the conversation flow for a booking or FAQ voice agent',
+      'Build a simple WhatsApp auto-reply flow for a sample scenario',
+      'Review call transcripts and propose prompt or flow improvements',
+    ],
+    tools: ['Python', 'LangGraph', 'WhatsApp Business API', 'Redis'],
+    difficulty: 'Beginner-friendly',
+  },
+  {
+    id: 'data-retrieval-systems',
+    title: 'Data & Retrieval Systems',
+    overview: 'Help build the retrieval layer behind our agents, working with vector databases and the pipelines that feed them.',
+    skillsLearned: [
+      'Fundamentals of embeddings and vector search',
+      'Loading, chunking, and indexing documents into Qdrant',
+      'Measuring and improving retrieval quality',
+      'Basic caching patterns with Redis',
+    ],
+    prerequisites: 'Basic Python and interest in how search and data pipelines work; no degree required.',
+    sampleProjects: [
+      'Build an ingestion script that chunks and indexes a document set',
+      'Compare retrieval quality across different chunking strategies',
+      'Add caching to a repeated retrieval query',
+    ],
+    tools: ['Python', 'Qdrant', 'Redis', 'FastAPI'],
+    difficulty: 'Intermediate',
+  },
+  {
+    id: 'business-operations-growth',
+    title: 'Business Operations & Growth',
+    overview: 'Help keep projects and clients moving, improving the internal processes a small, fast-moving team runs on.',
+    skillsLearned: [
+      'Structuring and documenting internal processes',
+      'Coordinating tasks and timelines across a project',
+      'Basics of client onboarding and communication',
+      'Tracking simple growth and operations metrics',
+    ],
+    prerequisites: 'Organized, dependable, and a clear communicator; no degree required.',
+    sampleProjects: [
+      'Document and streamline our client onboarding checklist',
+      'Set up a lightweight project tracker for ongoing work',
+      'Prepare a weekly operations summary from project data',
+    ],
+    tools: ['Notion', 'Google Workspace', 'Slack', 'Spreadsheets'],
+    difficulty: 'Beginner-friendly',
+  },
+  {
+    id: 'marketing-content',
+    title: 'Marketing & Content',
+    overview: 'Help shape how Mashnu explains its work, writing content and running social channels with a clear, honest voice.',
+    skillsLearned: [
+      'Writing clear technical and marketing content',
+      'Planning and scheduling social posts',
+      'Positioning technical products for non-technical readers',
+      'Reading basic content and engagement metrics',
+    ],
+    prerequisites: 'Strong writing and curiosity about AI products; no degree required.',
+    sampleProjects: [
+      'Write a short case study on a client project',
+      'Plan and draft a two-week social content calendar',
+      'Rewrite a product page section for clarity',
+    ],
+    tools: ['Notion', 'LinkedIn', 'Canva', 'Google Docs'],
+    difficulty: 'Beginner-friendly',
+  },
+  {
+    id: 'sales-client-relations',
+    title: 'Sales & Client Relations',
+    overview: "Help find and qualify potential clients and support clear, honest communication through the early sales conversations.",
+    skillsLearned: [
+      'Researching and qualifying leads',
+      'Writing clear, personalized outreach',
+      'Basics of a sales pipeline and follow-up',
+      'Preparing notes and summaries for client calls',
+    ],
+    prerequisites: 'Confident communicator who enjoys talking to people; no degree required.',
+    sampleProjects: [
+      'Build a small qualified lead list for a target segment',
+      'Draft and test an outreach message sequence',
+      'Keep a simple CRM pipeline up to date',
+    ],
+    tools: ['CRM', 'LinkedIn', 'Google Sheets', 'Email'],
+    difficulty: 'Beginner-friendly',
+  },
+  {
+    id: 'design-product',
+    title: 'Design & Product',
+    overview: 'Help design and refine the interfaces across our product suite, turning rough ideas into clean, usable screens.',
+    skillsLearned: [
+      'UI design fundamentals and layout',
+      'Building interactive prototypes in Figma',
+      'Basics of UX research and usability feedback',
+      'Working with engineers to ship a design',
+    ],
+    prerequisites: 'An eye for clean design and willingness to iterate; no degree required.',
+    sampleProjects: [
+      'Redesign a single screen in one of our product dashboards',
+      'Prototype a new feature flow in Figma',
+      'Run a small usability review and summarize findings',
+    ],
+    tools: ['Figma', 'FigJam', 'Notion'],
+    difficulty: 'Beginner-friendly',
+  },
+];
+
+const POLICIES = [
+  {
+    name: 'Attendance & Discipline',
+    summary: "We ask for a minimum of five hours a week, and we care more about consistency than volume. Show up when you say you will, and keep your mentor in the loop if life gets in the way. If someone goes quiet for long stretches without any explanation, the internship may be discontinued so the spot can go to someone ready to use it.",
+  },
+  {
+    name: 'Code of Conduct',
+    summary: "Treat everyone here with respect, in every message and every call. Harassment, discrimination, and disrespect have no place in the program. Do your own honest work, give credit where it's due, and be straight with your team about what you have and haven't done.",
+  },
+  {
+    name: 'Confidentiality',
+    summary: "As an intern, you may come across internal projects, tools, and client information that isn't public. Keep it private, during the program and after it ends. Don't share, post, or reuse anything you learn about our clients or our work without permission.",
+  },
+  {
+    name: 'AI Usage',
+    summary: "You are welcome to use AI tools to help you build and learn, the same way our team does. The one rule is that you must understand what you submit and be able to explain how it works.",
+  },
+  {
+    name: 'Certificate Eligibility',
+    summary: "A certificate reflects work, not sign-up. To be eligible, you need to complete the minimum program duration and finish the deliverables agreed with your mentor.",
+  },
 ];
 
 const FAQ_ITEMS = [
-  {
-    question: "What is Mashnu's stance on fully remote work?",
-    answer: "We are remote-first but highly synchronized. We operate primarily in Western European and US time zones to maintain a high-density overlap for collaborative reviews. We gather the entire engineering team in person twice a year for dedicated physical compilation hackathons."
-  },
-  {
-    question: "Do you hire junior developers or general API wrappers?",
-    answer: "We are currently hiring seasoned systems programmers who can take absolute ownership of complex modules from day one. If your experience is primarily stitching generic APIs with loose prompt strings, our low-level compiler and latency-focused targets may not be the right environment."
-  },
-  {
-    question: "How does the diagnostic evaluation screening work?",
-    answer: "We value objective code capability over traditional resumes. Our pipeline involves completing a short architectural diagnostic (which you can test below), followed by a deep-dive design review of open-weight compilation or voice state sync protocols. We pay candidates for any contract trial projects."
-  }
+  { question: 'Is this internship paid?', answer: "No. This is an unpaid, learning-focused program. You won't receive a stipend or salary for taking part." },
+  { question: 'Why is it unpaid?', answer: "We're a small agency, and this program is built around teaching and hands-on learning rather than staffing paid roles. Instead of a stipend, we invest our time in mentorship, real project exposure, and feedback. We'd rather be honest about that up front than dress it up as something it isn't." },
+  { question: 'Is there a minimum age or education requirement?', answer: 'No degree is required, and there is no formal education background you need to have. The program is open to people of any age and any qualification. What matters is curiosity, effort, and a willingness to learn.' },
+  { question: 'Can school students join?', answer: 'Yes. School students are welcome to apply. If you are a minor, we require consent from a parent or guardian before you can take part.' },
+  { question: 'How many hours per week are expected?', answer: 'A minimum of five hours per week. You can do more if you want to, but consistency matters more than long bursts.' },
+  { question: 'Is this fully remote?', answer: 'Yes, the program is fully remote. You can take part from anywhere with a reliable internet connection. Most collaboration happens over chat and video calls.' },
+  { question: 'Will I get a certificate?', answer: "Yes, if you earn it. A certificate is issued once you complete the minimum program duration and finish the deliverables you agree on with your mentor. It's a record of work done, not just attendance." },
+  { question: 'Will I get mentorship?', answer: "Yes. You'll work alongside our team and get direct guidance, feedback, and reviews on real projects." },
+  { question: "What happens if I can't keep up with attendance?", answer: 'Life happens, and a quiet week now and then is understandable if you let your mentor know. The issue is longer, unexplained absence. If someone consistently goes missing without any communication, the internship may be discontinued so the place can go to someone else.' },
+  { question: 'Can international applicants apply?', answer: 'Yes. Because the program is fully remote, applicants from outside India are welcome. Do keep time zone differences in mind, since some coordination and calls happen in Indian Standard Time.' },
+  { question: 'Is there a job offer after the internship?', answer: "No, there is no guaranteed job or pre-placement offer. This is a learning program, not a hiring pipeline. That said, strong performers may be considered for future paid opportunities if and when we have openings, but we can't promise that and you shouldn't join expecting it." },
 ];
 
+const DISCLAIMER = "This program is educational in nature and is intended to provide learning and practical experience. Participation does not create an employment relationship, and it is not an offer of paid work. Selection is based on eligibility and the capacity available at the time of applying, so applying does not guarantee a place. Completing the program does not guarantee employment, a job offer, or any future paid engagement with Mashnu AI. Applicants who are minors must have consent from a parent or guardian before taking part. All participants are expected to follow Mashnu's program policies, including those covering attendance, conduct, confidentiality, and AI usage.";
+
+// ---------------------------------------------------------------------------
+// Component
+// ---------------------------------------------------------------------------
+
 export default function Careers() {
-  const [activeDept, setActiveDept] = useState<'All' | 'Engineering' | 'Research' | 'Operations'>('All');
-  const [expandedJobId, setExpandedJobId] = useState<string | null>(null);
+  const [expandedTrackId, setExpandedTrackId] = useState<string | null>('ai-agent-engineering');
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [expandedPolicyIdx, setExpandedPolicyIdx] = useState<number | null>(null);
 
-  // Alignment Diagnostic State
-  const [quizStep, setQuizStep] = useState<number>(0);
-  const [quizAnswers, setQuizAnswers] = useState<number[]>([]);
-  const [quizResult, setQuizResult] = useState<string | null>(null);
+  const [selectedTrack, setSelectedTrack] = useState<string>('ai-agent-engineering');
+  const [applicantName, setApplicantName] = useState('');
+  const [applicantEmail, setApplicantEmail] = useState('');
+  const [applicantAge, setApplicantAge] = useState('');
+  const [applicantNote, setApplicantNote] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  // Live Application Form State
-  const [selectedJob, setSelectedJob] = useState<string>('voice-engineer');
-  const [candidateName, setCandidateName] = useState<string>('');
-  const [candidateEmail, setCandidateEmail] = useState<string>('');
-  const [candidateStack, setCandidateStack] = useState<string>('');
-  const [isApplying, setIsApplying] = useState<boolean>(false);
-  const [applicationLog, setApplicationLog] = useState<string[]>([]);
-  const [applicationStatus, setApplicationStatus] = useState<'idle' | 'success' | 'fail'>('idle');
+  const toggleTrack = (id: string) => setExpandedTrackId(expandedTrackId === id ? null : id);
 
-  const filteredJobs = OPEN_ROLES.filter(job => activeDept === 'All' || job.department === activeDept);
-
-  // Quiz Questions
-  const QUIZ_QUESTIONS = [
-    {
-      q: "When building a real-time conversational agent, how do you minimize physical latency?",
-      options: [
-        "Use a centralized cloud API proxy, buffer the full sentence, then stream back the synthesized speech.",
-        "Deploy raw socket handlers locally, process audio via sub-30ms streaming PCM buffers, and integrate edge VAD.",
-        "Add a visual loading indicator and configure client-side timeout retries every 3 seconds."
-      ],
-      weights: [10, 100, 30]
-    },
-    {
-      q: "How should a high-integrity multi-agent workflow handle state transitions?",
-      options: [
-        "Pass generic, unvalidated JSON arrays between nodes and let the LLM guess the next active node.",
-        "Write custom state variables to local browser cookies and trigger page reloads.",
-        "Enforce strict Zod schema validation at every node boundary within a state-consistent Directed Acyclic Graph (DAG)."
-      ],
-      weights: [20, 10, 100]
-    },
-    {
-      q: "What is your stance on utilizing commercial LLM API wrappers for mission-critical medical/legal systems?",
-      options: [
-        "They are perfect. We should route all user data to central hyper-scalers without local verification.",
-        "They are a severe security and latency liability. We must compile open-weight models locally inside isolated WASM enclaves.",
-        "We should write simple prompt rules and hope the hyper-scalers don't experience latency spikes."
-      ],
-      weights: [10, 100, 20]
-    }
-  ];
-
-  const handleQuizAnswer = (optionIdx: number) => {
-    const nextAnswers = [...quizAnswers, QUIZ_QUESTIONS[quizStep].weights[optionIdx]];
-    setQuizAnswers(nextAnswers);
-
-    if (quizStep < QUIZ_QUESTIONS.length - 1) {
-      setQuizStep(prev => prev + 1);
-    } else {
-      // Calculate score
-      const average = Math.round(nextAnswers.reduce((a, b) => a + b, 0) / QUIZ_QUESTIONS.length);
-      let resultText = '';
-      if (average >= 90) {
-        resultText = "Sovereign Systems Architect (100% Alignment). You reject wrappers. You belong in our systems enclave.";
-      } else if (average >= 60) {
-        resultText = "Integrations Specialist (70% Alignment). Good performance instincts, but we will challenge you to go deeper into compilation runtimes.";
-      } else {
-        resultText = "SaaS Administrator (30% Alignment). Your approach leans toward high-overhead commercial API wrappers. Mashnu requires a lower-level systems focus.";
-      }
-      setQuizResult(resultText);
-    }
-  };
-
-  const resetQuiz = () => {
-    setQuizStep(0);
-    setQuizAnswers([]);
-    setQuizResult(null);
-  };
-
-  const toggleJobExpansion = (id: string) => {
-    setExpandedJobId(expandedJobId === id ? null : id);
-  };
-
-  // Simulated live candidate screening logic
-  const handleLiveApply = (e: React.FormEvent) => {
+  const handleApply = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!candidateName.trim() || !candidateEmail.trim() || !candidateStack.trim()) return;
+    if (!applicantName.trim() || !applicantEmail.trim()) return;
 
-    setIsApplying(true);
-    setApplicationStatus('idle');
-    setApplicationLog([]);
-
-    const logs = [
-      `[MASHNU PORTAL] Initializing application stream for role: ${selectedJob.toUpperCase()}`,
-      `[MASHNU PORTAL] Establishing pipeline socket to sovereign resume parser...`,
-      `[METRIC] Target candidates payload: Name: ${candidateName}, Email: ${candidateEmail}`,
-      `[COMPILER] Checking candidate technical stack profile: "${candidateStack}"`,
-    ];
-
-    let logIdx = 0;
-    const interval = setInterval(() => {
-      if (logIdx < logs.length) {
-        setApplicationLog(prev => [...prev, logs[logIdx]]);
-        logIdx++;
-      } else {
-        clearInterval(interval);
-        
-        // Dynamic qualification based on stack keywords
-        const stackLower = candidateStack.toLowerCase();
-        const scoreMatch = (stackLower.match(/(rust|wasm|webassembly|webrtc|pcm|c\+\+|zod|dag|langgraph|latency|systems|socket|kernel|compil|inference)/g) || []).length;
-        
-        setTimeout(() => {
-          setApplicationLog(prev => [...prev, `[EVALUATOR] Structural Keyword Alignments Detected: ${scoreMatch}/4`]);
-        }, 300);
-
-        setTimeout(() => {
-          if (scoreMatch >= 2) {
-            setApplicationLog(prev => [
-              ...prev, 
-              `[SUCCESS] Alignment Threshold Met! Score: ${(scoreMatch * 25) + 20}/100`,
-              `[SUCCESS] Automated pre-screening status: PASSED. Direct interview channel opened.`,
-              `[SUCCESS] Routing invitation packet to ${candidateEmail}...`
-            ]);
-            setApplicationStatus('success');
-            setIsApplying(false);
-          } else {
-            setApplicationLog(prev => [
-              ...prev, 
-              `[ANALYSIS] Candidate stack leans heavily towards general high-level frontend/marketing libraries.`,
-              `[NOTICE] pre-screening status: HOLD. We require deeper native low-latency systems familiarity.`,
-              `[INFO] We have registered your profile for alternative corporate pipeline paths.`
-            ]);
-            setApplicationStatus('fail');
-            setIsApplying(false);
-          }
-        }, 1000);
-      }
-    }, 450);
+    setIsSubmitting(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName: applicantName,
+          email: applicantEmail,
+          company: `Internship applicant — age: ${applicantAge || 'not specified'}`,
+          useCase: `Internship application for track "${selectedTrack}". Note: ${applicantNote || '(none)'}`,
+        }),
+      });
+      if (!res.ok) throw new Error('Failed to submit application.');
+      setSubmitted(true);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="relative min-h-screen bg-[#F8FAFC] text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] py-16 animate-fade-in">
-      
+
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        
+
         {/* Page Header */}
         <section className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#2563EB]/5 border border-[#2563EB]/15 text-[10px] font-mono uppercase tracking-widest text-[#2563EB] mx-auto">
-            <Sparkles className="w-3 h-3 animate-pulse" />
-            <span>Join Our Systems Enclave</span>
+            <Sparkles className="w-3 h-3" />
+            <span>Internship & Learning Program</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.02em] text-[#0F172A]">
-            We build the systems. You own the code.
+            Learn by building real AI systems
           </h1>
           <p className="text-base text-[#64748B] max-w-2xl mx-auto leading-relaxed">
-            We are a small, elite assembly of systems programmers constructing the permanent autonomous layer for global enterprise operations. No wrappers. No fluff. Just low-level engineering.
+            A remote, unpaid, 3-month internship open to any age and any education background — school students, college students, graduates, and career switchers. No degree required. Curiosity is.
           </p>
         </section>
 
-        {/* SECTION 1: CORE OPERATIONAL VALUES */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="border border-[#E2E8F0] rounded-2xl bg-white p-6 space-y-4 hover:border-[#CBD5E1] transition-all shadow-xs">
-            <div className="w-10 h-10 rounded-xl bg-[#2563EB]/5 border border-[#2563EB]/10 flex items-center justify-center">
-              <Terminal className="w-5 h-5 text-[#2563EB]" />
+        {/* Quick facts strip */}
+        <section className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {[
+            { icon: Clock, label: 'Duration', value: '3 months' },
+            { icon: Globe2, label: 'Format', value: 'Remote' },
+            { icon: Users2, label: 'Commitment', value: '5+ hrs/week' },
+            { icon: Award, label: 'Stipend', value: 'Unpaid' },
+          ].map(({ icon: Icon, label, value }) => (
+            <div key={label} className="border border-[#E2E8F0] rounded-2xl bg-white p-4 text-center space-y-1.5 shadow-xs">
+              <Icon className="w-4 h-4 text-[#2563EB] mx-auto" />
+              <div className="text-sm font-semibold text-[#0F172A]">{value}</div>
+              <div className="text-[10px] text-[#64748B] uppercase tracking-wider">{label}</div>
             </div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#0F172A]">Uninterrupted Work</h3>
-            <p className="text-xs text-[#64748B] leading-relaxed">
-              We organize around long, completely uninterrupted coding stretches. No daily standups, no recurring alignment committees, and no useless performance meetings. Let your compiled code speak.
-            </p>
+          ))}
+        </section>
+
+        {/* SECTION: Age tiers */}
+        <section className="space-y-6">
+          <div className="text-center max-w-xl mx-auto space-y-1.5">
+            <h2 className="text-2xl font-semibold tracking-tight text-[#0F172A]">Who this is for</h2>
+            <p className="text-xs text-[#64748B]">The program is structured by age, so the scope of work always matches what's appropriate.</p>
           </div>
 
-          <div className="border border-[#E2E8F0] rounded-2xl bg-white p-6 space-y-4 hover:border-[#CBD5E1] transition-all shadow-xs">
-            <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center">
-              <ShieldCheck className="w-5 h-5 text-emerald-600" />
-            </div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#0F172A]">Total Module Ownership</h3>
-            <p className="text-xs text-[#64748B] leading-relaxed">
-              Every system developer manages their module pipeline end-to-end—from compiling localized weight-adapter caches and optimizing signal paths to deploying private sandboxes.
-            </p>
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {AGE_TIERS.map((tier) => (
+              <div key={tier.name} className="border border-[#E2E8F0] rounded-2xl bg-white p-6 space-y-4 shadow-xs flex flex-col">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-semibold text-[#2563EB] uppercase tracking-wider block">{tier.ageRange}</span>
+                  <h3 className="text-base font-semibold text-[#0F172A]">{tier.name}</h3>
+                  <p className="text-xs text-[#64748B] leading-relaxed">{tier.purpose}</p>
+                </div>
 
-          <div className="border border-[#E2E8F0] rounded-2xl bg-white p-6 space-y-4 hover:border-[#CBD5E1] transition-all shadow-xs">
-            <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center">
-              <Cpu className="w-5 h-5 text-indigo-600" />
-            </div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#0F172A]">Microsecond Precision</h3>
-            <p className="text-xs text-[#64748B] leading-relaxed">
-              We never approximate. We measure voice latency in milliseconds, enforce strict declarative validation schemas, and construct self-documenting tests for every multi-agent node transition.
-            </p>
+                <div className="space-y-2 pt-3 border-t border-[#E2E8F0]">
+                  <span className="text-[9px] font-semibold text-[#64748B] uppercase tracking-wider block">Learning areas</span>
+                  <ul className="space-y-1.5">
+                    {tier.learningAreas.map((item) => (
+                      <li key={item} className="flex gap-2 items-start text-[11px] text-[#334155] leading-relaxed">
+                        <CheckCircle2 className="w-3 h-3 text-[#2563EB] shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="space-y-2 pt-3 border-t border-[#E2E8F0]">
+                  <span className="text-[9px] font-semibold text-[#64748B] uppercase tracking-wider block">Restrictions</span>
+                  <ul className="space-y-1.5">
+                    {tier.restrictions.map((item) => (
+                      <li key={item} className="flex gap-2 items-start text-[11px] text-[#64748B] leading-relaxed">
+                        <AlertCircle className="w-3 h-3 text-amber-500 shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="pt-3 border-t border-[#E2E8F0] mt-auto">
+                  <span className="text-[9px] font-semibold text-[#64748B] uppercase tracking-wider block mb-1.5">You'll receive</span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {tier.deliverables.map((d) => (
+                      <span key={d} className="px-2 py-0.5 bg-[#F1F5F9] border border-[#E2E8F0] text-[9.5px] rounded-full text-[#334155]">{d}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* SECTION 2: THE INTERACTIVE JOB BOARD */}
-        <section className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E2E8F0] pb-4">
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight text-[#0F172A]">Engineering Operations</h2>
-              <p className="text-xs text-[#64748B]">Explore active engineering and research positions within our Labs.</p>
+        {/* SECTION: Program levels */}
+        <section className="border border-[#E2E8F0] rounded-3xl bg-white p-6 sm:p-8 space-y-6 shadow-sm">
+          <div className="flex items-center gap-2.5 border-b border-[#E2E8F0] pb-4">
+            <div className="w-10 h-10 rounded-xl bg-[#2563EB]/5 border border-[#2563EB]/10 flex items-center justify-center">
+              <GraduationCap className="w-5 h-5 text-[#2563EB]" />
             </div>
-            
-            {/* Filters */}
-            <div className="flex gap-1.5 bg-[#F1F5F9] p-1 rounded-full border border-[#E2E8F0] self-start sm:self-auto">
-              {(['All', 'Engineering', 'Research'] as const).map(dept => (
-                <button
-                  key={dept}
-                  onClick={() => setActiveDept(dept)}
-                  className={`px-3 py-1 text-[11px] font-medium rounded-full transition-all cursor-pointer ${
-                    activeDept === dept 
-                      ? 'bg-white text-[#2563EB] shadow-xs font-semibold' 
-                      : 'text-[#64748B] hover:text-[#0F172A]'
-                  }`}
-                >
-                  {dept}
-                </button>
-              ))}
+            <div>
+              <h3 className="text-base font-semibold tracking-tight text-[#0F172A]">Program levels</h3>
+              <span className="text-[9px] font-semibold text-[#64748B] uppercase tracking-wider block mt-0.5">Not tied to age — based on where you're starting from</span>
             </div>
           </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {PROGRAM_LEVELS.map((level, idx) => (
+              <div key={level.name} className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-full bg-[#F1F5F9] border border-[#E2E8F0] flex items-center justify-center text-[10px] font-semibold text-[#2563EB]">{idx + 1}</span>
+                  <h4 className="text-sm font-semibold text-[#0F172A]">{level.name}</h4>
+                </div>
+                <p className="text-[11px] text-[#64748B] leading-relaxed">{level.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-          {/* Jobs Listing */}
+        {/* SECTION: Learning tracks */}
+        <section className="space-y-6">
+          <div className="text-center max-w-xl mx-auto space-y-1.5">
+            <h2 className="text-2xl font-semibold tracking-tight text-[#0F172A]">Choose a track</h2>
+            <p className="text-xs text-[#64748B]">Open to CS, MBA, BBA, MCom, or no formal degree at all — pick what matches your interest, not your major.</p>
+          </div>
+
           <div className="space-y-4">
-            {filteredJobs.map(job => {
-              const isExpanded = expandedJobId === job.id;
+            {TRACKS.map((track) => {
+              const isExpanded = expandedTrackId === track.id;
               return (
-                <div 
-                  key={job.id}
-                  className={`border border-[#E2E8F0] rounded-2xl bg-white transition-all overflow-hidden shadow-xs ${
-                    isExpanded ? 'ring-1 ring-[#2563EB]/20 border-[#2563EB]' : 'hover:border-[#CBD5E1]'
+                <div
+                  key={track.id}
+                  className={`border rounded-2xl bg-white transition-all overflow-hidden shadow-xs ${
+                    isExpanded ? 'ring-1 ring-[#2563EB]/20 border-[#2563EB]' : 'border-[#E2E8F0] hover:border-[#CBD5E1]'
                   }`}
                 >
-                  {/* Job Bar Header */}
-                  <div 
-                    onClick={() => toggleJobExpansion(job.id)}
-                    className="p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer select-none"
+                  <button
+                    onClick={() => toggleTrack(track.id)}
+                    className="w-full p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer select-none text-left"
                   >
                     <div className="space-y-1.5">
-                      <div className="flex items-center gap-2">
-                        <span className={`px-2 py-0.5 text-[9px] font-semibold uppercase rounded-full tracking-wider ${
-                          job.department === 'Research' 
-                            ? 'bg-purple-50 text-purple-600 border border-purple-100' 
-                            : 'bg-blue-50 text-blue-600 border border-blue-100'
-                        }`}>
-                          {job.department}
+                      <div className="flex items-center gap-2 flex-wrap">
+                        {track.featured && (
+                          <span className="px-2 py-0.5 text-[9px] font-semibold uppercase rounded-full tracking-wider bg-[#2563EB]/10 text-[#2563EB] border border-[#2563EB]/20">
+                            Core focus
+                          </span>
+                        )}
+                        <span className="px-2 py-0.5 text-[9px] font-semibold uppercase rounded-full tracking-wider bg-[#F1F5F9] text-[#64748B] border border-[#E2E8F0]">
+                          {track.difficulty}
                         </span>
-                        <span className="text-[10px] text-[#64748B]">{job.location}</span>
                       </div>
-                      <h3 className="text-base sm:text-lg font-semibold tracking-tight text-[#0F172A]">{job.title}</h3>
-                      <p className="text-xs text-[#64748B] line-clamp-1">{job.description}</p>
+                      <h3 className="text-base sm:text-lg font-semibold tracking-tight text-[#0F172A]">{track.title}</h3>
+                      <p className="text-xs text-[#64748B] line-clamp-1 max-w-xl">{track.overview}</p>
                     </div>
-
-                    <div className="flex items-center gap-4 shrink-0">
-                      <span className="hidden sm:inline text-xs font-medium text-[#0F172A] bg-[#F1F5F9] px-3 py-1 rounded-full">{job.compensation.split(' • ')[0]}</span>
+                    <div className="shrink-0">
                       {isExpanded ? <ChevronUp className="w-5 h-5 text-[#64748B]" /> : <ChevronDown className="w-5 h-5 text-[#64748B]" />}
                     </div>
-                  </div>
+                  </button>
 
-                  {/* Expanded Details Panel */}
                   {isExpanded && (
                     <div className="border-t border-[#E2E8F0] bg-[#F8FAFC] p-5 sm:p-6 space-y-6 animate-fade-in">
-                      
+                      <p className="text-xs text-[#334155] leading-relaxed">{track.overview}</p>
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        
-                        {/* Responsibilities */}
                         <div className="space-y-3">
-                          <h4 className="text-xs font-semibold uppercase tracking-wider text-[#0F172A]">Core Operational Directives</h4>
-                          <ul className="space-y-2.5">
-                            {job.responsibilities.map((resp, idx) => (
-                              <li key={idx} className="flex gap-2.5 items-start text-xs text-[#64748B] leading-relaxed">
+                          <h4 className="text-xs font-semibold uppercase tracking-wider text-[#0F172A]">Skills you'll learn</h4>
+                          <ul className="space-y-2">
+                            {track.skillsLearned.map((s) => (
+                              <li key={s} className="flex gap-2.5 items-start text-xs text-[#64748B] leading-relaxed">
                                 <CheckCircle2 className="w-3.5 h-3.5 text-[#2563EB] shrink-0 mt-0.5" />
-                                <span>{resp}</span>
+                                <span>{s}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
-
-                        {/* Requirements */}
                         <div className="space-y-3">
-                          <h4 className="text-xs font-semibold uppercase tracking-wider text-[#0F172A]">Engineering Prerequisites</h4>
-                          <ul className="space-y-2.5">
-                            {job.requirements.map((req, idx) => (
-                              <li key={idx} className="flex gap-2.5 items-start text-xs text-[#64748B] leading-relaxed">
-                                <AlertCircle className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
-                                <span>{req}</span>
+                          <h4 className="text-xs font-semibold uppercase tracking-wider text-[#0F172A]">Sample projects</h4>
+                          <ul className="space-y-2">
+                            {track.sampleProjects.map((p) => (
+                              <li key={p} className="flex gap-2.5 items-start text-xs text-[#64748B] leading-relaxed">
+                                <ArrowRight className="w-3.5 h-3.5 text-[#2563EB] shrink-0 mt-0.5" />
+                                <span>{p}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
-
                       </div>
 
-                      {/* Tech stack badges */}
                       <div className="border-t border-[#E2E8F0] pt-4 flex flex-wrap gap-1.5 items-center">
-                        <span className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider mr-2">Core Pipeline Stack:</span>
-                        {job.stack.map(tech => (
-                          <span key={tech} className="px-2.5 py-1 bg-white border border-[#E2E8F0] text-[10px] font-mono rounded-md text-[#0F172A] font-semibold shadow-xs">
-                            {tech}
-                          </span>
+                        <span className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider mr-2">Tools:</span>
+                        {track.tools.map((tool) => (
+                          <span key={tool} className="px-2.5 py-1 bg-white border border-[#E2E8F0] text-[10px] font-mono rounded-md text-[#0F172A] font-semibold shadow-xs">{tool}</span>
                         ))}
                       </div>
 
-                      {/* Actions link inside job card */}
-                      <div className="border-t border-[#E2E8F0] pt-4 flex items-center justify-between">
-                        <span className="text-xs text-[#64748B]">Compensation Plan: {job.compensation}</span>
-                        <a 
-                          href="#portal" 
-                          onClick={() => setSelectedJob(job.id)}
-                          className="px-4 py-1.5 rounded-full bg-[#2563EB] text-white hover:bg-[#2563EB]/90 text-xs font-medium tracking-tight transition-all shadow-xs"
+                      <div className="border-t border-[#E2E8F0] pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <span className="text-xs text-[#64748B]"><strong className="text-[#0F172A]">Prerequisites:</strong> {track.prerequisites}</span>
+                        <a
+                          href="#apply"
+                          onClick={() => setSelectedTrack(track.id)}
+                          className="px-4 py-1.5 rounded-full bg-[#2563EB] text-white hover:bg-[#1D4ED8] text-xs font-medium tracking-tight transition-all shadow-xs shrink-0 text-center"
                         >
-                          Initiate Application
+                          Apply for this track
                         </a>
                       </div>
-
                     </div>
                   )}
                 </div>
@@ -411,204 +559,181 @@ export default function Careers() {
           </div>
         </section>
 
-        {/* SECTION 3: INTERACTIVE SYSTEMS ALIGNMENT DIAGNOSTIC */}
+        {/* SECTION: Journey */}
         <section className="border border-[#E2E8F0] rounded-3xl bg-white p-6 sm:p-8 space-y-6 shadow-sm">
-          <div className="flex items-center gap-2.5 border-b border-[#E2E8F0] pb-4">
-            <div className="w-10 h-10 rounded-xl bg-[#2563EB]/5 border border-[#2563EB]/10 flex items-center justify-center">
-              <Brain className="w-5 h-5 text-[#2563EB]" />
-            </div>
-            <div>
-              <h3 className="text-base font-semibold tracking-tight text-[#0F172A]">Systems Alignment Diagnostic</h3>
-              <span className="text-[9px] font-semibold text-[#64748B] uppercase tracking-wider block mt-0.5">Test your engineering values</span>
-            </div>
+          <div className="text-center max-w-xl mx-auto space-y-1">
+            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#0F172A]">How it works</h3>
+            <p className="text-xs text-[#64748B]">Seven steps from application to certificate.</p>
           </div>
-
-          {quizResult ? (
-            <div className="space-y-4 py-4 text-center max-w-xl mx-auto">
-              <div className="inline-flex w-12 h-12 rounded-full bg-[#2563EB]/5 border border-[#2563EB]/10 items-center justify-center text-[#2563EB] text-lg font-bold">
-                ✓
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
+            {JOURNEY_STEPS.map((s, idx) => (
+              <div key={s.step} className="space-y-1.5">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-5 h-5 rounded-full bg-[#F1F5F9] border border-[#E2E8F0] flex items-center justify-center text-[9px] font-semibold text-[#2563EB]">{idx + 1}</span>
+                  {idx < JOURNEY_STEPS.length - 1 && <span className="hidden lg:block h-px flex-1 bg-[#E2E8F0]" />}
+                </div>
+                <h4 className="text-[11px] font-semibold text-[#0F172A]">{s.step}</h4>
+                <p className="text-[10px] text-[#64748B] leading-relaxed">{s.description}</p>
               </div>
-              <div className="space-y-1.5">
-                <span className="text-[10px] font-semibold text-[#2563EB] uppercase tracking-wider block">Diagnostic Result</span>
-                <p className="text-sm sm:text-base font-semibold text-[#0F172A] leading-relaxed">
-                  {quizResult}
+            ))}
+          </div>
+        </section>
+
+        {/* SECTION: Policies */}
+        <section className="space-y-6 max-w-4xl mx-auto">
+          <div className="text-center max-w-xl mx-auto space-y-1">
+            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#0F172A]">Program policies</h3>
+            <p className="text-xs text-[#64748B]">Plain-language rules — not legal fine print, just what we actually expect.</p>
+          </div>
+          <div className="border border-[#E2E8F0] rounded-2xl bg-white overflow-hidden divide-y divide-[#E2E8F0] shadow-xs">
+            {POLICIES.map((policy, idx) => {
+              const isActive = expandedPolicyIdx === idx;
+              return (
+                <div key={policy.name}>
+                  <button
+                    onClick={() => setExpandedPolicyIdx(isActive ? null : idx)}
+                    className="w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-xs sm:text-sm text-[#0F172A] hover:bg-[#F8FAFC] select-none cursor-pointer"
+                  >
+                    <span>{policy.name}</span>
+                    {isActive ? <ChevronUp className="w-4 h-4 text-[#2563EB]" /> : <ChevronDown className="w-4 h-4 text-[#64748B]" />}
+                  </button>
+                  {isActive && (
+                    <div className="p-5 bg-[#F8FAFC] text-xs sm:text-sm text-[#64748B] leading-relaxed border-t border-[#E2E8F0] animate-fade-in">
+                      {policy.summary}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* SECTION: Application form */}
+        <section id="apply" className="border border-[#E2E8F0] rounded-[28px] bg-[#F1F5F9] p-6 sm:p-10 relative overflow-hidden shadow-sm scroll-mt-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="lg:col-span-5 space-y-4">
+              <span className="text-[10px] font-mono text-[#2563EB] uppercase tracking-widest font-bold block">Apply</span>
+              <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#0F172A]">Start your application</h3>
+              <p className="text-xs text-[#64748B] leading-relaxed">
+                Tell us your name, email, and which track interests you. A real person reviews every application — no automated scoring, no bots.
+              </p>
+              <div className="p-4 rounded-xl bg-white border border-[#E2E8F0] text-xs space-y-2">
+                <span className="text-[8px] font-semibold uppercase text-[#2563EB] block">Reminder</span>
+                <p className="text-[11px] text-[#64748B] leading-relaxed">
+                  This is an unpaid, remote, 3-month program. If you're under 18, we'll ask for parent or guardian consent before you begin.
                 </p>
               </div>
-              <button
-                onClick={resetQuiz}
-                className="px-4 py-1.5 rounded-full border border-[#E2E8F0] hover:bg-[#F1F5F9] text-xs font-semibold cursor-pointer transition-colors"
-              >
-                Re-take Diagnostic
-              </button>
-            </div>
-          ) : (
-            <div className="space-y-6">
-              {/* Question card */}
-              <div className="space-y-4">
-                <div className="flex items-center gap-2 text-[10px] font-semibold text-[#64748B] uppercase tracking-wider">
-                  <span>Question {quizStep + 1} of {QUIZ_QUESTIONS.length}</span>
-                  <span className="w-1 h-1 rounded-full bg-[#E2E8F0]" />
-                  <span>Pipeline Philosophy</span>
-                </div>
-                <h4 className="text-sm sm:text-base font-medium text-[#0F172A] leading-relaxed">
-                  {QUIZ_QUESTIONS[quizStep].q}
-                </h4>
-              </div>
-
-              {/* Option Buttons */}
-              <div className="grid grid-cols-1 gap-3">
-                {QUIZ_QUESTIONS[quizStep].options.map((option, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => handleQuizAnswer(idx)}
-                    className="p-4 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] hover:bg-white hover:border-[#2563EB] text-left text-xs sm:text-sm text-[#334155] hover:text-[#0F172A] transition-all duration-200 cursor-pointer shadow-xs leading-relaxed"
-                  >
-                    {option}
-                  </button>
-                ))}
-              </div>
-
-              {/* Progress Indicator */}
-              <div className="h-1 bg-[#F1F5F9] rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-[#2563EB] transition-all duration-300"
-                  style={{ width: `${((quizStep + 1) / QUIZ_QUESTIONS.length) * 100}%` }}
-                />
-              </div>
-            </div>
-          )}
-        </section>
-
-        {/* SECTION 4: LIVE CANDIDACY APPLICATION PORTAL */}
-        <section id="portal" className="border border-[#E2E8F0] rounded-[28px] bg-[#F1F5F9] p-6 sm:p-10 relative overflow-hidden shadow-sm">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[#2563EB]/5 blur-[120px] pointer-events-none" />
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            {/* Form Info Panel (Col-span 5) */}
-            <div className="lg:col-span-5 space-y-4">
-              <span className="text-[10px] font-mono text-[#2563EB] uppercase tracking-widest font-bold block">Live Target Portal</span>
-              <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#0F172A]">Compile Your Candidacy</h3>
-              <p className="text-xs text-[#64748B] leading-relaxed">
-                Submit your profile schema directly to our pipeline registry. Our automated evaluator will run a structural parsing diagnostic to test your credentials and stack alignment live.
-              </p>
-              
-              <div className="p-4 rounded-xl bg-white border border-[#E2E8F0] text-xs space-y-2">
-                <span className="text-[8px] font-semibold uppercase text-emerald-600 block">Direct Pipeline targets:</span>
-                <ul className="space-y-1.5 text-[11px] text-[#64748B]">
-                  <li>• Voice Systems Engineer → Rust, WebRTC, PCM</li>
-                  <li>• WASM Inference Architect → WebAssembly, ONNX, SIMD</li>
-                  <li>• System Compiler Engineer → TypeScript, Zod, DAG</li>
-                </ul>
-              </div>
             </div>
 
-            {/* Live Interactive Form (Col-span 7) */}
-            <form onSubmit={handleLiveApply} className="lg:col-span-7 bg-white border border-[#E2E8F0] rounded-2xl p-6 sm:p-8 space-y-5 shadow-xs">
-              
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Select Target Target Role</label>
-                <select
-                  value={selectedJob}
-                  onChange={(e) => setSelectedJob(e.target.value)}
-                  className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors"
-                >
-                  <option value="voice-engineer">Sovereign Voice Systems Engineer</option>
-                  <option value="wasm-architect">WASM Edge Inference Architect</option>
-                  <option value="agent-compiler">Multi-Agent System Compiler Engineer</option>
-                </select>
-              </div>
+            <div className="lg:col-span-7 bg-white border border-[#E2E8F0] rounded-2xl p-6 sm:p-8 shadow-xs">
+              {!submitted ? (
+                <form onSubmit={handleApply} className="space-y-5">
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Track</label>
+                    <select
+                      value={selectedTrack}
+                      onChange={(e) => setSelectedTrack(e.target.value)}
+                      className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors"
+                    >
+                      {TRACKS.map((t) => (
+                        <option key={t.id} value={t.id}>{t.title}</option>
+                      ))}
+                    </select>
+                  </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Candidate Name</label>
-                  <input
-                    type="text"
-                    required
-                    value={candidateName}
-                    onChange={(e) => setCandidateName(e.target.value)}
-                    placeholder="e.g. Linus Torvalds"
-                    className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors"
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Communication Endpoint (Email)</label>
-                  <input
-                    type="email"
-                    required
-                    value={candidateEmail}
-                    onChange={(e) => setCandidateEmail(e.target.value)}
-                    placeholder="e.g. linus@kernel.org"
-                    className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Custom Engineering Stack & Repositories (Pitch)</label>
-                <textarea
-                  required
-                  rows={3}
-                  value={candidateStack}
-                  onChange={(e) => setCandidateStack(e.target.value)}
-                  placeholder="e.g. Highly optimized local ONNX inferences using SIMD adapters in Rust and WASM. Designed custom Gstreamer pipelines for sub-300ms PCM gateways."
-                  className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors placeholder-[#94A3B8]"
-                />
-              </div>
-
-              {/* Simulated compilation/screening logs output console */}
-              {applicationLog.length > 0 && (
-                <div className="bg-[#0F172A] rounded-xl p-4 border border-[#334155] space-y-1 font-mono text-[10px] sm:text-[11px] text-emerald-400 overflow-x-auto shadow-inner max-h-40 overflow-y-auto">
-                  {applicationLog.map((log, i) => (
-                    <div key={i} className={
-                      log.startsWith('[SUCCESS]') ? 'text-emerald-400 font-semibold' :
-                      log.startsWith('[METRIC]') ? 'text-cyan-300' :
-                      log.startsWith('[COMPILER]') ? 'text-blue-300' :
-                      log.startsWith('[EVALUATOR]') ? 'text-amber-300 font-semibold' : 'text-slate-300'
-                    }>
-                      {log}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Full Name</label>
+                      <input
+                        type="text"
+                        required
+                        value={applicantName}
+                        onChange={(e) => setApplicantName(e.target.value)}
+                        placeholder="Your name"
+                        className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors"
+                      />
                     </div>
-                  ))}
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Email</label>
+                      <input
+                        type="email"
+                        required
+                        value={applicantEmail}
+                        onChange={(e) => setApplicantEmail(e.target.value)}
+                        placeholder="you@example.com"
+                        className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Age (optional)</label>
+                    <input
+                      type="text"
+                      value={applicantAge}
+                      onChange={(e) => setApplicantAge(e.target.value)}
+                      placeholder="e.g. 16, or 21"
+                      className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Anything you'd like us to know</label>
+                    <textarea
+                      rows={3}
+                      value={applicantNote}
+                      onChange={(e) => setApplicantNote(e.target.value)}
+                      placeholder="Background, what you want to learn, availability — whatever's useful."
+                      className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors placeholder-[#94A3B8] resize-none"
+                    />
+                  </div>
+
+                  <div className="pt-2 flex items-center justify-between">
+                    <span className="text-[10px] text-[#64748B] flex items-center gap-1">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#2563EB]" />
+                      Your details stay private
+                    </span>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting || !applicantName.trim() || !applicantEmail.trim()}
+                      className={`px-5 py-2 rounded-full text-xs font-semibold tracking-tight transition-all flex items-center gap-1.5 cursor-pointer shadow-xs ${
+                        isSubmitting
+                          ? 'bg-[#F1F5F9] text-[#94A3B8] border border-[#E2E8F0] cursor-not-allowed'
+                          : 'bg-[#0F172A] hover:bg-[#334155] text-white'
+                      }`}
+                    >
+                      {isSubmitting ? 'Sending...' : 'Send application'}
+                      <Send className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                <div className="flex flex-col items-center justify-center text-center space-y-4 py-10">
+                  <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center border border-emerald-200">
+                    <CheckCircle2 className="w-6 h-6 text-emerald-500" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <h4 className="text-base font-semibold text-[#0F172A]">Application sent</h4>
+                    <p className="text-xs text-[#64748B] leading-relaxed max-w-sm">
+                      Thanks — we've got it. We'll email you about next steps, usually within a few business days.
+                    </p>
+                  </div>
                 </div>
               )}
-
-              <div className="pt-2 flex items-center justify-between">
-                <span className="text-[10px] text-[#64748B] flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#2563EB]" />
-                  Secure Logical Sandboxing
-                </span>
-                
-                <button
-                  type="submit"
-                  disabled={isApplying || !candidateName.trim() || !candidateEmail.trim() || !candidateStack.trim()}
-                  className={`px-5 py-2 rounded-full text-xs font-semibold tracking-tight transition-all flex items-center gap-1.5 cursor-pointer shadow-xs ${
-                    isApplying
-                      ? 'bg-[#F1F5F9] text-[#94A3B8] border border-[#E2E8F0] cursor-not-allowed'
-                      : 'bg-[#0F172A] hover:bg-[#334155] text-white'
-                  }`}
-                >
-                  {isApplying ? 'Compiling Candidacy...' : 'Compile application payload'}
-                  <Send className="w-3.5 h-3.5" />
-                </button>
-              </div>
-
-            </form>
-
+            </div>
           </div>
         </section>
 
-        {/* SECTION 5: ACCORDION FAQ */}
-        <section className="space-y-6 max-w-4xl mx-auto pb-12">
+        {/* SECTION: FAQ */}
+        <section className="space-y-6 max-w-4xl mx-auto">
           <div className="text-center max-w-md mx-auto space-y-1">
-            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#0F172A]">Operational Inquiries FAQ</h3>
-            <p className="text-xs text-[#64748B]">Transparent details regarding compensation, structure, and trial protocols.</p>
+            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#0F172A]">Frequently asked questions</h3>
           </div>
-
           <div className="border border-[#E2E8F0] rounded-2xl bg-white overflow-hidden divide-y divide-[#E2E8F0] shadow-xs">
             {FAQ_ITEMS.map((item, idx) => {
               const isActive = activeFaq === idx;
               return (
-                <div key={idx} className="transition-all">
+                <div key={item.question}>
                   <button
                     onClick={() => setActiveFaq(isActive ? null : idx)}
                     className="w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-xs sm:text-sm text-[#0F172A] hover:bg-[#F8FAFC] select-none cursor-pointer"
@@ -625,6 +750,14 @@ export default function Careers() {
               );
             })}
           </div>
+        </section>
+
+        {/* Disclaimer */}
+        <section className="max-w-3xl mx-auto text-center space-y-3 pb-8">
+          <p className="text-[10.5px] text-[#94A3B8] leading-relaxed">{DISCLAIMER}</p>
+          <p className="text-[10.5px] text-[#94A3B8]">
+            Questions before applying? <Link to="/contact" className="text-[#2563EB] hover:underline">Contact us</Link>.
+          </p>
         </section>
 
       </main>
