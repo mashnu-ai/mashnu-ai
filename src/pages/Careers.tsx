@@ -233,52 +233,52 @@ export default function Careers() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F7F3EB] text-[#211D16] font-sans selection:bg-[#C15F3C]/20 selection:text-[#C15F3C] py-16 animate-fade-in">
+    <div className="relative min-h-screen bg-[#F8FAFC] text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] py-16 animate-fade-in">
       
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Page Header */}
         <section className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#C15F3C]/5 border border-[#C15F3C]/15 text-[10px] font-mono uppercase tracking-widest text-[#C15F3C] mx-auto">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#2563EB]/5 border border-[#2563EB]/15 text-[10px] font-mono uppercase tracking-widest text-[#2563EB] mx-auto">
             <Sparkles className="w-3 h-3 animate-pulse" />
             <span>Join Our Systems Enclave</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.02em] text-[#211D16]">
+          <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.02em] text-[#0F172A]">
             We build the systems. You own the code.
           </h1>
-          <p className="text-base text-[#6F6757] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base text-[#64748B] max-w-2xl mx-auto leading-relaxed">
             We are a small, elite assembly of systems programmers constructing the permanent autonomous layer for global enterprise operations. No wrappers. No fluff. Just low-level engineering.
           </p>
         </section>
 
         {/* SECTION 1: CORE OPERATIONAL VALUES */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="border border-[#E5DED0] rounded-2xl bg-white p-6 space-y-4 hover:border-[#D2C9B6] transition-all shadow-xs">
-            <div className="w-10 h-10 rounded-xl bg-[#C15F3C]/5 border border-[#C15F3C]/10 flex items-center justify-center">
-              <Terminal className="w-5 h-5 text-[#C15F3C]" />
+          <div className="border border-[#E2E8F0] rounded-2xl bg-white p-6 space-y-4 hover:border-[#CBD5E1] transition-all shadow-xs">
+            <div className="w-10 h-10 rounded-xl bg-[#2563EB]/5 border border-[#2563EB]/10 flex items-center justify-center">
+              <Terminal className="w-5 h-5 text-[#2563EB]" />
             </div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#211D16]">Uninterrupted Work</h3>
-            <p className="text-xs text-[#6F6757] leading-relaxed">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#0F172A]">Uninterrupted Work</h3>
+            <p className="text-xs text-[#64748B] leading-relaxed">
               We organize around long, completely uninterrupted coding stretches. No daily standups, no recurring alignment committees, and no useless performance meetings. Let your compiled code speak.
             </p>
           </div>
 
-          <div className="border border-[#E5DED0] rounded-2xl bg-white p-6 space-y-4 hover:border-[#D2C9B6] transition-all shadow-xs">
+          <div className="border border-[#E2E8F0] rounded-2xl bg-white p-6 space-y-4 hover:border-[#CBD5E1] transition-all shadow-xs">
             <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center">
               <ShieldCheck className="w-5 h-5 text-emerald-600" />
             </div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#211D16]">Total Module Ownership</h3>
-            <p className="text-xs text-[#6F6757] leading-relaxed">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#0F172A]">Total Module Ownership</h3>
+            <p className="text-xs text-[#64748B] leading-relaxed">
               Every system developer manages their module pipeline end-to-end—from compiling localized weight-adapter caches and optimizing signal paths to deploying private sandboxes.
             </p>
           </div>
 
-          <div className="border border-[#E5DED0] rounded-2xl bg-white p-6 space-y-4 hover:border-[#D2C9B6] transition-all shadow-xs">
+          <div className="border border-[#E2E8F0] rounded-2xl bg-white p-6 space-y-4 hover:border-[#CBD5E1] transition-all shadow-xs">
             <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center">
               <Cpu className="w-5 h-5 text-indigo-600" />
             </div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#211D16]">Microsecond Precision</h3>
-            <p className="text-xs text-[#6F6757] leading-relaxed">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#0F172A]">Microsecond Precision</h3>
+            <p className="text-xs text-[#64748B] leading-relaxed">
               We never approximate. We measure voice latency in milliseconds, enforce strict declarative validation schemas, and construct self-documenting tests for every multi-agent node transition.
             </p>
           </div>
@@ -286,22 +286,22 @@ export default function Careers() {
 
         {/* SECTION 2: THE INTERACTIVE JOB BOARD */}
         <section className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E5DED0] pb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E2E8F0] pb-4">
             <div>
-              <h2 className="text-2xl font-semibold tracking-tight text-[#211D16]">Engineering Operations</h2>
-              <p className="text-xs text-[#6F6757]">Explore active engineering and research positions within our Labs.</p>
+              <h2 className="text-2xl font-semibold tracking-tight text-[#0F172A]">Engineering Operations</h2>
+              <p className="text-xs text-[#64748B]">Explore active engineering and research positions within our Labs.</p>
             </div>
             
             {/* Filters */}
-            <div className="flex gap-1.5 bg-[#EFE9DD] p-1 rounded-full border border-[#E5DED0] self-start sm:self-auto">
+            <div className="flex gap-1.5 bg-[#F1F5F9] p-1 rounded-full border border-[#E2E8F0] self-start sm:self-auto">
               {(['All', 'Engineering', 'Research'] as const).map(dept => (
                 <button
                   key={dept}
                   onClick={() => setActiveDept(dept)}
                   className={`px-3 py-1 text-[11px] font-medium rounded-full transition-all cursor-pointer ${
                     activeDept === dept 
-                      ? 'bg-white text-[#C15F3C] shadow-xs font-semibold' 
-                      : 'text-[#6F6757] hover:text-[#211D16]'
+                      ? 'bg-white text-[#2563EB] shadow-xs font-semibold' 
+                      : 'text-[#64748B] hover:text-[#0F172A]'
                   }`}
                 >
                   {dept}
@@ -317,8 +317,8 @@ export default function Careers() {
               return (
                 <div 
                   key={job.id}
-                  className={`border border-[#E5DED0] rounded-2xl bg-white transition-all overflow-hidden shadow-xs ${
-                    isExpanded ? 'ring-1 ring-[#C15F3C]/20 border-[#C15F3C]' : 'hover:border-[#D2C9B6]'
+                  className={`border border-[#E2E8F0] rounded-2xl bg-white transition-all overflow-hidden shadow-xs ${
+                    isExpanded ? 'ring-1 ring-[#2563EB]/20 border-[#2563EB]' : 'hover:border-[#CBD5E1]'
                   }`}
                 >
                   {/* Job Bar Header */}
@@ -335,31 +335,31 @@ export default function Careers() {
                         }`}>
                           {job.department}
                         </span>
-                        <span className="text-[10px] text-[#6F6757]">{job.location}</span>
+                        <span className="text-[10px] text-[#64748B]">{job.location}</span>
                       </div>
-                      <h3 className="text-base sm:text-lg font-semibold tracking-tight text-[#211D16]">{job.title}</h3>
-                      <p className="text-xs text-[#6F6757] line-clamp-1">{job.description}</p>
+                      <h3 className="text-base sm:text-lg font-semibold tracking-tight text-[#0F172A]">{job.title}</h3>
+                      <p className="text-xs text-[#64748B] line-clamp-1">{job.description}</p>
                     </div>
 
                     <div className="flex items-center gap-4 shrink-0">
-                      <span className="hidden sm:inline text-xs font-medium text-[#211D16] bg-[#EFE9DD] px-3 py-1 rounded-full">{job.compensation.split(' • ')[0]}</span>
-                      {isExpanded ? <ChevronUp className="w-5 h-5 text-[#6F6757]" /> : <ChevronDown className="w-5 h-5 text-[#6F6757]" />}
+                      <span className="hidden sm:inline text-xs font-medium text-[#0F172A] bg-[#F1F5F9] px-3 py-1 rounded-full">{job.compensation.split(' • ')[0]}</span>
+                      {isExpanded ? <ChevronUp className="w-5 h-5 text-[#64748B]" /> : <ChevronDown className="w-5 h-5 text-[#64748B]" />}
                     </div>
                   </div>
 
                   {/* Expanded Details Panel */}
                   {isExpanded && (
-                    <div className="border-t border-[#E5DED0] bg-[#F7F3EB] p-5 sm:p-6 space-y-6 animate-fade-in">
+                    <div className="border-t border-[#E2E8F0] bg-[#F8FAFC] p-5 sm:p-6 space-y-6 animate-fade-in">
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         
                         {/* Responsibilities */}
                         <div className="space-y-3">
-                          <h4 className="text-xs font-semibold uppercase tracking-wider text-[#211D16]">Core Operational Directives</h4>
+                          <h4 className="text-xs font-semibold uppercase tracking-wider text-[#0F172A]">Core Operational Directives</h4>
                           <ul className="space-y-2.5">
                             {job.responsibilities.map((resp, idx) => (
-                              <li key={idx} className="flex gap-2.5 items-start text-xs text-[#6F6757] leading-relaxed">
-                                <CheckCircle2 className="w-3.5 h-3.5 text-[#C15F3C] shrink-0 mt-0.5" />
+                              <li key={idx} className="flex gap-2.5 items-start text-xs text-[#64748B] leading-relaxed">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-[#2563EB] shrink-0 mt-0.5" />
                                 <span>{resp}</span>
                               </li>
                             ))}
@@ -368,10 +368,10 @@ export default function Careers() {
 
                         {/* Requirements */}
                         <div className="space-y-3">
-                          <h4 className="text-xs font-semibold uppercase tracking-wider text-[#211D16]">Engineering Prerequisites</h4>
+                          <h4 className="text-xs font-semibold uppercase tracking-wider text-[#0F172A]">Engineering Prerequisites</h4>
                           <ul className="space-y-2.5">
                             {job.requirements.map((req, idx) => (
-                              <li key={idx} className="flex gap-2.5 items-start text-xs text-[#6F6757] leading-relaxed">
+                              <li key={idx} className="flex gap-2.5 items-start text-xs text-[#64748B] leading-relaxed">
                                 <AlertCircle className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
                                 <span>{req}</span>
                               </li>
@@ -382,22 +382,22 @@ export default function Careers() {
                       </div>
 
                       {/* Tech stack badges */}
-                      <div className="border-t border-[#E5DED0] pt-4 flex flex-wrap gap-1.5 items-center">
-                        <span className="text-[10px] font-semibold text-[#6F6757] uppercase tracking-wider mr-2">Core Pipeline Stack:</span>
+                      <div className="border-t border-[#E2E8F0] pt-4 flex flex-wrap gap-1.5 items-center">
+                        <span className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider mr-2">Core Pipeline Stack:</span>
                         {job.stack.map(tech => (
-                          <span key={tech} className="px-2.5 py-1 bg-white border border-[#E5DED0] text-[10px] font-mono rounded-md text-[#211D16] font-semibold shadow-xs">
+                          <span key={tech} className="px-2.5 py-1 bg-white border border-[#E2E8F0] text-[10px] font-mono rounded-md text-[#0F172A] font-semibold shadow-xs">
                             {tech}
                           </span>
                         ))}
                       </div>
 
                       {/* Actions link inside job card */}
-                      <div className="border-t border-[#E5DED0] pt-4 flex items-center justify-between">
-                        <span className="text-xs text-[#6F6757]">Compensation Plan: {job.compensation}</span>
+                      <div className="border-t border-[#E2E8F0] pt-4 flex items-center justify-between">
+                        <span className="text-xs text-[#64748B]">Compensation Plan: {job.compensation}</span>
                         <a 
                           href="#portal" 
                           onClick={() => setSelectedJob(job.id)}
-                          className="px-4 py-1.5 rounded-full bg-[#C15F3C] text-white hover:bg-[#C15F3C]/90 text-xs font-medium tracking-tight transition-all shadow-xs"
+                          className="px-4 py-1.5 rounded-full bg-[#2563EB] text-white hover:bg-[#2563EB]/90 text-xs font-medium tracking-tight transition-all shadow-xs"
                         >
                           Initiate Application
                         </a>
@@ -412,31 +412,31 @@ export default function Careers() {
         </section>
 
         {/* SECTION 3: INTERACTIVE SYSTEMS ALIGNMENT DIAGNOSTIC */}
-        <section className="border border-[#E5DED0] rounded-3xl bg-white p-6 sm:p-8 space-y-6 shadow-sm">
-          <div className="flex items-center gap-2.5 border-b border-[#E5DED0] pb-4">
-            <div className="w-10 h-10 rounded-xl bg-[#C15F3C]/5 border border-[#C15F3C]/10 flex items-center justify-center">
-              <Brain className="w-5 h-5 text-[#C15F3C]" />
+        <section className="border border-[#E2E8F0] rounded-3xl bg-white p-6 sm:p-8 space-y-6 shadow-sm">
+          <div className="flex items-center gap-2.5 border-b border-[#E2E8F0] pb-4">
+            <div className="w-10 h-10 rounded-xl bg-[#2563EB]/5 border border-[#2563EB]/10 flex items-center justify-center">
+              <Brain className="w-5 h-5 text-[#2563EB]" />
             </div>
             <div>
-              <h3 className="text-base font-semibold tracking-tight text-[#211D16]">Systems Alignment Diagnostic</h3>
-              <span className="text-[9px] font-semibold text-[#6F6757] uppercase tracking-wider block mt-0.5">Test your engineering values</span>
+              <h3 className="text-base font-semibold tracking-tight text-[#0F172A]">Systems Alignment Diagnostic</h3>
+              <span className="text-[9px] font-semibold text-[#64748B] uppercase tracking-wider block mt-0.5">Test your engineering values</span>
             </div>
           </div>
 
           {quizResult ? (
             <div className="space-y-4 py-4 text-center max-w-xl mx-auto">
-              <div className="inline-flex w-12 h-12 rounded-full bg-[#C15F3C]/5 border border-[#C15F3C]/10 items-center justify-center text-[#C15F3C] text-lg font-bold">
+              <div className="inline-flex w-12 h-12 rounded-full bg-[#2563EB]/5 border border-[#2563EB]/10 items-center justify-center text-[#2563EB] text-lg font-bold">
                 ✓
               </div>
               <div className="space-y-1.5">
-                <span className="text-[10px] font-semibold text-[#C15F3C] uppercase tracking-wider block">Diagnostic Result</span>
-                <p className="text-sm sm:text-base font-semibold text-[#211D16] leading-relaxed">
+                <span className="text-[10px] font-semibold text-[#2563EB] uppercase tracking-wider block">Diagnostic Result</span>
+                <p className="text-sm sm:text-base font-semibold text-[#0F172A] leading-relaxed">
                   {quizResult}
                 </p>
               </div>
               <button
                 onClick={resetQuiz}
-                className="px-4 py-1.5 rounded-full border border-[#E5DED0] hover:bg-[#EFE9DD] text-xs font-semibold cursor-pointer transition-colors"
+                className="px-4 py-1.5 rounded-full border border-[#E2E8F0] hover:bg-[#F1F5F9] text-xs font-semibold cursor-pointer transition-colors"
               >
                 Re-take Diagnostic
               </button>
@@ -445,12 +445,12 @@ export default function Careers() {
             <div className="space-y-6">
               {/* Question card */}
               <div className="space-y-4">
-                <div className="flex items-center gap-2 text-[10px] font-semibold text-[#6F6757] uppercase tracking-wider">
+                <div className="flex items-center gap-2 text-[10px] font-semibold text-[#64748B] uppercase tracking-wider">
                   <span>Question {quizStep + 1} of {QUIZ_QUESTIONS.length}</span>
-                  <span className="w-1 h-1 rounded-full bg-[#E5DED0]" />
+                  <span className="w-1 h-1 rounded-full bg-[#E2E8F0]" />
                   <span>Pipeline Philosophy</span>
                 </div>
-                <h4 className="text-sm sm:text-base font-medium text-[#211D16] leading-relaxed">
+                <h4 className="text-sm sm:text-base font-medium text-[#0F172A] leading-relaxed">
                   {QUIZ_QUESTIONS[quizStep].q}
                 </h4>
               </div>
@@ -461,7 +461,7 @@ export default function Careers() {
                   <button
                     key={idx}
                     onClick={() => handleQuizAnswer(idx)}
-                    className="p-4 rounded-xl border border-[#E5DED0] bg-[#F7F3EB] hover:bg-white hover:border-[#C15F3C] text-left text-xs sm:text-sm text-[#4C463B] hover:text-[#211D16] transition-all duration-200 cursor-pointer shadow-xs leading-relaxed"
+                    className="p-4 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] hover:bg-white hover:border-[#2563EB] text-left text-xs sm:text-sm text-[#334155] hover:text-[#0F172A] transition-all duration-200 cursor-pointer shadow-xs leading-relaxed"
                   >
                     {option}
                   </button>
@@ -469,9 +469,9 @@ export default function Careers() {
               </div>
 
               {/* Progress Indicator */}
-              <div className="h-1 bg-[#EFE9DD] rounded-full overflow-hidden">
+              <div className="h-1 bg-[#F1F5F9] rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-[#C15F3C] transition-all duration-300"
+                  className="h-full bg-[#2563EB] transition-all duration-300"
                   style={{ width: `${((quizStep + 1) / QUIZ_QUESTIONS.length) * 100}%` }}
                 />
               </div>
@@ -480,22 +480,22 @@ export default function Careers() {
         </section>
 
         {/* SECTION 4: LIVE CANDIDACY APPLICATION PORTAL */}
-        <section id="portal" className="border border-[#E5DED0] rounded-[28px] bg-[#EFE9DD] p-6 sm:p-10 relative overflow-hidden shadow-sm">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[#C15F3C]/5 blur-[120px] pointer-events-none" />
+        <section id="portal" className="border border-[#E2E8F0] rounded-[28px] bg-[#F1F5F9] p-6 sm:p-10 relative overflow-hidden shadow-sm">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-[#2563EB]/5 blur-[120px] pointer-events-none" />
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Form Info Panel (Col-span 5) */}
             <div className="lg:col-span-5 space-y-4">
-              <span className="text-[10px] font-mono text-[#C15F3C] uppercase tracking-widest font-bold block">Live Target Portal</span>
-              <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#211D16]">Compile Your Candidacy</h3>
-              <p className="text-xs text-[#6F6757] leading-relaxed">
+              <span className="text-[10px] font-mono text-[#2563EB] uppercase tracking-widest font-bold block">Live Target Portal</span>
+              <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#0F172A]">Compile Your Candidacy</h3>
+              <p className="text-xs text-[#64748B] leading-relaxed">
                 Submit your profile schema directly to our pipeline registry. Our automated evaluator will run a structural parsing diagnostic to test your credentials and stack alignment live.
               </p>
               
-              <div className="p-4 rounded-xl bg-white border border-[#E5DED0] text-xs space-y-2">
+              <div className="p-4 rounded-xl bg-white border border-[#E2E8F0] text-xs space-y-2">
                 <span className="text-[8px] font-semibold uppercase text-emerald-600 block">Direct Pipeline targets:</span>
-                <ul className="space-y-1.5 text-[11px] text-[#6F6757]">
+                <ul className="space-y-1.5 text-[11px] text-[#64748B]">
                   <li>• Voice Systems Engineer → Rust, WebRTC, PCM</li>
                   <li>• WASM Inference Architect → WebAssembly, ONNX, SIMD</li>
                   <li>• System Compiler Engineer → TypeScript, Zod, DAG</li>
@@ -504,14 +504,14 @@ export default function Careers() {
             </div>
 
             {/* Live Interactive Form (Col-span 7) */}
-            <form onSubmit={handleLiveApply} className="lg:col-span-7 bg-white border border-[#E5DED0] rounded-2xl p-6 sm:p-8 space-y-5 shadow-xs">
+            <form onSubmit={handleLiveApply} className="lg:col-span-7 bg-white border border-[#E2E8F0] rounded-2xl p-6 sm:p-8 space-y-5 shadow-xs">
               
               <div className="space-y-1.5">
-                <label className="text-[10px] font-semibold text-[#6F6757] uppercase tracking-wider block">Select Target Target Role</label>
+                <label className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Select Target Target Role</label>
                 <select
                   value={selectedJob}
                   onChange={(e) => setSelectedJob(e.target.value)}
-                  className="w-full bg-[#EFE9DD] border border-[#E5DED0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#211D16] focus:outline-none focus:border-[#C15F3C] focus:bg-white transition-colors"
+                  className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors"
                 >
                   <option value="voice-engineer">Sovereign Voice Systems Engineer</option>
                   <option value="wasm-architect">WASM Edge Inference Architect</option>
@@ -521,44 +521,44 @@ export default function Careers() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-[10px] font-semibold text-[#6F6757] uppercase tracking-wider block">Candidate Name</label>
+                  <label className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Candidate Name</label>
                   <input
                     type="text"
                     required
                     value={candidateName}
                     onChange={(e) => setCandidateName(e.target.value)}
                     placeholder="e.g. Linus Torvalds"
-                    className="w-full bg-[#EFE9DD] border border-[#E5DED0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#211D16] focus:outline-none focus:border-[#C15F3C] focus:bg-white transition-colors"
+                    className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors"
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[10px] font-semibold text-[#6F6757] uppercase tracking-wider block">Communication Endpoint (Email)</label>
+                  <label className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Communication Endpoint (Email)</label>
                   <input
                     type="email"
                     required
                     value={candidateEmail}
                     onChange={(e) => setCandidateEmail(e.target.value)}
                     placeholder="e.g. linus@kernel.org"
-                    className="w-full bg-[#EFE9DD] border border-[#E5DED0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#211D16] focus:outline-none focus:border-[#C15F3C] focus:bg-white transition-colors"
+                    className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors"
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[10px] font-semibold text-[#6F6757] uppercase tracking-wider block">Custom Engineering Stack & Repositories (Pitch)</label>
+                <label className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Custom Engineering Stack & Repositories (Pitch)</label>
                 <textarea
                   required
                   rows={3}
                   value={candidateStack}
                   onChange={(e) => setCandidateStack(e.target.value)}
                   placeholder="e.g. Highly optimized local ONNX inferences using SIMD adapters in Rust and WASM. Designed custom Gstreamer pipelines for sub-300ms PCM gateways."
-                  className="w-full bg-[#EFE9DD] border border-[#E5DED0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#211D16] focus:outline-none focus:border-[#C15F3C] focus:bg-white transition-colors placeholder-[#8B8271]"
+                  className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors placeholder-[#94A3B8]"
                 />
               </div>
 
               {/* Simulated compilation/screening logs output console */}
               {applicationLog.length > 0 && (
-                <div className="bg-[#211D16] rounded-xl p-4 border border-[#4C463B] space-y-1 font-mono text-[10px] sm:text-[11px] text-emerald-400 overflow-x-auto shadow-inner max-h-40 overflow-y-auto">
+                <div className="bg-[#0F172A] rounded-xl p-4 border border-[#334155] space-y-1 font-mono text-[10px] sm:text-[11px] text-emerald-400 overflow-x-auto shadow-inner max-h-40 overflow-y-auto">
                   {applicationLog.map((log, i) => (
                     <div key={i} className={
                       log.startsWith('[SUCCESS]') ? 'text-emerald-400 font-semibold' :
@@ -573,8 +573,8 @@ export default function Careers() {
               )}
 
               <div className="pt-2 flex items-center justify-between">
-                <span className="text-[10px] text-[#6F6757] flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#C15F3C]" />
+                <span className="text-[10px] text-[#64748B] flex items-center gap-1">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#2563EB]" />
                   Secure Logical Sandboxing
                 </span>
                 
@@ -583,8 +583,8 @@ export default function Careers() {
                   disabled={isApplying || !candidateName.trim() || !candidateEmail.trim() || !candidateStack.trim()}
                   className={`px-5 py-2 rounded-full text-xs font-semibold tracking-tight transition-all flex items-center gap-1.5 cursor-pointer shadow-xs ${
                     isApplying
-                      ? 'bg-[#EFE9DD] text-[#8B8271] border border-[#E5DED0] cursor-not-allowed'
-                      : 'bg-[#211D16] hover:bg-[#4C463B] text-white'
+                      ? 'bg-[#F1F5F9] text-[#94A3B8] border border-[#E2E8F0] cursor-not-allowed'
+                      : 'bg-[#0F172A] hover:bg-[#334155] text-white'
                   }`}
                 >
                   {isApplying ? 'Compiling Candidacy...' : 'Compile application payload'}
@@ -600,24 +600,24 @@ export default function Careers() {
         {/* SECTION 5: ACCORDION FAQ */}
         <section className="space-y-6 max-w-4xl mx-auto pb-12">
           <div className="text-center max-w-md mx-auto space-y-1">
-            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#211D16]">Operational Inquiries FAQ</h3>
-            <p className="text-xs text-[#6F6757]">Transparent details regarding compensation, structure, and trial protocols.</p>
+            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#0F172A]">Operational Inquiries FAQ</h3>
+            <p className="text-xs text-[#64748B]">Transparent details regarding compensation, structure, and trial protocols.</p>
           </div>
 
-          <div className="border border-[#E5DED0] rounded-2xl bg-white overflow-hidden divide-y divide-[#E5DED0] shadow-xs">
+          <div className="border border-[#E2E8F0] rounded-2xl bg-white overflow-hidden divide-y divide-[#E2E8F0] shadow-xs">
             {FAQ_ITEMS.map((item, idx) => {
               const isActive = activeFaq === idx;
               return (
                 <div key={idx} className="transition-all">
                   <button
                     onClick={() => setActiveFaq(isActive ? null : idx)}
-                    className="w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-xs sm:text-sm text-[#211D16] hover:bg-[#F7F3EB] select-none cursor-pointer"
+                    className="w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-xs sm:text-sm text-[#0F172A] hover:bg-[#F8FAFC] select-none cursor-pointer"
                   >
                     <span>{item.question}</span>
-                    {isActive ? <ChevronUp className="w-4 h-4 text-[#C15F3C]" /> : <ChevronDown className="w-4 h-4 text-[#6F6757]" />}
+                    {isActive ? <ChevronUp className="w-4 h-4 text-[#2563EB]" /> : <ChevronDown className="w-4 h-4 text-[#64748B]" />}
                   </button>
                   {isActive && (
-                    <div className="p-5 bg-[#F7F3EB] text-xs sm:text-sm text-[#6F6757] leading-relaxed border-t border-[#E5DED0] animate-fade-in">
+                    <div className="p-5 bg-[#F8FAFC] text-xs sm:text-sm text-[#64748B] leading-relaxed border-t border-[#E2E8F0] animate-fade-in">
                       {item.answer}
                     </div>
                   )}

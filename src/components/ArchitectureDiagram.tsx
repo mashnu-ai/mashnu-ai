@@ -184,16 +184,16 @@ export function ArchitectureDiagram() {
   }, [isSimulating, simulationStep]);
 
   return (
-    <div className="border border-slate-900 rounded-2xl bg-slate-950/80 p-6 sm:p-8 space-y-8 backdrop-blur-md relative overflow-hidden">
+    <div className="border border-slate-900 rounded-2xl bg-white p-6 sm:p-8 space-y-8 backdrop-blur-md relative overflow-hidden">
       
       {/* Decorative cybernetic background lines */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 blur-[80px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-500/5 blur-[80px] pointer-events-none" />
 
       {/* Header & Controls */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-900/60">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-200">
         <div>
-          <h3 className="text-lg font-bold font-display tracking-wide text-slate-100 flex items-center gap-2">
+          <h3 className="text-lg font-bold font-display tracking-wide text-slate-900 flex items-center gap-2">
             <Cpu className="w-5 h-5 text-cyan-400" />
             Interactive Production Architecture
           </h3>
@@ -220,7 +220,7 @@ export function ArchitectureDiagram() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         
         {/* DIAGRAM PANEL (Col-span 7) */}
-        <div className="lg:col-span-7 flex flex-col justify-between space-y-8 bg-slate-950 rounded-xl border border-slate-900/50 p-6 relative min-h-[380px]">
+        <div className="lg:col-span-7 flex flex-col justify-between space-y-8 bg-slate-950 rounded-xl border border-slate-200 p-6 relative min-h-[380px]">
           
           <div className="absolute top-2 right-3 flex items-center gap-1.5 font-mono text-[9px] text-slate-500">
             <span className={`w-1.5 h-1.5 rounded-full ${isSimulating ? 'bg-cyan-400 animate-pulse' : 'bg-emerald-500'}`} />
@@ -237,16 +237,16 @@ export function ArchitectureDiagram() {
                 className={`w-48 p-3 rounded-xl border text-left transition-all relative ${
                   activeNode === 'fastapi'
                     ? 'bg-cyan-400/10 border-cyan-400 shadow-md shadow-cyan-400/10 scale-105 z-10'
-                    : 'bg-slate-900/40 border-slate-800/80 hover:border-slate-700/80'
+                    : 'bg-slate-50 border-slate-200 hover:border-slate-300'
                 }`}
               >
                 <div className="flex items-center gap-2.5">
                   <Server className={`w-4 h-4 ${activeNode === 'fastapi' ? 'text-cyan-400' : 'text-slate-400'}`} />
-                  <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-slate-200">FastAPI Ingress</span>
+                  <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-slate-800">FastAPI Ingress</span>
                 </div>
                 <div className="text-[9px] font-sans text-slate-400 mt-1">Python 3.12 / WebSocket</div>
                 {activeNode === 'fastapi' && (
-                  <span className="absolute -bottom-1.5 -right-1.5 px-1 py-0.5 rounded bg-cyan-400 text-slate-950 text-[7px] font-mono font-bold uppercase tracking-widest">Active</span>
+                  <span className="absolute -bottom-1.5 -right-1.5 px-1 py-0.5 rounded bg-cyan-400 text-slate-900 text-[7px] font-mono font-bold uppercase tracking-widest">Active</span>
                 )}
               </button>
             </div>
@@ -267,13 +267,13 @@ export function ArchitectureDiagram() {
                 className={`p-3 rounded-xl border text-left transition-all relative flex flex-col justify-between ${
                   activeNode === 'redis'
                     ? 'bg-red-500/10 border-red-500/60 shadow-md shadow-red-500/5 scale-105 z-10'
-                    : 'bg-slate-900/40 border-slate-800/80 hover:border-slate-700/80'
+                    : 'bg-slate-50 border-slate-200 hover:border-slate-300'
                 }`}
               >
                 <div>
                   <div className="flex items-center gap-2">
                     <Zap className={`w-4 h-4 ${activeNode === 'redis' ? 'text-red-400' : 'text-slate-400'}`} />
-                    <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-slate-200">Redis Cache</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-slate-800">Redis Cache</span>
                   </div>
                   <div className="text-[9px] font-sans text-slate-400 mt-1">Cluster Hub</div>
                 </div>
@@ -289,13 +289,13 @@ export function ArchitectureDiagram() {
                 className={`p-3 rounded-xl border text-left transition-all relative flex flex-col justify-between min-h-[100px] ${
                   activeNode === 'langgraph'
                     ? 'bg-indigo-400/10 border-indigo-400 shadow-lg shadow-indigo-400/10 scale-105 z-10'
-                    : 'bg-slate-900/40 border-slate-800/80 hover:border-slate-700/80'
+                    : 'bg-slate-50 border-slate-200 hover:border-slate-300'
                 }`}
               >
                 <div>
                   <div className="flex items-center gap-2">
                     <Network className={`w-4 h-4 ${activeNode === 'langgraph' ? 'text-indigo-400' : 'text-slate-400'}`} />
-                    <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-slate-200">LangGraph</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-slate-800">LangGraph</span>
                   </div>
                   <div className="text-[9px] font-sans text-slate-400 mt-1">State Machine</div>
                 </div>
@@ -311,13 +311,13 @@ export function ArchitectureDiagram() {
                 className={`p-3 rounded-xl border text-left transition-all relative flex flex-col justify-between ${
                   activeNode === 'qdrant'
                     ? 'bg-purple-500/10 border-purple-500/60 shadow-md shadow-purple-500/5 scale-105 z-10'
-                    : 'bg-slate-900/40 border-slate-800/80 hover:border-slate-700/80'
+                    : 'bg-slate-50 border-slate-200 hover:border-slate-300'
                 }`}
               >
                 <div>
                   <div className="flex items-center gap-2">
                     <Cpu className={`w-4 h-4 ${activeNode === 'qdrant' ? 'text-purple-400' : 'text-slate-400'}`} />
-                    <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-slate-200">Qdrant DB</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-slate-800">Qdrant DB</span>
                   </div>
                   <div className="text-[9px] font-sans text-slate-400 mt-1">Vector Index</div>
                 </div>
@@ -339,16 +339,16 @@ export function ArchitectureDiagram() {
                 className={`w-48 p-3 rounded-xl border text-left transition-all relative ${
                   activeNode === 'postgres'
                     ? 'bg-emerald-500/10 border-emerald-500 shadow-md shadow-emerald-500/10 scale-105 z-10'
-                    : 'bg-slate-900/40 border-slate-800/80 hover:border-slate-700/80'
+                    : 'bg-slate-50 border-slate-200 hover:border-slate-300'
                 }`}
               >
                 <div className="flex items-center gap-2.5">
                   <Database className={`w-4 h-4 ${activeNode === 'postgres' ? 'text-emerald-400' : 'text-slate-400'}`} />
-                  <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-slate-200">PostgreSQL</span>
+                  <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-slate-800">PostgreSQL</span>
                 </div>
                 <div className="text-[9px] font-sans text-slate-400 mt-1">Audit Log & System of Record</div>
                 {activeNode === 'postgres' && (
-                  <span className="absolute -bottom-1.5 -right-1.5 px-1 py-0.5 rounded bg-emerald-500 text-slate-950 text-[7px] font-mono font-bold uppercase tracking-widest">Active</span>
+                  <span className="absolute -bottom-1.5 -right-1.5 px-1 py-0.5 rounded bg-emerald-500 text-slate-900 text-[7px] font-mono font-bold uppercase tracking-widest">Active</span>
                 )}
               </button>
             </div>
@@ -356,7 +356,7 @@ export function ArchitectureDiagram() {
           </div>
 
           {/* SIMULATION CONSOLE LOGS */}
-          <div className="bg-slate-950 rounded-xl border border-slate-900/80 p-3.5 font-mono text-[10px] space-y-1 bg-gradient-to-r from-slate-950 via-slate-950 to-slate-900">
+          <div className="bg-slate-950 rounded-xl border border-slate-200 p-3.5 font-mono text-[10px] space-y-1 bg-gradient-to-r from-slate-950 via-slate-950 to-slate-900">
             <div className="flex items-center justify-between text-slate-500 border-b border-slate-900 pb-1.5 mb-1.5">
               <span>SIMULATION TELEMETRY STREAM</span>
               <span className="animate-pulse text-cyan-400">● LIVE FEED</span>
@@ -368,7 +368,7 @@ export function ArchitectureDiagram() {
                 {simulationLog.map((log, idx) => (
                   <div key={idx} className="flex gap-2 items-start">
                     <span className="text-cyan-500/80 font-bold">[{idx}]</span>
-                    <span className="text-slate-300 leading-relaxed">{log}</span>
+                    <span className="text-slate-700 leading-relaxed">{log}</span>
                   </div>
                 ))}
               </div>
@@ -378,12 +378,12 @@ export function ArchitectureDiagram() {
         </div>
 
         {/* SPECIFICATION PANEL (Col-span 5) */}
-        <div className="lg:col-span-5 flex flex-col justify-between border border-slate-900 rounded-xl bg-slate-900/20 p-5 space-y-5">
+        <div className="lg:col-span-5 flex flex-col justify-between border border-slate-900 rounded-xl bg-slate-50 p-5 space-y-5">
           
           <div className="space-y-4">
             <div className="space-y-1">
               <span className="text-[9px] font-mono text-cyan-400 uppercase tracking-widest block font-bold">Platform Cluster Component</span>
-              <h4 className="text-base font-extrabold text-slate-100 font-display">{activeDetail.name}</h4>
+              <h4 className="text-base font-extrabold text-slate-900 font-display">{activeDetail.name}</h4>
               <p className="text-[10px] font-mono text-slate-400 font-semibold italic">{activeDetail.role}</p>
             </div>
 
@@ -391,9 +391,9 @@ export function ArchitectureDiagram() {
               {activeDetail.description}
             </p>
 
-            <div className="space-y-2 border-t border-slate-900/60 pt-3">
+            <div className="space-y-2 border-t border-slate-200 pt-3">
               <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">Active Performance Specifications</span>
-              <ul className="space-y-1.5 text-[11px] text-slate-300 font-sans">
+              <ul className="space-y-1.5 text-[11px] text-slate-700 font-sans">
                 {activeDetail.metrics.map((metric, i) => (
                   <li key={i} className="flex gap-2 items-start">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
@@ -404,7 +404,7 @@ export function ArchitectureDiagram() {
             </div>
           </div>
 
-          <div className="space-y-2 border-t border-slate-900/60 pt-3">
+          <div className="space-y-2 border-t border-slate-200 pt-3">
             <div className="flex items-center justify-between">
               <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">Active Data Schema / Payload</span>
               <span className="text-[8px] font-mono text-cyan-400">{activeDetail.tech}</span>

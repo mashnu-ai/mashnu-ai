@@ -104,7 +104,7 @@ export default function WhatsAppDemo() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-900/20 border border-slate-800/80 rounded-2xl p-6 sm:p-8 backdrop-blur-md">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-slate-50 border border-slate-200 rounded-2xl p-6 sm:p-8 backdrop-blur-md">
       
       {/* Left Info Column */}
       <div className="lg:col-span-5 space-y-4">
@@ -112,7 +112,7 @@ export default function WhatsAppDemo() {
           <Sparkles className="w-3 h-3" />
           <span>Interactive Live Sandbox</span>
         </div>
-        <h3 className="text-2xl sm:text-3xl font-bold font-display tracking-tight text-slate-100">
+        <h3 className="text-2xl sm:text-3xl font-bold font-display tracking-tight text-slate-900">
           Try Our WhatsApp <br />AI Employee Demo
         </h3>
         <p className="text-xs text-slate-400 leading-relaxed font-sans">
@@ -130,8 +130,8 @@ export default function WhatsAppDemo() {
                 disabled={isTyping}
                 className={`p-3 rounded-xl border text-left transition-all ${
                   activeScenarioIdx === i
-                    ? 'bg-primary-accent/10 border-primary-accent text-slate-100 font-semibold'
-                    : 'bg-slate-950/40 border-slate-800/80 hover:bg-slate-900/40 text-slate-300'
+                    ? 'bg-primary-accent/10 border-primary-accent text-slate-900 font-semibold'
+                    : 'bg-white border-slate-200 hover:bg-slate-50 text-slate-700'
                 } disabled:opacity-50`}
               >
                 <div className="flex items-center justify-between">
@@ -147,7 +147,7 @@ export default function WhatsAppDemo() {
           {/* CRITICAL CODE COMMENT requested by user */}
           <p className="text-[9.5px] font-mono text-slate-500 leading-relaxed">
             {/* CODE INTEGRATION NOTICE: To connect this WhatsApp interface to live Twilio WhatsApp sandbox and custom FastAPI agents, configure the server webhook routes at `/api/v1/whatsapp-webhook` with valid Shopify or EHR credentials. */}
-            <span className="text-primary-accent">Integration Hook:</span> In production, this component communicates directly with our low-latency FastAPI router at <code className="bg-slate-950/80 px-1 py-0.5 rounded text-amber-500">/api/whatsapp-webhook</code>.
+            <span className="text-primary-accent">Integration Hook:</span> In production, this component communicates directly with our low-latency FastAPI router at <code className="bg-white px-1 py-0.5 rounded text-amber-500">/api/whatsapp-webhook</code>.
           </p>
         </div>
       </div>
@@ -164,7 +164,7 @@ export default function WhatsAppDemo() {
                 <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border border-slate-900" />
               </div>
               <div>
-                <h4 className="text-[11px] font-bold text-slate-100">Mashnu Concierge</h4>
+                <h4 className="text-[11px] font-bold text-slate-900">Mashnu Concierge</h4>
                 <p className="text-[8px] font-mono text-emerald-400">Active AI Employee</p>
               </div>
             </div>
@@ -181,7 +181,7 @@ export default function WhatsAppDemo() {
                 className={`max-w-[85%] rounded-2xl p-3 text-[10.5px] leading-relaxed shadow-sm ${
                   msg.sender === 'user'
                     ? 'self-end bg-primary-accent text-white rounded-br-none'
-                    : 'self-start bg-slate-900 text-slate-300 border border-slate-800/80 rounded-bl-none'
+                    : 'self-start bg-slate-100 text-slate-800 border border-slate-200 rounded-bl-none'
                 }`}
               >
                 <p className="font-sans whitespace-pre-line">{msg.text}</p>
@@ -193,7 +193,7 @@ export default function WhatsAppDemo() {
             ))}
 
             {isTyping && (
-              <div className="self-start bg-slate-900 text-slate-300 border border-slate-800/80 rounded-2xl rounded-bl-none p-3 max-w-[85%] flex items-center gap-1">
+              <div className="self-start bg-slate-100 text-slate-800 border border-slate-200 rounded-2xl rounded-bl-none p-3 max-w-[85%] flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: '0ms' }} />
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: '150ms' }} />
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: '300ms' }} />
@@ -202,8 +202,8 @@ export default function WhatsAppDemo() {
           </div>
 
           {/* Fake Input Panel */}
-          <div className="p-3 bg-slate-900/90 border-t border-slate-800 flex items-center gap-2">
-            <div className="grow bg-slate-950/80 border border-slate-800/80 rounded-full py-1.5 px-3.5 text-[10px] text-slate-500 font-sans flex justify-between">
+          <div className="p-3 bg-slate-50 border-t border-slate-800 flex items-center gap-2">
+            <div className="grow bg-white border border-slate-200 rounded-full py-1.5 px-3.5 text-[10px] text-slate-500 font-sans flex justify-between">
               <span>Selected use-case triggers payload...</span>
             </div>
             <button disabled className="p-2 rounded-full bg-primary-accent text-white opacity-40">

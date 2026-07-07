@@ -160,7 +160,7 @@ export default function Blog() {
   const selectedPost = POSTS.find(p => p.id === selectedPostId);
 
   return (
-    <div className="relative min-h-screen bg-[#F7F3EB] text-[#211D16] font-sans selection:bg-[#C15F3C]/20 selection:text-[#C15F3C] py-16">
+    <div className="relative min-h-screen bg-[#F8FAFC] text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] py-16">
       
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
@@ -173,32 +173,32 @@ export default function Blog() {
             <div className="flex items-center justify-between">
               <button 
                 onClick={() => setSelectedPostId(null)}
-                className="inline-flex items-center gap-2 px-4 py-2 text-xs font-sans text-[#211D16] hover:text-[#C15F3C] border border-[#E5DED0] rounded-full bg-white shadow-sm transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 text-xs font-sans text-[#0F172A] hover:text-[#2563EB] border border-[#E2E8F0] rounded-full bg-white shadow-sm transition-colors cursor-pointer"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Return to Engineering Index</span>
               </button>
               
-              <div className="flex items-center gap-1 text-[10.5px] font-sans text-[#6F6757]">
+              <div className="flex items-center gap-1 text-[10.5px] font-sans text-[#64748B]">
                 <span>Mashnu Systems Engineering Log</span>
                 <ChevronRight className="w-3.5 h-3.5" />
-                <span className="text-[#C15F3C] font-semibold">{selectedPost.category}</span>
+                <span className="text-[#2563EB] font-semibold">{selectedPost.category}</span>
               </div>
             </div>
 
             {/* Article Canvas */}
-            <article className="border border-[#E5DED0] rounded-[24px] bg-white p-6 sm:p-10 space-y-8 shadow-sm">
+            <article className="border border-[#E2E8F0] rounded-[24px] bg-white p-6 sm:p-10 space-y-8 shadow-sm">
               
               {/* Header meta */}
-              <div className="space-y-4 border-b border-[#E5DED0] pb-6">
-                <div className="flex items-center gap-2 text-[10px] font-sans uppercase tracking-wider text-[#6F6757]">
-                  <Calendar className="w-3.5 h-3.5 text-[#6F6757]" />
+              <div className="space-y-4 border-b border-[#E2E8F0] pb-6">
+                <div className="flex items-center gap-2 text-[10px] font-sans uppercase tracking-wider text-[#64748B]">
+                  <Calendar className="w-3.5 h-3.5 text-[#64748B]" />
                   <span>{selectedPost.date}</span>
                   <span>•</span>
-                  <Clock className="w-3.5 h-3.5 text-[#6F6757]" />
+                  <Clock className="w-3.5 h-3.5 text-[#64748B]" />
                   <span>{selectedPost.readTime}</span>
                 </div>
-                <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#211D16] leading-tight">
+                <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#0F172A] leading-tight">
                   {selectedPost.title}
                 </h1>
                 
@@ -207,22 +207,22 @@ export default function Blog() {
                   <img 
                     src={selectedPost.author.avatarUrl} 
                     alt={selectedPost.author.name}
-                    className="w-10 h-10 rounded-full object-cover border border-[#E5DED0] shadow-sm"
+                    className="w-10 h-10 rounded-full object-cover border border-[#E2E8F0] shadow-sm"
                     referrerPolicy="no-referrer"
                   />
                   <div>
-                    <span className="font-sans font-semibold text-xs text-[#211D16] block leading-none">{selectedPost.author.name}</span>
-                    <span className="font-sans text-[11px] text-[#6F6757] mt-0.5 block">{selectedPost.author.role}</span>
+                    <span className="font-sans font-semibold text-xs text-[#0F172A] block leading-none">{selectedPost.author.name}</span>
+                    <span className="font-sans text-[11px] text-[#64748B] mt-0.5 block">{selectedPost.author.role}</span>
                   </div>
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#211D16] leading-relaxed font-sans italic border-l-2 border-[#C15F3C] pl-4 py-2 bg-[#EFE9DD] rounded-r mt-4">
+                <p className="text-xs sm:text-sm text-[#0F172A] leading-relaxed font-sans italic border-l-2 border-[#2563EB] pl-4 py-2 bg-[#F1F5F9] rounded-r mt-4">
                   {selectedPost.summary}
                 </p>
               </div>
 
               {/* Body Paragraphs */}
-              <div className="space-y-5 text-xs sm:text-sm text-[#4C463B] leading-relaxed font-sans">
+              <div className="space-y-5 text-xs sm:text-sm text-[#334155] leading-relaxed font-sans">
                 {selectedPost.paragraphs.map((para, idx) => (
                   <p key={idx}>{para}</p>
                 ))}
@@ -231,27 +231,27 @@ export default function Blog() {
               {/* Code Blocks Template (Build in Public Code sample) */}
               {selectedPost.codeBlock && (
                 <div className="space-y-1">
-                  <div className="flex items-center justify-between bg-[#EFE9DD] border-t border-x border-[#E5DED0] rounded-t-lg px-4 py-2 font-sans text-[10px] text-[#6F6757]">
+                  <div className="flex items-center justify-between bg-[#F1F5F9] border-t border-x border-[#E2E8F0] rounded-t-lg px-4 py-2 font-sans text-[10px] text-[#64748B]">
                     <span className="flex items-center gap-1.5">
-                      <Terminal className="w-3.5 h-3.5 text-[#C15F3C]" />
+                      <Terminal className="w-3.5 h-3.5 text-[#2563EB]" />
                       <span>{selectedPost.id}.{selectedPost.codeLanguage || 'ts'}</span>
                     </span>
-                    <span className="text-[9px] uppercase font-semibold text-[#6F6757]">Mashnu Compiled Spec</span>
+                    <span className="text-[9px] uppercase font-semibold text-[#64748B]">Mashnu Compiled Spec</span>
                   </div>
-                  <pre className="bg-[#211D16] p-4 rounded-b-lg font-mono text-[11px] text-[#EFE9DD] overflow-x-auto leading-relaxed shadow-inner">
+                  <pre className="bg-[#0F172A] p-4 rounded-b-lg font-mono text-[11px] text-[#F1F5F9] overflow-x-auto leading-relaxed shadow-inner">
                     <code>{selectedPost.codeBlock}</code>
                   </pre>
                 </div>
               )}
 
               {/* Specifications Matrix */}
-              <div className="space-y-3 pt-4 border-t border-[#E5DED0]">
-                <h3 className="text-xs font-sans uppercase tracking-wider text-[#6F6757] font-semibold">Systems Diagnostic Metrics</h3>
+              <div className="space-y-3 pt-4 border-t border-[#E2E8F0]">
+                <h3 className="text-xs font-sans uppercase tracking-wider text-[#64748B] font-semibold">Systems Diagnostic Metrics</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-sans text-[11px]">
                   {selectedPost.specs.map((spec, sIdx) => (
-                    <div key={sIdx} className="bg-[#EFE9DD] p-3.5 rounded-xl border border-[#E5DED0] flex flex-col justify-center">
-                      <span className="text-[#6F6757] uppercase block tracking-wider text-[9px]">{spec.label}</span>
-                      <span className="text-[#211D16] font-semibold block mt-1">{spec.value}</span>
+                    <div key={sIdx} className="bg-[#F1F5F9] p-3.5 rounded-xl border border-[#E2E8F0] flex flex-col justify-center">
+                      <span className="text-[#64748B] uppercase block tracking-wider text-[9px]">{spec.label}</span>
+                      <span className="text-[#0F172A] font-semibold block mt-1">{spec.value}</span>
                     </div>
                   ))}
                 </div>
@@ -263,7 +263,7 @@ export default function Blog() {
             <div className="flex justify-center pt-4">
               <button 
                 onClick={() => setSelectedPostId(null)}
-                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-sans font-medium text-[#211D16] hover:text-[#C15F3C] border border-[#E5DED0] rounded-full bg-white shadow-sm transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-sans font-medium text-[#0F172A] hover:text-[#2563EB] border border-[#E2E8F0] rounded-full bg-white shadow-sm transition-colors cursor-pointer"
               >
                 <CornerUpLeft className="w-4 h-4" />
                 <span>Return to Engineering Index</span>
@@ -277,13 +277,13 @@ export default function Blog() {
             
             {/* Page Header */}
             <section className="text-center max-w-3xl mx-auto space-y-4">
-              <span className="text-[11px] font-semibold text-[#C15F3C] uppercase tracking-wider block">
+              <span className="text-[11px] font-semibold text-[#2563EB] uppercase tracking-wider block">
                 Technical Blog
               </span>
-              <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.02em] text-[#211D16] leading-tight">
+              <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.02em] text-[#0F172A] leading-tight">
                 Build-In-Public Log
               </h1>
-              <p className="text-lg text-[#6F6757] leading-relaxed max-w-2xl mx-auto">
+              <p className="text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto">
                 Raw systems engineering breakdowns detailing how we resolve voice latencies, optimize database vectors, and validate multi-agent states.
               </p>
             </section>
@@ -293,31 +293,31 @@ export default function Blog() {
               {POSTS.map((post) => (
                 <article 
                   key={post.id}
-                  className="border border-[#E5DED0] rounded-[24px] bg-white p-6 sm:p-8 space-y-5 hover:border-[#D2C9B6] hover:shadow-md transition-all duration-300 cursor-pointer group"
+                  className="border border-[#E2E8F0] rounded-[24px] bg-white p-6 sm:p-8 space-y-5 hover:border-[#CBD5E1] hover:shadow-md transition-all duration-300 cursor-pointer group"
                   onClick={() => setSelectedPostId(post.id)}
                 >
                   
                   {/* Card Meta with Author profile */}
-                  <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#E5DED0] pb-4">
+                  <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#E2E8F0] pb-4">
                     <div className="flex items-center gap-3">
                       <img 
                         src={post.author.avatarUrl} 
                         alt={post.author.name}
-                        className="w-10 h-10 rounded-full object-cover border border-[#E5DED0]"
+                        className="w-10 h-10 rounded-full object-cover border border-[#E2E8F0]"
                         referrerPolicy="no-referrer"
                       />
                       <div>
-                        <span className="font-sans font-semibold text-xs text-[#211D16] block">{post.author.name}</span>
-                        <span className="font-sans text-[10px] text-[#6F6757] mt-0.5 block">{post.author.role}</span>
+                        <span className="font-sans font-semibold text-xs text-[#0F172A] block">{post.author.name}</span>
+                        <span className="font-sans text-[10px] text-[#64748B] mt-0.5 block">{post.author.role}</span>
                       </div>
                     </div>
                     
-                    <div className="flex items-center gap-4 text-[11px] text-[#6F6757]">
-                      <span className="px-2.5 py-0.5 text-[9px] font-semibold rounded-full bg-[#EFE9DD] text-[#211D16] border border-[#E5DED0]">
+                    <div className="flex items-center gap-4 text-[11px] text-[#64748B]">
+                      <span className="px-2.5 py-0.5 text-[9px] font-semibold rounded-full bg-[#F1F5F9] text-[#0F172A] border border-[#E2E8F0]">
                         {post.category}
                       </span>
                       <div className="flex items-center gap-1">
-                        <Clock className="w-3.5 h-3.5 text-[#6F6757]" />
+                        <Clock className="w-3.5 h-3.5 text-[#64748B]" />
                         <span>{post.readTime}</span>
                       </div>
                     </div>
@@ -325,26 +325,26 @@ export default function Blog() {
 
                   {/* Title & Summary */}
                   <div className="space-y-2">
-                    <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#211D16] group-hover:text-[#C15F3C] transition-colors">
+                    <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#0F172A] group-hover:text-[#2563EB] transition-colors">
                       {post.title}
                     </h2>
-                    <p className="text-xs sm:text-sm text-[#6F6757] leading-relaxed line-clamp-3">
+                    <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed line-clamp-3">
                       {post.summary}
                     </p>
                   </div>
 
                   {/* Diagnostics preview bar & Read link */}
-                  <div className="flex items-center justify-between pt-4 border-t border-[#E5DED0]/60 text-[11px] text-[#6F6757]">
+                  <div className="flex items-center justify-between pt-4 border-t border-[#E2E8F0]/60 text-[11px] text-[#64748B]">
                     <div className="hidden sm:flex gap-6">
                       {post.specs.slice(0, 2).map((s, idx) => (
                         <div key={idx} className="flex gap-1">
-                          <span className="text-[#6F6757] uppercase font-medium text-[9px]">{s.label}:</span>
-                          <span className="text-[#211D16] font-semibold">{s.value}</span>
+                          <span className="text-[#64748B] uppercase font-medium text-[9px]">{s.label}:</span>
+                          <span className="text-[#0F172A] font-semibold">{s.value}</span>
                         </div>
                       ))}
                     </div>
                     
-                    <span className="inline-flex items-center gap-1.5 text-xs text-[#C15F3C] font-semibold tracking-tight group-hover:underline">
+                    <span className="inline-flex items-center gap-1.5 text-xs text-[#2563EB] font-semibold tracking-tight group-hover:underline">
                       Read Breakdown
                       <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />
                     </span>
@@ -358,17 +358,17 @@ export default function Blog() {
         )}
 
         {/* Unified Call to Action */}
-        <section className="rounded-[32px] bg-[#EFE9DD] p-8 sm:p-12 text-center space-y-6 border border-[#E5DED0] relative overflow-hidden max-w-4xl mx-auto mt-20">
-          <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.02em] text-[#211D16]">
+        <section className="rounded-[32px] bg-[#F1F5F9] p-8 sm:p-12 text-center space-y-6 border border-[#E2E8F0] relative overflow-hidden max-w-4xl mx-auto mt-20">
+          <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.02em] text-[#0F172A]">
             Deploy Engineered AI Solutions Into Your Operations
           </h2>
-          <p className="text-sm text-[#6F6757] max-w-xl mx-auto leading-relaxed">
+          <p className="text-sm text-[#64748B] max-w-xl mx-auto leading-relaxed">
             Ready to integrate low-latency voice receptionists, hybrid retrieval databases, and stateful multi-agent DAG pipelines? Schedule an interactive systems briefing today.
           </p>
           <div className="pt-2">
             <Link
               to="/contact"
-              className="inline-flex px-6 py-2 rounded-full bg-[#211D16] hover:bg-[#4C463B] text-white font-medium text-xs tracking-tight transition-colors items-center gap-1.5 shadow-sm"
+              className="inline-flex px-6 py-2 rounded-full bg-[#0F172A] hover:bg-[#334155] text-white font-medium text-xs tracking-tight transition-colors items-center gap-1.5 shadow-sm"
             >
               Book Systems Briefing
               <ArrowRight className="w-3.5 h-3.5" />

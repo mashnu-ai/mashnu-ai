@@ -58,7 +58,7 @@ const PRODUCTS: ProductItem[] = [
     ],
     latency: '< 1.2s Roundtrip',
     accuracy: '99.1% Intent Scoring',
-    icon: <MessageSquare className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <MessageSquare className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Operates as an automated conversational sales and customer care associate over the WhatsApp Business API, processing multi-modal inputs like invoices or screenshots.",
     whoItsFor: "Direct-to-Consumer (DTC) brands, regional distributors, and proactive client relations teams.",
     technicalDifferentiator: "Features state-consistent thread preservation utilizing a specialized Redis-backed memory buffer to restore context during intermittent carrier dropouts.",
@@ -78,7 +78,7 @@ const PRODUCTS: ProductItem[] = [
     ],
     latency: '< 100ms TTFT',
     accuracy: '99.4% Safety Factualness',
-    icon: <Globe className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Globe className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Renders as an interactive on-site widget to address complex, multi-tier visitor queries, referencing internal policy documents in real time and routing high-value leads.",
     whoItsFor: "Customer support executives, digital product managers, and administrative leads.",
     technicalDifferentiator: "Built with localized compliance and safety guardrail checks compiled into the core prompt layout, guaranteeing zero hallucinations or brand violations.",
@@ -118,7 +118,7 @@ const PRODUCTS: ProductItem[] = [
     ],
     latency: 'Asynchronous Cron',
     accuracy: '98.9% Field Sync Match',
-    icon: <Settings className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Settings className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Acts as a backend automated worker that executes deep CRM sanitization, transcribes team meetings, extracts actionable follow-ups, and auto-assigns tickets.",
     whoItsFor: "Revenue Operations (RevOps) leaders, sales operations administrators, and customer success coordinators.",
     technicalDifferentiator: "Runs on a reliable server-side asynchronous cron loop rather than ephemeral, event-driven webhooks that are vulnerable to data omissions.",
@@ -138,7 +138,7 @@ const PRODUCTS: ProductItem[] = [
     ],
     latency: '< 800ms API dispatch',
     accuracy: '97.2% SLA Compliance',
-    icon: <Shield className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Shield className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Injects as a background service into standard ticketing queues, reading inbound customer inquiries, looking up resolution guidelines in the RAG repository, and compiling draft responses.",
     whoItsFor: "Customer success managers, IT support directors, and customer experience operations teams.",
     technicalDifferentiator: "Combines dense vector retrieval of company SOPs with a strict safety evaluation filter to generate answers that comply with customer SLAs.",
@@ -158,7 +158,7 @@ const PRODUCTS: ProductItem[] = [
     ],
     latency: 'Asynchronous Pipeline',
     accuracy: '99.2% Enrichment Precision',
-    icon: <Layers className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Layers className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Scans database records, enriches missing fields (e.g., funding rounds, tech stack, employee count) using public records and LLM web-search APIs, and updates CRM layouts.",
     whoItsFor: "Sales development teams, growth marketing executives, and revenue operations directors.",
     technicalDifferentiator: "Constructed with advanced multi-tier scraping algorithms that cross-verify company details before executing CRM write commits.",
@@ -198,7 +198,7 @@ const PRODUCTS: ProductItem[] = [
     ],
     latency: 'Sub-minute pipelines',
     accuracy: '99.8% Code Integrity',
-    icon: <Network className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Network className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Integrates complex multi-step corporate operations (e.g. processing a freight order, matching invoices, and executing ledger entries) into coordinated agent teams.",
     whoItsFor: "Supply chain managers, financial ledger auditors, and ERP system integrators.",
     technicalDifferentiator: "Orchestrated using stateful, multi-agent LangGraph architectures that guarantee transaction consistency rather than linear, brittle if-else scripts.",
@@ -218,7 +218,7 @@ const PRODUCTS: ProductItem[] = [
     ],
     latency: '< 10ms Platform API',
     accuracy: '99.99% Node Uptime',
-    icon: <Layers className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Layers className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "A centralized cloud dashboard that allows corporate IT personnel to instantly configure, hot-swap, inspect, and scale customized AI agents.",
     whoItsFor: "Chief Information Officers (CIOs), network engineers, and system administrators.",
     technicalDifferentiator: "Deploys directly into serverless container structures with integrated open-telemetry path tracing for millisecond-level troubleshooting.",
@@ -238,7 +238,7 @@ const PRODUCTS: ProductItem[] = [
     ],
     latency: '< 15ms Edge Overhead',
     accuracy: '100% Core Availability',
-    icon: <Cpu className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Cpu className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Executes deep neural net processing and inference tasks closer to the user, maximizing UI responsiveness and reducing database wait cycles.",
     whoItsFor: "Real-time gaming companies, global booking providers, and high-volume digital portals.",
     technicalDifferentiator: "Runs open-weight model instances inside optimized WASM-compiled edge containers with an active distributed cache protocol.",
@@ -258,7 +258,7 @@ const PRODUCTS: ProductItem[] = [
     ],
     latency: '< 40ms Inference TTFT',
     accuracy: '99.7% Brand Compliance',
-    icon: <Code className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Code className="w-5 h-5 text-[#2563EB]" />,
     whatItDoes: "Builds proprietary model intelligence by fine-tuning open-source foundations (e.g. Llama 3) on secure enterprise datasets.",
     whoItsFor: "Information security executives, model researchers, and specialized regulatory compliance teams.",
     technicalDifferentiator: "Integrates QLoRA parameter-efficient training directly with automated evaluations, deployed inside fully isolated, air-gapped enterprise clouds.",
@@ -285,17 +285,17 @@ export default function Products() {
   const phases = Array.from(new Set(PRODUCTS.map(p => p.phase)));
 
   return (
-    <div className="relative min-h-screen bg-[#F7F3EB] text-[#211D16] font-sans selection:bg-[#C15F3C]/20 selection:text-[#C15F3C] py-16">
+    <div className="relative min-h-screen bg-[#F8FAFC] text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] py-16">
       
       {/* Header section with Apple-style centered presentation */}
       <header className="max-w-4xl mx-auto text-center px-4 mb-20 space-y-4 animate-fade-in">
-        <span className="text-[11px] font-semibold text-[#C15F3C] uppercase tracking-wider block">
+        <span className="text-[11px] font-semibold text-[#2563EB] uppercase tracking-wider block">
           Enterprise Catalog
         </span>
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.02em] text-[#211D16] leading-tight">
+        <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.02em] text-[#0F172A] leading-tight">
           The 12-Item Product Suite
         </h1>
-        <p className="text-lg text-[#6F6757] leading-relaxed max-w-2xl mx-auto">
+        <p className="text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto">
           We engineer custom autonomous pipelines that connect native business logic with robust, air-gapped AI components.
         </p>
       </header>
@@ -312,18 +312,18 @@ export default function Products() {
               <section 
                 key={phase} 
                 className={`p-8 sm:p-12 rounded-[32px] space-y-10 transition-colors duration-300 ${
-                  isAlternatePhase ? 'bg-[#EFE9DD]' : 'bg-white border border-[#E5DED0]'
+                  isAlternatePhase ? 'bg-[#F1F5F9]' : 'bg-white border border-[#E2E8F0]'
                 }`}
               >
                 {/* Phase Title Grouping */}
-                <div className="border-b border-[#E5DED0] pb-6">
-                  <span className="text-[10px] font-semibold text-[#6F6757] uppercase tracking-wider block mb-1">
+                <div className="border-b border-[#E2E8F0] pb-6">
+                  <span className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block mb-1">
                     Deployment Scope
                   </span>
-                  <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#211D16]">
+                  <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#0F172A]">
                     {phase}
                   </h2>
-                  <p className="text-sm text-[#6F6757] mt-1.5 max-w-3xl leading-relaxed">
+                  <p className="text-sm text-[#64748B] mt-1.5 max-w-3xl leading-relaxed">
                     {phaseProducts[0]?.phaseDesc || 'Tailored solutions designed for rapid integration.'}
                   </p>
                 </div>
@@ -337,10 +337,10 @@ export default function Products() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: '-50px' }}
                       transition={{ duration: 0.4 }}
-                      className="flex flex-col h-full bg-white rounded-[24px] overflow-hidden border border-[#E5DED0] hover:border-[#D2C9B6] hover:shadow-md transition-all duration-300 group"
+                      className="flex flex-col h-full bg-white rounded-[24px] overflow-hidden border border-[#E2E8F0] hover:border-[#CBD5E1] hover:shadow-md transition-all duration-300 group"
                     >
                       {/* Image/Render Area at top */}
-                      <div className="h-48 sm:h-56 relative overflow-hidden bg-[#EFE9DD] border-b border-[#E5DED0]">
+                      <div className="h-48 sm:h-56 relative overflow-hidden bg-[#F1F5F9] border-b border-[#E2E8F0]">
                         <img 
                           src={PRODUCT_IMAGES[product.id] || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600&auto=format&fit=crop'} 
                           alt={product.title}
@@ -348,7 +348,7 @@ export default function Products() {
                           referrerPolicy="no-referrer"
                         />
                         <div className="absolute top-4 left-4">
-                          <span className="px-2.5 py-1 text-[9px] font-semibold rounded-full bg-[#211D16] text-white tracking-wide uppercase">
+                          <span className="px-2.5 py-1 text-[9px] font-semibold rounded-full bg-[#0F172A] text-white tracking-wide uppercase">
                             {product.status}
                           </span>
                         </div>
@@ -359,39 +359,39 @@ export default function Products() {
                         
                         <div className="space-y-3">
                           <div className="flex items-center gap-2.5">
-                            <span className="text-[#C15F3C] shrink-0">{product.icon}</span>
-                            <h3 className="text-lg font-semibold text-[#211D16] tracking-tight">{product.title}</h3>
+                            <span className="text-[#2563EB] shrink-0">{product.icon}</span>
+                            <h3 className="text-lg font-semibold text-[#0F172A] tracking-tight">{product.title}</h3>
                           </div>
                           
-                          <p className="text-xs sm:text-sm text-[#6F6757] leading-relaxed">
+                          <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed">
                             {product.description}
                           </p>
                         </div>
 
                         {/* Preserving Deep Technical Specifics */}
-                        <div className="space-y-4 pt-4 border-t border-[#E5DED0]">
-                          <div className="space-y-2.5 text-xs text-[#4C463B]">
+                        <div className="space-y-4 pt-4 border-t border-[#E2E8F0]">
+                          <div className="space-y-2.5 text-xs text-[#334155]">
                             <div>
-                              <strong className="text-[#211D16] font-medium block">How it works:</strong>
+                              <strong className="text-[#0F172A] font-medium block">How it works:</strong>
                               <span className="leading-relaxed">{product.whatItDoes}</span>
                             </div>
                             <div>
-                              <strong className="text-[#211D16] font-medium block">Intended users:</strong>
+                              <strong className="text-[#0F172A] font-medium block">Intended users:</strong>
                               <span className="leading-relaxed">{product.whoItsFor}</span>
                             </div>
                             <div>
-                              <strong className="text-[#211D16] font-medium block">Technical edge:</strong>
+                              <strong className="text-[#0F172A] font-medium block">Technical edge:</strong>
                               <span className="leading-relaxed">{product.technicalDifferentiator}</span>
                             </div>
                           </div>
 
                           {/* Bulleted Specs */}
-                          <div className="space-y-2 pt-3 border-t border-[#E5DED0]/60">
-                            <span className="text-[9px] font-semibold text-[#6F6757] uppercase tracking-wider block">Operational Specs</span>
+                          <div className="space-y-2 pt-3 border-t border-[#E2E8F0]/60">
+                            <span className="text-[9px] font-semibold text-[#64748B] uppercase tracking-wider block">Operational Specs</span>
                             <ul className="space-y-1.5">
                               {product.specs.map((spec, sIdx) => (
-                                <li key={sIdx} className="flex items-start gap-2 text-[11px] text-[#6F6757] leading-relaxed">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-[#C15F3C] shrink-0 mt-1.5" />
+                                <li key={sIdx} className="flex items-start gap-2 text-[11px] text-[#64748B] leading-relaxed">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB] shrink-0 mt-1.5" />
                                   <span>{spec}</span>
                                 </li>
                               ))}
@@ -400,13 +400,13 @@ export default function Products() {
                         </div>
 
                         {/* Technical Meta Footer using clean plain sentences */}
-                        <div className="pt-4 border-t border-[#E5DED0] flex items-center justify-between text-[11px] text-[#6F6757] bg-[#EFE9DD] px-4 py-2.5 rounded-xl">
+                        <div className="pt-4 border-t border-[#E2E8F0] flex items-center justify-between text-[11px] text-[#64748B] bg-[#F1F5F9] px-4 py-2.5 rounded-xl">
                           <div>
-                            <span className="text-[#211D16] font-medium block">System Latency</span>
+                            <span className="text-[#0F172A] font-medium block">System Latency</span>
                             <span>We deliver {product.latency}.</span>
                           </div>
                           <div className="text-right">
-                            <span className="text-[#211D16] font-medium block">Target Precision</span>
+                            <span className="text-[#0F172A] font-medium block">Target Precision</span>
                             <span>Validated at {product.accuracy}.</span>
                           </div>
                         </div>
@@ -415,7 +415,7 @@ export default function Products() {
                         <div className="pt-4">
                           <Link
                             to="/contact"
-                            className="w-full py-2 rounded-full bg-[#211D16] hover:bg-[#4C463B] text-white font-medium text-xs tracking-tight transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
+                            className="w-full py-2 rounded-full bg-[#0F172A] hover:bg-[#334155] text-white font-medium text-xs tracking-tight transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-sm"
                           >
                             {product.ctaText}
                             <ArrowRight className="w-3 h-3" />
@@ -433,25 +433,25 @@ export default function Products() {
         </div>
 
         {/* CTA Section */}
-        <section className="rounded-[32px] bg-[#EFE9DD] p-8 sm:p-12 text-center space-y-6 border border-[#E5DED0] relative overflow-hidden">
+        <section className="rounded-[32px] bg-[#F1F5F9] p-8 sm:p-12 text-center space-y-6 border border-[#E2E8F0] relative overflow-hidden">
           <div className="max-w-2xl mx-auto space-y-4">
-            <h2 className="text-3xl font-semibold tracking-[-0.02em] text-[#211D16]">
+            <h2 className="text-3xl font-semibold tracking-[-0.02em] text-[#0F172A]">
               Integrate Mashnu AI Components Into Your Stack
             </h2>
-            <p className="text-sm text-[#6F6757] leading-relaxed">
+            <p className="text-sm text-[#64748B] leading-relaxed">
               Our modules are engineered with complete backwards compatibility, bridging standard operational hubs and secure cloud instances. Let us conduct an architectural evaluation for your workloads.
             </p>
             <div className="flex flex-wrap justify-center items-center gap-4 pt-4">
               <Link
                 to="/contact"
-                className="px-6 py-2 rounded-full bg-[#C15F3C] hover:bg-[#A64D2D] text-white text-xs font-semibold tracking-tight transition-colors flex items-center gap-1.5 shadow-sm"
+                className="px-6 py-2 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-semibold tracking-tight transition-colors flex items-center gap-1.5 shadow-sm"
               >
                 Book Discovery Call
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
                 to="/solutions"
-                className="px-6 py-2 rounded-full bg-[#211D16] hover:bg-[#4C463B] text-white text-xs font-semibold tracking-tight transition-colors"
+                className="px-6 py-2 rounded-full bg-[#0F172A] hover:bg-[#334155] text-white text-xs font-semibold tracking-tight transition-colors"
               >
                 Browse Industry Solutions
               </Link>

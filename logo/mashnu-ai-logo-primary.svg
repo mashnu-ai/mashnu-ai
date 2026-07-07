@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" width="520" height="140">
   <defs>
     <linearGradient id="rise" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#C15F3C"/>
-      <stop offset="100%" stop-color="#D08055"/>
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#60A5FA"/>
     </linearGradient>
     <linearGradient id="riseText" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#C15F3C"/>
-      <stop offset="100%" stop-color="#D08055"/>
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#60A5FA"/>
     </linearGradient>
   </defs>
 
@@ -18,26 +18,26 @@
           stroke-linecap="round" stroke-linejoin="round"/>
 
     <!-- intermediate nodes: the small, ordinary parts everything is built from -->
-    <circle cx="29"  cy="72"  r="3.4" fill="#C15F3C"/>
-    <circle cx="51"  cy="58"  r="3.4" fill="#D08055"/>
-    <circle cx="74"  cy="50"  r="3.4" fill="#D08055"/>
-    <circle cx="96"  cy="60"  r="3.4" fill="#D08055"/>
+    <circle cx="29"  cy="72"  r="3.4" fill="#2563EB"/>
+    <circle cx="51"  cy="58"  r="3.4" fill="#60A5FA"/>
+    <circle cx="74"  cy="50"  r="3.4" fill="#60A5FA"/>
+    <circle cx="96"  cy="60"  r="3.4" fill="#60A5FA"/>
 
     <!-- vertex nodes -->
-    <circle cx="40"  cy="40"  r="6" fill="#C15F3C"/>
-    <circle cx="62"  cy="76"  r="6" fill="#A64D2D"/>
-    <circle cx="86"  cy="24"  r="7" fill="#D08055"/>
-    <circle cx="106" cy="96"  r="5" fill="#2A2519"/>
+    <circle cx="40"  cy="40"  r="6" fill="#2563EB"/>
+    <circle cx="62"  cy="76"  r="6" fill="#1D4ED8"/>
+    <circle cx="86"  cy="24"  r="7" fill="#60A5FA"/>
+    <circle cx="106" cy="96"  r="5" fill="#1E293B"/>
 
     <!-- the founder node: where it all starts, at the very bottom -->
-    <circle cx="18" cy="104" r="7" fill="#B08430"/>
-    <circle cx="18" cy="104" r="11" fill="none" stroke="#B08430" stroke-width="1.6" opacity="0.45"/>
+    <circle cx="18" cy="104" r="7" fill="#B45309"/>
+    <circle cx="18" cy="104" r="11" fill="none" stroke="#B45309" stroke-width="1.6" opacity="0.45"/>
   </g>
 
   <!-- WORDMARK -->
   <g font-family="'Poppins','Inter','Segoe UI',system-ui,sans-serif">
-    <text x="152" y="86" font-size="46" font-weight="700" fill="#2A2519" letter-spacing="0.5">Mashnu</text>
+    <text x="152" y="86" font-size="46" font-weight="700" fill="#1E293B" letter-spacing="0.5">Mashnu</text>
     <text x="352" y="86" font-size="46" font-weight="700" fill="url(#riseText)" letter-spacing="1">AI</text>
-    <text x="154" y="112" font-size="13.5" font-weight="500" fill="#8B8271" letter-spacing="4.2">BUILT FROM THE GROUND UP</text>
+    <text x="154" y="112" font-size="13.5" font-weight="500" fill="#94A3B8" letter-spacing="4.2">BUILT FROM THE GROUND UP</text>
   </g>
 </svg>

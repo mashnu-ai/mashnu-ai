@@ -102,33 +102,33 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
 
   const getNodeColorClass = (type: string, isSelected: boolean) => {
     if (isSelected) {
-      return 'border-cyan-500 bg-slate-900 shadow-[0_0_15px_rgba(6,182,212,0.3)] text-slate-100';
+      return 'border-blue-500 bg-blue-50 shadow-md text-slate-900';
     }
     switch (type) {
       case 'trigger':
-        return 'border-emerald-500/40 hover:border-emerald-400 bg-slate-950/90 text-slate-200';
+        return 'border-emerald-500/40 hover:border-emerald-400 bg-white text-slate-800';
       case 'condition':
-        return 'border-amber-500/40 hover:border-amber-400 bg-slate-950/90 text-slate-200';
+        return 'border-amber-500/40 hover:border-amber-400 bg-white text-slate-800';
       case 'model':
-        return 'border-cyan-500/40 hover:border-cyan-400 bg-slate-950/90 text-slate-200';
+        return 'border-cyan-500/40 hover:border-cyan-400 bg-white text-slate-800';
       case 'rag':
-        return 'border-indigo-500/40 hover:border-indigo-400 bg-slate-950/90 text-slate-200';
+        return 'border-indigo-500/40 hover:border-indigo-400 bg-white text-slate-800';
       default:
-        return 'border-slate-800 hover:border-slate-600 bg-slate-950/90 text-slate-300';
+        return 'border-slate-800 hover:border-slate-600 bg-white text-slate-700';
     }
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 border border-slate-800/80 rounded-xl bg-slate-950/40 backdrop-blur-md overflow-hidden">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 border border-slate-200 rounded-xl bg-white backdrop-blur-md overflow-hidden">
       {/* Graph Visualizer Canvas */}
-      <div className="lg:col-span-8 p-4 relative min-h-[360px] flex items-center justify-center bg-slate-950/60">
+      <div className="lg:col-span-8 p-4 relative min-h-[360px] flex items-center justify-center bg-white">
         <div className="absolute top-4 left-4 flex flex-col gap-1 z-10 pointer-events-none">
           <span className="text-xs font-mono text-slate-500 uppercase tracking-widest">Active Pipeline Visualizer</span>
           <span className="text-xs text-slate-400 font-medium">Click any node to inspect system schemas</span>
         </div>
 
         {/* Legend */}
-        <div className="absolute bottom-4 left-4 flex flex-wrap gap-x-4 gap-y-2 z-10 text-[10px] font-mono text-slate-400 bg-slate-950/80 p-2 rounded border border-slate-800/60">
+        <div className="absolute bottom-4 left-4 flex flex-wrap gap-x-4 gap-y-2 z-10 text-[10px] font-mono text-slate-400 bg-white p-2 rounded border border-slate-200">
           <div className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded bg-emerald-500/20 border border-emerald-500/60 block" />
             <span>Trigger Node</span>
@@ -159,7 +159,7 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
               markerHeight="6"
               orient="auto-start-reverse"
             >
-              <path d="M 0 0 L 10 5 L 0 10 z" fill="#4C463B" />
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#334155" />
             </marker>
             <marker
               id="arrow-active"
@@ -170,7 +170,7 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
               markerHeight="6"
               orient="auto-start-reverse"
             >
-              <path d="M 0 0 L 10 5 L 0 10 z" fill="#C15F3C" />
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563EB" />
             </marker>
           </defs>
 
@@ -184,7 +184,7 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
                 <path
                   d={edge.pathData}
                   fill="none"
-                  stroke={isActive ? '#C15F3C' : '#2A2519'}
+                  stroke={isActive ? '#2563EB' : '#1E293B'}
                   strokeWidth={isActive ? 2 : 1.5}
                   markerEnd={isActive ? 'url(#arrow-active)' : 'url(#arrow)'}
                   className="transition-colors duration-300"
@@ -197,12 +197,12 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
                       width="110"
                       height="16"
                       rx="4"
-                      fill="#26221A"
-                      stroke={isActive ? '#C15F3C/30' : '#2A2519'}
+                      fill="#1E293B"
+                      stroke={isActive ? '#2563EB/30' : '#1E293B'}
                       strokeWidth="1"
                     />
                     <text
-                      fill={isActive ? '#D08055' : '#8B8271'}
+                      fill={isActive ? '#60A5FA' : '#94A3B8'}
                       fontSize="9"
                       fontFamily="monospace"
                       textAnchor="middle"
@@ -246,10 +246,10 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
                   height="50"
                   rx="2"
                   fill={
-                    node.type === 'trigger' ? '#4F7D5A' :
-                    node.type === 'condition' ? '#B08430' :
-                    node.type === 'model' ? '#C15F3C' :
-                    node.type === 'rag' ? '#3F6459' : '#8B8271'
+                    node.type === 'trigger' ? '#059669' :
+                    node.type === 'condition' ? '#B45309' :
+                    node.type === 'model' ? '#2563EB' :
+                    node.type === 'rag' ? '#047857' : '#94A3B8'
                   }
                 />
 
@@ -257,7 +257,7 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
                 <text
                   x="-58"
                   y="-4"
-                  fill="#F7F3EB"
+                  fill="#F8FAFC"
                   fontSize="11"
                   fontWeight="600"
                   fontFamily="sans-serif"
@@ -270,7 +270,7 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
                 <text
                   x="-58"
                   y="12"
-                  fill="#A39A87"
+                  fill="#CBD5E1"
                   fontSize="9"
                   fontFamily="monospace"
                   dominantBaseline="middle"
@@ -280,7 +280,7 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
 
                 {/* Icon Placement on Right */}
                 <g transform="translate(52, 0)">
-                  <circle r="12" fill="#211D16" stroke={isSelected ? 'rgba(193, 95, 60, 0.6)' : '#2A2519'} strokeWidth="1" />
+                  <circle r="12" fill="#0F172A" stroke={isSelected ? 'rgba(193, 95, 60, 0.6)' : '#1E293B'} strokeWidth="1" />
                   <g transform="translate(-8, -8)">
                     {React.cloneElement(getNodeIcon(node.type) as React.ReactElement<{ className?: string }>, { className: 'w-4 h-4' })}
                   </g>
@@ -292,7 +292,7 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
       </div>
 
       {/* Node Description Sidebar Panel */}
-      <div className="lg:col-span-4 border-l border-slate-800/80 bg-slate-950/80 p-5 flex flex-col h-full justify-between">
+      <div className="lg:col-span-4 border-l border-slate-200 bg-white p-5 flex flex-col h-full justify-between">
         <div>
           {selectedNode ? (
             <motion.div
@@ -313,7 +313,7 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
                 <span className="text-[10px] font-mono text-slate-500">{selectedNode.id}</span>
               </div>
 
-              <h4 className="text-sm font-semibold text-slate-100 font-display tracking-wide">{selectedNode.label}</h4>
+              <h4 className="text-sm font-semibold text-slate-900 font-display tracking-wide">{selectedNode.label}</h4>
               
               <div className="space-y-1">
                 <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block">Operational Schema</span>
@@ -322,11 +322,11 @@ export default function AgentGraph({ nodes, edges }: AgentGraphProps) {
 
               <div className="border-t border-slate-900 pt-3 space-y-2">
                 <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block">Deduction Logic</span>
-                <div className="bg-slate-900/60 p-2.5 rounded border border-slate-800/50 font-mono text-[10px] text-slate-400 space-y-1">
+                <div className="bg-slate-50 p-2.5 rounded border border-slate-200 font-mono text-[10px] text-slate-400 space-y-1">
                   <div><span className="text-cyan-400">class</span> {selectedNode.id}Node(LangGraphNode) {'{'}</div>
                   <div className="pl-3 text-slate-500">// Execution signature</div>
                   <div className="pl-3">async def execute(self, state: AgentState):</div>
-                  <div className="pl-6 text-slate-300">
+                  <div className="pl-6 text-slate-700">
                     {selectedNode.type === 'trigger' ? 'return await self.ingest_trigger(state)' :
                      selectedNode.type === 'model' ? 'return await self.invoke_llm(state)' :
                      selectedNode.type === 'rag' ? 'return await self.vector_query(state)' :

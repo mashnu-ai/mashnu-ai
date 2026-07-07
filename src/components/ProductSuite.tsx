@@ -145,7 +145,7 @@ export default function ProductSuite() {
   return (
     <div className="space-y-10 animate-fade-in">
       <div className="max-w-3xl mx-auto text-center space-y-2">
-        <h2 className="text-xl sm:text-2xl font-bold font-display tracking-tight text-slate-100">
+        <h2 className="text-xl sm:text-2xl font-bold font-display tracking-tight text-slate-900">
           The Mashnu AI Platform Suite & Roadmap
         </h2>
         <p className="text-xs text-slate-400 font-sans">
@@ -167,14 +167,14 @@ export default function ProductSuite() {
                 onClick={() => setSelectedRoadmapItem(item)}
                 className={`p-3 rounded-lg border text-left transition-all flex items-center justify-between gap-4 cursor-pointer ${
                   isSelected 
-                    ? 'border-cyan-500 bg-cyan-500/5' 
-                    : 'border-slate-900 bg-slate-950/20 hover:bg-slate-900/60'
+                    ? 'border-blue-500 bg-blue-50' 
+                    : 'border-slate-200 bg-white hover:bg-slate-50'
                 }`}
               >
                 <div className="space-y-0.5">
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] font-mono text-slate-500">0{item.id}.</span>
-                    <span className={`text-xs font-semibold font-display tracking-wide ${isSelected ? 'text-cyan-300' : 'text-slate-200'}`}>
+                    <span className={`text-xs font-semibold font-display tracking-wide ${isSelected ? 'text-blue-700' : 'text-slate-800'}`}>
                       {item.title}
                     </span>
                   </div>
@@ -198,7 +198,7 @@ export default function ProductSuite() {
         </div>
 
         {/* Right Column: Detailed Spec View */}
-        <div className="lg:col-span-7 bg-slate-950/40 p-6 rounded-xl border border-slate-900/80 space-y-6">
+        <div className="lg:col-span-7 bg-white p-6 rounded-xl border border-slate-200 space-y-6">
           <div className="flex items-center justify-between border-b border-slate-900 pb-4">
             <div>
               <div className="flex items-center gap-2 text-slate-500 font-mono text-[10px]">
@@ -206,7 +206,7 @@ export default function ProductSuite() {
                 <span>•</span>
                 <span>Phase 0{selectedRoadmapItem.id}</span>
               </div>
-              <h3 className="text-lg font-bold font-display tracking-wide text-slate-100 mt-1">
+              <h3 className="text-lg font-bold font-display tracking-wide text-slate-900 mt-1">
                 {selectedRoadmapItem.title}
               </h3>
             </div>
@@ -231,18 +231,18 @@ export default function ProductSuite() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 text-xs">
               <div className="space-y-1">
                 <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block">What It Does</span>
-                <p className="text-slate-300 leading-relaxed font-sans">{selectedRoadmapItem.whatItDoes}</p>
+                <p className="text-slate-700 leading-relaxed font-sans">{selectedRoadmapItem.whatItDoes}</p>
               </div>
               <div className="space-y-1">
                 <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block">Who It's For</span>
-                <p className="text-slate-300 leading-relaxed font-sans">{selectedRoadmapItem.whoItsFor}</p>
+                <p className="text-slate-700 leading-relaxed font-sans">{selectedRoadmapItem.whoItsFor}</p>
               </div>
             </div>
 
             {/* Technical Differentiator */}
-            <div className="p-3.5 rounded-xl bg-slate-900/40 border border-slate-900/80 text-xs space-y-1.5">
+            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1.5">
               <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest block font-bold">Technical Differentiator</span>
-              <p className="text-slate-200 font-sans italic leading-relaxed">
+              <p className="text-slate-800 font-sans italic leading-relaxed">
                 “{selectedRoadmapItem.technicalDifferentiator}”
               </p>
             </div>
@@ -253,7 +253,7 @@ export default function ProductSuite() {
                 {selectedRoadmapItem.specs.map((spec, i) => (
                   <div key={i} className="flex gap-2 p-3 rounded-lg bg-slate-950 border border-slate-900">
                     <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                    <span className="text-[11px] text-slate-300 leading-normal">{spec}</span>
+                    <span className="text-[11px] text-slate-700 leading-normal">{spec}</span>
                   </div>
                 ))}
               </div>
@@ -263,7 +263,7 @@ export default function ProductSuite() {
             <div className="pt-2">
               <button
                 onClick={handleCTAClick}
-                className="w-full py-3 rounded bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-xs tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-cyan-500/10"
+                className="w-full py-3 rounded bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold text-xs tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-cyan-500/10"
               >
                 <span>{selectedRoadmapItem.ctaText}</span>
                 <ArrowRight className="w-4 h-4" />

@@ -221,7 +221,7 @@ export default function CommandPalette() {
       <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={() => setIsOpen(true)}
-          className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-[#211D16] hover:bg-[#4C463B] text-white border border-[#D2C9B6]/30 shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+          className="group relative flex items-center justify-center w-14 h-14 rounded-full bg-[#0F172A] hover:bg-[#334155] text-white border border-[#CBD5E1]/30 shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
           title="Command Palette (Ctrl+K)"
         >
           {/* Inner metallic effect rings */}
@@ -231,14 +231,14 @@ export default function CommandPalette() {
           <Command className="w-5 h-5 text-white group-hover:rotate-12 transition-transform duration-300" />
           
           {/* Pulse ring when idle */}
-          <span className="absolute -inset-1 rounded-full border border-[#211D16]/10 animate-ping pointer-events-none opacity-40 group-hover:opacity-0 transition-opacity" />
+          <span className="absolute -inset-1 rounded-full border border-[#0F172A]/10 animate-ping pointer-events-none opacity-40 group-hover:opacity-0 transition-opacity" />
 
           {/* Prompt Tooltip */}
-          <div className="absolute right-16 px-3 py-1.5 rounded-lg bg-[#211D16] text-white text-[10px] font-mono tracking-wider opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 pointer-events-none border border-[#D2C9B6]/20 flex items-center gap-1.5 shadow-md whitespace-nowrap">
-            <span className="text-[#8B8271]">Command Gate</span>
-            <kbd className="px-1.5 py-0.5 rounded bg-[#4C463B] text-white text-[8px] font-semibold border border-white/10 shadow-xs">Ctrl</kbd>
+          <div className="absolute right-16 px-3 py-1.5 rounded-lg bg-[#0F172A] text-white text-[10px] font-mono tracking-wider opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 pointer-events-none border border-[#CBD5E1]/20 flex items-center gap-1.5 shadow-md whitespace-nowrap">
+            <span className="text-[#94A3B8]">Command Gate</span>
+            <kbd className="px-1.5 py-0.5 rounded bg-[#334155] text-white text-[8px] font-semibold border border-white/10 shadow-xs">Ctrl</kbd>
             <span className="text-white">+</span>
-            <kbd className="px-1.5 py-0.5 rounded bg-[#4C463B] text-white text-[8px] font-semibold border border-white/10 shadow-xs">K</kbd>
+            <kbd className="px-1.5 py-0.5 rounded bg-[#334155] text-white text-[8px] font-semibold border border-white/10 shadow-xs">K</kbd>
           </div>
         </button>
       </div>
@@ -252,7 +252,7 @@ export default function CommandPalette() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-[#F7F3EB]/80 backdrop-blur-md"
+              className="absolute inset-0 bg-[#F8FAFC]/80 backdrop-blur-md"
               onClick={() => setIsOpen(false)}
             />
 
@@ -263,23 +263,23 @@ export default function CommandPalette() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.97, y: -10 }}
               transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-2xl bg-white border border-[#E5DED0] rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[60vh] font-sans text-[#211D16]"
+              className="relative w-full max-w-2xl bg-white border border-[#E2E8F0] rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[60vh] font-sans text-[#0F172A]"
             >
               {/* Header Input bar */}
-              <div className="flex items-center gap-3 px-4 border-b border-[#E5DED0] bg-[#EFE9DD]/50">
-                <Search className="w-5 h-5 text-[#8B8271] shrink-0" />
+              <div className="flex items-center gap-3 px-4 border-b border-[#E2E8F0] bg-[#F1F5F9]/50">
+                <Search className="w-5 h-5 text-[#94A3B8] shrink-0" />
                 <input
                   ref={inputRef}
                   type="text"
                   placeholder="Type a command or page name to initiate..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full py-4 text-xs sm:text-sm bg-transparent border-none outline-none text-[#211D16] placeholder-[#8B8271] focus:ring-0"
+                  className="w-full py-4 text-xs sm:text-sm bg-transparent border-none outline-none text-[#0F172A] placeholder-[#94A3B8] focus:ring-0"
                 />
                 
                 {/* Overclock active badge */}
                 {overclockEnabled && (
-                  <span className="shrink-0 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#211D16] text-white text-[9px] font-mono border border-[#D2C9B6]/20 animate-pulse">
+                  <span className="shrink-0 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#0F172A] text-white text-[9px] font-mono border border-[#CBD5E1]/20 animate-pulse">
                     <Zap className="w-2.5 h-2.5 text-amber-400" />
                     <span>OVERCLOCK ON</span>
                   </span>
@@ -287,7 +287,7 @@ export default function CommandPalette() {
 
                 <button 
                   onClick={() => setIsOpen(false)}
-                  className="p-1 rounded-full hover:bg-[#E5DED0] text-[#8B8271] hover:text-[#211D16] transition-colors shrink-0"
+                  className="p-1 rounded-full hover:bg-[#E2E8F0] text-[#94A3B8] hover:text-[#0F172A] transition-colors shrink-0"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -295,7 +295,7 @@ export default function CommandPalette() {
 
               {/* Log notification output if any diagnostic has run */}
               {diagnosticLog.length > 0 && (
-                <div className="bg-[#211D16] border-b border-[#4C463B] p-3 font-mono text-[10px] sm:text-[11px] text-emerald-400 max-h-32 overflow-y-auto space-y-1">
+                <div className="bg-[#0F172A] border-b border-[#334155] p-3 font-mono text-[10px] sm:text-[11px] text-emerald-400 max-h-32 overflow-y-auto space-y-1">
                   {diagnosticLog.map((log, i) => (
                     <div key={i} className={
                       log.startsWith('[SUCCESS]') ? 'text-emerald-400 font-semibold' :
@@ -312,7 +312,7 @@ export default function CommandPalette() {
                 
                 {/* Filter matches info */}
                 {filteredCommands.length === 0 ? (
-                  <div className="py-12 text-center text-xs text-[#8B8271] space-y-2">
+                  <div className="py-12 text-center text-xs text-[#94A3B8] space-y-2">
                     <AlertCircle className="w-6 h-6 mx-auto text-amber-500/80" />
                     <p>No matching commands found. Refine your query parameters.</p>
                   </div>
@@ -323,7 +323,7 @@ export default function CommandPalette() {
 
                     return (
                       <div key={cat} className="space-y-1">
-                        <span className="px-3 text-[9px] font-bold text-[#8B8271] uppercase tracking-wider block">
+                        <span className="px-3 text-[9px] font-bold text-[#94A3B8] uppercase tracking-wider block">
                           {cat} Functions
                         </span>
                         
@@ -332,22 +332,22 @@ export default function CommandPalette() {
                             <button
                               key={item.id}
                               onClick={item.action}
-                              className="w-full flex items-center justify-between gap-4 p-3 rounded-xl hover:bg-[#EFE9DD] text-left transition-colors duration-150 cursor-pointer group"
+                              className="w-full flex items-center justify-between gap-4 p-3 rounded-xl hover:bg-[#F1F5F9] text-left transition-colors duration-150 cursor-pointer group"
                             >
                               <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-lg bg-[#F7F3EB] border border-[#E5DED0] text-[#211D16] flex items-center justify-center shadow-xs group-hover:bg-white group-hover:border-[#D2C9B6] transition-all">
+                                <div className="w-8 h-8 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] flex items-center justify-center shadow-xs group-hover:bg-white group-hover:border-[#CBD5E1] transition-all">
                                   {item.icon}
                                 </div>
                                 <div className="space-y-0.5">
-                                  <h4 className="text-xs sm:text-sm font-semibold text-[#211D16]">
+                                  <h4 className="text-xs sm:text-sm font-semibold text-[#0F172A]">
                                     {item.title}
                                   </h4>
-                                  <p className="text-[10px] sm:text-xs text-[#8B8271]">
+                                  <p className="text-[10px] sm:text-xs text-[#94A3B8]">
                                     {item.description}
                                   </p>
                                 </div>
                               </div>
-                              <span className="text-[10px] text-[#8B8271] font-mono group-hover:text-[#211D16] transition-colors shrink-0">
+                              <span className="text-[10px] text-[#94A3B8] font-mono group-hover:text-[#0F172A] transition-colors shrink-0">
                                 Launch ↵
                               </span>
                             </button>
@@ -361,13 +361,13 @@ export default function CommandPalette() {
               </div>
 
               {/* Footer hint */}
-              <div className="px-4 py-3 bg-[#EFE9DD] border-t border-[#E5DED0] flex items-center justify-between text-[10px] text-[#8B8271]">
+              <div className="px-4 py-3 bg-[#F1F5F9] border-t border-[#E2E8F0] flex items-center justify-between text-[10px] text-[#94A3B8]">
                 <div className="flex items-center gap-1">
                   <span>Use keys</span>
-                  <kbd className="px-1 py-0.5 rounded bg-white border border-[#E5DED0] text-[9px] font-mono">↑↓</kbd>
+                  <kbd className="px-1 py-0.5 rounded bg-white border border-[#E2E8F0] text-[9px] font-mono">↑↓</kbd>
                   <span>to navigate</span>
                   <span className="mx-1">•</span>
-                  <kbd className="px-1 py-0.5 rounded bg-white border border-[#E5DED0] text-[9px] font-mono">↵</kbd>
+                  <kbd className="px-1 py-0.5 rounded bg-white border border-[#E2E8F0] text-[9px] font-mono">↵</kbd>
                   <span>to execute</span>
                 </div>
                 <div>

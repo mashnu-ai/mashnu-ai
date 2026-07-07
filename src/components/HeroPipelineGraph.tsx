@@ -43,7 +43,7 @@ export default function HeroPipelineGraph() {
     {
       id: 'trigger',
       label: 'Inbound Ingestion',
-      icon: <Phone className="w-5 h-5 text-emerald-400" />,
+      icon: <Phone className="w-5 h-5" />,
       x: 120,
       y: 180,
       color: 'emerald',
@@ -53,7 +53,7 @@ export default function HeroPipelineGraph() {
     {
       id: 'guard',
       label: 'State Guard & Router',
-      icon: <Settings className={`w-5 h-5 text-cyan-400 ${shouldReduceMotion ? '' : 'animate-spin-slow'}`} />,
+      icon: <Settings className={`w-5 h-5 ${shouldReduceMotion ? '' : 'animate-spin-slow'}`} />,
       x: 320,
       y: 180,
       color: 'cyan',
@@ -63,7 +63,7 @@ export default function HeroPipelineGraph() {
     {
       id: 'rag',
       label: 'Qdrant Hybrid Search',
-      icon: <Database className="w-5 h-5 text-indigo-400" />,
+      icon: <Database className="w-5 h-5" />,
       x: 520,
       y: 80,
       color: 'indigo',
@@ -73,7 +73,7 @@ export default function HeroPipelineGraph() {
     {
       id: 'llm',
       label: 'Claude Reasoning Core',
-      icon: <Cpu className={`w-5 h-5 text-purple-400 ${shouldReduceMotion ? '' : 'animate-pulse'}`} />,
+      icon: <Cpu className={`w-5 h-5 ${shouldReduceMotion ? '' : 'animate-pulse'}`} />,
       x: 520,
       y: 280,
       color: 'purple',
@@ -83,7 +83,7 @@ export default function HeroPipelineGraph() {
     {
       id: 'action',
       label: 'Action Engine',
-      icon: <Globe className="w-5 h-5 text-amber-400" />,
+      icon: <Globe className="w-5 h-5" />,
       x: 720,
       y: 180,
       color: 'amber',
@@ -93,7 +93,7 @@ export default function HeroPipelineGraph() {
     {
       id: 'response',
       label: 'Outbound Response',
-      icon: <Webhook className="w-5 h-5 text-rose-400" />,
+      icon: <Webhook className="w-5 h-5" />,
       x: 900,
       y: 180,
       color: 'rose',
@@ -120,19 +120,19 @@ export default function HeroPipelineGraph() {
   };
 
   return (
-    <div className="w-full bg-slate-900/10 border border-slate-800/80 rounded-2xl p-6 relative overflow-hidden backdrop-blur-md">
+    <div className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-6 relative overflow-hidden backdrop-blur-md">
       {/* Topology Header */}
-      <div className="flex items-center justify-between border-b border-slate-800/60 pb-4 mb-6">
+      <div className="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
           <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">
             LangGraph Autonomous Agent Topology Visualizer
           </span>
         </div>
-        <div className="flex gap-4 text-[10px] font-mono text-slate-500">
-          <span className="text-emerald-400">P50 Latency: 320ms</span>
+        <div className="flex gap-4 text-[10px] font-mono text-slate-600">
+          <span className="text-emerald-600 font-medium">P50 Latency: 320ms</span>
           <span>•</span>
-          <span className="text-cyan-400">Active State: Idle</span>
+          <span className="text-blue-600 font-medium">Active State: Idle</span>
         </div>
       </div>
 
@@ -143,19 +143,19 @@ export default function HeroPipelineGraph() {
           <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1020 360">
             <defs>
               <linearGradient id="activeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#4F7D5A" />
-                <stop offset="50%" stopColor="#C15F3C" />
-                <stop offset="100%" stopColor="#75617A" />
+                <stop offset="0%" stopColor="#059669" />
+                <stop offset="50%" stopColor="#2563EB" />
+                <stop offset="100%" stopColor="#7C3AED" />
               </linearGradient>
             </defs>
 
             {/* Static background lines */}
-            <path d={getCurvePath(120, 180, 320, 180)} fill="none" stroke="#2A2519" strokeWidth="2" />
-            <path d={getCurvePath(320, 180, 520, 80)} fill="none" stroke="#2A2519" strokeWidth="2" />
-            <path d={getCurvePath(320, 180, 520, 280)} fill="none" stroke="#2A2519" strokeWidth="2" />
-            <path d={getCurvePath(520, 80, 720, 180)} fill="none" stroke="#2A2519" strokeWidth="2" />
-            <path d={getCurvePath(520, 280, 720, 180)} fill="none" stroke="#2A2519" strokeWidth="2" />
-            <path d={getCurvePath(720, 180, 900, 180)} fill="none" stroke="#2A2519" strokeWidth="2" />
+            <path d={getCurvePath(120, 180, 320, 180)} fill="none" stroke="#1E293B" strokeWidth="2" />
+            <path d={getCurvePath(320, 180, 520, 80)} fill="none" stroke="#1E293B" strokeWidth="2" />
+            <path d={getCurvePath(320, 180, 520, 280)} fill="none" stroke="#1E293B" strokeWidth="2" />
+            <path d={getCurvePath(520, 80, 720, 180)} fill="none" stroke="#1E293B" strokeWidth="2" />
+            <path d={getCurvePath(520, 280, 720, 180)} fill="none" stroke="#1E293B" strokeWidth="2" />
+            <path d={getCurvePath(720, 180, 900, 180)} fill="none" stroke="#1E293B" strokeWidth="2" />
 
             {/* Glowing active flow trails */}
             {activeStep >= 0 && (
@@ -174,7 +174,7 @@ export default function HeroPipelineGraph() {
                 <path
                   d={getCurvePath(320, 180, 520, 80)}
                   fill="none"
-                  stroke="#C15F3C"
+                  stroke="#2563EB"
                   strokeWidth="2"
                   strokeDasharray="6 4"
                   className="animate-flow-dash"
@@ -182,7 +182,7 @@ export default function HeroPipelineGraph() {
                 <path
                   d={getCurvePath(320, 180, 520, 280)}
                   fill="none"
-                  stroke="#75617A"
+                  stroke="#7C3AED"
                   strokeWidth="2"
                   strokeDasharray="6 4"
                   className="animate-flow-dash"
@@ -194,7 +194,7 @@ export default function HeroPipelineGraph() {
                 <path
                   d={getCurvePath(520, 80, 720, 180)}
                   fill="none"
-                  stroke="#3F6459"
+                  stroke="#047857"
                   strokeWidth="2"
                   strokeDasharray="6 4"
                   className="animate-flow-dash"
@@ -202,7 +202,7 @@ export default function HeroPipelineGraph() {
                 <path
                   d={getCurvePath(520, 280, 720, 180)}
                   fill="none"
-                  stroke="#75617A"
+                  stroke="#7C3AED"
                   strokeWidth="2"
                   strokeDasharray="6 4"
                   className="animate-flow-dash"
@@ -213,7 +213,7 @@ export default function HeroPipelineGraph() {
               <path
                 d={getCurvePath(720, 180, 900, 180)}
                 fill="none"
-                stroke="#B08430"
+                stroke="#B45309"
                 strokeWidth="2.5"
                 strokeDasharray="8 6"
                 className="animate-flow-dash"
@@ -228,12 +228,12 @@ export default function HeroPipelineGraph() {
             
             // Map node colors dynamically
             const colorMap: Record<string, { border: string, borderHover: string, bg: string, text: string, shadow: string }> = {
-              emerald: { border: 'border-emerald-500/20', borderHover: 'border-emerald-400', bg: 'bg-emerald-950/10', text: 'text-emerald-400', shadow: 'shadow-none' },
-              cyan: { border: 'border-cyan-500/20', borderHover: 'border-cyan-400', bg: 'bg-cyan-950/10', text: 'text-cyan-400', shadow: 'shadow-none' },
-              indigo: { border: 'border-indigo-500/20', borderHover: 'border-indigo-400', bg: 'bg-indigo-950/10', text: 'text-indigo-400', shadow: 'shadow-none' },
-              purple: { border: 'border-purple-500/20', borderHover: 'border-purple-400', bg: 'bg-purple-950/10', text: 'text-purple-400', shadow: 'shadow-none' },
-              amber: { border: 'border-amber-500/20', borderHover: 'border-amber-400', bg: 'bg-amber-950/10', text: 'text-amber-400', shadow: 'shadow-none' },
-              rose: { border: 'border-rose-500/20', borderHover: 'border-rose-400', bg: 'bg-rose-950/10', text: 'text-rose-400', shadow: 'shadow-none' }
+              emerald: { border: 'border-emerald-300', borderHover: 'border-emerald-500', bg: 'bg-emerald-50', text: 'text-emerald-700', shadow: 'shadow-sm' },
+              cyan: { border: 'border-blue-300', borderHover: 'border-blue-500', bg: 'bg-blue-50', text: 'text-blue-700', shadow: 'shadow-sm' },
+              indigo: { border: 'border-violet-300', borderHover: 'border-violet-500', bg: 'bg-violet-50', text: 'text-violet-700', shadow: 'shadow-sm' },
+              purple: { border: 'border-violet-300', borderHover: 'border-violet-500', bg: 'bg-violet-50', text: 'text-violet-700', shadow: 'shadow-sm' },
+              amber: { border: 'border-amber-300', borderHover: 'border-amber-500', bg: 'bg-amber-50', text: 'text-amber-700', shadow: 'shadow-sm' },
+              rose: { border: 'border-rose-300', borderHover: 'border-rose-500', bg: 'bg-rose-50', text: 'text-rose-700', shadow: 'shadow-sm' }
             };
 
             const styles = colorMap[node.color];
@@ -258,25 +258,25 @@ export default function HeroPipelineGraph() {
                   className={`w-44 p-3.5 rounded-xl border backdrop-blur-md transition-all duration-250 cursor-pointer ${
                     isActive 
                       ? `${styles.border} ${styles.bg} ${styles.shadow}` 
-                      : 'border-slate-800/40 bg-slate-950/20 opacity-40 hover:opacity-90'
+                      : 'border-slate-200 bg-white opacity-70 hover:opacity-100'
                   } ${
-                    isHovered 
-                      ? `scale-[1.02] ${isActive ? styles.borderHover : 'border-slate-700'} bg-slate-900/30 shadow-none` 
+                    isHovered
+                      ? `scale-[1.02] ${isActive ? styles.borderHover : 'border-slate-400'} bg-slate-50 shadow-sm`
                       : ''
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg bg-slate-950/80 border border-slate-800 ${isActive ? styles.text : 'text-slate-600'}`}>
+                    <div className={`p-2 rounded-lg bg-white border border-slate-200 ${isActive ? styles.text : 'text-slate-400'}`}>
                       {node.icon}
                     </div>
                     <div className="text-left">
-                      <h4 className="text-[11px] font-bold font-sans tracking-wide text-slate-100">{node.label}</h4>
+                      <h4 className="text-[11px] font-bold font-sans tracking-wide text-slate-900">{node.label}</h4>
                       <p className="text-[9px] font-mono text-slate-400 mt-0.5 truncate">{node.metric}</p>
                     </div>
                   </div>
 
                   {/* Active/Status line */}
-                  <div className="mt-2.5 pt-2 border-t border-slate-800/60 flex items-center justify-between text-[8px] font-mono">
+                  <div className="mt-2.5 pt-2 border-t border-slate-200 flex items-center justify-between text-[8px] font-mono">
                     <span className="text-slate-500 uppercase">State</span>
                     <span className={isActive ? styles.text : 'text-slate-600'}>
                       {isActive ? node.status : 'Awaiting Flow'}
@@ -286,7 +286,7 @@ export default function HeroPipelineGraph() {
 
                 {/* Pulsing indicator ring on the current step */}
                 {((index === activeStep) || (node.id === 'rag' && activeStep === 2) || (node.id === 'llm' && activeStep === 2)) && !shouldReduceMotion && (
-                  <span className="absolute -inset-1 rounded-2xl border-2 border-[#C15F3C]/25 animate-pulse pointer-events-none" />
+                  <span className="absolute -inset-1 rounded-2xl border-2 border-[#2563EB]/25 animate-pulse pointer-events-none" />
                 )}
               </motion.div>
             );
@@ -295,15 +295,15 @@ export default function HeroPipelineGraph() {
       </div>
 
       {/* Topology Footer Info */}
-      <div className="mt-4 pt-3 border-t border-slate-800/60 flex flex-wrap items-center justify-between gap-4 text-[10px] font-mono text-slate-500">
+      <div className="mt-4 pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4 text-[10px] font-mono text-slate-500">
         <div className="flex items-center gap-2">
           <CheckCircle className="w-3.5 h-3.5 text-emerald-500" />
-          <span>Active Session ID: <span className="text-slate-300">session_92a3-f00d</span></span>
+          <span>Active Session ID: <span className="text-slate-700">session_92a3-f00d</span></span>
         </div>
         <div className="flex items-center gap-3">
           <span>Inference Fallback: <span className="text-emerald-500">Active (Multi-Region HA)</span></span>
           <span>•</span>
-          <span>Tokens Streamed: <span className="text-slate-300">1.4M / sec</span></span>
+          <span>Tokens Streamed: <span className="text-slate-700">1.4M / sec</span></span>
         </div>
       </div>
     </div>

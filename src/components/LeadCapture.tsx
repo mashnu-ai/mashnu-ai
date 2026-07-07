@@ -55,10 +55,10 @@ export default function LeadCapture() {
     <section id="lead-capture" className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-6 scroll-mt-24">
       
       {/* Left Lead Info */}
-      <ScrollReveal as="div" className="lg:col-span-5 flex flex-col justify-between space-y-6 p-6 rounded-2xl border border-slate-900 bg-slate-950/40" yOffset={20} duration={0.25}>
+      <ScrollReveal as="div" className="lg:col-span-5 flex flex-col justify-between space-y-6 p-6 rounded-2xl border border-slate-900 bg-white" yOffset={20} duration={0.25}>
         <div className="space-y-3">
           <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest block font-bold">Systems Engineering Deep Dive</span>
-          <h2 className="text-2xl sm:text-3xl font-bold font-display tracking-tight text-slate-100 leading-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold font-display tracking-tight text-slate-900 leading-tight">
             Request an Operational <br />
             Feasibility Appraisal
           </h2>
@@ -70,19 +70,19 @@ export default function LeadCapture() {
         <div className="space-y-3 pt-4 border-t border-slate-900">
           <div className="flex items-start gap-2 text-xs">
             <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-            <span className="text-slate-300">Detailed custom database and model mapping recommendations</span>
+            <span className="text-slate-700">Detailed custom database and model mapping recommendations</span>
           </div>
           <div className="flex items-start gap-2 text-xs">
             <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-            <span className="text-slate-300">Instant latency bottleneck evaluations and P50 expectations</span>
+            <span className="text-slate-700">Instant latency bottleneck evaluations and P50 expectations</span>
           </div>
           <div className="flex items-start gap-2 text-xs">
             <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-            <span className="text-slate-300">Priority scheduling with Mashnu's lead architects</span>
+            <span className="text-slate-700">Priority scheduling with Mashnu's lead architects</span>
           </div>
         </div>
 
-        <div className="p-4 bg-slate-900/40 rounded-xl border border-slate-900 text-slate-400 flex items-center gap-3">
+        <div className="p-4 bg-slate-50 rounded-xl border border-slate-900 text-slate-400 flex items-center gap-3">
           <Shield className="w-5 h-5 text-cyan-400 shrink-0" />
           <p className="text-[10px] leading-relaxed font-sans">
             Mashnu AI is 100% compliant with HIPAA, SOC2 Type II, and GDPR guidelines. Your proposed operational logs are air-gapped and never utilized to train public weights.
@@ -91,7 +91,7 @@ export default function LeadCapture() {
       </ScrollReveal>
 
       {/* Right Lead Capture Form */}
-      <ScrollReveal as="div" className="lg:col-span-7 border border-slate-900 rounded-2xl bg-slate-950/80 p-6 flex flex-col justify-between relative" yOffset={20} duration={0.25}>
+      <ScrollReveal as="div" className="lg:col-span-7 border border-slate-900 rounded-2xl bg-white p-6 flex flex-col justify-between relative" yOffset={20} duration={0.25}>
         
         <AnimatePresence mode="wait">
           {!leadReport ? (
@@ -111,7 +111,7 @@ export default function LeadCapture() {
                     value={leadName}
                     onChange={(e) => setLeadName(e.target.value)}
                     placeholder="e.g. Sarah Connor"
-                    className="w-full px-3 py-1.5 text-xs bg-slate-900/60 rounded border border-slate-800 text-slate-200 focus:outline-none focus:border-cyan-500 font-sans"
+                    className="w-full px-3 py-1.5 text-xs bg-slate-50 rounded border border-slate-800 text-slate-800 focus:outline-none focus:border-cyan-500 font-sans"
                     required
                   />
                 </div>
@@ -122,7 +122,7 @@ export default function LeadCapture() {
                     value={leadEmail}
                     onChange={(e) => setLeadEmail(e.target.value)}
                     placeholder="e.g. sarah@cyberdyne.com"
-                    className="w-full px-3 py-1.5 text-xs bg-slate-900/60 rounded border border-slate-800 text-slate-200 focus:outline-none focus:border-cyan-500 font-sans"
+                    className="w-full px-3 py-1.5 text-xs bg-slate-50 rounded border border-slate-800 text-slate-800 focus:outline-none focus:border-cyan-500 font-sans"
                     required
                   />
                 </div>
@@ -136,7 +136,7 @@ export default function LeadCapture() {
                     value={leadCompany}
                     onChange={(e) => setLeadCompany(e.target.value)}
                     placeholder="e.g. Cyberdyne Systems"
-                    className="w-full px-3 py-1.5 text-xs bg-slate-900/60 rounded border border-slate-800 text-slate-200 focus:outline-none focus:border-cyan-500 font-sans"
+                    className="w-full px-3 py-1.5 text-xs bg-slate-50 rounded border border-slate-800 text-slate-800 focus:outline-none focus:border-cyan-500 font-sans"
                     required
                   />
                 </div>
@@ -147,7 +147,7 @@ export default function LeadCapture() {
                     value={leadRole}
                     onChange={(e) => setLeadRole(e.target.value)}
                     placeholder="e.g. Director of Operations"
-                    className="w-full px-3 py-1.5 text-xs bg-slate-900/60 rounded border border-slate-800 text-slate-200 focus:outline-none focus:border-cyan-500 font-sans"
+                    className="w-full px-3 py-1.5 text-xs bg-slate-50 rounded border border-slate-800 text-slate-800 focus:outline-none focus:border-cyan-500 font-sans"
                     required
                   />
                 </div>
@@ -159,7 +159,7 @@ export default function LeadCapture() {
                   <select
                     value={leadVolume}
                     onChange={(e) => setLeadVolume(e.target.value)}
-                    className="w-full bg-slate-900 text-xs py-1.5 px-2 border border-slate-800 rounded text-slate-300 focus:outline-none focus:border-cyan-500 font-mono"
+                    className="w-full bg-white text-xs py-1.5 px-2 border border-slate-200 rounded text-slate-900 focus:outline-none focus:border-blue-500 font-mono"
                   >
                     <option value="< 10k actions/month">&lt; 10,000 requests/month</option>
                     <option value="10k-100k actions/month">10,000 to 100,000 requests/month</option>
@@ -172,7 +172,7 @@ export default function LeadCapture() {
                   <select
                     value={leadSystem}
                     onChange={(e) => setLeadSystem(e.target.value)}
-                    className="w-full bg-slate-900 text-xs py-1.5 px-2 border border-slate-800 rounded text-slate-300 focus:outline-none focus:border-cyan-500 font-mono"
+                    className="w-full bg-white text-xs py-1.5 px-2 border border-slate-200 rounded text-slate-900 focus:outline-none focus:border-blue-500 font-mono"
                   >
                     <option value="Manual spreadsheets/operations">Manual spreadsheets/operators</option>
                     <option value="Offshore BPO contractors">Offshore BPO contractors</option>
@@ -191,7 +191,7 @@ export default function LeadCapture() {
                   value={leadUseCase}
                   onChange={(e) => setLeadUseCase(e.target.value)}
                   placeholder="Explain what operation needs automation (e.g., 'Reconcile invoice PDFs against Hubspot deals, trigger instant billing webhooks on Stripe if matched')"
-                  className="w-full h-24 px-3 py-2 text-xs bg-slate-900/60 rounded border border-slate-800 text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-cyan-500 font-sans resize-none"
+                  className="w-full h-24 px-3 py-2 text-xs bg-slate-50 rounded border border-slate-800 text-slate-800 placeholder:text-slate-600 focus:outline-none focus:border-cyan-500 font-sans resize-none"
                   required
                 />
               </div>
@@ -199,7 +199,7 @@ export default function LeadCapture() {
               <button
                 type="submit"
                 disabled={isSubmittingLead}
-                className="w-full py-2.5 rounded bg-gradient-to-r from-cyan-400 to-indigo-500 hover:from-cyan-300 hover:to-indigo-400 text-slate-950 font-bold text-xs tracking-wider transition-all disabled:opacity-40 flex items-center justify-center gap-1.5 cursor-pointer"
+                className="w-full py-2.5 rounded bg-gradient-to-r from-cyan-400 to-indigo-500 hover:from-cyan-300 hover:to-indigo-400 text-slate-900 font-bold text-xs tracking-wider transition-all disabled:opacity-40 flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 {isSubmittingLead ? (
                   <>
@@ -234,14 +234,14 @@ export default function LeadCapture() {
                 </div>
                 <button
                   onClick={() => setLeadReport(null)}
-                  className="text-[10px] font-mono text-slate-500 hover:text-slate-300 uppercase underline cursor-pointer"
+                  className="text-[10px] font-mono text-slate-500 hover:text-slate-700 uppercase underline cursor-pointer"
                 >
                   Audit another process
                 </button>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-slate-900/50 p-3 rounded-lg border border-slate-900/80 font-mono text-[10px] space-y-1">
+                <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[10px] space-y-1">
                   <span className="text-slate-500 block uppercase">FEASIBILITY SCORE</span>
                   <div className="flex items-baseline gap-1.5">
                     <span className="text-2xl font-bold text-cyan-400">{leadReport.feasibilityRating}</span>
@@ -249,20 +249,20 @@ export default function LeadCapture() {
                   </div>
                 </div>
 
-                <div className="bg-slate-900/50 p-3 rounded-lg border border-slate-900/80 font-mono text-[10px] space-y-1">
+                <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[10px] space-y-1">
                   <span className="text-slate-500 block uppercase font-bold">ARCHITECTURE LAYER</span>
-                  <span className="text-slate-200 font-bold block truncate">{leadReport.architectureTier}</span>
+                  <span className="text-slate-800 font-bold block truncate">{leadReport.architectureTier}</span>
                 </div>
 
-                <div className="bg-slate-900/50 p-3 rounded-lg border border-slate-900/80 font-mono text-[10px] space-y-1">
+                <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-[10px] space-y-1">
                   <span className="text-slate-500 block uppercase font-bold">PLATFORM ROADMAP FIT</span>
-                  <span className="text-slate-200 font-bold block truncate">{leadReport.platformReuseFit}</span>
+                  <span className="text-slate-800 font-bold block truncate">{leadReport.platformReuseFit}</span>
                 </div>
               </div>
 
               <div className="space-y-1.5">
                 <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block font-bold">Structural Assessment</span>
-                <p className="text-xs text-slate-300 leading-relaxed font-sans bg-slate-900/30 p-3.5 rounded-xl border border-slate-900/60">
+                <p className="text-xs text-slate-700 leading-relaxed font-sans bg-slate-50 p-3.5 rounded-xl border border-slate-200">
                   {leadReport.technicalAssessment}
                 </p>
               </div>
@@ -297,7 +297,7 @@ export default function LeadCapture() {
                   href="https://calendly.com/mashnu-ai" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-xs tracking-wider transition-all flex items-center gap-1.5 cursor-pointer font-sans"
+                  className="px-4 py-2 rounded bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold text-xs tracking-wider transition-all flex items-center gap-1.5 cursor-pointer font-sans"
                 >
                   <UserCheck className="w-4 h-4" />
                   <span>Book discovery callback with Architect</span>

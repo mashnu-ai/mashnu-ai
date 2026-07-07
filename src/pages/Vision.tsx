@@ -37,7 +37,7 @@ const VISION_STAGES: StageItem[] = [
       "Robust custom Voice Activity Detection (VAD) models"
     ],
     investorHireNote: "Venture Partners: This stage generates direct cash-flow to fund core platform development. Hires: You will gain deep experience writing low-level network bridges that handle live traffic under production conditions.",
-    icon: <Workflow className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Workflow className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80"
   },
   {
@@ -55,7 +55,7 @@ const VISION_STAGES: StageItem[] = [
       "Simplified billing structures mapped directly to raw API token consumption"
     ],
     investorHireNote: "Venture Partners: This unlocks exponential recurring revenue margins and establishes a high-growth SaaS financial model. Hires: You will build secure multi-tenant architectures and design clean state routers.",
-    icon: <Cloud className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Cloud className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80"
   },
   {
@@ -73,7 +73,7 @@ const VISION_STAGES: StageItem[] = [
       "Granular IAM role policies and department-level API spending limits"
     ],
     investorHireNote: "Venture Partners: Establishes Mashnu as the core operating system for enterprise agent operations, creating a strong platform moat. Hires: You will optimize highly asynchronous execution DAGs and state machines.",
-    icon: <Server className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Server className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
   },
   {
@@ -91,7 +91,7 @@ const VISION_STAGES: StageItem[] = [
       "Regional endpoint hosting to satisfy HIPAA and GDPR residency laws"
     ],
     investorHireNote: "Venture Partners: Alleviates dependence on volatile third-party model providers, improving gross margins. Hires: You will architect Kubernetes deployments and optimize container cold-start speeds.",
-    icon: <Activity className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Activity className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=1200&q=80"
   },
   {
@@ -109,7 +109,7 @@ const VISION_STAGES: StageItem[] = [
       "Decentralized licensing ledger with automatic revenue sharing"
     ],
     investorHireNote: "Venture Partners: Introduces high-margin network effects as developer ecosystems consolidate around our runtime core. Hires: You will build secure sandboxes and static analysis linting suites.",
-    icon: <ShoppingBag className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <ShoppingBag className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80"
   },
   {
@@ -127,7 +127,7 @@ const VISION_STAGES: StageItem[] = [
       "Edge VAD signal processing bypassing high-overhead third-party streaming middleware"
     ],
     investorHireNote: "Venture Partners: Protects core infrastructure against cloud-provider lock-in and pricing spikes. Hires: You will write low-level C++/Rust compilation pipelines for model inference engines.",
-    icon: <Cpu className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Cpu className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80"
   },
   {
@@ -145,7 +145,7 @@ const VISION_STAGES: StageItem[] = [
       "Novel high-density chunk-graph retrieval algorithms"
     ],
     investorHireNote: "Venture Partners: Builds long-term deep-tech IP that cannot be replicated by basic API wrappers. Hires: You will conduct model training experiments, publish papers, and design custom adapters.",
-    icon: <BookOpen className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <BookOpen className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80"
   },
   {
@@ -163,7 +163,7 @@ const VISION_STAGES: StageItem[] = [
       "Near-zero energy consumption thresholds for hyper-scale enterprise calculations"
     ],
     investorHireNote: "Venture Partners: Positions Mashnu as a forward-looking participant in the post-silicon computational shift. Hires: You will bridge the gap between quantum mechanics and neural architectures.",
-    icon: <Binary className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Binary className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80"
   },
   {
@@ -181,7 +181,7 @@ const VISION_STAGES: StageItem[] = [
       "Interactive 3D structural model compilation directly from speech inputs"
     ],
     investorHireNote: "Venture Partners: Opens direct pathways into industrial manufacturing, remote surgeries, and spatial military planning. Hires: You will construct high-fidelity WebXR interfaces and low-overhead spatial matrix transformations.",
-    icon: <Eye className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Eye className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=1200&q=80"
   },
   {
@@ -199,7 +199,7 @@ const VISION_STAGES: StageItem[] = [
       "Robust neuro-privacy guardrails running locally on hardware adapters"
     ],
     investorHireNote: "Venture Partners: Establishes a radical tech moat in physical-neural interface safety software. Hires: You will collaborate with physical signal analysts and write custom digital signal processing algorithms.",
-    icon: <Sparkles className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Sparkles className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1507668077129-56e32842fceb?auto=format&fit=crop&w=1200&q=80"
   },
   {
@@ -217,7 +217,7 @@ const VISION_STAGES: StageItem[] = [
       "Radiation-resilient localized software containers hosting agent logic"
     ],
     investorHireNote: "Venture Partners: Unlocks completely unblockable private telemetry networks for global corporations and sovereign states. Hires: You will build high-reliability communication protocols and specialized satellite state sync engines.",
-    icon: <Globe className="w-5 h-5 text-[#C15F3C]" />,
+    icon: <Globe className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1200&q=80"
   }
 ];
@@ -227,37 +227,37 @@ export default function Vision() {
   const activeStage = VISION_STAGES.find(s => s.id === activeStageId) || VISION_STAGES[0];
 
   return (
-    <div className="relative min-h-screen bg-[#F7F3EB] text-[#211D16] font-sans selection:bg-[#C15F3C]/20 selection:text-[#C15F3C] py-16 animate-fade-in">
+    <div className="relative min-h-screen bg-[#F8FAFC] text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] py-16 animate-fade-in">
       
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Page Title Header */}
         <section className="text-center max-w-3xl mx-auto space-y-4">
-          <span className="text-[11px] font-semibold text-[#C15F3C] uppercase tracking-wider block">
+          <span className="text-[11px] font-semibold text-[#2563EB] uppercase tracking-wider block">
             Vision Manifesto & Roadmap
           </span>
-          <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.02em] text-[#211D16] leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.02em] text-[#0F172A] leading-tight">
             Our Multi-Stage Evolution Stance
           </h1>
-          <p className="text-lg text-[#6F6757] leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto">
             We reject high-overhead throwaway AI consulting. We are executing an ambitious but strictly grounded roadmap to turn custom enterprise integrations into reusable platform infrastructure.
           </p>
         </section>
 
         {/* MANIFESTO / STATEMENT OF INTENT */}
-        <section className="border border-[#E5DED0] rounded-[28px] bg-white p-6 sm:p-10 space-y-6 max-w-4xl mx-auto shadow-sm">
+        <section className="border border-[#E2E8F0] rounded-[28px] bg-white p-6 sm:p-10 space-y-6 max-w-4xl mx-auto shadow-sm">
           
-          <div className="flex items-center gap-3 border-b border-[#E5DED0] pb-4">
-            <div className="w-10 h-10 rounded-lg bg-[#C15F3C]/5 border border-[#C15F3C]/10 flex items-center justify-center">
-              <Compass className="w-5 h-5 text-[#C15F3C]" />
+          <div className="flex items-center gap-3 border-b border-[#E2E8F0] pb-4">
+            <div className="w-10 h-10 rounded-lg bg-[#2563EB]/5 border border-[#2563EB]/10 flex items-center justify-center">
+              <Compass className="w-5 h-5 text-[#2563EB]" />
             </div>
             <div>
-              <h2 className="text-xl font-semibold tracking-tight text-[#211D16]">Why Systems Engineering Moats Wrapper APIs</h2>
-              <span className="text-[10px] font-semibold text-[#6F6757] uppercase tracking-wider block mt-0.5">Stance on Tech-Sovereignty</span>
+              <h2 className="text-xl font-semibold tracking-tight text-[#0F172A]">Why Systems Engineering Moats Wrapper APIs</h2>
+              <span className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block mt-0.5">Stance on Tech-Sovereignty</span>
             </div>
           </div>
 
-          <div className="space-y-4 text-xs sm:text-sm text-[#4C463B] leading-relaxed">
+          <div className="space-y-4 text-xs sm:text-sm text-[#334155] leading-relaxed">
             <p>
               The current intelligence market is crowded with short-sighted agencies that charge premium hourly rates to stitch basic third-party APIs together. They deliver fragile systems that suffer from extreme latency, lack rigorous compliance boundaries, and suffer from compounding failures under operational loads.
             </p>
@@ -271,15 +271,15 @@ export default function Vision() {
         </section>
 
         {/* [PLACEHOLDER: Vision Video Presentation / Core Architecture Map] */}
-        <section className="max-w-4xl mx-auto border border-dashed border-[#D2C9B6] rounded-2xl p-6 bg-[#EFE9DD] text-center space-y-3">
-          <div className="mx-auto w-12 h-12 rounded-xl bg-white border border-[#E5DED0] flex items-center justify-center shadow-sm">
-            <Compass className="w-5 h-5 text-[#C15F3C]" />
+        <section className="max-w-4xl mx-auto border border-dashed border-[#CBD5E1] rounded-2xl p-6 bg-[#F1F5F9] text-center space-y-3">
+          <div className="mx-auto w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center shadow-sm">
+            <Compass className="w-5 h-5 text-[#2563EB]" />
           </div>
           <div className="space-y-1">
-            <span className="text-[11px] font-semibold text-[#211D16] uppercase tracking-wider block">
+            <span className="text-[11px] font-semibold text-[#0F172A] uppercase tracking-wider block">
               [PLACEHOLDER: Engineering Vision Walkthrough Video]
             </span>
-            <p className="text-xs text-[#6F6757] max-w-lg mx-auto leading-relaxed">
+            <p className="text-xs text-[#64748B] max-w-lg mx-auto leading-relaxed">
               Requires a high-fidelity, production-grade video walkthrough from the founders detailing our bare-metal compiler optimization targets, edge adaptive model architectures, and capital efficiency projections.
             </p>
           </div>
@@ -288,14 +288,14 @@ export default function Vision() {
         {/* ROADMAP OVERVIEW PROGRESS TRACKER (HORIZONTAL PATH) */}
         <section className="space-y-6 max-w-7xl mx-auto">
           <div className="text-center max-w-xl mx-auto space-y-1">
-            <h2 className="text-2xl font-semibold tracking-tight text-[#211D16]">The Roadmap Sequence</h2>
-            <p className="text-sm text-[#6F6757]">
+            <h2 className="text-2xl font-semibold tracking-tight text-[#0F172A]">The Roadmap Sequence</h2>
+            <p className="text-sm text-[#64748B]">
               An active trace of our engineering objectives, from near-term service blocks to deep physical-layer integration.
             </p>
           </div>
 
           {/* Horizontal Track with responsive layout wrapping */}
-          <div className="p-5 border border-[#E5DED0] rounded-[24px] bg-[#EFE9DD]">
+          <div className="p-5 border border-[#E2E8F0] rounded-[24px] bg-[#F1F5F9]">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-11 gap-3">
               {VISION_STAGES.map((s) => {
                 const isActive = s.id === activeStageId;
@@ -305,22 +305,22 @@ export default function Vision() {
                     onClick={() => setActiveStageId(s.id)}
                     className={`p-3 rounded-xl border text-left transition-all duration-200 relative flex flex-col justify-between cursor-pointer ${
                       isActive
-                        ? 'border-[#C15F3C] bg-white scale-[1.03] z-10 shadow-sm'
-                        : 'border-[#E5DED0] bg-white/60 hover:border-[#D2C9B6]'
+                        ? 'border-[#2563EB] bg-white scale-[1.03] z-10 shadow-sm'
+                        : 'border-[#E2E8F0] bg-white/60 hover:border-[#CBD5E1]'
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-semibold text-[#6F6757]">{s.number}</span>
+                      <span className="text-[10px] font-semibold text-[#64748B]">{s.number}</span>
                       {s.status === 'active' && <CircleDot className="w-2.5 h-2.5 text-emerald-500 animate-pulse" />}
-                      {s.status === 'transition' && <CircleDot className="w-2.5 h-2.5 text-[#C15F3C]" />}
+                      {s.status === 'transition' && <CircleDot className="w-2.5 h-2.5 text-[#2563EB]" />}
                     </div>
                     <div className="mt-2">
                       <h4 className={`text-[10px] font-semibold uppercase tracking-wider line-clamp-1 ${
-                        isActive ? 'text-[#C15F3C]' : 'text-[#211D16]'
+                        isActive ? 'text-[#2563EB]' : 'text-[#0F172A]'
                       }`}>
                         {s.title}
                       </h4>
-                      <span className="text-[8px] font-medium uppercase block mt-0.5 text-[#6F6757]">
+                      <span className="text-[8px] font-medium uppercase block mt-0.5 text-[#64748B]">
                         {s.status === 'active' ? 'Active Core' :
                          s.status === 'transition' ? 'Transition' :
                          s.status === 'rd' ? 'Active R&D' : 'Roadmap'}
@@ -338,8 +338,8 @@ export default function Vision() {
           
           {/* Vertical Index Timeline (Col-span 5) */}
           <div className="lg:col-span-5 space-y-4">
-            <span className="text-[10px] font-semibold text-[#6F6757] uppercase tracking-wider block">Select Milestone Stage</span>
-            <div className="relative pl-4 border-l border-[#E5DED0] space-y-4 py-1">
+            <span className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Select Milestone Stage</span>
+            <div className="relative pl-4 border-l border-[#E2E8F0] space-y-4 py-1">
               {VISION_STAGES.map((s) => {
                 const isSelected = s.id === activeStageId;
                 return (
@@ -348,32 +348,32 @@ export default function Vision() {
                     onClick={() => setActiveStageId(s.id)}
                     className={`w-full p-4 rounded-2xl border text-left transition-all duration-200 relative flex flex-col gap-2 cursor-pointer ${
                       isSelected
-                        ? 'border-[#C15F3C] bg-white text-[#211D16] shadow-sm'
-                        : 'border-[#E5DED0] bg-[#EFE9DD]/40 text-[#6F6757] hover:bg-[#EFE9DD]'
+                        ? 'border-[#2563EB] bg-white text-[#0F172A] shadow-sm'
+                        : 'border-[#E2E8F0] bg-[#F1F5F9]/40 text-[#64748B] hover:bg-[#F1F5F9]'
                     }`}
                   >
                     {/* Active side indicator */}
                     {isSelected && (
-                      <span className="absolute -left-[21px] top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#C15F3C] border border-white z-20 shadow-sm" />
+                      <span className="absolute -left-[21px] top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#2563EB] border border-white z-20 shadow-sm" />
                     )}
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         {s.icon}
-                        <span className="text-[10px] font-semibold text-[#6F6757]">{s.number}</span>
-                        <h3 className="text-xs font-semibold text-[#211D16]">{s.title}</h3>
+                        <span className="text-[10px] font-semibold text-[#64748B]">{s.number}</span>
+                        <h3 className="text-xs font-semibold text-[#0F172A]">{s.title}</h3>
                       </div>
                       <span className={`px-2 py-0.5 text-[8px] font-semibold rounded-full border uppercase ${
                         s.status === 'active' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' :
-                        s.status === 'transition' ? 'bg-[#C15F3C]/5 text-[#C15F3C] border-[#C15F3C]/10' :
+                        s.status === 'transition' ? 'bg-[#2563EB]/5 text-[#2563EB] border-[#2563EB]/10' :
                         s.status === 'rd' ? 'bg-indigo-50 text-indigo-600 border-indigo-100' :
-                        'bg-white border-[#E5DED0] text-[#6F6757]'
+                        'bg-white border-[#E2E8F0] text-[#64748B]'
                       }`}>
                         {s.statusLabel.split(' (')[0]}
                       </span>
                     </div>
 
-                    <p className="text-[11px] text-[#6F6757] leading-relaxed line-clamp-2">
+                    <p className="text-[11px] text-[#64748B] leading-relaxed line-clamp-2">
                       {s.whatItMeans}
                     </p>
                   </button>
@@ -383,12 +383,12 @@ export default function Vision() {
           </div>
 
           {/* Active Detail Display Panel (Col-span 7) */}
-          <div className="lg:col-span-7 border border-[#E5DED0] rounded-[28px] bg-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden shadow-sm">
+          <div className="lg:col-span-7 border border-[#E2E8F0] rounded-[28px] bg-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden shadow-sm">
             
             <div className="space-y-6 relative z-10">
               
               {/* Header Image */}
-              <div className="relative h-48 sm:h-64 -mx-6 sm:-mx-8 -mt-6 sm:-mt-8 mb-6 overflow-hidden bg-[#EFE9DD] border-b border-[#E5DED0]">
+              <div className="relative h-48 sm:h-64 -mx-6 sm:-mx-8 -mt-6 sm:-mt-8 mb-6 overflow-hidden bg-[#F1F5F9] border-b border-[#E2E8F0]">
                 <img 
                   src={activeStage.imageUrl} 
                   alt={activeStage.title} 
@@ -399,59 +399,59 @@ export default function Vision() {
               </div>
 
               {/* Header Title bar */}
-              <div className="space-y-2 border-b border-[#E5DED0] pb-4">
+              <div className="space-y-2 border-b border-[#E2E8F0] pb-4">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-lg bg-[#EFE9DD] border border-[#E5DED0] flex items-center justify-center shadow-xs">
+                  <div className="w-9 h-9 rounded-lg bg-[#F1F5F9] border border-[#E2E8F0] flex items-center justify-center shadow-xs">
                     {activeStage.icon}
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-[9px] font-semibold text-[#C15F3C] uppercase tracking-wider">Evolution Node {activeStage.number}</span>
+                      <span className="text-[9px] font-semibold text-[#2563EB] uppercase tracking-wider">Evolution Node {activeStage.number}</span>
                       <span className={`px-2 py-0.5 rounded text-[8px] font-semibold uppercase tracking-wider ${
                         activeStage.status === 'active' ? 'bg-emerald-50 text-emerald-600' :
-                        activeStage.status === 'transition' ? 'bg-[#C15F3C]/5 text-[#C15F3C]' :
+                        activeStage.status === 'transition' ? 'bg-[#2563EB]/5 text-[#2563EB]' :
                         activeStage.status === 'rd' ? 'bg-indigo-50 text-indigo-600' :
-                        'bg-[#EFE9DD] text-[#6F6757]'
+                        'bg-[#F1F5F9] text-[#64748B]'
                       }`}>
                         {activeStage.statusLabel}
                       </span>
                     </div>
-                    <h3 className="text-xl font-semibold tracking-tight text-[#211D16]">{activeStage.title}</h3>
+                    <h3 className="text-xl font-semibold tracking-tight text-[#0F172A]">{activeStage.title}</h3>
                   </div>
                 </div>
               </div>
 
               {/* Concrete Definition */}
               <div className="space-y-1">
-                <span className="text-[9px] font-semibold text-[#6F6757] uppercase tracking-wider block">Concrete Definition</span>
-                <p className="text-xs sm:text-sm text-[#211D16] leading-relaxed font-semibold">
+                <span className="text-[9px] font-semibold text-[#64748B] uppercase tracking-wider block">Concrete Definition</span>
+                <p className="text-xs sm:text-sm text-[#0F172A] leading-relaxed font-semibold">
                   {activeStage.whatItMeans}
                 </p>
               </div>
 
               {/* Current Operational State */}
               <div className="space-y-1">
-                <span className="text-[9px] font-semibold text-[#6F6757] uppercase tracking-wider block">Current Operational State</span>
-                <p className="text-xs sm:text-sm text-[#4C463B] leading-relaxed italic">
+                <span className="text-[9px] font-semibold text-[#64748B] uppercase tracking-wider block">Current Operational State</span>
+                <p className="text-xs sm:text-sm text-[#334155] leading-relaxed italic">
                   {activeStage.whereWeAre}
                 </p>
               </div>
 
               {/* Milestone Narrative & Rationale */}
               <div className="space-y-1">
-                <span className="text-[9px] font-semibold text-[#6F6757] uppercase tracking-wider block">Milestone Narrative & Rationale</span>
-                <p className="text-xs sm:text-sm text-[#6F6757] leading-relaxed">
+                <span className="text-[9px] font-semibold text-[#64748B] uppercase tracking-wider block">Milestone Narrative & Rationale</span>
+                <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed">
                   {activeStage.description}
                 </p>
               </div>
 
               {/* Unlocked Capabilities */}
-              <div className="space-y-2.5 pt-4 border-t border-[#E5DED0]">
-                <span className="text-[9px] font-semibold text-[#6F6757] uppercase tracking-wider block">Projected Engineering Unlocks</span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-[11px] text-[#4C463B]">
+              <div className="space-y-2.5 pt-4 border-t border-[#E2E8F0]">
+                <span className="text-[9px] font-semibold text-[#64748B] uppercase tracking-wider block">Projected Engineering Unlocks</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-[11px] text-[#334155]">
                   {activeStage.unlockedCapabilities.map((cap, i) => (
                     <div key={i} className="flex gap-2 items-start">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#C15F3C] shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#2563EB] shrink-0 mt-0.5" />
                       <span>{cap}</span>
                     </div>
                   ))}
@@ -459,11 +459,11 @@ export default function Vision() {
               </div>
 
               {/* Recruitment / Investor Note */}
-              <div className="p-4 rounded-xl bg-[#EFE9DD] border border-[#E5DED0] text-xs flex gap-3 items-start">
-                <Info className="w-4 h-4 text-[#C15F3C] shrink-0 mt-0.5" />
+              <div className="p-4 rounded-xl bg-[#F1F5F9] border border-[#E2E8F0] text-xs flex gap-3 items-start">
+                <Info className="w-4 h-4 text-[#2563EB] shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <span className="text-[8px] font-semibold text-[#211D16] uppercase tracking-wider block">Investor & Talent Disclosure</span>
-                  <p className="text-[#6F6757] text-[11px] leading-relaxed">
+                  <span className="text-[8px] font-semibold text-[#0F172A] uppercase tracking-wider block">Investor & Talent Disclosure</span>
+                  <p className="text-[#64748B] text-[11px] leading-relaxed">
                     {activeStage.investorHireNote}
                   </p>
                 </div>
@@ -471,9 +471,9 @@ export default function Vision() {
 
             </div>
 
-            <div className="mt-8 pt-4 border-t border-[#E5DED0] flex items-center justify-between text-[10px] text-[#6F6757]">
+            <div className="mt-8 pt-4 border-t border-[#E2E8F0] flex items-center justify-between text-[10px] text-[#64748B]">
               <span>Audit Hash: SHA-256 Verified</span>
-              <span className="text-[#C15F3C] font-semibold uppercase">Mashnu Platform Track</span>
+              <span className="text-[#2563EB] font-semibold uppercase">Mashnu Platform Track</span>
             </div>
 
           </div>
@@ -484,19 +484,19 @@ export default function Vision() {
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           
           {/* For Investors block */}
-          <div className="border border-[#E5DED0] rounded-[24px] bg-white p-6 sm:p-8 space-y-4 flex flex-col justify-between hover:border-[#D2C9B6] transition-colors relative overflow-hidden shadow-xs">
+          <div className="border border-[#E2E8F0] rounded-[24px] bg-white p-6 sm:p-8 space-y-4 flex flex-col justify-between hover:border-[#CBD5E1] transition-colors relative overflow-hidden shadow-xs">
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <Landmark className="w-5 h-5 text-[#C15F3C]" />
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-[#211D16]">Capital Allocations & Partners</h3>
+                <Landmark className="w-5 h-5 text-[#2563EB]" />
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-[#0F172A]">Capital Allocations & Partners</h3>
               </div>
-              <p className="text-xs text-[#6F6757] leading-relaxed">
+              <p className="text-xs text-[#64748B] leading-relaxed">
                 By charging realistic fees for custom enterprise deployments from day one, we completely avoid the venture-subsidy trap. Our custom services directly fund core micro-agent software, ensuring stable growth with a highly defensive cash-flow model.
               </p>
             </div>
             <Link 
               to="/contact" 
-              className="text-xs font-semibold uppercase text-[#C15F3C] hover:underline flex items-center gap-1 mt-4 border-t border-[#E5DED0] pt-3"
+              className="text-xs font-semibold uppercase text-[#2563EB] hover:underline flex items-center gap-1 mt-4 border-t border-[#E2E8F0] pt-3"
             >
               Request Pitch Materials
               <ChevronRight className="w-4 h-4" />
@@ -504,19 +504,19 @@ export default function Vision() {
           </div>
 
           {/* For Hires block */}
-          <div className="border border-[#E5DED0] rounded-[24px] bg-white p-6 sm:p-8 space-y-4 flex flex-col justify-between hover:border-[#D2C9B6] transition-colors relative overflow-hidden shadow-xs">
+          <div className="border border-[#E2E8F0] rounded-[24px] bg-white p-6 sm:p-8 space-y-4 flex flex-col justify-between hover:border-[#CBD5E1] transition-colors relative overflow-hidden shadow-xs">
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <Code className="w-5 h-5 text-[#C15F3C]" />
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-[#211D16]">Engineering Principles</h3>
+                <Code className="w-5 h-5 text-[#2563EB]" />
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-[#0F172A]">Engineering Principles</h3>
               </div>
-              <p className="text-xs text-[#6F6757] leading-relaxed">
+              <p className="text-xs text-[#64748B] leading-relaxed">
                 We hire engineers who want to build real systems rather than compile API wrappers. If you enjoy optimizing low-latency data loops, writing clean TypeScript, and building predictable state architectures, our roadmap offers a rigorous environment.
               </p>
             </div>
             <Link 
               to="/careers" 
-              className="text-xs font-semibold uppercase text-[#C15F3C] hover:underline flex items-center gap-1 mt-4 border-t border-[#E5DED0] pt-3"
+              className="text-xs font-semibold uppercase text-[#2563EB] hover:underline flex items-center gap-1 mt-4 border-t border-[#E2E8F0] pt-3"
             >
               Explore Open Roles
               <ChevronRight className="w-4 h-4" />

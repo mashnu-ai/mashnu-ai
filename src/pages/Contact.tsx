@@ -82,19 +82,19 @@ export default function Contact() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F7F3EB] text-[#211D16] font-sans selection:bg-[#C15F3C]/20 selection:text-[#C15F3C] py-16">
+    <div className="relative min-h-screen bg-[#F8FAFC] text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] py-16">
       
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Page Title */}
         <section className="text-center max-w-3xl mx-auto space-y-4">
-          <span className="text-[11px] font-semibold text-[#C15F3C] uppercase tracking-wider block">
+          <span className="text-[11px] font-semibold text-[#2563EB] uppercase tracking-wider block">
             Real-time Systems Assessment
           </span>
-          <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.02em] text-[#211D16] leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.02em] text-[#0F172A] leading-tight">
             Request Architectural Appraisal
           </h1>
-          <p className="text-lg text-[#6F6757] leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto">
             Submit your unstructured workflows below. Our server-side LLM compiler will immediately generate a technical, realistic, and schema-validated feasibility assessment report.
           </p>
         </section>
@@ -103,11 +103,11 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-6xl mx-auto">
           
           {/* Left Form Panel */}
-          <div className="lg:col-span-6 border border-[#E5DED0] rounded-[28px] bg-white p-6 sm:p-8 space-y-6 shadow-sm">
+          <div className="lg:col-span-6 border border-[#E2E8F0] rounded-[28px] bg-white p-6 sm:p-8 space-y-6 shadow-sm">
             
-            <div className="flex items-center gap-2 border-b border-[#E5DED0] pb-4">
-              <Terminal className="w-4 h-4 text-[#C15F3C]" />
-              <span className="text-xs font-semibold text-[#211D16] uppercase tracking-wider">Specification Input Console</span>
+            <div className="flex items-center gap-2 border-b border-[#E2E8F0] pb-4">
+              <Terminal className="w-4 h-4 text-[#2563EB]" />
+              <span className="text-xs font-semibold text-[#0F172A] uppercase tracking-wider">Specification Input Console</span>
             </div>
 
             {!report ? (
@@ -116,31 +116,31 @@ export default function Contact() {
                 {/* Full name and email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-[10px] font-semibold uppercase tracking-wider text-[#6F6757] block">Full Name</label>
+                    <label className="text-[10px] font-semibold uppercase tracking-wider text-[#64748B] block">Full Name</label>
                     <div className="relative">
-                      <User className="absolute left-3.5 top-2.5 w-4 h-4 text-[#8B8271]" />
+                      <User className="absolute left-3.5 top-2.5 w-4 h-4 text-[#94A3B8]" />
                       <input
                         type="text"
                         required
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
                         placeholder="John Doe"
-                        className="w-full bg-[#EFE9DD] border border-[#E5DED0] rounded-xl px-3 py-2 pl-10 text-xs text-[#211D16] placeholder-[#8B8271] focus:outline-none focus:border-[#C15F3C] focus:bg-white transition-all"
+                        className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 pl-10 text-xs text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-all"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[10px] font-semibold uppercase tracking-wider text-[#6F6757] block">Business Email</label>
+                    <label className="text-[10px] font-semibold uppercase tracking-wider text-[#64748B] block">Business Email</label>
                     <div className="relative">
-                      <Mail className="absolute left-3.5 top-2.5 w-4 h-4 text-[#8B8271]" />
+                      <Mail className="absolute left-3.5 top-2.5 w-4 h-4 text-[#94A3B8]" />
                       <input
                         type="email"
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="john@company.com"
-                        className="w-full bg-[#EFE9DD] border border-[#E5DED0] rounded-xl px-3 py-2 pl-10 text-xs text-[#211D16] placeholder-[#8B8271] focus:outline-none focus:border-[#C15F3C] focus:bg-white transition-all"
+                        className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 pl-10 text-xs text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-all"
                       />
                     </div>
                   </div>
@@ -149,31 +149,31 @@ export default function Contact() {
                 {/* Company and role */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-[10px] font-semibold uppercase tracking-wider text-[#6F6757] block">Company</label>
+                    <label className="text-[10px] font-semibold uppercase tracking-wider text-[#64748B] block">Company</label>
                     <div className="relative">
-                      <Building className="absolute left-3.5 top-2.5 w-4 h-4 text-[#8B8271]" />
+                      <Building className="absolute left-3.5 top-2.5 w-4 h-4 text-[#94A3B8]" />
                       <input
                         type="text"
                         required
                         value={company}
                         onChange={(e) => setCompany(e.target.value)}
                         placeholder="Enterprise Inc."
-                        className="w-full bg-[#EFE9DD] border border-[#E5DED0] rounded-xl px-3 py-2 pl-10 text-xs text-[#211D16] placeholder-[#8B8271] focus:outline-none focus:border-[#C15F3C] focus:bg-white transition-all"
+                        className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 pl-10 text-xs text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-all"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[10px] font-semibold uppercase tracking-wider text-[#6F6757] block">Role / Title</label>
+                    <label className="text-[10px] font-semibold uppercase tracking-wider text-[#64748B] block">Role / Title</label>
                     <div className="relative">
-                      <Briefcase className="absolute left-3.5 top-2.5 w-4 h-4 text-[#8B8271]" />
+                      <Briefcase className="absolute left-3.5 top-2.5 w-4 h-4 text-[#94A3B8]" />
                       <input
                         type="text"
                         required
                         value={role}
                         onChange={(e) => setRole(e.target.value)}
                         placeholder="VP of Operations"
-                        className="w-full bg-[#EFE9DD] border border-[#E5DED0] rounded-xl px-3 py-2 pl-10 text-xs text-[#211D16] placeholder-[#8B8271] focus:outline-none focus:border-[#C15F3C] focus:bg-white transition-all"
+                        className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 pl-10 text-xs text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-all"
                       />
                     </div>
                   </div>
@@ -182,11 +182,11 @@ export default function Contact() {
                 {/* Expected Volume and Current System */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-[10px] font-semibold uppercase tracking-wider text-[#6F6757] block">Target Monthly Volume</label>
+                    <label className="text-[10px] font-semibold uppercase tracking-wider text-[#64748B] block">Target Monthly Volume</label>
                     <select
                       value={estimatedVolume}
                       onChange={(e) => setEstimatedVolume(e.target.value)}
-                      className="w-full bg-[#EFE9DD] border border-[#E5DED0] rounded-xl px-3 py-2 text-xs text-[#211D16] focus:outline-none focus:border-[#C15F3C] focus:bg-white transition-all"
+                      className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 text-xs text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-all"
                     >
                       <option value="Under 5,000 / month">Under 5,000 / month</option>
                       <option value="10,000 / month">10,000 / month</option>
@@ -196,13 +196,13 @@ export default function Contact() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[10px] font-semibold uppercase tracking-wider text-[#6F6757] block">Current System / Tools</label>
+                    <label className="text-[10px] font-semibold uppercase tracking-wider text-[#64748B] block">Current System / Tools</label>
                     <input
                       type="text"
                       value={currentSystem}
                       onChange={(e) => setCurrentSystem(e.target.value)}
                       placeholder="e.g. HubSpot, Manual PDF checklists"
-                      className="w-full bg-[#EFE9DD] border border-[#E5DED0] rounded-xl px-3 py-2 text-xs text-[#211D16] placeholder-[#8B8271] focus:outline-none focus:border-[#C15F3C] focus:bg-white transition-all"
+                      className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 text-xs text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-all"
                     />
                   </div>
                 </div>
@@ -210,8 +210,8 @@ export default function Contact() {
                 {/* Proposed Use-case */}
                 <div className="space-y-1.5">
                   <div className="flex justify-between items-center">
-                    <label className="text-[10px] font-semibold uppercase tracking-wider text-[#6F6757] block">Proposed AI Use-Case Specification</label>
-                    <span className="text-[9px] text-[#8B8271]">Mandatory</span>
+                    <label className="text-[10px] font-semibold uppercase tracking-wider text-[#64748B] block">Proposed AI Use-Case Specification</label>
+                    <span className="text-[9px] text-[#94A3B8]">Mandatory</span>
                   </div>
                   <textarea
                     required
@@ -219,7 +219,7 @@ export default function Contact() {
                     value={useCase}
                     onChange={(e) => setUseCase(e.target.value)}
                     placeholder="Describe exactly what manual step, invoice matching, clinical triage, or voice support loop you want to automate. Give as much raw data criteria as possible."
-                    className="w-full bg-[#EFE9DD] border border-[#E5DED0] rounded-xl px-3 py-2.5 text-xs text-[#211D16] placeholder-[#8B8271] focus:outline-none focus:border-[#C15F3C] focus:bg-white leading-relaxed resize-none transition-all"
+                    className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2.5 text-xs text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:bg-white leading-relaxed resize-none transition-all"
                   />
                 </div>
 
@@ -237,13 +237,13 @@ export default function Contact() {
                     disabled={loading}
                     className={`w-full py-3 rounded-full font-semibold text-xs tracking-tight flex items-center justify-center gap-2 transition-colors cursor-pointer ${
                       loading 
-                        ? 'bg-[#EFE9DD] text-[#8B8271] border border-[#E5DED0] cursor-not-allowed'
-                        : 'bg-[#211D16] hover:bg-[#4C463B] text-white shadow-xs'
+                        ? 'bg-[#F1F5F9] text-[#94A3B8] border border-[#E2E8F0] cursor-not-allowed'
+                        : 'bg-[#0F172A] hover:bg-[#334155] text-white shadow-xs'
                     }`}
                   >
                     {loading ? (
                       <>
-                        <span className="w-4 h-4 rounded-full border-2 border-[#8B8271] border-t-[#C15F3C] animate-spin" />
+                        <span className="w-4 h-4 rounded-full border-2 border-[#94A3B8] border-t-[#2563EB] animate-spin" />
                         Analyzing Systems Architecture...
                       </>
                     ) : (
@@ -263,15 +263,15 @@ export default function Contact() {
                   <CheckCircle2 className="w-6 h-6 text-emerald-500" />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-semibold tracking-tight text-[#211D16]">Appraisal Compiled</h3>
-                  <p className="text-sm text-[#6F6757] leading-relaxed max-w-md mx-auto">
+                  <h3 className="text-xl font-semibold tracking-tight text-[#0F172A]">Appraisal Compiled</h3>
+                  <p className="text-sm text-[#64748B] leading-relaxed max-w-md mx-auto">
                     Your feasibility report has been successfully analyzed and structured on the server. Inspect the compiled output on the right dashboard.
                   </p>
                 </div>
                 <div className="pt-4">
                   <button
                     onClick={resetForm}
-                    className="inline-flex px-5 py-2.5 rounded-full bg-[#211D16] hover:bg-[#4C463B] text-white text-xs font-semibold tracking-tight items-center gap-1.5 cursor-pointer shadow-xs"
+                    className="inline-flex px-5 py-2.5 rounded-full bg-[#0F172A] hover:bg-[#334155] text-white text-xs font-semibold tracking-tight items-center gap-1.5 cursor-pointer shadow-xs"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                     Compile Another Use-Case
@@ -285,30 +285,30 @@ export default function Contact() {
           {/* Right Appraisal/Explanation Display Column */}
           <div className="lg:col-span-6 flex flex-col justify-between items-stretch">
             {report ? (
-              <div className="border border-[#C15F3C] rounded-[28px] bg-white p-6 sm:p-8 space-y-6 flex flex-col justify-between h-full shadow-md">
+              <div className="border border-[#2563EB] rounded-[28px] bg-white p-6 sm:p-8 space-y-6 flex flex-col justify-between h-full shadow-md">
                 
                 <div className="space-y-5">
                   
                   {/* Title and Rating Dial */}
-                  <div className="flex items-center justify-between border-b border-[#E5DED0] pb-4">
+                  <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-4">
                     <div>
-                      <span className="text-[9px] font-semibold text-[#C15F3C] uppercase tracking-wider block">Appraisal Output</span>
-                      <h3 className="text-lg font-semibold tracking-tight text-[#211D16] mt-0.5">{report.architectureTier}</h3>
+                      <span className="text-[9px] font-semibold text-[#2563EB] uppercase tracking-wider block">Appraisal Output</span>
+                      <h3 className="text-lg font-semibold tracking-tight text-[#0F172A] mt-0.5">{report.architectureTier}</h3>
                     </div>
                     
                     {/* Dial */}
-                    <div className="relative w-14 h-14 rounded-full border border-[#E5DED0] bg-[#EFE9DD] flex items-center justify-center">
+                    <div className="relative w-14 h-14 rounded-full border border-[#E2E8F0] bg-[#F1F5F9] flex items-center justify-center">
                       <div className="text-center">
-                        <span className="text-lg font-semibold text-[#C15F3C] block tracking-tight leading-none">{report.feasibilityRating}</span>
-                        <span className="text-[8px] text-[#6F6757] block leading-none font-semibold uppercase mt-0.5">/ 10</span>
+                        <span className="text-lg font-semibold text-[#2563EB] block tracking-tight leading-none">{report.feasibilityRating}</span>
+                        <span className="text-[8px] text-[#64748B] block leading-none font-semibold uppercase mt-0.5">/ 10</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Assessment paragraph */}
                   <div className="space-y-2">
-                    <span className="text-[10px] font-semibold text-[#6F6757] uppercase tracking-wider block">Systems Engineer Assessment</span>
-                    <p className="text-xs sm:text-sm text-[#4C463B] leading-relaxed">{report.technicalAssessment}</p>
+                    <span className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Systems Engineer Assessment</span>
+                    <p className="text-xs sm:text-sm text-[#334155] leading-relaxed">{report.technicalAssessment}</p>
                   </div>
 
                   {/* Technical bottlenecks */}
@@ -319,10 +319,10 @@ export default function Contact() {
 
                   {/* Suggested stacks badges */}
                   <div className="space-y-2">
-                    <span className="text-[10px] font-semibold text-[#6F6757] uppercase tracking-wider block">Suggested Stack Components</span>
+                    <span className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block">Suggested Stack Components</span>
                     <div className="flex flex-wrap gap-1.5">
                       {report.suggestedStack.map((tech, i) => (
-                        <span key={i} className="px-3 py-1 text-[10px] font-medium rounded-full bg-[#EFE9DD] text-[#211D16] border border-[#E5DED0]">
+                        <span key={i} className="px-3 py-1 text-[10px] font-medium rounded-full bg-[#F1F5F9] text-[#0F172A] border border-[#E2E8F0]">
                           {tech}
                         </span>
                       ))}
@@ -332,22 +332,22 @@ export default function Contact() {
                 </div>
 
                 {/* Platform fit highlight */}
-                <div className="pt-5 border-t border-[#E5DED0] mt-6 flex items-start gap-2.5">
+                <div className="pt-5 border-t border-[#E2E8F0] mt-6 flex items-start gap-2.5">
                   <Cpu className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
                   <div>
                     <span className="text-[10px] font-semibold text-emerald-600 uppercase tracking-wider block">Core Roadmap Fit</span>
-                    <p className="text-xs sm:text-sm text-[#6F6757] leading-relaxed mt-0.5">{report.platformReuseFit}</p>
+                    <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed mt-0.5">{report.platformReuseFit}</p>
                   </div>
                 </div>
 
               </div>
             ) : (
               // Default preview guidelines
-              <div className="border border-[#E5DED0] border-dashed rounded-[28px] bg-[#EFE9DD]/40 p-6 sm:p-8 flex flex-col justify-center items-center text-center space-y-4 h-full py-16">
-                <FileText className="w-10 h-10 text-[#D2C9B6] animate-pulse" />
+              <div className="border border-[#E2E8F0] border-dashed rounded-[28px] bg-[#F1F5F9]/40 p-6 sm:p-8 flex flex-col justify-center items-center text-center space-y-4 h-full py-16">
+                <FileText className="w-10 h-10 text-[#CBD5E1] animate-pulse" />
                 <div className="space-y-2 max-w-sm">
-                  <h3 className="text-sm font-semibold tracking-wider text-[#211D16] uppercase">Waiting for Specifications</h3>
-                  <p className="text-xs sm:text-sm text-[#6F6757] leading-relaxed">
+                  <h3 className="text-sm font-semibold tracking-wider text-[#0F172A] uppercase">Waiting for Specifications</h3>
+                  <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed">
                     Once you submit your company's manual operational steps, our server-side compiler evaluates your requirements and generates the secure systems assessment here.
                   </p>
                 </div>

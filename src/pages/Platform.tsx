@@ -206,10 +206,9 @@ export default function Platform() {
   const [activeTab, setActiveTab] = useState<string>('enterprise-rag');
 
   return (
-    <div className="relative min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-cyan-500/30 selection:text-cyan-200 py-16">
+    <div className="relative min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-500/20 selection:text-blue-900 py-16">
       
       {/* Background visual components */}
-      <div className="absolute top-0 left-0 w-full h-[600px] bg-gradient-to-b from-cyan-950/20 via-slate-950/0 to-transparent pointer-events-none z-0" />
       <div className="absolute top-1/4 right-1/10 w-80 h-80 rounded-full bg-cyan-500/5 blur-[120px] pointer-events-none z-0" />
       <div className="absolute top-2/3 left-1/12 w-96 h-96 rounded-full bg-indigo-500/5 blur-[150px] pointer-events-none z-0" />
 
@@ -217,11 +216,11 @@ export default function Platform() {
         
         {/* Page Header */}
         <section className="text-center max-w-4xl mx-auto space-y-5">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-slate-800 text-[10px] font-mono uppercase tracking-widest text-slate-400">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-800 text-[10px] font-mono uppercase tracking-widest text-slate-400">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
             <span>Developer & Partner Specifications</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold font-display tracking-tight bg-gradient-to-r from-slate-50 via-slate-200 to-slate-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold font-display tracking-tight text-slate-900">
             Enterprise Platforms Deep-Dive
           </h1>
           <p className="text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
@@ -232,7 +231,7 @@ export default function Platform() {
         {/* INTERACTIVE PRODUCTION ARCHITECTURE DIAGRAM SECTION */}
         <section className="space-y-6">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-xl sm:text-2xl font-bold font-display text-slate-100">
+            <h2 className="text-xl sm:text-2xl font-bold font-display text-slate-900">
               The Unified Autonomous Stack
             </h2>
             <p className="text-xs text-slate-400">
@@ -246,7 +245,7 @@ export default function Platform() {
         <section className="space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest block font-bold">Deep Dive (Items 6–10)</span>
-            <h2 className="text-2xl font-bold font-display text-slate-100">Core Engineering Solutions</h2>
+            <h2 className="text-2xl font-bold font-display text-slate-900">Core Engineering Solutions</h2>
             <p className="text-xs text-slate-400">
               Select an enterprise-grade component below to review operational parameters, developer configurations, and functional specifications.
             </p>
@@ -261,7 +260,7 @@ export default function Platform() {
                 className={`px-4 py-2.5 rounded-xl border font-mono text-xs font-semibold tracking-wide transition-all flex items-center gap-2 cursor-pointer ${
                   activeTab === p.id
                     ? 'bg-cyan-400/10 border-cyan-400 text-cyan-400 shadow-sm shadow-cyan-400/5'
-                    : 'bg-slate-900/40 border-slate-800/80 hover:border-slate-700 text-slate-400'
+                    : 'bg-slate-50 border-slate-200 hover:border-slate-700 text-slate-400'
                 }`}
               >
                 {p.icon}
@@ -277,7 +276,7 @@ export default function Platform() {
               return (
                 <div
                   key={p.id}
-                  className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-slate-950/40 border border-slate-900 rounded-2xl p-6 sm:p-8 relative overflow-hidden backdrop-blur-sm"
+                  className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white border border-slate-900 rounded-2xl p-6 sm:p-8 relative overflow-hidden backdrop-blur-sm"
                 >
                   {/* Glowing background hint */}
                   <div className={`absolute top-0 right-0 w-72 h-72 bg-gradient-to-br ${p.bgGradient} blur-[90px] pointer-events-none`} />
@@ -295,14 +294,14 @@ export default function Platform() {
                             {p.status}
                           </span>
                         </div>
-                        <h3 className="text-2xl font-black font-display tracking-wide text-slate-50 flex items-center gap-2.5">
+                        <h3 className="text-2xl font-black font-display tracking-wide text-slate-900 flex items-center gap-2.5">
                           {p.icon}
                           {p.title}
                         </h3>
                       </div>
 
                       {/* Main narrative */}
-                      <p className="text-xs text-slate-300 font-sans leading-relaxed">
+                      <p className="text-xs text-slate-700 font-sans leading-relaxed">
                         {p.description}
                       </p>
 
@@ -310,18 +309,18 @@ export default function Platform() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-3 border-t border-slate-900 text-xs">
                         <div className="space-y-1.5">
                           <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">What It Does</span>
-                          <p className="text-slate-300 leading-relaxed font-sans">{p.whatItDoes}</p>
+                          <p className="text-slate-700 leading-relaxed font-sans">{p.whatItDoes}</p>
                         </div>
                         <div className="space-y-1.5">
                           <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">Who It's For</span>
-                          <p className="text-slate-300 leading-relaxed font-sans">{p.whoItsFor}</p>
+                          <p className="text-slate-700 leading-relaxed font-sans">{p.whoItsFor}</p>
                         </div>
                       </div>
 
                       {/* Technical Differentiator */}
-                      <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-900/80 text-xs space-y-1.5">
+                      <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1.5">
                         <span className="text-[9px] font-mono text-cyan-400 uppercase tracking-widest block font-bold">Systems-Engineering Differentiator</span>
-                        <p className="text-slate-200 font-sans italic leading-relaxed">
+                        <p className="text-slate-800 font-sans italic leading-relaxed">
                           “{p.technicalDifferentiator}”
                         </p>
                       </div>
@@ -329,7 +328,7 @@ export default function Platform() {
                       {/* Specifications List */}
                       <div className="space-y-2.5 pt-3 border-t border-slate-900">
                         <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">Core Engineering Specifications</span>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-[11px] text-slate-300 font-sans">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-[11px] text-slate-700 font-sans">
                           {p.specs.map((spec, i) => (
                             <div key={i} className="flex gap-2 items-start">
                               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
@@ -344,7 +343,7 @@ export default function Platform() {
                     <div className="pt-4">
                       <Link
                         to="/contact"
-                        className="inline-flex px-6 py-3 rounded bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-xs tracking-wider transition-all items-center gap-1.5 shadow-lg shadow-cyan-500/10 cursor-pointer"
+                        className="inline-flex px-6 py-3 rounded bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold text-xs tracking-wider transition-all items-center gap-1.5 shadow-lg shadow-cyan-500/10 cursor-pointer"
                       >
                         {p.ctaText}
                         <ArrowUpRight className="w-4 h-4" />
@@ -359,12 +358,12 @@ export default function Platform() {
                         <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">{p.codeTitle}</span>
                         <span className="text-[8px] font-mono text-cyan-400 uppercase tracking-widest">Active Spec</span>
                       </div>
-                      <div className="bg-slate-950/40 p-4 rounded-lg border border-slate-900/60 font-mono text-[10px] text-slate-300 overflow-x-auto max-h-[340px] scrollbar-thin">
+                      <div className="bg-white p-4 rounded-lg border border-slate-200 font-mono text-[10px] text-slate-700 overflow-x-auto max-h-[340px] scrollbar-thin">
                         <pre className="text-emerald-400/90 whitespace-pre">{p.codeSnippet}</pre>
                       </div>
                     </div>
 
-                    <div className="p-3 bg-slate-900/20 border border-slate-900/80 rounded-lg flex items-center gap-3 text-xs">
+                    <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg flex items-center gap-3 text-xs">
                       <Lock className="w-4 h-4 text-cyan-400 shrink-0" />
                       <p className="text-slate-400 font-sans text-[11px]">
                         Enterprise code modules are delivered inside air-gapped container repositories, meeting strict ISO-27001, SOC2 Type II compliance rules.
@@ -380,7 +379,7 @@ export default function Platform() {
 
         {/* OVERALL PARTNERSHIP CTA */}
         <section className="border border-slate-900 rounded-2xl bg-gradient-to-br from-slate-950 via-slate-950 to-slate-900 p-8 sm:p-10 text-center space-y-5">
-          <h2 className="text-2xl font-bold font-display text-slate-100">
+          <h2 className="text-2xl font-bold font-display text-white">
             Let's Review Your Enterprise Architecture Requirements
           </h2>
           <p className="text-xs text-slate-400 leading-relaxed max-w-2xl mx-auto font-sans">
@@ -389,7 +388,7 @@ export default function Platform() {
           <div className="pt-2">
             <Link
               to="/contact"
-              className="inline-flex px-5 py-2.5 rounded bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-xs tracking-wider transition-all items-center gap-1.5 shadow-lg shadow-cyan-500/10 cursor-pointer"
+              className="inline-flex px-5 py-2.5 rounded bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold text-xs tracking-wider transition-all items-center gap-1.5 shadow-lg shadow-cyan-500/10 cursor-pointer"
             >
               Book Systems Briefing
               <ArrowRight className="w-3.5 h-3.5" />
