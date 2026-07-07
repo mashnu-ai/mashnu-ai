@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from '../components/Router';
 import {
   GraduationCap, Users2, ShieldCheck, ArrowRight, CheckCircle2,
-  ChevronDown, ChevronUp, AlertCircle, Sparkles, Send, Clock, Globe2, Award
+  ChevronDown, ChevronUp, AlertCircle, Sparkles, Send, Clock, Globe2, Award, FileText
 } from 'lucide-react';
 
 // ---------------------------------------------------------------------------
@@ -84,6 +84,18 @@ const AGE_TIERS: AgeTier[] = [
   },
 ];
 
+interface ProgramCategory {
+  name: string;
+  whoItsFor: string;
+}
+
+const PROGRAM_CATEGORIES: ProgramCategory[] = [
+  { name: 'Learning Program', whoItsFor: 'The Young Innovators Program (ages 12-13). Pure exposure to how technology works — no deliverables, no pressure, just guided learning.' },
+  { name: 'Fellowship', whoItsFor: 'The Student Technology Fellowship (ages 14-17). Supervised educational projects that build a real portfolio, with no client or production work involved.' },
+  { name: 'Professional Internship', whoItsFor: 'The 18+ track. Real, supervised project contribution across our learning tracks — this is also what satisfies a college industrial training or internship requirement.' },
+  { name: 'Research Fellowship', whoItsFor: 'The Emerging Tech Research track specifically. Self-directed reading and research on frontier topics, not hands-on production work.' },
+];
+
 const JOURNEY_STEPS = [
   { step: 'Application', description: 'Tell us who you are and what you want to learn.' },
   { step: 'Eligibility Review', description: 'We confirm your tier, age requirements, and any consent needed.' },
@@ -111,6 +123,7 @@ interface Track {
   tools: string[];
   difficulty: 'Beginner-friendly' | 'Intermediate' | 'Some experience helpful';
   featured?: boolean;
+  researchOnly?: boolean;
 }
 
 const TRACKS: Track[] = [
@@ -268,6 +281,159 @@ const TRACKS: Track[] = [
     tools: ['Figma', 'FigJam', 'Notion'],
     difficulty: 'Beginner-friendly',
   },
+  {
+    id: 'cloud-devops-foundations',
+    title: 'Cloud & DevOps Foundations',
+    overview: "Learn the basics of deploying and running our services in the cloud, working under supervision on the tooling that keeps a small team's projects shipping.",
+    skillsLearned: [
+      'Containerizing a service with Docker',
+      'Reading and editing CI pipelines and deployment configs',
+      'Core concepts of a major cloud provider (compute, storage, environments)',
+      'Working with logs, environment variables, and basic monitoring',
+    ],
+    prerequisites: 'Comfortable in a terminal and curious about how software gets deployed; no degree required.',
+    sampleProjects: [
+      'Write a Dockerfile for one of our internal services and run it locally',
+      'Add a step to an existing CI pipeline and see it run on a real push',
+      'Set up basic logging and alerts for a small internal tool',
+    ],
+    tools: ['Docker', 'GitHub Actions', 'AWS or GCP (guided)', 'Linux CLI'],
+    difficulty: 'Intermediate',
+  },
+  {
+    id: 'security-fundamentals',
+    title: 'Security Fundamentals',
+    overview: 'Build a practical, awareness-level understanding of how to keep applications and client data safe, focused on good habits rather than production security operations.',
+    skillsLearned: [
+      'Common web and API vulnerabilities and how to avoid them',
+      'Secrets management and safe handling of API keys and credentials',
+      'Basics of authentication, access control, and data privacy',
+      'Security awareness for cloud and third-party integrations',
+    ],
+    prerequisites: 'Careful, detail-oriented, and interested in how systems break; no degree required.',
+    sampleProjects: [
+      'Review a small codebase against a common vulnerability checklist and write up findings',
+      'Audit how secrets are stored across an internal project and suggest fixes',
+      'Put together a short internal guide on safe API key handling',
+    ],
+    tools: ['OWASP guides', 'Git', 'Secret managers', 'Dependency scanners'],
+    difficulty: 'Beginner-friendly',
+  },
+  {
+    id: 'data-engineering-analytics',
+    title: 'Data Engineering & Analytics',
+    overview: 'Help move, clean, and make sense of data, learning the concepts behind larger data systems while working on realistically sized datasets.',
+    skillsLearned: [
+      'Building simple ETL scripts to clean and reshape data',
+      'Writing queries and turning raw data into clear summaries',
+      'Conceptual understanding of streaming and big-data tools like Kafka and Spark',
+      'Presenting findings in readable charts and short reports',
+    ],
+    prerequisites: 'Basic Python or SQL and comfort working with spreadsheets; no degree required.',
+    sampleProjects: [
+      'Build a script that cleans and merges a messy dataset for analysis',
+      'Create a small dashboard summarizing usage data from an internal tool',
+      'Write a short primer on how streaming pipelines work, based on guided reading',
+    ],
+    tools: ['Python', 'SQL', 'Pandas', 'Jupyter'],
+    difficulty: 'Intermediate',
+  },
+  {
+    id: 'computer-vision-basics',
+    title: 'Computer Vision & Sensing Basics',
+    overview: 'Get hands-on with the fundamentals of image-based AI and connected devices at a learning scale, using off-the-shelf models and small experiments.',
+    skillsLearned: [
+      'Running and evaluating pre-trained vision models',
+      'Basics of image processing and annotation',
+      'Conceptual exposure to IoT and embedded/edge devices',
+      'Understanding where vision and sensing fit into real products',
+    ],
+    prerequisites: 'Basic Python and interest in images, cameras, or devices; no degree required.',
+    sampleProjects: [
+      'Use a pre-trained model to detect objects in a small sample image set',
+      'Build a simple image classification demo and measure its accuracy',
+      'Prototype a small script that reacts to input from a webcam or sensor',
+    ],
+    tools: ['Python', 'OpenCV', 'Pre-trained vision models', 'Jupyter'],
+    difficulty: 'Intermediate',
+  },
+  {
+    id: 'applied-ai-industry-research',
+    title: 'Applied AI for Industry',
+    overview: 'Study how AI is used across sectors like healthcare, finance, retail, and education, producing case-study research rather than deploying into regulated industries.',
+    skillsLearned: [
+      'Researching real-world AI use cases across different industries',
+      'Mapping a business problem to a plausible AI solution',
+      'Understanding constraints like regulation, data sensitivity, and cost',
+      'Communicating findings clearly to non-technical readers',
+    ],
+    prerequisites: 'Strong reading and writing and curiosity about how businesses adopt AI; no degree required.',
+    sampleProjects: [
+      'Write a case-study breakdown of how AI is applied in one chosen industry',
+      'Draft a concept proposal for an AI use case in retail or education',
+      'Compare two industry approaches and summarize trade-offs and risks',
+    ],
+    tools: ['Notion', 'Google Docs', 'Research databases', 'Spreadsheets'],
+    difficulty: 'Beginner-friendly',
+  },
+  {
+    id: 'emerging-tech-research',
+    title: 'Emerging Tech Research',
+    overview: 'A self-directed reading and research track for frontier topics like quantum computing, blockchain, AR/VR, and space and climate tech, focused on understanding rather than production builds.',
+    skillsLearned: [
+      'Reading and summarizing technical material on emerging fields',
+      'Separating genuine capability from hype in new technologies',
+      'Writing clear explainers for a general audience',
+      'Tracking where a technology realistically stands today',
+    ],
+    prerequisites: 'Genuine curiosity and the discipline to work through dense reading on your own; no degree required.',
+    sampleProjects: [
+      'Write a plain-language explainer on where quantum computing actually stands',
+      'Research a blockchain or AR/VR use case and assess whether it holds up',
+      'Produce a short internal briefing on an emerging tech topic of your choice',
+    ],
+    tools: ['Notion', 'Research papers', 'Google Docs', 'Public documentation'],
+    difficulty: 'Beginner-friendly',
+    researchOnly: true,
+  },
+  {
+    id: 'product-management-innovation',
+    title: 'Product Management & Innovation',
+    overview: 'Learn how ideas become shipped features by helping scope, prioritize, and track real work across a small, fast-moving team.',
+    skillsLearned: [
+      'Turning rough ideas into clear, scoped requirements',
+      'Prioritizing work and writing simple product specs',
+      'Gathering and organizing user and client feedback',
+      'Coordinating between design, engineering, and clients',
+    ],
+    prerequisites: 'Organized, curious, and a clear communicator; no degree required.',
+    sampleProjects: [
+      'Write a short spec for a small feature and track it to completion',
+      'Run a lightweight feedback round and summarize what to build next',
+      "Map a product's current flow and propose one concrete improvement",
+    ],
+    tools: ['Notion', 'Figma', 'Slack', 'Spreadsheets'],
+    difficulty: 'Beginner-friendly',
+  },
+  {
+    id: 'technical-writing-documentation',
+    title: 'Technical Writing & Documentation',
+    overview: 'Make our products and code easier to understand by writing clear documentation, guides, and internal references for real projects.',
+    skillsLearned: [
+      'Writing clear docs, guides, and API references',
+      'Explaining technical concepts to different audiences',
+      'Structuring information so it is easy to find and follow',
+      'Keeping documentation accurate as products change',
+    ],
+    prerequisites: 'Strong, clear writing and patience for detail; no degree required.',
+    sampleProjects: [
+      'Write setup and usage docs for one of our internal tools',
+      "Turn a rough engineer's note into a clean how-to guide",
+      'Review existing docs for gaps and rewrite the weakest sections',
+    ],
+    tools: ['Markdown', 'Notion', 'Git', 'Google Docs'],
+    difficulty: 'Beginner-friendly',
+  },
 ];
 
 const POLICIES = [
@@ -305,6 +471,18 @@ const FAQ_ITEMS = [
   { question: "What happens if I can't keep up with attendance?", answer: 'Life happens, and a quiet week now and then is understandable if you let your mentor know. The issue is longer, unexplained absence. If someone consistently goes missing without any communication, the internship may be discontinued so the place can go to someone else.' },
   { question: 'Can international applicants apply?', answer: 'Yes. Because the program is fully remote, applicants from outside India are welcome. Do keep time zone differences in mind, since some coordination and calls happen in Indian Standard Time.' },
   { question: 'Is there a job offer after the internship?', answer: "No, there is no guaranteed job or pre-placement offer. This is a learning program, not a hiring pipeline. That said, strong performers may be considered for future paid opportunities if and when we have openings, but we can't promise that and you shouldn't join expecting it." },
+];
+
+const DOCUMENTS_INTRO = "We keep our paperwork deliberately simple. Mashnu is a small company running a learning program, not a large corporate hiring process, so the documents you'll encounter are short, written in plain language, and proportionate to what this is. There's no dense legal contract to wade through and nothing designed to intimidate you. Each one exists only to make expectations clear and protect the trust between us, so you can focus on learning rather than on paperwork.";
+
+const DOCUMENTS = [
+  { name: 'Internship Offer Letter', oneLineSummary: "A short letter confirming you've been accepted into the program, along with your track and start date.", whenIssued: 'Sent by email once your application is reviewed and accepted, before the program begins.' },
+  { name: 'Learning Agreement', oneLineSummary: 'A plain outline of what you and Mashnu each commit to over the three months, including time expectations, mentorship, and the fact that the program is unpaid and educational.', whenIssued: 'Shared with your offer and signed before your first day, so everyone starts on the same page.' },
+  { name: 'Parent/Guardian Consent Form', oneLineSummary: "A short form where a parent or guardian confirms they're okay with you joining the program. Required only for applicants under 18.", whenIssued: "Requested alongside your offer if you're a minor, and returned before you start." },
+  { name: 'Code of Conduct', oneLineSummary: 'The document version of the conduct policy you agreed to when applying, covering how we work together respectfully and responsibly.', whenIssued: 'Provided at the start of the program for your reference and acknowledgment.' },
+  { name: 'Confidentiality Undertaking', oneLineSummary: "A simple, one-page confirmation that you'll keep internal work and any client information private. It's proportionate to a learning program, not a heavy corporate contract.", whenIssued: 'Signed at the start, before you get access to internal projects or client work.' },
+  { name: 'Certificate of Completion', oneLineSummary: 'A certificate stating the track you completed and how long the program ran, marking that you finished successfully.', whenIssued: 'Issued at the end of the program to interns who complete it.' },
+  { name: 'Letter of Recommendation', oneLineSummary: "A personal reference describing your work and strengths. It's optional and reserved for interns who performed exceptionally well.", whenIssued: 'Written on request after the program ends, for standout interns.' },
 ];
 
 const DISCLAIMER = "This program is educational in nature and is intended to provide learning and practical experience. Participation does not create an employment relationship, and it is not an offer of paid work. Selection is based on eligibility and the capacity available at the time of applying, so applying does not guarantee a place. Completing the program does not guarantee employment, a job offer, or any future paid engagement with Mashnu AI. Applicants who are minors must have consent from a parent or guardian before taking part. All participants are expected to follow Mashnu's program policies, including those covering attendance, conduct, confidentiality, and AI usage.";
@@ -370,6 +548,18 @@ export default function Careers() {
           <p className="text-base text-[#64748B] max-w-2xl mx-auto leading-relaxed">
             A remote, unpaid, 3-month internship open to any age and any education background — school students, college students, graduates, and career switchers. No degree required. Curiosity is.
           </p>
+        </section>
+
+        {/* SECTION: Program category distinctions */}
+        <section className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {PROGRAM_CATEGORIES.map((cat) => (
+              <div key={cat.name} className="border border-[#E2E8F0] rounded-xl bg-white p-4 space-y-1">
+                <h4 className="text-xs font-semibold text-[#0F172A]">{cat.name}</h4>
+                <p className="text-[11px] text-[#64748B] leading-relaxed">{cat.whoItsFor}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* Quick facts strip */}
@@ -491,6 +681,11 @@ export default function Careers() {
                         {track.featured && (
                           <span className="px-2 py-0.5 text-[9px] font-semibold uppercase rounded-full tracking-wider bg-[#2563EB]/10 text-[#2563EB] border border-[#2563EB]/20">
                             Core focus
+                          </span>
+                        )}
+                        {track.researchOnly && (
+                          <span className="px-2 py-0.5 text-[9px] font-semibold uppercase rounded-full tracking-wider bg-[#7C3AED]/10 text-[#7C3AED] border border-[#7C3AED]/20">
+                            Research track
                           </span>
                         )}
                         <span className="px-2 py-0.5 text-[9px] font-semibold uppercase rounded-full tracking-wider bg-[#F1F5F9] text-[#64748B] border border-[#E2E8F0]">
@@ -721,6 +916,26 @@ export default function Careers() {
                 </div>
               )}
             </div>
+          </div>
+        </section>
+
+        {/* SECTION: Documents */}
+        <section className="space-y-6 max-w-4xl mx-auto">
+          <div className="text-center max-w-xl mx-auto space-y-1.5">
+            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#0F172A]">Documents you may encounter</h3>
+            <p className="text-xs text-[#64748B] leading-relaxed">{DOCUMENTS_INTRO}</p>
+          </div>
+          <div className="border border-[#E2E8F0] rounded-2xl bg-white overflow-hidden divide-y divide-[#E2E8F0] shadow-xs">
+            {DOCUMENTS.map((doc) => (
+              <div key={doc.name} className="p-5 flex items-start gap-3">
+                <FileText className="w-4 h-4 text-[#2563EB] shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <h4 className="text-xs sm:text-sm font-semibold text-[#0F172A]">{doc.name}</h4>
+                  <p className="text-xs text-[#64748B] leading-relaxed">{doc.oneLineSummary}</p>
+                  <p className="text-[10.5px] text-[#94A3B8]"><strong className="text-[#64748B]">When:</strong> {doc.whenIssued}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
