@@ -1,8 +1,13 @@
+import dotenv from "dotenv";
 import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import { compileAgent, simulateStep, assistantChat } from "./src/server/agentLogic";
 import { notifyContact } from "./src/server/notifyContact";
+
+// Load .env.local first (real secrets, gitignored), then .env as a fallback.
+dotenv.config({ path: ".env.local" });
+dotenv.config();
 
 // This server has no external AI API dependency and no API keys required.
 // The "compiler", "simulator", "lead qualifier", and "assistant" endpoints
