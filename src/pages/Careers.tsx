@@ -439,7 +439,7 @@ const TRACKS: Track[] = [
 const POLICIES = [
   {
     name: 'Attendance & Discipline',
-    summary: "We ask for a minimum of five hours a week, and we care more about consistency than volume. Show up when you say you will, and keep your mentor in the loop if life gets in the way. If someone goes quiet for long stretches without any explanation, the internship may be discontinued so the spot can go to someone ready to use it.",
+    summary: "We ask for a minimum of five hours a day, and we care more about consistency than volume. Show up when you say you will, and keep your mentor in the loop if life gets in the way. If someone goes quiet for long stretches without any explanation, the internship may be discontinued so the spot can go to someone ready to use it.",
   },
   {
     name: 'Code of Conduct',
@@ -464,7 +464,7 @@ const FAQ_ITEMS = [
   { question: 'Why is it unpaid?', answer: "We're a small agency, and this program is built around teaching and hands-on learning rather than staffing paid roles. Instead of a stipend, we invest our time in mentorship, real project exposure, and feedback. We'd rather be honest about that up front than dress it up as something it isn't." },
   { question: 'Is there a minimum age or education requirement?', answer: 'No degree is required, and there is no formal education background you need to have. The program is open to people of any age and any qualification. What matters is curiosity, effort, and a willingness to learn.' },
   { question: 'Can school students join?', answer: 'Yes. School students are welcome to apply. If you are a minor, we require consent from a parent or guardian before you can take part.' },
-  { question: 'How many hours per week are expected?', answer: 'A minimum of five hours per week. You can do more if you want to, but consistency matters more than long bursts.' },
+  { question: 'How many hours per day are expected?', answer: 'A minimum of five hours per day. You can do more if you want to, but consistency matters more than long bursts.' },
   { question: 'Is this fully remote?', answer: 'Yes, the program is fully remote. You can take part from anywhere with a reliable internet connection. Most collaboration happens over chat and video calls.' },
   { question: 'Will I get a certificate?', answer: "Yes, if you earn it. A certificate is issued once you complete the minimum program duration and finish the deliverables you agree on with your mentor. It's a record of work done, not just attendance." },
   { question: 'Will I get mentorship?', answer: "Yes. You'll work alongside our team and get direct guidance, feedback, and reviews on real projects." },
@@ -567,7 +567,7 @@ export default function Careers() {
           {[
             { icon: Clock, label: 'Duration', value: '3 months' },
             { icon: Globe2, label: 'Format', value: 'Remote' },
-            { icon: Users2, label: 'Commitment', value: '5+ hrs/week' },
+            { icon: Users2, label: 'Commitment', value: '5+ hrs/day' },
             { icon: Award, label: 'Stipend', value: 'Unpaid' },
           ].map(({ icon: Icon, label, value }) => (
             <div key={label} className="border border-[#E2E8F0] rounded-2xl bg-white p-4 text-center space-y-1.5 shadow-xs">
