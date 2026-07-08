@@ -62,7 +62,7 @@
   --color-slate-100: #F1F5F9;
   --color-slate-200: #E2E8F0;
   --color-slate-300: #CBD5E1;
-  --color-slate-400: #94A3B8;
+  --color-slate-400: #64748B; /* darkened for 4.5:1 body-copy contrast on the glass backdrop */
   --color-slate-500: #64748B;
   --color-slate-600: #475569;
   --color-slate-700: #334155;
@@ -136,7 +136,18 @@
 
 @layer base {
   body {
-    background-color: var(--color-bg-main);
+    /*
+      Glassmorphism backdrop: a soft, fixed gradient mesh the frosted
+      surfaces above it can blur. Kept pastel so dark ink text on
+      translucent white stays well above 4.5:1 contrast.
+    */
+    background-color: #EDF2F9;
+    background-image:
+      radial-gradient(40rem 40rem at 12% 8%, rgba(37, 99, 235, 0.16), transparent 60%),
+      radial-gradient(36rem 36rem at 88% 18%, rgba(124, 58, 237, 0.13), transparent 60%),
+      radial-gradient(44rem 44rem at 48% 75%, rgba(14, 165, 233, 0.13), transparent 65%),
+      radial-gradient(30rem 30rem at 88% 95%, rgba(16, 185, 129, 0.10), transparent 60%);
+    background-attachment: fixed;
     color: var(--color-text-main);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -155,6 +166,47 @@
   ::selection {
     background-color: rgba(37, 99, 235, 0.16);
     color: var(--color-text-bright);
+  }
+}
+
+/*
+  Frosted glass surfaces. Only the *background* utilities are made
+  translucent — the --color-white token itself stays #FFFFFF because
+  text-white / border-white must remain fully opaque.
+  These rules are un-layered, so they win over @layer utilities.
+*/
+.bg-white,
+.bg-bg-card {
+  background-color: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(14px) saturate(1.6);
+  -webkit-backdrop-filter: blur(14px) saturate(1.6);
+}
+
+.bg-\[\#F1F5F9\] {
+  background-color: rgba(241, 245, 249, 0.55);
+  backdrop-filter: blur(10px) saturate(1.4);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+}
+
+.bg-slate-50 {
+  background-color: rgba(248, 250, 252, 0.55);
+}
+
+/* Accessibility: honor users who ask for less transparency */
+@media (prefers-reduced-transparency: reduce) {
+  .bg-white,
+  .bg-bg-card {
+    background-color: #FFFFFF;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .bg-\[\#F1F5F9\] {
+    background-color: #F1F5F9;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .bg-slate-50 {
+    background-color: #F8FAFC;
   }
 }
 

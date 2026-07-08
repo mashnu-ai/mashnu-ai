@@ -36,7 +36,7 @@ function AppLayout() {
 
   if (path !== '/') {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] flex flex-col justify-between">
+      <div className="min-h-screen text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] flex flex-col justify-between">
         <Navbar />
         <div className="grow overflow-hidden">
           <AnimatePresence mode="wait">
@@ -68,7 +68,7 @@ function AppLayout() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB]">
+    <div className="min-h-screen text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB]">
       
       <Navbar />
 

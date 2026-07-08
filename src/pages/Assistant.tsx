@@ -175,7 +175,7 @@ export default function Assistant() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F8FAFC] text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] py-12">
+    <div className="relative min-h-screen text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] py-12">
       <main className="max-w-4xl mx-auto px-4 sm:px-6 space-y-8">
         
         {/* Header Block */}

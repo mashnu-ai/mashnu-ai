@@ -29,8 +29,8 @@ export default function Navbar() {
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${
       isScrolled
-        ? 'bg-[#F8FAFC]/90 backdrop-blur-md border-b border-[#E2E8F0]'
-        : 'bg-[#F8FAFC]/70 backdrop-blur-sm border-b border-[#E2E8F0]/50'
+        ? 'bg-white/70 backdrop-blur-xl border-b border-white/60 shadow-sm'
+        : 'bg-white/40 backdrop-blur-lg border-b border-white/40'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
 
@@ -96,7 +96,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="xl:hidden absolute top-16 left-0 w-full bg-[#F8FAFC] border-b border-[#E2E8F0] shadow-xl z-40 transition-all duration-300">
+        <div className="xl:hidden absolute top-16 left-0 w-full bg-white/85 backdrop-blur-xl border-b border-white/60 shadow-xl z-40 transition-all duration-300">
           <div className="px-4 pt-4 pb-6 space-y-2">
             <div className="grid grid-cols-2 gap-2">
               {navLinks.map((link) => (

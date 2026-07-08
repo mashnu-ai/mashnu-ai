@@ -532,7 +532,7 @@ export default function Careers() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F8FAFC] text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] py-16 animate-fade-in">
+    <div className="relative min-h-screen text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] py-16 animate-fade-in">
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
 

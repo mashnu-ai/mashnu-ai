@@ -259,7 +259,7 @@ export default function Products() {
   const phases = Array.from(new Set(PRODUCTS.map(p => p.phase)));
 
   return (
-    <div className="relative min-h-screen bg-[#F8FAFC] text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] py-16">
+    <div className="relative min-h-screen text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] py-16">
       
       {/* Header section with Apple-style centered presentation */}
       <header className="max-w-4xl mx-auto text-center px-4 mb-20 space-y-4 animate-fade-in">
