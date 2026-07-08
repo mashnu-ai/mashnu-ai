@@ -1,6 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { notifyContact } from "../src/server/notifyContact";
 
-export default function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ error: "Method not allowed." });
@@ -13,7 +14,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    console.log(`[Contact] New inquiry from ${fullName || "unknown"} <${email}> at ${company || "unknown company"}: ${String(useCase).slice(0, 200)}`);
+    await notifyContact({ fullName, email, company, useCase });
     res.json({ received: true });
   } catch (error: any) {
     console.error("Contact form error:", error);

@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import { compileAgent, simulateStep, assistantChat } from "./src/server/agentLogic";
+import { notifyContact } from "./src/server/notifyContact";
 
 // This server has no external AI API dependency and no API keys required.
 // The "compiler", "simulator", "lead qualifier", and "assistant" endpoints
@@ -48,7 +49,7 @@ async function startServer() {
     }
   });
 
-  // API Route: Contact form submission (no fabricated analysis — just accepts the message)
+  // API Route: Contact form submission — emails the submission to NOTIFY_EMAIL via Resend
   app.post("/api/contact", async (req, res) => {
     try {
       const { fullName, email, company, useCase } = req.body;
@@ -57,7 +58,7 @@ async function startServer() {
         return res.status(400).json({ error: "Please include your email and a description of what you want to automate." });
       }
 
-      console.log(`[Contact] New inquiry from ${fullName || "unknown"} <${email}> at ${company || "unknown company"}: ${useCase.slice(0, 200)}`);
+      await notifyContact({ fullName, email, company, useCase });
 
       res.json({ received: true });
     } catch (error: any) {
