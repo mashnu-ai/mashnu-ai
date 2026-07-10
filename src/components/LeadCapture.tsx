@@ -24,8 +24,9 @@ export default function LeadCapture() {
         body: JSON.stringify({
           fullName: leadName,
           email: leadEmail,
-          company: `Assistant early access — interest: ${leadInterest}`,
+          company: `Assistant early access, interest: ${leadInterest}`,
           useCase: leadUseCase,
+          source: 'early_access',
         })
       });
 
@@ -53,7 +54,7 @@ export default function LeadCapture() {
             hand off first
           </h2>
           <p className="text-xs text-slate-400 leading-relaxed font-sans">
-            The assistant is rolling out gradually while we get it right. Tell us what you'd want it to take off your plate — calls, messages, reminders, the daily admin — and we'll reach out as we onboard people.
+            The assistant is rolling out gradually while we get it right. Tell us what you'd want it to take off your plate (calls, messages, reminders, the daily admin) and we'll reach out as we onboard people.
           </p>
         </div>
 
@@ -68,7 +69,7 @@ export default function LeadCapture() {
           </div>
           <div className="flex items-start gap-2 text-xs">
             <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-            <span className="text-slate-700">Honest word on timing — no fake waitlist games</span>
+            <span className="text-slate-700">Honest word on timing, no fake waitlist games</span>
           </div>
         </div>
       </ScrollReveal>
@@ -93,7 +94,7 @@ export default function LeadCapture() {
                     type="text"
                     value={leadName}
                     onChange={(e) => setLeadName(e.target.value)}
-                    placeholder="e.g. Sarah Connor"
+                    placeholder="e.g. Crispy"
                     className="w-full px-3 py-1.5 text-xs bg-slate-50 rounded border border-slate-800 text-slate-800 focus:outline-none focus:border-cyan-500 font-sans"
                     required
                   />
@@ -104,7 +105,7 @@ export default function LeadCapture() {
                     type="email"
                     value={leadEmail}
                     onChange={(e) => setLeadEmail(e.target.value)}
-                    placeholder="e.g. sarah@example.com"
+                    placeholder="e.g. crispy@gmail.com"
                     className="w-full px-3 py-1.5 text-xs bg-slate-50 rounded border border-slate-800 text-slate-800 focus:outline-none focus:border-cyan-500 font-sans"
                     required
                   />
@@ -168,7 +169,7 @@ export default function LeadCapture() {
               <div className="space-y-1.5">
                 <h4 className="text-base font-bold font-display text-slate-900">You're on the list</h4>
                 <p className="text-xs text-slate-400 leading-relaxed font-sans max-w-sm">
-                  Thanks — we've got your request. We'll email you with an honest update on timing, usually within a business day.
+                  Thanks, we've got your request. We'll email you with an honest update on timing, usually within a business day.
                 </p>
               </div>
               <button

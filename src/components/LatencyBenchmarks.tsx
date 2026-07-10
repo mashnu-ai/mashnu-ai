@@ -24,7 +24,7 @@ export default function LatencyBenchmarks() {
         <div className="border border-slate-900 rounded-xl bg-white p-5 space-y-2">
           <span className="text-[10px] font-mono text-slate-500 uppercase block tracking-wider">Hybrid Retrieval</span>
           <p className="text-[11px] text-slate-400 font-sans leading-relaxed">
-            Parent-child chunking with combined keyword and vector search in Qdrant, so answers are grounded in your actual documents rather than the model's guess.
+            Combined keyword and meaning-based search that understands document structure, so answers are grounded in your actual documents rather than a guess.
           </p>
         </div>
 
@@ -55,7 +55,7 @@ export default function LatencyBenchmarks() {
             <div className="bg-teal-400 flex items-center justify-center font-bold" style={{ width: '15%' }} title="Network and buffering">Network</div>
           </div>
           <p className="text-[10px] text-slate-400 font-sans pt-1">
-            Inference is the dominant cost in this chain — it's why model choice and prompt design matter more to latency than any other single decision.
+            Inference is the dominant cost in this chain, which is why model choice and prompt design matter more to latency than any other single decision.
           </p>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from '../components/Router';
+import { useSEO } from '../components/SEO';
 import {
   GraduationCap, Users2, ShieldCheck, ArrowRight, CheckCircle2,
   ChevronDown, ChevronUp, AlertCircle, Sparkles, Send, Clock, Globe2, Award, FileText
@@ -90,9 +91,9 @@ interface ProgramCategory {
 }
 
 const PROGRAM_CATEGORIES: ProgramCategory[] = [
-  { name: 'Learning Program', whoItsFor: 'The Young Innovators Program (ages 12-13). Pure exposure to how technology works — no deliverables, no pressure, just guided learning.' },
+  { name: 'Learning Program', whoItsFor: 'The Young Innovators Program (ages 12-13). Pure exposure to how technology works, no deliverables, no pressure, just guided learning.' },
   { name: 'Fellowship', whoItsFor: 'The Student Technology Fellowship (ages 14-17). Supervised educational projects that build a real portfolio, with no client or production work involved.' },
-  { name: 'Professional Internship', whoItsFor: 'The 18+ track. Real, supervised project contribution across our learning tracks — this is also what satisfies a college industrial training or internship requirement.' },
+  { name: 'Professional Internship', whoItsFor: 'The 18+ track. Real, supervised project contribution across our learning tracks. This is also what satisfies a college industrial training or internship requirement.' },
   { name: 'Research Fellowship', whoItsFor: 'The Emerging Tech Research track specifically. Self-directed reading and research on frontier topics, not hands-on production work.' },
 ];
 
@@ -487,11 +488,28 @@ const DOCUMENTS = [
 
 const DISCLAIMER = "This program is educational in nature and is intended to provide learning and practical experience. Participation does not create an employment relationship, and it is not an offer of paid work. Selection is based on eligibility and the capacity available at the time of applying, so applying does not guarantee a place. Completing the program does not guarantee employment, a job offer, or any future paid engagement with Mashnu AI. Applicants who are minors must have consent from a parent or guardian before taking part. All participants are expected to follow Mashnu's program policies, including those covering attendance, conduct, confidentiality, and AI usage.";
 
+const CAREERS_FAQ_STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ_ITEMS.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 
 export default function Careers() {
+  useSEO({
+    title: 'Careers and Internships',
+    description: 'A remote, unpaid, 3-month internship open to any age and any education background. Learn by building real AI voice, WhatsApp, and automation systems.',
+    path: '/careers',
+    structuredData: CAREERS_FAQ_STRUCTURED_DATA,
+  });
+
   const [expandedTrackId, setExpandedTrackId] = useState<string | null>('ai-agent-engineering');
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [expandedPolicyIdx, setExpandedPolicyIdx] = useState<number | null>(null);
@@ -518,8 +536,9 @@ export default function Careers() {
         body: JSON.stringify({
           fullName: applicantName,
           email: applicantEmail,
-          company: `Internship applicant — age: ${applicantAge || 'not specified'}`,
+          company: `Internship applicant, age: ${applicantAge || 'not specified'}`,
           useCase: `Internship application for track "${selectedTrack}". Note: ${applicantNote || '(none)'}`,
+          source: 'careers_internship',
         }),
       });
       if (!res.ok) throw new Error('Failed to submit application.');
@@ -546,7 +565,7 @@ export default function Careers() {
             Learn by building real AI systems
           </h1>
           <p className="text-base text-[#64748B] max-w-2xl mx-auto leading-relaxed">
-            A remote, unpaid, 3-month internship open to any age and any education background — school students, college students, graduates, and career switchers. No degree required. Curiosity is.
+            A remote, unpaid, 3-month internship open to any age and any education background: school students, college students, graduates, and career switchers. No degree required. Curiosity is.
           </p>
         </section>
 
@@ -639,7 +658,7 @@ export default function Careers() {
             </div>
             <div>
               <h3 className="text-base font-semibold tracking-tight text-[#0F172A]">Program levels</h3>
-              <span className="text-[9px] font-semibold text-[#64748B] uppercase tracking-wider block mt-0.5">Not tied to age — based on where you're starting from</span>
+              <span className="text-[9px] font-semibold text-[#64748B] uppercase tracking-wider block mt-0.5">Not tied to age, based on where you're starting from</span>
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -659,7 +678,7 @@ export default function Careers() {
         <section className="space-y-6">
           <div className="text-center max-w-xl mx-auto space-y-1.5">
             <h2 className="text-2xl font-semibold tracking-tight text-[#0F172A]">Choose a track</h2>
-            <p className="text-xs text-[#64748B]">Open to CS, MBA, BBA, MCom, or no formal degree at all — pick what matches your interest, not your major.</p>
+            <p className="text-xs text-[#64748B]">Open to CS, MBA, BBA, MCom, or no formal degree at all, pick what matches your interest, not your major.</p>
           </div>
 
           <div className="space-y-4">
@@ -778,7 +797,7 @@ export default function Careers() {
         <section className="space-y-6 max-w-4xl mx-auto">
           <div className="text-center max-w-xl mx-auto space-y-1">
             <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#0F172A]">Program policies</h3>
-            <p className="text-xs text-[#64748B]">Plain-language rules — not legal fine print, just what we actually expect.</p>
+            <p className="text-xs text-[#64748B]">Plain-language rules, not legal fine print, just what we actually expect.</p>
           </div>
           <div className="border border-[#E2E8F0] rounded-2xl bg-white overflow-hidden divide-y divide-[#E2E8F0] shadow-xs">
             {POLICIES.map((policy, idx) => {
@@ -810,7 +829,7 @@ export default function Careers() {
               <span className="text-[10px] font-mono text-[#2563EB] uppercase tracking-widest font-bold block">Apply</span>
               <h3 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#0F172A]">Start your application</h3>
               <p className="text-xs text-[#64748B] leading-relaxed">
-                Tell us your name, email, and which track interests you. A real person reviews every application — no automated scoring, no bots.
+                Tell us your name, email, and which track interests you. A real person reviews every application, no automated scoring, no bots.
               </p>
               <div className="p-4 rounded-xl bg-white border border-[#E2E8F0] text-xs space-y-2">
                 <span className="text-[8px] font-semibold uppercase text-[#2563EB] block">Reminder</span>
@@ -844,7 +863,7 @@ export default function Careers() {
                         required
                         value={applicantName}
                         onChange={(e) => setApplicantName(e.target.value)}
-                        placeholder="Your name"
+                        placeholder="Crispy"
                         className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors"
                       />
                     </div>
@@ -855,7 +874,7 @@ export default function Careers() {
                         required
                         value={applicantEmail}
                         onChange={(e) => setApplicantEmail(e.target.value)}
-                        placeholder="you@example.com"
+                        placeholder="crispy@gmail.com"
                         className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors"
                       />
                     </div>
@@ -878,7 +897,7 @@ export default function Careers() {
                       rows={3}
                       value={applicantNote}
                       onChange={(e) => setApplicantNote(e.target.value)}
-                      placeholder="Background, what you want to learn, availability — whatever's useful."
+                      placeholder="Background, what you want to learn, availability, whatever's useful."
                       className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors placeholder-[#94A3B8] resize-none"
                     />
                   </div>
@@ -910,7 +929,7 @@ export default function Careers() {
                   <div className="space-y-1.5">
                     <h4 className="text-base font-semibold text-[#0F172A]">Application sent</h4>
                     <p className="text-xs text-[#64748B] leading-relaxed max-w-sm">
-                      Thanks — we've got it. We'll email you about next steps, usually within a few business days.
+                      Thanks, we've got it. We'll email you about next steps, usually within a few business days.
                     </p>
                   </div>
                 </div>

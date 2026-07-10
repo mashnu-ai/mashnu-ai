@@ -10,13 +10,13 @@ export default function VisionTimeline() {
         <div className="absolute top-4 left-4 text-4xl text-cyan-500/20 font-serif select-none pointer-events-none">“</div>
         <p className="relative z-10 pl-4 font-sans not-italic text-sm text-slate-400">
           <strong className="text-slate-900 block text-base font-display font-bold not-italic tracking-tight mb-2">Platforms, not one-off projects</strong>
-          A lot of AI consulting is a demo wrapped around a chat prompt — quick to build, hard to maintain, and thrown away the moment requirements change.
+          A lot of AI consulting is a demo wrapped around a chat prompt: quick to build, hard to maintain, and thrown away the moment requirements change.
         </p>
         <p className="relative z-10 pl-4 font-sans not-italic text-sm text-slate-400">
-          We build differently. Every workflow, connector, and guardrail we build for a client is designed to be reusable — it gets built back into our core platform, not thrown away after the project ends.
+          We build differently. Every workflow, connector, and guardrail we build for a client is designed to be reusable. It gets built back into our core platform, not thrown away after the project ends.
         </p>
         <p className="relative z-10 pl-4 font-sans not-italic text-sm text-slate-400">
-          If you think AI agents handling real business operations should be engineered with the same rigor as production infrastructure — not prompted together and hoped for the best — that's who we're building this for.
+          If you think AI agents handling real business operations should be engineered with the same rigor as production infrastructure, not prompted together and hoped for the best, that's who we're building this for.
         </p>
         
         <div className="pt-4 border-t border-slate-900 not-italic flex items-center justify-between">

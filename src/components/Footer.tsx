@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from './Router';
 import BrandMark from './BrandMark';
+import ConnectWithUs from './ConnectWithUs';
 
 export default function Footer() {
   return (
@@ -21,7 +22,7 @@ export default function Footer() {
               Built from the ground up
             </span>
             <p className="text-xs text-[#64748B] font-sans leading-relaxed max-w-sm">
-              Mashnu AI builds a personal AI assistant for real life — and the AI voice, WhatsApp, and back-office agents that power it for businesses too.
+              Mashnu AI builds a personal AI assistant for real life, and the AI voice, WhatsApp, and back-office agents that power it for businesses too.
             </p>
           </div>
 
@@ -44,6 +45,7 @@ export default function Footer() {
               <li>
                 <Link to="/case-studies" className="text-[#64748B] hover:text-[#0F172A] transition-colors">Case studies</Link>
               </li>
+              {/* ROI calculator link hidden from nav for now — page and route are kept intact for future re-enable. */}
             </ul>
           </div>
 
@@ -69,12 +71,12 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Tech stack declaration Column */}
+          {/* Connect With Us Column */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-[10px] font-sans font-semibold uppercase tracking-wider text-[#0F172A]">Built with</h4>
-            <p className="text-[11px] text-[#64748B] leading-relaxed font-sans">
-              Python, FastAPI, LangGraph, Qdrant, and Redis.
-            </p>
+            <ConnectWithUs variant="compact" title="Connect With Us" />
+            <Link to="/contact" className="inline-block text-xs font-medium text-[#2563EB] hover:underline">
+              Contact us
+            </Link>
           </div>
 
         </div>

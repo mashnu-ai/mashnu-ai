@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from '../components/Router';
-import { 
+import { useSEO } from '../components/SEO';
+import {
   CheckCircle, ArrowRight, HeartPulse, ShoppingBag, Truck, LayoutTemplate, HelpCircle, FileSpreadsheet, ShieldCheck
 } from 'lucide-react';
 
@@ -13,7 +14,6 @@ interface CaseStudyTemplate {
   challengeInstructions: string;
   solutionInstructions: string;
   resultPoints: string[];
-  techStack: string[];
   icon: React.ReactNode;
 }
 
@@ -25,17 +25,11 @@ const CASE_TEMPLATES: CaseStudyTemplate[] = [
     metricPlaceholder: '--%',
     metricLabel: 'Autonomous Intake Target',
     challengeInstructions: 'To be populated with client metrics. Detail the practice size, initial monthly call volume, patient booking friction, and receptionist burnout rates that motivated automation.',
-    solutionInstructions: 'To be populated with implementation architecture. Describe the integration of the low-latency voice pipeline, patient authentication schemas, and AthenaHealth/EHR FHIR scheduling syncs.',
+    solutionInstructions: 'To be populated with implementation details. Describe how the voice agent was connected to patient scheduling and records systems.',
     resultPoints: [
       'Patient booking and registration inquiries resolved autonomously without staff intervention',
       'Average reduction in inbound call queue abandon rates during peak morning bottlenecks',
       'Operator minutes reclaimed per appointment scheduled'
-    ],
-    techStack: [
-      'AthenaHealth EHR (FHIR API)',
-      'Noise-Resilient VAD Enclaves',
-      'Sub-480ms Streaming STT/TTS Sockets',
-      'Secure HIPAA-Compliant Sandbox'
     ],
     icon: <HeartPulse className="w-5 h-5 text-emerald-400" />
   },
@@ -46,17 +40,11 @@ const CASE_TEMPLATES: CaseStudyTemplate[] = [
     metricPlaceholder: '+--%',
     metricLabel: 'Sales Conversion Lift',
     challengeInstructions: 'To be populated with brand metrics. Detail the advertising spend, average customer response delays, cart abandonment rates, and peak-hour staff constraints.',
-    solutionInstructions: 'To be populated with Shopify/CRM integration. Describe how thread-persistent memory caches, inventory lookup tools, and Shopify Plus API draft checkouts are coordinated.',
+    solutionInstructions: 'To be populated with implementation details. Describe how the WhatsApp agent was connected to inventory and CRM systems, and how it recovered abandoned carts.',
     resultPoints: [
       'Conversion rate increase over baseline email/SMS recovery campaigns',
       'Average customer answer latency reduction (milliseconds vs hours)',
-      'Monthly sales volume assisted and recorded in HubSpot pipeline'
-    ],
-    techStack: [
-      'Shopify Plus REST/GraphQL API',
-      'Thread-Persistent Redis Memory Map',
-      'HubSpot CRM Lead Sync',
-      'Meta WhatsApp Business Cloud API'
+      'Monthly sales volume assisted and recorded in the CRM pipeline'
     ],
     icon: <ShoppingBag className="w-5 h-5 text-cyan-400" />
   },
@@ -67,23 +55,23 @@ const CASE_TEMPLATES: CaseStudyTemplate[] = [
     metricPlaceholder: '--%',
     metricLabel: 'AP Labor Reclaimed',
     challengeInstructions: 'To be populated with shipping metrics. Detail the volume of monthly carrier invoices, average discrepancy percentages, and hours spent manually audits by the accounting department.',
-    solutionInstructions: 'To be populated with multi-agent architecture. Describe the OCR parsing pipeline, metadata extraction schemas, and PostgreSQL matching logics.',
+    solutionInstructions: 'To be populated with implementation details. Describe how invoices were read automatically and cross-checked against dispatch records.',
     resultPoints: [
       'Reduction in manual accounts payable auditing labor hours',
       'Discharge discrepancies identified and stopped before ledger write-back',
       'Document parsing speed acceleration (seconds vs business days)'
-    ],
-    techStack: [
-      'High-Density OCR Parsing Nodes',
-      'PostgreSQL Dispatch Sync',
-      'LangGraph Multi-Agent Dag Core',
-      'Deterministic Slack Escalation Hooks'
     ],
     icon: <Truck className="w-5 h-5 text-indigo-400" />
   }
 ];
 
 export default function CaseStudies() {
+  useSEO({
+    title: 'Case Studies and Client Outcomes',
+    description: 'How Mashnu AI measures success by verified, factual transaction outcomes, not fabricated metrics. Standardized case templates for real client engagements.',
+    path: '/case-studies',
+  });
+
   return (
     <div className="relative min-h-screen text-slate-900 font-sans selection:bg-blue-500/20 selection:text-blue-900 py-16">
       
@@ -154,17 +142,6 @@ export default function CaseStudies() {
                   </div>
                 </div>
 
-                {/* Tech Stack used */}
-                <div className="pt-4 border-t border-slate-200">
-                  <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold mb-2">Target Stack Architecture</span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {tmpl.techStack.map((tech, i) => (
-                      <span key={i} className="px-2 py-0.5 text-[9.5px] font-mono rounded bg-slate-100 text-slate-700 border border-slate-200">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
               </div>
 
               {/* Right results column */}
@@ -201,7 +178,7 @@ export default function CaseStudies() {
             Let's Scope a Verified Success Pilot
           </h2>
           <p className="text-xs text-slate-400 max-w-xl mx-auto leading-relaxed font-sans">
-            Ready to deploy stateful multi-agent DAG pipelines inside your production workflows? Share your operational bottlenecks so our systems architect can design a targeted feasibility report.
+            Ready to put a coordinated automation workflow into production? Share your operational bottlenecks so our team can design a targeted feasibility report.
           </p>
           <div className="pt-2">
             <Link

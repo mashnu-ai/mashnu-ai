@@ -1,30 +1,17 @@
 import React from 'react';
 import { ScrollReveal } from './ScrollReveal';
 
-const SECTORS = [
-  'Financial Services',
-  'Healthcare Systems',
-  'Real Estate Operations',
-  'Supply Chain Logistics',
-  'E-Commerce Operators',
-];
-
 export default function TrustBar() {
   return (
     <ScrollReveal yOffset={15} duration={0.2}>
       <section className="border-t border-b border-[#E2E8F0] py-8">
-        <div className="max-w-4xl mx-auto text-center space-y-4 px-4">
+        <div className="max-w-3xl mx-auto text-center space-y-2 px-4">
           <span className="text-[10px] font-mono text-[#64748B] uppercase tracking-[0.2em] block">
-            Trusted by early partners across core sectors
+            For people who don't have a spare minute
           </span>
-          <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-2 text-sm font-display text-[#334155]">
-            {SECTORS.map((sector, i) => (
-              <React.Fragment key={sector}>
-                {i > 0 && <span aria-hidden="true" className="text-[#CBD5E1] select-none">·</span>}
-                <span className="italic">{sector}</span>
-              </React.Fragment>
-            ))}
-          </div>
+          <p className="text-sm sm:text-base font-display italic text-[#334155] leading-relaxed">
+            Too busy to even think about this? That's exactly why it's worth trying. Give it a day, or three if you want proof, and see what you get back.
+          </p>
         </div>
       </section>
     </ScrollReveal>

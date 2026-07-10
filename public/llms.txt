@@ -1,0 +1,21 @@
+# Mashnu AI
+
+> Mashnu builds a personal AI assistant for real life that answers calls, replies to messages, and remembers what matters to a person. The same underlying voice, WhatsApp, and back-office agent technology powers automation products for businesses.
+
+Mashnu is a small, early-stage engineering team building AI agent infrastructure designed to be reused across client engagements rather than rebuilt as one-off projects. Pricing is transparent: a fixed build fee, a flat monthly retainer, and AI model/infrastructure costs passed through at the provider's actual rate with no markup.
+
+## Products
+
+- [Products](https://mashnu.com/products): AI voice agents, WhatsApp agents, AI chatbots, website assistants, CRM automation, and enterprise knowledge search.
+- [Solutions](https://mashnu.com/solutions): How the platform is applied by industry, including financial services, healthcare, real estate, logistics, and e-commerce.
+- [Platform](https://mashnu.com/platform): The underlying capabilities the products are built on, including low-latency inference and custom-tuned assistants.
+- [Pricing](https://mashnu.com/pricing): How Mashnu charges: fixed build fee, flat monthly retainer, and raw pass-through AI compute cost with no markup.
+
+## Company
+
+- [About](https://mashnu.com/about): Why Mashnu was founded and how the team approaches engineering.
+- [Vision](https://mashnu.com/vision): The long-term roadmap for the platform.
+- [Case Studies](https://mashnu.com/case-studies): Client engagement outcomes.
+- [Blog](https://mashnu.com/blog): Engineering notes on building reliable AI agents.
+- [Careers](https://mashnu.com/careers): A remote, unpaid internship program open to any age or education background.
+- [Contact](https://mashnu.com/contact): Reach the team directly.

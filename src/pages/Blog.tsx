@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from '../components/Router';
-import { 
-  BookOpen, Calendar, Clock, ArrowRight, ArrowLeft, Terminal, Code, Database, Zap, Sparkles, ChevronRight, Share2, CornerUpLeft, Shield
+import { useSEO } from '../components/SEO';
+import {
+  Calendar, Clock, ArrowRight, ArrowLeft, Code, Database, Zap, ChevronRight, CornerUpLeft
 } from 'lucide-react';
 
 interface BlogPost {
@@ -13,8 +14,6 @@ interface BlogPost {
   summary: string;
   paragraphs: string[];
   specs: { label: string; value: string }[];
-  codeBlock?: string;
-  codeLanguage?: string;
   icon: React.ReactNode;
   author: {
     name: string;
@@ -26,42 +25,21 @@ interface BlogPost {
 const POSTS: BlogPost[] = [
   {
     id: 'compressing-voice-latency',
-    title: 'How We Compressed Voice Sockets From 1.8s to 480ms',
+    title: 'How We Cut Voice Response Times by Nearly 75%',
     date: 'July 2, 2026',
     readTime: '6 min read',
     category: 'Latency Optimization',
-    summary: 'Traditional wrapper setups suffer from terrible, un-conversational hold delays. By utilizing raw WebSocket streams, custom Voice Activity Detection, and persistent weights caching, we compressed the voice loop to just 480ms.',
+    summary: 'Off-the-shelf voice setups suffer from awkward, un-conversational hold delays. By rethinking how audio is streamed and processed, we cut the voice response loop down to a fraction of a second.',
     paragraphs: [
-      'The biggest hurdle in autonomous clinical call-center operations is voice roundtrip latency. If a patient speaks and the AI assistant takes 1.8 seconds to reply, the patient immediately gets confused, speaks over the assistant, and the conversation details fragment.',
-      'Traditional architectures rely on generic wrapper APIs that run the STT, LLM inference, and TTS sequentially as isolated HTTP POST requests. Each request suffers from severe cold-starts, DNS resolution times, and unbuffered network payload handoffs.',
-      'To resolve this latency bottleneck, Mashnu AI engineers developed a bare-metal WebSocket gateway that handles audio streaming in chunks of 20ms. We paired this gateway with custom, noise-resilient Voice Activity Detection (VAD) algorithms running locally on our enclaves to instantly trigger state transitions.',
-      'By coupling this stream with persistent, warm model inference routes and unbuffered ElevenLabs chunk-streaming outputs, we trimmed over 1,300ms off standard pipelines, achieving a highly fluid P50 voice roundtrip latency of just 480ms.'
+      'The biggest hurdle in autonomous clinical call-center operations is voice response time. If a patient speaks and the AI assistant takes almost two seconds to reply, the patient immediately gets confused, speaks over the assistant, and the conversation loses its flow.',
+      'Off-the-shelf approaches tend to run each part of the voice pipeline as separate, isolated steps, each with its own delay and network overhead. Those delays compound quickly.',
+      'To resolve this, Mashnu AI engineers built a streaming audio pipeline that processes speech continuously in small chunks, paired with noise-resilient speech detection that reacts instantly to when someone starts or stops talking.',
+      'By keeping the whole pipeline warm and streaming end-to-end instead of processing in isolated steps, we cut response time down dramatically, making conversations feel natural instead of laggy.'
     ],
-    codeLanguage: 'typescript',
-    codeBlock: `// Streaming audio chunks directly from raw phone websocket
-import { AudioStreamer } from '@mashnu/voice-core';
-
-const gateway = new AudioStreamer({
-  chunkSize: 320, // 20ms chunks at 16kHz
-  vadThreshold: -45.0, // db
-  modelContext: "warm-patient-intake-v3"
-});
-
-gateway.on('speech_start', () => {
-  console.log('[VAD] Speech start detected. Buffering downstream voice state...');
-  engine.interruptActivePlayback();
-});
-
-gateway.on('chunk', async (pcmBytes) => {
-  const textToken = await STT.stream(pcmBytes);
-  if (textToken) {
-    LLM.feedToken(textToken);
-  }
-});`,
     specs: [
-      { label: 'Original Latency', value: '1,800ms' },
-      { label: 'Mashnu Latency', value: '480ms' },
-      { label: 'Audio Chunk Size', value: '20ms' }
+      { label: 'Original Response Time', value: '1.8s' },
+      { label: 'Current Response Time', value: 'Under 0.5s' },
+      { label: 'Improvement', value: '~75% faster' }
     ],
     icon: <Zap className="w-5 h-5 text-amber-500" />,
     author: {
@@ -72,37 +50,21 @@ gateway.on('chunk', async (pcmBytes) => {
   },
   {
     id: 'why-embeddings-fail-compliance',
-    title: 'Why Dense Vector Embeddings Alone Fail Corporate Compliance Tests',
+    title: 'Why Search Alone Isn’t Enough for Compliance Teams',
     date: 'June 24, 2026',
     readTime: '8 min read',
-    category: 'RAG Architecture',
-    summary: 'Standard vector search has severe semantic blind spots, often pulling irrelevant clauses during legal audits. We break down why hybrid BM25 + parent-child chunk mapping is mandatory for corporate data governance.',
+    category: 'Enterprise Search',
+    summary: 'Standard search has real blind spots, often pulling irrelevant clauses during legal audits. We break down why combining meaning-based and keyword search is essential for corporate data governance.',
     paragraphs: [
-      'Standard vector database searches operate on raw cosine similarity of text segment embeddings. While vectors excel at general semantic matching, they possess critical blind spots when querying technical codes, exact paragraph indexes, or regulatory identifiers.',
-      'For instance, if a compliance officer queries a policy about "Section 4.2 breach parameters," a pure vector model frequently retrieves general section paragraphs that look mathematically close in semantic space, but misses the precise sub-clause detailing active penalty rules.',
-      'To eliminate compliance leakage, Mashnu RAG pipelines deploy a hybrid search engine in Qdrant. We combine dense vector embeddings with BM25 keyword matching, ensuring that both general conceptual meaning and exact regulatory key phrases are scored concurrently.',
-      'Additionally, we utilize recursive Parent-Child chunking. Instead of indexing isolated, floating 256-character text fragments, we map child chunks back to their structural parent document layout (e.g. section headings and audit dates), preserving critical document context and achieving 99.6% retrieval precision.'
+      'Standard search tools match text based on general similarity. While they excel at general topic matching, they have real blind spots when someone is searching for exact technical codes, paragraph numbers, or regulatory identifiers.',
+      'For instance, if a compliance officer searches for a policy about "Section 4.2 breach parameters," a general similarity search frequently retrieves related sections that look topically close, but misses the precise sub-clause detailing active penalty rules.',
+      'To eliminate that gap, Mashnu search pipelines combine meaning-based search with exact keyword matching, ensuring that both general concepts and exact regulatory phrases are scored together.',
+      'We also preserve document structure. Instead of indexing isolated, floating fragments of text, we map every passage back to its place in the original document (section headings, audit dates, and all), preserving critical context and achieving 99.6% retrieval precision.'
     ],
-    codeLanguage: 'python',
-    codeBlock: `# Hybrid Search Ingestion & Mapping Topology
-from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, VectorParams
-
-qdrant = QdrantClient(url="https://qdrant.mashnu-internal.net")
-
-# Map dense embeddings and sparse keyword elements concurrently
-results = qdrant.query_points(
-    collection_name="compliance_sops",
-    prefetch=[
-        models.Prefetch(query=dense_vector, list_name="dense-1536", limit=20),
-        models.Prefetch(query=sparse_indices, list_name="sparse-keyword", limit=20)
-    ],
-    query=models.FusionQuery(fusion=models.Fusion.RRF) # Reciprocal Rank Fusion
-)`,
     specs: [
       { label: 'Retrieval Precision', value: '99.6%' },
-      { label: 'Chunking Mapping', value: 'Parent-Child' },
-      { label: 'Hybrid Scoring', value: 'Dense + BM25' }
+      { label: 'Context Preservation', value: 'Full document structure' },
+      { label: 'Search Approach', value: 'Meaning + Keyword' }
     ],
     icon: <Database className="w-5 h-5 text-indigo-500" />,
     author: {
@@ -113,37 +75,20 @@ results = qdrant.query_points(
   },
   {
     id: 'deterministic-multi-agent-handoffs',
-    title: 'Stateful Handoffs: Deterministic Conditional Branches in Multi-Agent DAGs',
+    title: 'Why We Don’t Let Agents Freewheel Through Multi-Step Workflows',
     date: 'June 10, 2026',
     readTime: '7 min read',
     category: 'Agent Orchestration',
-    summary: 'Autonomous loops frequently experience task recursion and infinite loops under standard LLM agent configurations. We outline how state validation with Pydantic and LangGraph ensures secure multi-agent collaboration.',
+    summary: 'Loosely coordinated automation frequently gets stuck in loops or repeats steps under standard configurations. We outline how strict state validation ensures secure, reliable multi-step collaboration.',
     paragraphs: [
-      'Most open-source multi-agent frameworks let LLMs decide their own handoffs dynamically. While flexible, this approach leads to massive operational risks in enterprise environments, such as infinite execution loops, data write errors, and total loss of state trace.',
-      'In a typical financial ledger reconciliation pipeline, a generic agent might constantly rewrite database state without validating if a previous invoice extraction node completed successfully, exhausting API tokens and scrambling billing ledgers.',
-      'Mashnu AI prevents agent recursion by building stateful, handoff-based networks on LangGraph. We enforce strict declarative state transitions using Pydantic schemas. Every node execution requires the preceding state variables to be fully validated.',
-      'If an invoice extraction node produces a schema variance greater than 5%, our state router halts autonomous execution and issues an immediate, secure Slack approval notification. This hybrid human-in-the-loop checkpoint structure ensures absolute data security.'
+      'Most off-the-shelf multi-agent setups let each step decide its own handoffs dynamically. While flexible, this approach leads to real operational risks in enterprise environments, such as repeated execution loops, data write errors, and total loss of state tracking.',
+      'In a typical financial ledger reconciliation workflow, a loosely coordinated system might constantly rewrite records without validating whether a previous step completed successfully, exhausting resources and scrambling billing ledgers.',
+      'Mashnu AI prevents this by building reliable, handoff-based workflows with strict validation at every step. Every step requires the preceding state to be fully validated before it can proceed.',
+      'If a step produces a variance greater than 5%, our system halts automatic execution and issues an immediate approval notification to a real person. This human-in-the-loop checkpoint ensures nothing moves forward without a check.'
     ],
-    codeLanguage: 'typescript',
-    codeBlock: `// Declaring state schemas for strict node transitions in LangGraph
-import { StateGraph, Annotation } from "@langchain/langgraph";
-import { z } from "zod";
-
-const LedgerState = Annotation.Root({
-  invoiceExtracted: Annotation.Property<boolean>(),
-  discrepancyDelta: Annotation.Property<number>(),
-  humanAuthorized: Annotation.Property<boolean>()
-});
-
-function stateRouter(state: typeof LedgerState.State) {
-  if (state.discrepancyDelta > 0.05 && !state.humanAuthorized) {
-    return "trigger_human_slack_checkpoint";
-  }
-  return "write_to_postgresql_ledger";
-}`,
     specs: [
-      { label: 'State Validation', value: 'Pydantic/Zod' },
-      { label: 'Routing Logic', value: 'Deterministic DAG' },
+      { label: 'Validation', value: 'Every step checked' },
+      { label: 'Routing Logic', value: 'Deterministic, not freeform' },
       { label: 'Approval Triggers', value: 'Human-in-the-Loop' }
     ],
     icon: <Code className="w-5 h-5 text-emerald-600" />,
@@ -158,6 +103,28 @@ function stateRouter(state: typeof LedgerState.State) {
 export default function Blog() {
   const [selectedPostId, setSelectedPostId] = useState<string | null>(null);
   const selectedPost = POSTS.find(p => p.id === selectedPostId);
+
+  useSEO(
+    selectedPost
+      ? {
+          title: selectedPost.title,
+          description: selectedPost.summary,
+          path: '/blog',
+          structuredData: {
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: selectedPost.title,
+            description: selectedPost.summary,
+            datePublished: selectedPost.date,
+            author: { '@type': 'Person', name: selectedPost.author.name },
+          },
+        }
+      : {
+          title: 'Blog: Engineering Notes from Mashnu AI',
+          description: 'Technical writing on building reliable AI voice, WhatsApp, and automation agents, from the engineers building Mashnu AI.',
+          path: '/blog',
+        }
+  );
 
   return (
     <div className="relative min-h-screen text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] py-16">
@@ -176,11 +143,11 @@ export default function Blog() {
                 className="inline-flex items-center gap-2 px-4 py-2 text-xs font-sans text-[#0F172A] hover:text-[#2563EB] border border-[#E2E8F0] rounded-full bg-white shadow-sm transition-colors cursor-pointer"
               >
                 <ArrowLeft className="w-4 h-4" />
-                <span>Return to Engineering Index</span>
+                <span>Back to Blog</span>
               </button>
               
               <div className="flex items-center gap-1 text-[10.5px] font-sans text-[#64748B]">
-                <span>Mashnu Systems Engineering Log</span>
+                <span>Mashnu Blog</span>
                 <ChevronRight className="w-3.5 h-3.5" />
                 <span className="text-[#2563EB] font-semibold">{selectedPost.category}</span>
               </div>
@@ -228,25 +195,9 @@ export default function Blog() {
                 ))}
               </div>
 
-              {/* Code Blocks Template (Build in Public Code sample) */}
-              {selectedPost.codeBlock && (
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between bg-[#F1F5F9] border-t border-x border-[#E2E8F0] rounded-t-lg px-4 py-2 font-sans text-[10px] text-[#64748B]">
-                    <span className="flex items-center gap-1.5">
-                      <Terminal className="w-3.5 h-3.5 text-[#2563EB]" />
-                      <span>{selectedPost.id}.{selectedPost.codeLanguage || 'ts'}</span>
-                    </span>
-                    <span className="text-[9px] uppercase font-semibold text-[#64748B]">Mashnu Compiled Spec</span>
-                  </div>
-                  <pre className="bg-[#0F172A] p-4 rounded-b-lg font-mono text-[11px] text-[#F1F5F9] overflow-x-auto leading-relaxed shadow-inner">
-                    <code>{selectedPost.codeBlock}</code>
-                  </pre>
-                </div>
-              )}
-
               {/* Specifications Matrix */}
               <div className="space-y-3 pt-4 border-t border-[#E2E8F0]">
-                <h3 className="text-xs font-sans uppercase tracking-wider text-[#64748B] font-semibold">Systems Diagnostic Metrics</h3>
+                <h3 className="text-xs font-sans uppercase tracking-wider text-[#64748B] font-semibold">Key Results</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-sans text-[11px]">
                   {selectedPost.specs.map((spec, sIdx) => (
                     <div key={sIdx} className="bg-[#F1F5F9] p-3.5 rounded-xl border border-[#E2E8F0] flex flex-col justify-center">
@@ -266,7 +217,7 @@ export default function Blog() {
                 className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-sans font-medium text-[#0F172A] hover:text-[#2563EB] border border-[#E2E8F0] rounded-full bg-white shadow-sm transition-colors cursor-pointer"
               >
                 <CornerUpLeft className="w-4 h-4" />
-                <span>Return to Engineering Index</span>
+                <span>Back to Blog</span>
               </button>
             </div>
 
@@ -281,10 +232,10 @@ export default function Blog() {
                 Technical Blog
               </span>
               <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.02em] text-[#0F172A] leading-tight">
-                Build-In-Public Log
+                Behind the Scenes
               </h1>
               <p className="text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto">
-                Raw systems engineering breakdowns detailing how we resolve voice latencies, optimize database vectors, and validate multi-agent states.
+                Honest breakdowns of how we make voice responses faster, search more accurate, and multi-step automation more reliable.
               </p>
             </section>
 
@@ -360,17 +311,17 @@ export default function Blog() {
         {/* Unified Call to Action */}
         <section className="rounded-[32px] bg-[#F1F5F9] p-8 sm:p-12 text-center space-y-6 border border-[#E2E8F0] relative overflow-hidden max-w-4xl mx-auto mt-20">
           <h2 className="text-2xl sm:text-3xl font-semibold tracking-[-0.02em] text-[#0F172A]">
-            Deploy Engineered AI Solutions Into Your Operations
+            Put This to Work in Your Operations
           </h2>
           <p className="text-sm text-[#64748B] max-w-xl mx-auto leading-relaxed">
-            Ready to integrate low-latency voice receptionists, hybrid retrieval databases, and stateful multi-agent DAG pipelines? Schedule an interactive systems briefing today.
+            Ready to add fast voice agents, accurate enterprise search, or reliable multi-step automation to your business? Schedule a conversation today.
           </p>
           <div className="pt-2">
             <Link
               to="/contact"
               className="inline-flex px-6 py-2 rounded-full bg-[#0F172A] hover:bg-[#334155] text-white font-medium text-xs tracking-tight transition-colors items-center gap-1.5 shadow-sm"
             >
-              Book Systems Briefing
+              Book a Conversation
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

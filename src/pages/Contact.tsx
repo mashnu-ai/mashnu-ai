@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
+import { useSEO } from '../components/SEO';
 import {
   Send, Mail, Building, User, Briefcase,
   CheckCircle2, AlertTriangle, RotateCcw
 } from 'lucide-react';
 
 export default function Contact() {
+  useSEO({
+    title: 'Contact Us',
+    description: 'Tell us what you want to automate. Describe the workflow and an engineer will get back to you, usually within a business day, with an honest read on whether we\'re a good fit.',
+    path: '/contact',
+  });
+
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
@@ -20,7 +27,7 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!useCase.trim()) {
-      setError('Tell us what you want to automate — we need at least a sentence to route this to the right person.');
+      setError('Tell us what you want to automate. We need at least a sentence to route this to the right person.');
       return;
     }
 
@@ -40,7 +47,8 @@ export default function Contact() {
           role,
           useCase,
           estimatedVolume,
-          currentSystem
+          currentSystem,
+          source: 'contact_page'
         })
       });
 
@@ -84,7 +92,7 @@ export default function Contact() {
             Tell us what you want to automate
           </h1>
           <p className="text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto">
-            No forms full of jargon, no auto-generated reports. Describe the workflow, and an engineer will get back to you — usually within a business day — with an honest read on whether we're a good fit.
+            No forms full of jargon, no auto-generated reports. Describe the workflow, and an engineer will get back to you (usually within a business day) with an honest read on whether we're a good fit.
           </p>
         </section>
 
@@ -104,7 +112,7 @@ export default function Contact() {
                       required
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
-                      placeholder="John Doe"
+                      placeholder="Crispy"
                       className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 pl-10 text-xs text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-all"
                     />
                   </div>
@@ -119,7 +127,7 @@ export default function Contact() {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="john@company.com"
+                      placeholder="crispy@gmail.com"
                       className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2 pl-10 text-xs text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-all"
                     />
                   </div>
@@ -196,7 +204,7 @@ export default function Contact() {
                   rows={5}
                   value={useCase}
                   onChange={(e) => setUseCase(e.target.value)}
-                  placeholder="Describe the workflow — the manual step, the tools involved, and roughly how often it happens."
+                  placeholder="Describe the workflow: the manual step, the tools involved, and roughly how often it happens."
                   className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-xl px-3 py-2.5 text-xs text-[#0F172A] placeholder-[#94A3B8] focus:outline-none focus:border-[#2563EB] focus:bg-white leading-relaxed resize-none transition-all"
                 />
               </div>
@@ -243,7 +251,7 @@ export default function Contact() {
               <div className="space-y-2">
                 <h3 className="text-xl font-semibold tracking-tight text-[#0F172A]">Message sent</h3>
                 <p className="text-sm text-[#64748B] leading-relaxed max-w-md mx-auto">
-                  Thanks — we've got your message. An engineer will reply to your email, usually within a business day.
+                  Thanks, we've got your message. An engineer will reply to your email, usually within a business day.
                 </p>
               </div>
               <div className="pt-4">

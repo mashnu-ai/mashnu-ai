@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from '../components/Router';
-import { 
-  Cpu, Database, Network, Shield, BarChart3, Terminal, Check, 
-  ArrowRight, Code, Zap, RefreshCw, Key, Layers, Server, 
-  Workflow, ArrowUpRight, Lock, CheckCircle2
+import { useSEO } from '../components/SEO';
+import {
+  Cpu, Database, Network, Layers, Code,
+  ArrowRight, ArrowUpRight, Lock, CheckCircle2
 } from 'lucide-react';
-import { ArchitectureDiagram } from '../components/ArchitectureDiagram';
 
 interface DetailedProduct {
   id: string;
@@ -14,11 +13,9 @@ interface DetailedProduct {
   status: string;
   whatItDoes: string;
   whoItsFor: string;
-  technicalDifferentiator: string;
+  differentiator: string;
   description: string;
   specs: string[];
-  codeTitle: string;
-  codeSnippet: string;
   ctaText: string;
   icon: React.ReactNode;
   bgGradient: string;
@@ -26,228 +23,141 @@ interface DetailedProduct {
 
 const DEEP_DIVE_PRODUCTS: DetailedProduct[] = [
   {
-    id: 'enterprise-rag',
-    title: "Enterprise RAG Architectures",
+    id: 'enterprise-search',
+    title: "Enterprise Knowledge Search",
     phase: "Building",
     status: "Beta Testing",
     whatItDoes: "Powers semantic enterprise search over large collections of internal documents (e.g. clinical records, manuals, policy folders, and SOPs), returning highly accurate, cited answers in real time.",
     whoItsFor: "Compliance officers, product support specialists, internal training coordinators, and medical/financial administration executives.",
-    technicalDifferentiator: "Employs an advanced hybrid dense-sparse vector and keyword retrieval mechanism structured with parent-child recursive tree mapping, bypassing unstructured naive paragraph splittings.",
-    description: "Our retrieval architecture features dual-index search synchronization. First, a dense embedding query retrieves localized context from Qdrant, filtered by active active-directory authorization flags. Simultaneously, a sparse BM25 query extracts keyword match scores. The result is combined via a Reciprocal Rank Fusion (RRF) algorithm to ensure zero hallucination thresholds.",
+    differentiator: "Combines meaning-based and keyword search so answers stay grounded in your actual documents, not guesses.",
+    description: "Employees ask a plain-language question and get a cited answer pulled from the right internal document, not a generic response. Access stays scoped to what each person is actually permitted to see.",
     specs: [
-      "Chunk-graph parent-child relationship tracking",
-      "Dense vector (Qdrant) + BM25 keyword hybrid searching",
-      "Granular document permission scoping for enterprise directories",
-      "Average retrieval latency < 180ms"
+      "Understands document structure, not just flat text",
+      "Combines meaning-based and keyword search for accuracy",
+      "Respects existing document permissions and access levels",
+      "Typical answer time under a fifth of a second"
     ],
-    codeTitle: "Parent-Child Extraction Pipeline",
-    codeSnippet: `class ParentChildRAGPipeline:
-    def __init__(self, qdrant_client, embed_model):
-        self.qdrant = qdrant_client
-        self.embedder = embed_model
-
-    def retrieve_with_permissions(self, query: str, tenant_id: str, user_role: str):
-        query_vector = self.embedder.embed(query)
-        # Apply precise active-directory role filters at search time
-        results = self.qdrant.search(
-            collection_name=f"tenant_{tenant_id}",
-            query_vector=query_vector,
-            query_filter=Filter(
-                must=[FieldCondition(key="allowed_roles", match=Value(user_role))]
-            ),
-            limit=5
-        )
-        return self._reconstruct_parent_context(results)`,
-    ctaText: "Book Enterprise RAG Demo",
+    ctaText: "Book a walkthrough",
     icon: <Database className="w-5 h-5 text-purple-400" />,
     bgGradient: "from-purple-500/10 to-indigo-500/5"
   },
   {
     id: 'multi-agent-systems',
-    title: "Multi-Agent Systems",
+    title: "Coordinated Multi-Step Automation",
     phase: "Building",
     status: "Active R&D",
-    whatItDoes: "Integrates complex multi-step corporate operations (e.g. processing a freight order, matching invoices, and executing ledger entries) into coordinated agent teams.",
-    whoItsFor: "Supply chain managers, financial ledger auditors, and enterprise resource planning (ERP) system integrators.",
-    technicalDifferentiator: "Orchestrated using stateful, multi-agent LangGraph architectures that guarantee transaction consistency rather than linear, brittle if-else script routines.",
-    description: "Instead of monolithic agents trying to handle all domains, we deploy specialized nodes for each business function. An orchestration manager coordinates state handoffs. If an agent node fails to confirm a billing entry, the system triggers custom compensation actions (e.g. rolling back warehouse inventory reservations) in absolute synchronization.",
+    whatItDoes: "Integrates complex multi-step operations (e.g. processing a freight order, matching invoices, and executing ledger entries) into coordinated, reliable workflows.",
+    whoItsFor: "Supply chain managers, financial ledger auditors, and operations teams running multi-step processes.",
+    differentiator: "Each step is handled by a specialized, purpose-built process instead of one system trying to do everything, so failures are caught and corrected, not silently ignored.",
+    description: "Instead of one system trying to handle every part of a process, each step is handled on its own with clear handoffs. If a step can't be confirmed, the workflow pauses and corrects itself rather than pushing a bad result forward.",
     specs: [
-      "Built atop custom state-consistent LangGraph DAGs",
-      "Parallel task execution with state verification checks",
-      "Deterministic manual human-in-the-loop approvals",
-      "Auto-rollback state managers for distributed operations"
+      "Specialized handling per business step, not one do-everything system",
+      "Automatic checks before moving to the next step",
+      "Human approval built in for sensitive actions",
+      "Safe rollback if a step fails partway through"
     ],
-    codeTitle: "LangGraph State Router Configuration",
-    codeSnippet: `from langgraph.graph import StateGraph, END
-
-def route_next_action(state: EnterpriseState):
-    if state.needs_validation:
-        return "compliance_auditor"
-    if state.balance_matched:
-        return "ledger_dispatcher"
-    return "human_approval_checkpoint"
-
-builder = StateGraph(EnterpriseState)
-builder.add_node("compliance_auditor", verify_regulatory_hash)
-builder.add_node("ledger_dispatcher", commit_transaction_block)
-builder.add_conditional_edges("triage_node", route_next_action)`,
-    ctaText: "Book Multi-Agent Demo",
+    ctaText: "Book a walkthrough",
     icon: <Network className="w-5 h-5 text-pink-400" />,
     bgGradient: "from-pink-500/10 to-rose-500/5"
   },
   {
     id: 'productized-saas',
-    title: "Productized SaaS Platform",
+    title: "Unified Management Dashboard",
     phase: "Platform Layer",
     status: "Active R&D",
-    whatItDoes: "A centralized cloud dashboard that allows corporate IT personnel to instantly configure, hot-swap, inspect, and scale customized AI agents.",
-    whoItsFor: "Chief Information Officers (CIOs), network engineers, enterprise system administrators, and DevOps teams.",
-    technicalDifferentiator: "Deploys directly into serverless container structures with integrated open-telemetry path tracing for millisecond-level troubleshooting.",
-    description: "The Mashnu SaaS dashboard provides enterprise-wide visibility. Corporate IT teams can view real-time latency graphs, inspect cost logs per department, update baseline system prompts without re-deploying, and switch underlying LLM models in a single click with no active system downtime.",
+    whatItDoes: "A centralized dashboard that lets your team instantly configure, monitor, and scale your deployed agents without engineering involvement.",
+    whoItsFor: "Operations leads, IT administrators, and teams managing agents across multiple functions.",
+    differentiator: "Changes take effect without downtime or a redeploy, your team stays in control day to day.",
+    description: "Once an agent is live, your team shouldn't need an engineer to check on it. The dashboard shows real-time performance, lets you adjust behavior safely, and keeps spend visible and predictable.",
     specs: [
-      "Instant API route creation for custom agents",
-      "Visual canvas-based graph editing UI",
-      "Comprehensive telemetry dashboards & latency tracking",
-      "Granular departmental spend caps and billing controls"
+      "Real-time performance and usage visibility",
+      "Safe configuration changes with no downtime",
+      "Clear cost tracking per team or department",
+      "Built-in spend limits and controls"
     ],
-    codeTitle: "Dynamic Routing Middleware",
-    codeSnippet: `// Serverless Edge Router for Multi-Tenant Hot-Swapping
-export async function handleAgentDispatch(request: Request) {
-  const tenantConfig = await fetchTenantRegistry(request.headers.get("X-Tenant-ID"));
-  
-  // Hot-swap weights / routes instantly without re-deploying containers
-  const gatewayURL = tenantConfig.active_inference_edge_url;
-  const latencyTraceId = crypto.randomUUID();
-  
-  return fetch(gatewayURL, {
-    method: "POST",
-    headers: { ...request.headers, "X-Trace-ID": latencyTraceId },
-    body: request.body
-  });
-}`,
-    ctaText: "Book Platform Demo",
+    ctaText: "Book a walkthrough",
     icon: <Layers className="w-5 h-5 text-blue-400" />,
     bgGradient: "from-blue-500/10 to-cyan-500/5"
   },
   {
     id: 'low-latency-infra',
-    title: "Low-Latency AI Infrastructure",
+    title: "Low-Latency Response Infrastructure",
     phase: "Platform Layer",
     status: "Scheduled",
-    whatItDoes: "Executes deep neural net processing and inference tasks closer to the user, maximizing UI responsiveness and reducing database wait cycles.",
-    whoItsFor: "Real-time gaming companies, global booking providers, high-volume digital portals, and critical medical triage centers.",
-    technicalDifferentiator: "Runs open-weight model instances inside optimized WASM-compiled edge containers with an active distributed cache protocol.",
-    description: "Standard model APIs introduce significant queuing and cold-start overheads. Mashnu is engineering a distributed edge execution layer. By running lightweight open-weight models (e.g. Llama 3 8B, Mistral 7B) compiled into WebAssembly (WASM) directly on edge nodes, we reduce network distance to the absolute bare minimum.",
+    whatItDoes: "Runs inference closer to the user to keep voice and chat responses fast, reducing the lag that makes automated interactions feel robotic.",
+    whoItsFor: "Real-time service providers, booking platforms, high-volume support desks, and time-sensitive operations.",
+    differentiator: "We treat response speed as a first-class requirement, not an afterthought. Most delay in automated systems comes from unnecessary network hops.",
+    description: "A slow assistant feels broken, even if it's accurate. We're built to minimize the distance and steps between a request and a response, so conversations feel natural instead of laggy.",
     specs: [
-      "Edge deployment via Cloudflare Workers and serverless WASM",
-      "Custom model weight cache layers for fast cold-starts",
-      "Distributed agent queuing architecture",
-      "Inference processing overhead under 15ms"
+      "Optimized response paths to minimize delay",
+      "Smart caching to avoid repeated slow lookups",
+      "Built for high-volume, real-time interactions",
+      "Consistently fast under normal load"
     ],
-    codeTitle: "WASM Edge Model Ingestion Config",
-    codeSnippet: `// Initialize WASM-compiled model weights inside isolated Edge Sandbox
-import { WebAssemblyModelInstance } from "mashnu-edge-inference";
-
-const modelCacheConfig = {
-  max_stale_ms: 180000,
-  preloaded_weights: ["llama3-8b-instruct-q4_k_m"]
-};
-
-export async function processEdgeInference(prompt: string) {
-  const model = await WebAssemblyModelInstance.loadCached(modelCacheConfig);
-  const stream = await model.generateStream(prompt, { temperature: 0.1 });
-  return new Response(stream);
-}`,
-    ctaText: "Book Low-Latency Infra Demo",
+    ctaText: "Book a walkthrough",
     icon: <Cpu className="w-5 h-5 text-violet-400" />,
     bgGradient: "from-violet-500/10 to-purple-500/5"
   },
   {
-    id: 'llm-fine-tuning',
-    title: "Custom LLM Fine-Tuning Platform",
+    id: 'custom-tuning',
+    title: "Custom-Tuned Assistants",
     phase: "Platform Layer",
     status: "Scheduled",
-    whatItDoes: "Builds proprietary model intelligence by fine-tuning open-source foundations (e.g. Llama 3) on secure enterprise datasets.",
-    whoItsFor: "Information security executives, model researchers, specialized regulatory compliance teams, and clinical auditors.",
-    technicalDifferentiator: "Integrates QLoRA parameter-efficient training directly with automated evaluations, deployed inside fully isolated, air-gapped enterprise clouds.",
-    description: "General-purpose models lack specialized vocabulary and specific regulatory awareness. Our platform automates the fine-tuning process. We load base weights, perform Low-Rank Adaptation (LoRA) on your proprietary interaction transcripts, run comprehensive diagnostic benchmarks, and compile the final customized adapter blocks in a fully secure Sandbox.",
+    whatItDoes: "Adapts a general-purpose assistant to your specific vocabulary, tone, and internal knowledge, without starting from scratch.",
+    whoItsFor: "Teams with specialized terminology, compliance requirements, or a distinct brand voice.",
+    differentiator: "Tuning happens on your own data inside a secure, isolated environment. Nothing is shared across clients.",
+    description: "Off-the-shelf assistants often miss industry-specific language or context. We adapt the assistant to your world (your terms, your tone, your edge cases) and test it thoroughly before it goes live.",
     specs: [
-      "Parameter-Efficient Fine-Tuning (PEFT/LoRA) adapters",
-      "Evaluation benchmarking against standard commercial models",
-      "100% air-gapped private inference deployments",
-      "Automated diagnostic safety evaluations"
+      "Learns your specific terminology and context",
+      "Tested against your real use cases before launch",
+      "Fully isolated, private environment per client",
+      "Ongoing safety and quality checks"
     ],
-    codeTitle: "QLoRA Parameter Adaption Training Hook",
-    codeSnippet: `from peft import LoraConfig, get_peft_model
-from transformers import AutoModelForCausalLM
-
-def build_custom_finetuning_session(base_model_path: str):
-    base_model = AutoModelForCausalLM.from_pretrained(
-        base_model_path, 
-        load_in_4bit=True, 
-        device_map="auto"
-    )
-    peft_config = LoraConfig(
-        r=16,
-        lora_alpha=32,
-        target_modules=["q_proj", "v_proj"],
-        lora_dropout=0.05,
-        bias="none",
-        task_type="CAUSAL_LM"
-    )
-    return get_peft_model(base_model, peft_config)`,
-    ctaText: "Book Fine-Tuning Demo",
+    ctaText: "Book a walkthrough",
     icon: <Code className="w-5 h-5 text-teal-400" />,
     bgGradient: "from-teal-500/10 to-emerald-500/5"
   }
 ];
 
 export default function Platform() {
-  const [activeTab, setActiveTab] = useState<string>('enterprise-rag');
+  const [activeTab, setActiveTab] = useState<string>('enterprise-search');
+
+  useSEO({
+    title: 'The Mashnu AI Platform',
+    description: 'Enterprise knowledge search, coordinated multi-step automation, a self-serve dashboard, low-latency inference, and custom-tuned assistants, engineered to work together.',
+    path: '/platform',
+  });
 
   return (
     <div className="relative min-h-screen text-slate-900 font-sans selection:bg-blue-500/20 selection:text-blue-900 py-16">
-      
+
       {/* Background visual components */}
       <div className="absolute top-1/4 right-1/10 w-80 h-80 rounded-full bg-cyan-500/5 blur-[120px] pointer-events-none z-0" />
       <div className="absolute top-2/3 left-1/12 w-96 h-96 rounded-full bg-indigo-500/5 blur-[150px] pointer-events-none z-0" />
 
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        
+
         {/* Page Header */}
         <section className="text-center max-w-4xl mx-auto space-y-5">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-800 text-[10px] font-mono uppercase tracking-widest text-slate-400">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span>Developer & Partner Specifications</span>
+            <span>What Our Platform Does</span>
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold font-display tracking-tight text-slate-900">
-            Enterprise Platforms Deep-Dive
+            One Platform, Built to Last
           </h1>
           <p className="text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            A comprehensive architectural blueprint of our advanced retrieval, multi-agent orchestrations, and secure deployment infrastructure designed for technical buyers and enterprise partners.
+            Every capability below is designed to work together, so what we build for you keeps getting better without starting over.
           </p>
         </section>
 
-        {/* INTERACTIVE PRODUCTION ARCHITECTURE DIAGRAM SECTION */}
-        <section className="space-y-6">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <h2 className="text-xl sm:text-2xl font-bold font-display text-slate-900">
-              The Unified Autonomous Stack
-            </h2>
-            <p className="text-xs text-slate-400">
-              A high-precision, real-time pipeline visualization illustrating how network streams coordinate state machine transitions, hybrid vector indexes, and database logs.
-            </p>
-          </div>
-          <ArchitectureDiagram />
-        </section>
-
-        {/* DETAILED ITEMS 6-10 DEEP DIVE TABS AND PANELS */}
+        {/* DETAILED PRODUCT DEEP DIVE TABS AND PANELS */}
         <section className="space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest block font-bold">Deep Dive (Items 6–10)</span>
-            <h2 className="text-2xl font-bold font-display text-slate-900">Core Engineering Solutions</h2>
+            <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest block font-bold">Deep Dive</span>
+            <h2 className="text-2xl font-bold font-display text-slate-900">What Each Capability Delivers</h2>
             <p className="text-xs text-slate-400">
-              Select an enterprise-grade component below to review operational parameters, developer configurations, and functional specifications.
+              Select a capability below to see what it does, who it's for, and what makes it reliable.
             </p>
           </div>
 
@@ -305,7 +215,7 @@ export default function Platform() {
                         {p.description}
                       </p>
 
-                      {/* What it does / Who it's for / Tech differentiator */}
+                      {/* What it does / Who it's for */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-3 border-t border-slate-900 text-xs">
                         <div className="space-y-1.5">
                           <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">What It Does</span>
@@ -317,17 +227,17 @@ export default function Platform() {
                         </div>
                       </div>
 
-                      {/* Technical Differentiator */}
+                      {/* Differentiator */}
                       <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1.5">
-                        <span className="text-[9px] font-mono text-cyan-400 uppercase tracking-widest block font-bold">Systems-Engineering Differentiator</span>
+                        <span className="text-[9px] font-mono text-cyan-400 uppercase tracking-widest block font-bold">What Makes It Different</span>
                         <p className="text-slate-800 font-sans italic leading-relaxed">
-                          “{p.technicalDifferentiator}”
+                          "{p.differentiator}"
                         </p>
                       </div>
 
                       {/* Specifications List */}
                       <div className="space-y-2.5 pt-3 border-t border-slate-900">
-                        <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">Core Engineering Specifications</span>
+                        <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">Key Highlights</span>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-[11px] text-slate-700 font-sans">
                           {p.specs.map((spec, i) => (
                             <div key={i} className="flex gap-2 items-start">
@@ -351,22 +261,24 @@ export default function Platform() {
                     </div>
                   </div>
 
-                  {/* Right code/payload block (Col-span 5) */}
-                  <div className="lg:col-span-5 flex flex-col justify-between bg-slate-950 rounded-xl border border-slate-900 p-5 space-y-4">
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between border-b border-slate-900 pb-2">
-                        <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">{p.codeTitle}</span>
-                        <span className="text-[8px] font-mono text-cyan-400 uppercase tracking-widest">Active Spec</span>
-                      </div>
-                      <div className="bg-white p-4 rounded-lg border border-slate-200 font-mono text-[10px] text-slate-700 overflow-x-auto max-h-[340px] scrollbar-thin">
-                        <pre className="text-emerald-400/90 whitespace-pre">{p.codeSnippet}</pre>
+                  {/* Right highlight block (Col-span 5) */}
+                  <div className="lg:col-span-5 flex flex-col justify-center bg-slate-950 rounded-xl border border-slate-900 p-6 space-y-5">
+                    <div className="space-y-3">
+                      <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest block font-bold">At a Glance</span>
+                      <div className="space-y-3">
+                        {p.specs.map((spec, i) => (
+                          <div key={i} className="flex gap-2.5 items-start text-xs text-slate-300 font-sans">
+                            <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                            <span>{spec}</span>
+                          </div>
+                        ))}
                       </div>
                     </div>
 
-                    <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg flex items-center gap-3 text-xs">
+                    <div className="p-3 bg-slate-900/60 border border-slate-800 rounded-lg flex items-center gap-3 text-xs">
                       <Lock className="w-4 h-4 text-cyan-400 shrink-0" />
                       <p className="text-slate-400 font-sans text-[11px]">
-                        Enterprise modules are deployed into isolated container environments, built to support common compliance requirements like ISO 27001 and SOC 2.
+                        Deployed into isolated environments, built to support common compliance requirements like ISO 27001 and SOC 2.
                       </p>
                     </div>
                   </div>
@@ -380,17 +292,17 @@ export default function Platform() {
         {/* OVERALL PARTNERSHIP CTA */}
         <section className="border border-slate-900 rounded-2xl bg-gradient-to-br from-slate-950 via-slate-950 to-slate-900 p-8 sm:p-10 text-center space-y-5">
           <h2 className="text-2xl font-bold font-display text-white">
-            Let's Review Your Enterprise Architecture Requirements
+            Let's Talk About What You Need
           </h2>
           <p className="text-xs text-slate-400 leading-relaxed max-w-2xl mx-auto font-sans">
-            Ready to deploy enterprise AI Employees with proper systems engineering? Book a direct discovery technical callback with our principal platform architect today.
+            Ready to see how this could work for your team? Book a direct conversation with someone who can walk you through it.
           </p>
           <div className="pt-2">
             <Link
               to="/contact"
               className="inline-flex px-5 py-2.5 rounded bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold text-xs tracking-wider transition-all items-center gap-1.5 shadow-lg shadow-cyan-500/10 cursor-pointer"
             >
-              Book Systems Briefing
+              Book a Conversation
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

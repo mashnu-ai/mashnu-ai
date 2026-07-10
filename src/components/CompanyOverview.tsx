@@ -12,7 +12,7 @@ export default function CompanyOverview() {
           Mashnu AI builds a personal assistant for real life
         </h3>
         <p className="text-sm text-slate-500 leading-relaxed max-w-2xl mx-auto">
-          Most AI products are built for businesses first. We started with a simpler question: what would it take for an AI assistant to actually help a person get through their day — answering calls, replying to messages, keeping track of what matters — without adding one more thing to manage?
+          Most AI products are built for businesses first. We started with a simpler question: what would it take for an AI assistant to actually help a person get through their day (answering calls, replying to messages, keeping track of what matters) without adding one more thing to manage?
         </p>
       </div>
 
@@ -29,7 +29,7 @@ export default function CompanyOverview() {
           <Users className="w-5 h-5 text-cyan-600" />
           <h4 className="text-xs font-bold font-display uppercase tracking-wider text-slate-900">Who it's for</h4>
           <p className="text-xs text-slate-500 leading-relaxed font-sans">
-            Anyone who wants fewer things to keep track of — busy professionals, small business owners, and households juggling calls, appointments, and messages across too many apps.
+            Anyone who wants fewer things to keep track of: busy professionals, small business owners, and households juggling calls, appointments, and messages across too many apps.
           </p>
         </div>
 

@@ -1,10 +1,75 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from '../components/Router';
+import { useSEO } from '../components/SEO';
 import {
-  Check, CalendarClock
+  Check, CalendarClock, Zap, ArrowDownUp
 } from 'lucide-react';
 
+const PRICING_FAQ_STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How does Mashnu AI charge for its agents?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Mashnu charges a fixed build fee agreed up front, a flat monthly retainer for maintenance and support, and the raw pass-through cost of whatever AI models or vector lookups your agent uses, with no markup.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does Mashnu AI mark up AI model or infrastructure costs?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Model tokens and vector database usage are billed at the provider\'s actual cost, the exact same per-token rate the provider charges Mashnu is passed through to the client.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What are the typical ways to start working with Mashnu AI?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most engagements start as a Pilot (a single voice or messaging agent scoped to one workflow), move to Production (multiple workflows under a flat monthly retainer), or, for teams with data residency or compliance needs, a dedicated Enterprise deployment.',
+      },
+    },
+  ],
+};
+
+interface ModelPricing {
+  modelName: string;
+  contextWindow: number;
+  inputPricePerMillion: number;
+  outputPricePerMillion: number;
+  asOf: string;
+  live: boolean;
+}
+
+function formatPerMillion(n: number): string {
+  return `$${n.toFixed(2)}`;
+}
+
 export default function Pricing() {
+  const [pricing, setPricing] = useState<ModelPricing | null>(null);
+
+  useSEO({
+    title: 'Pricing: A Flat Fee, Plus What You Actually Use',
+    description: 'No per-seat pricing, no markup on model or infrastructure costs. A fixed build fee, a flat monthly retainer, and the raw pass-through cost of whatever AI models your agent uses.',
+    path: '/pricing',
+    structuredData: PRICING_FAQ_STRUCTURED_DATA,
+  });
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/model-pricing')
+      .then((res) => res.json())
+      .then((data: ModelPricing) => {
+        if (!cancelled && data?.modelName) setPricing(data);
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
+
   return (
     <div className="relative min-h-screen text-slate-900 font-sans selection:bg-blue-500/20 selection:text-blue-900 py-16">
 
@@ -41,7 +106,7 @@ export default function Pricing() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-slate-400 leading-relaxed font-sans pt-2">
             <div className="space-y-1.5">
               <h4 className="text-white font-bold font-display">1. Fixed build fee</h4>
-              <p>Scoped and quoted up front after a call, based on what you're actually integrating with — not a percentage of value or a per-agent tax.</p>
+              <p>Scoped and quoted up front after a call, based on what you're actually integrating with, not a percentage of value or a per-agent tax.</p>
             </div>
             <div className="space-y-1.5">
               <h4 className="text-white font-bold font-display">2. Flat monthly retainer</h4>
@@ -52,6 +117,42 @@ export default function Pricing() {
               <p>Model tokens and vector database usage are billed at the provider's actual cost. We don't add a margin on top of your AI spend.</p>
             </div>
           </div>
+
+          {/* Live model pricing proof — real numbers, not a claim */}
+          {pricing && (
+            <div className="pt-2">
+              <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 sm:p-5 space-y-3">
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 flex items-center gap-1.5">
+                    <Zap className="w-3 h-3" />
+                    Live from our model provider
+                  </span>
+                  {pricing.live && (
+                    <span className="text-[9px] font-mono text-slate-500">
+                      Updated {new Date(pricing.asOf).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })}
+                    </span>
+                  )}
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                  <div className="space-y-0.5">
+                    <span className="text-slate-500">Model in production</span>
+                    <div className="text-white font-semibold">{pricing.modelName}</div>
+                  </div>
+                  <div className="space-y-0.5">
+                    <span className="text-slate-500 flex items-center gap-1"><ArrowDownUp className="w-3 h-3 rotate-90" />Input tokens</span>
+                    <div className="text-white font-semibold">{formatPerMillion(pricing.inputPricePerMillion)} / 1M tokens</div>
+                  </div>
+                  <div className="space-y-0.5">
+                    <span className="text-slate-500 flex items-center gap-1"><ArrowDownUp className="w-3 h-3 -rotate-90" />Output tokens</span>
+                    <div className="text-white font-semibold">{formatPerMillion(pricing.outputPricePerMillion)} / 1M tokens</div>
+                  </div>
+                </div>
+                <p className="text-[10px] text-slate-500 leading-relaxed">
+                  This is the exact per-token rate the provider charges us, the same rate that gets passed through to you, dollar for dollar, on every agent we run.
+                </p>
+              </div>
+            </div>
+          )}
 
           <div className="pt-4 flex justify-center">
             <Link
@@ -69,7 +170,7 @@ export default function Pricing() {
           <div className="text-center max-w-xl mx-auto space-y-1">
             <h2 className="text-xl sm:text-2xl font-bold font-display tracking-tight text-slate-900">How engagements typically start</h2>
             <p className="text-xs text-slate-400 font-sans">
-              These aren't fixed packages — they're the shapes most engagements take. Actual scope and cost depend on your integrations and volume.
+              These aren't fixed packages, they're the shapes most engagements take. Actual scope and cost depend on your integrations and volume.
             </p>
           </div>
 
@@ -115,7 +216,7 @@ export default function Pricing() {
                 <span className="text-[9px] font-mono text-cyan-500 uppercase tracking-widest font-bold block">Production</span>
                 <h3 className="text-lg font-bold font-display text-slate-900">Run it, then keep improving it</h3>
                 <p className="text-xs text-slate-400 leading-relaxed font-sans">
-                  Your agent goes live and stays maintained — monitored, tuned, and extended as your workflows change, under a flat monthly retainer.
+                  Your agent goes live and stays maintained: monitored, tuned, and extended as your workflows change, under a flat monthly retainer.
                 </p>
 
                 <div className="space-y-2 pt-4 border-t border-slate-900 text-xs text-slate-700">

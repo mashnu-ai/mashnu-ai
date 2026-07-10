@@ -116,7 +116,7 @@ export default function WhatsAppDemo() {
           Try Our WhatsApp <br />AI Employee Demo
         </h3>
         <p className="text-xs text-slate-400 leading-relaxed font-sans">
-          Unlike static chatbots, Mashnu’s AI employees query inventory databases, update HIPAA-secure healthcare registers, and write live ledger files. Select an operational use-case to simulate the stateful LangGraph workflow.
+          Unlike static chatbots, Mashnu’s AI employees query inventory databases, update HIPAA-secure healthcare registers, and write live ledger files. Select an operational use-case to see it in action.
         </p>
 
         {/* Use-case buttons */}
@@ -143,13 +143,6 @@ export default function WhatsAppDemo() {
           </div>
         </div>
 
-        <div className="pt-2">
-          {/* CRITICAL CODE COMMENT requested by user */}
-          <p className="text-[9.5px] font-mono text-slate-500 leading-relaxed">
-            {/* CODE INTEGRATION NOTICE: To connect this WhatsApp interface to live Twilio WhatsApp sandbox and custom FastAPI agents, configure the server webhook routes at `/api/v1/whatsapp-webhook` with valid Shopify or EHR credentials. */}
-            <span className="text-primary-accent">Integration Hook:</span> In production, this component communicates directly with our low-latency FastAPI router at <code className="bg-white px-1 py-0.5 rounded text-amber-500">/api/whatsapp-webhook</code>.
-          </p>
-        </div>
       </div>
 
       {/* Right Phone Mockup Column */}

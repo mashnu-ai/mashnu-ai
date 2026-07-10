@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /roi-calculator
+
+Sitemap: https://mashnu.com/sitemap.xml

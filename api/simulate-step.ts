@@ -17,6 +17,6 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     res.json(simulateStep(compiledAgent, userInput));
   } catch (error: any) {
     console.error("Simulation error:", error);
-    res.status(500).json({ error: error?.message || "Failed to simulate agent execution trace." });
+    res.status(500).json({ error: "Failed to simulate agent execution trace." });
   }
 }

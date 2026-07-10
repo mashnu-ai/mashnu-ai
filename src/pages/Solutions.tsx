@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from '../components/Router';
+import { useSEO } from '../components/SEO';
 import {
   HeartPulse, ShoppingBag, Truck, Scale, ArrowRight, Check,
   Database, Terminal
@@ -24,18 +25,18 @@ const SOLUTIONS: SolutionCase[] = [
     industry: 'Healthcare & Clinical Care Operations',
     title: 'Inbound Patient Intake & Scheduling Automation',
     problem: 'Pediatric medical groups experience massive call volumes during morning rushes, leading to high abandon rates, long patient hold times, and receptionist burnout.',
-    solution: 'Deploy stateful AI Voice Agents integrated directly with electronic health record (EHR) platforms via secure API channels to verify patient eligibility, reschedule appointments, and handle clinical triage.',
+    solution: 'Deploy a stateful AI Voice Agent connected directly to your scheduling and records systems to verify patient eligibility, reschedule appointments, and handle clinical triage.',
     mappedProducts: ['AI Voice Agents', 'AI Chatbots', 'Website AI Assistants'],
     specs: [
-      'AthenaHealth, Epic, and Cerner FHIR API scheduling integration',
+      'Connects directly with major EHR and scheduling systems',
       'Built to support HIPAA-aligned patient verification workflows',
       'Automatic routing to registered nurses based on clinical keyword flags'
     ],
     sampleFlow: [
       'Patient calls medical office requesting urgent physical appointment',
       'AI Voice Agent verifies patient identity using DOB and mobile matching',
-      'Query AthenaHealth FHIR APIs for active provider schedules tomorrow',
-      'Agent presents schedules vocally, confirms selection, updates EHR state'
+      'Checks provider schedules for tomorrow in real time',
+      'Agent presents schedules vocally, confirms selection, updates records'
     ],
     icon: <HeartPulse className="w-5 h-5 text-emerald-400" />
   },
@@ -44,18 +45,18 @@ const SOLUTIONS: SolutionCase[] = [
     industry: 'Direct-to-Consumer & Retail Commerce',
     title: 'WhatsApp Conversational Sales & Inventory Concierge',
     problem: 'Premium retail brands struggle to convert high-intent ad traffic. Simple email loops and basic FAQ chatbots fail to provide actual consultative sizing assistance and inventory updates.',
-    solution: 'Embed a conversational WhatsApp commerce agent that matches buyer sizing criteria with real-time Shopify inventory and commits custom pipeline deals directly to HubSpot.',
+    solution: 'Embed a conversational WhatsApp commerce agent that matches buyer sizing criteria with real-time inventory and logs every conversation straight into your sales pipeline.',
     mappedProducts: ['WhatsApp AI Agents', 'Website AI Assistants', 'CRM Automation Orchestrator'],
     specs: [
-      'Shopify Plus & WooCommerce active catalog and inventory sync',
-      'HubSpot and Salesforce CRM contact creation and deal mapping',
-      'Multi-modal ingestion resolving sizing charts and custom product images'
+      'Connects to your existing storefront and inventory systems',
+      'Syncs contacts and deals directly into your CRM',
+      'Understands images and product photos, not just text'
     ],
     sampleFlow: [
       'Customer clicks Instagram ad, triggering WhatsApp conversation thread',
       'WhatsApp AI Agent analyzes customer queries about jacket fit and sizing',
-      'Lookup active Shopify stock levels for size Medium, color Navy',
-      'Drafts draft checkout link in WhatsApp and notifies Sales CRM'
+      'Checks live stock levels for the requested size and color',
+      'Sends a checkout link in WhatsApp and notifies the sales team'
     ],
     icon: <ShoppingBag className="w-5 h-5 text-cyan-400" />
   },
@@ -64,17 +65,17 @@ const SOLUTIONS: SolutionCase[] = [
     industry: 'Logistics, Freight & Supply Chain Ledgers',
     title: 'Freight Invoice & Custom Dispatch Reconciliation',
     problem: 'Logistics accounts payable departments manually cross-reference thousands of carrier invoice PDFs with dispatcher databases, leading to costly billing overcharges.',
-    solution: 'Establish a multi-agent backend data pipeline that automatically ingests carrier invoices, extracts metadata, queries dispatches in Postgres, and scores price variances.',
-    mappedProducts: ['Enterprise RAG Architectures', 'Multi-Agent Systems', 'CRM Automation Orchestrator'],
+    solution: 'Set up a coordinated backend workflow that automatically reads carrier invoices, extracts the key details, cross-checks them against dispatch records, and flags price mismatches.',
+    mappedProducts: ['Enterprise Knowledge Search', 'Coordinated Multi-Step Automation', 'CRM Automation Orchestrator'],
     specs: [
-      'Multi-agent pipeline running layout-aware text extraction (PyPDF/OCR)',
-      'Deterministic database lookup cross-referencing carrier container IDs',
+      'Reads invoice PDFs and extracts key line items automatically',
+      'Cross-references every charge against your dispatch records',
       'Human-in-the-loop approval alerts triggered for variances exceeding 5%'
     ],
     sampleFlow: [
       'Freight carrier drops billing invoice PDF in corporate shared inbox',
-      'Document Ingestion Node extracts container ID and total USD charge',
-      'Reconciliation Agent queries PostgreSQL database for active dispatch log',
+      'System extracts container ID and total charge from the document',
+      'Reconciliation step checks the charge against the active dispatch log',
       'Compares ledger data; creates accounting approval ticket if matched'
     ],
     icon: <Truck className="w-5 h-5 text-indigo-400" />
@@ -84,17 +85,17 @@ const SOLUTIONS: SolutionCase[] = [
     industry: 'Corporate Compliance & Legal Operations',
     title: 'Cited RAG Search for Standard Operating Procedures',
     problem: 'Compliance officers spend hours looking up regulatory warnings and corporate guidelines, frequently making reference mistakes that lead to costly audit warnings.',
-    solution: 'Build a hybrid Qdrant dense vector and BM25 keyword-matched retrieval pipeline over internal regulatory corpuses, so every answer cites its source document and paragraph.',
-    mappedProducts: ['Enterprise RAG Architectures', 'AI Chatbots', 'Custom LLM Fine-Tuning Platform'],
+    solution: 'Build a search system over your internal regulatory documents that combines meaning-based and keyword search, so every answer cites its exact source document and paragraph.',
+    mappedProducts: ['Enterprise Knowledge Search', 'AI Chatbots', 'Custom-Tuned Assistants'],
     specs: [
-      'Parent-Child recursive chunk mapping ensuring visual hierarchy context',
-      'Active document permissions syncing with Windows Active Directory/LDAP',
-      'Rigid brand compliance filters blocking responses without manual sources'
+      'Understands document structure, not just flat text',
+      'Respects your existing document permissions and access levels',
+      'Only answers when it can cite a real source, no guessing'
     ],
     sampleFlow: [
       'Officer asks compliance tool about specific policy breach exceptions',
-      'RAG Engine initiates hybrid vector and keyword query in Qdrant DB',
-      'Retrieves chunk segments alongside structural parent-document metadata',
+      'System searches the document set for the most relevant passages',
+      'Retrieves the matching passage along with its source context',
       'Renders cited answer containing exact paragraph and audit date stamp'
     ],
     icon: <Scale className="w-5 h-5 text-amber-400" />
@@ -104,18 +105,18 @@ const SOLUTIONS: SolutionCase[] = [
     industry: 'CRM Integrations & Customer Lifecycle Systems',
     title: 'Enterprise CRM Syncing & Automated Ticketing Lifecycle',
     problem: 'Sales and relations teams spend dozens of hours manually entering lead data, transcribing client calls, logging opportunity statuses, and sorting support tickets.',
-    solution: 'Deploy a high-speed multi-agent CRM orchestrator that intercepts incoming webhooks, enriches lead metadata, updates opportunity fields in HubSpot/Salesforce, and drafts ticket replies.',
+    solution: 'Deploy a fast CRM automation layer that catches incoming activity, enriches lead details, keeps opportunity records up to date, and drafts ticket replies automatically.',
     mappedProducts: ['CRM Automation Orchestrator', 'AI Helpdesk & Ticketing Agent', 'CRM Lead Enrichment & Pipeline Engine'],
     specs: [
-      'Two-way custom Salesforce and HubSpot REST API synchronizations with concurrency locks',
-      'Dynamic email draft compiler pulling context from past conversations and RAG solutions',
-      'Automated user profile enrichment and technographic classification'
+      'Keeps your CRM records in sync automatically, both ways',
+      'Drafts follow-up emails using context from past conversations',
+      'Automated user profile enrichment and classification'
     ],
     sampleFlow: [
       'New customer books demo or opens support ticket on enterprise portal',
-      'Orchestrator cross-references existing Salesforce contact registry for duplicate records',
-      'Lead Enrichment node scrapes web presence to classify technographic and funding profiles',
-      'Updates HubSpot deal pipeline status, auto-assigns SDR, and pushes Slack confirmation'
+      'System checks the existing contact registry for duplicate records',
+      'Enriches the lead by researching public company and funding information',
+      'Updates deal pipeline status, auto-assigns a rep, and pushes a team notification'
     ],
     icon: <Database className="w-5 h-5 text-indigo-400" />
   }
@@ -125,6 +126,12 @@ export default function Solutions() {
   const [activeSolutionId, setActiveSolutionId] = useState<string>(SOLUTIONS[0].id);
 
   const activeSolution = SOLUTIONS.find(s => s.id === activeSolutionId) || SOLUTIONS[0];
+
+  useSEO({
+    title: 'AI Automation Solutions by Industry',
+    description: 'How Mashnu\'s reusable multi-agent stack solves real operations problems in financial services, healthcare, real estate, logistics, and e-commerce.',
+    path: '/solutions',
+  });
 
   return (
     <div className="relative min-h-screen text-slate-900 font-sans selection:bg-blue-500/20 selection:text-blue-900 py-16">
@@ -201,7 +208,7 @@ export default function Solutions() {
 
                 {/* Bullets */}
                 <div className="space-y-2.5 pt-4 border-t border-slate-200">
-                  <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block">Core Technical Standards</span>
+                  <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block">Key Highlights</span>
                   <div className="space-y-2">
                     {activeSolution.specs.map((spec, idx) => (
                       <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700">

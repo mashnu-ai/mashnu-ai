@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from '../components/Router';
-import { 
+import { useSEO } from '../components/SEO';
+import {
   Compass, ArrowRight, CheckCircle2, ChevronRight, Landmark, 
   Code, Shield, Activity, Cloud, ShoppingBag, Cpu, BookOpen, 
   Binary, Server, Workflow, Info, CircleDot, Eye, Globe, Sparkles
@@ -32,9 +33,9 @@ const VISION_STAGES: StageItem[] = [
     whereWeAre: "We are actively deploying high-performance voice and messaging solutions directly for enterprise partners, compiling their real-world edge cases into our shared code repositories.",
     description: "By working directly with clinic chains, logistics coordinators, and DTC companies, we gain unmediated exposure to real-world integration friction. This hands-on phase generates the proprietary code patterns that we continuously compile into our core micro-agent framework, ensuring we build software grounded in physical business bottlenecks rather than speculative academic exercises.",
     unlockedCapabilities: [
-      "Sub-480ms streaming voice agent deployments",
-      "Direct EMR (AthenaHealth) and CRM (Salesforce) read-write state syncs",
-      "Robust custom Voice Activity Detection (VAD) models"
+      "Fast, natural-feeling voice agent deployments",
+      "Direct read-write connections to records and CRM systems",
+      "Reliable handling of real conversations, including background noise"
     ],
     investorHireNote: "Venture Partners: This stage generates direct cash-flow to fund core platform development. Hires: You will gain deep experience writing low-level network bridges that handle live traffic under production conditions.",
     icon: <Workflow className="w-5 h-5 text-[#2563EB]" />,
@@ -50,9 +51,9 @@ const VISION_STAGES: StageItem[] = [
     whereWeAre: "Our core multi-tenant administration dashboards are in private beta testing with active pilot users, allowing managers to monitor runtimes and tweak prompts.",
     description: "To scale beyond custom engineering agreements, we are decoupling our core integrations into repeatable SaaS modules. Instead of manual code deployments, corporate clients will be able to provision, authorize, and integrate pre-built communication agents into standard channels (e.g., Twilio, Shopify, HubSpot) using an automated web-based subscription model.",
     unlockedCapabilities: [
-      "No-code dashboard for tenant configuration and agent provisioning",
-      "Standardized multi-tenant database schemas with complete logical isolation",
-      "Simplified billing structures mapped directly to raw API token consumption"
+      "No-code dashboard for account configuration and agent provisioning",
+      "Complete data isolation between every customer account",
+      "Simple, predictable billing tied directly to usage"
     ],
     investorHireNote: "Venture Partners: This unlocks exponential recurring revenue margins and establishes a high-growth SaaS financial model. Hires: You will build secure multi-tenant architectures and design clean state routers.",
     icon: <Cloud className="w-5 h-5 text-[#2563EB]" />,
@@ -64,15 +65,15 @@ const VISION_STAGES: StageItem[] = [
     title: "AI Platform",
     status: 'rd',
     statusLabel: "In Active R&D",
-    whatItMeans: "Providing an orchestration gateway where corporate IT teams can design, test, configure, and monitor their own multi-agent graphs.",
-    whereWeAre: "The core node execution engine is fully operational in our development sandbox, and we are currently finalizing initial REST API and webhook schemas.",
-    description: "The platform layer shifts engineering ownership to the client. By providing standard SDKs and a visual node-graph builder, enterprise IT personnel can connect disparate databases, apply custom safety guardrails, configure deterministic conditional transitions, and hot-swap underlying LLM nodes without touching base container code.",
+    whatItMeans: "Providing a self-serve control panel where internal teams can design, test, configure, and monitor their own automated workflows.",
+    whereWeAre: "The core engine is fully operational in our development environment, and we are currently finalizing how teams will connect their own tools to it.",
+    description: "The platform layer shifts day-to-day control to the client. Teams will be able to connect their own data sources, apply their own safety rules, and adjust how workflows behave without needing engineering support for every change.",
     unlockedCapabilities: [
-      "Visual orchestration canvas with state-consistent LangGraph runtimes",
-      "Open telemetry standards for tracking millisecond-level prompt and tool latencies",
-      "Granular IAM role policies and department-level API spending limits"
+      "Visual workflow builder with reliable, predictable behavior",
+      "Clear visibility into performance and response times",
+      "Granular access controls and department-level spending limits"
     ],
-    investorHireNote: "Venture Partners: Establishes Mashnu as the core operating system for enterprise agent operations, creating a strong platform moat. Hires: You will optimize highly asynchronous execution DAGs and state machines.",
+    investorHireNote: "Venture Partners: Establishes Mashnu as the core operating system for enterprise agent operations, creating a strong platform moat. Hires: You will work on the systems that keep complex automated workflows fast and reliable.",
     icon: <Server className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
   },
@@ -82,15 +83,15 @@ const VISION_STAGES: StageItem[] = [
     title: "AI Cloud",
     status: 'scheduled',
     statusLabel: "Scheduled Roadmap (Late 2026)",
-    whatItMeans: "Deploying secure, isolated virtual private cloud (VPC) containers to host client model weights with regional compliance guarantees.",
-    whereWeAre: "The structural architecture is mapped, waiting for aggregate platform traffic to reach cost-effective bare-metal hosting thresholds.",
-    description: "Commercial API endpoints present severe latency, routing, and privacy risks for enterprise buyers. Our cloud phase will offer fully isolated, serverless hosting. By dedicating sovereign container clusters to individual tenants, we guarantee complete data residency compliance and provide predictable, flat-rate inference billing.",
+    whatItMeans: "Deploying secure, fully isolated private hosting environments with regional compliance guarantees for each client.",
+    whereWeAre: "The plan is mapped, waiting for aggregate platform traffic to reach cost-effective hosting thresholds.",
+    description: "Shared, third-party hosting presents latency, routing, and privacy risks for enterprise buyers. Our cloud phase will offer fully isolated, private hosting dedicated to each client, guaranteeing complete data residency compliance and predictable, flat-rate billing.",
     unlockedCapabilities: [
-      "Zero-data-leakage virtual private cloud (VPC) containers",
-      "Automated load-balancing with hot-standby container fallbacks",
-      "Regional endpoint hosting to satisfy HIPAA and GDPR residency laws"
+      "Zero-data-leakage private hosting environments",
+      "Automated load-balancing with reliable fallback coverage",
+      "Regional hosting that satisfies HIPAA and GDPR residency requirements"
     ],
-    investorHireNote: "Venture Partners: Alleviates dependence on volatile third-party model providers, improving gross margins. Hires: You will architect Kubernetes deployments and optimize container cold-start speeds.",
+    investorHireNote: "Venture Partners: Alleviates dependence on volatile third-party providers, improving gross margins. Hires: You will architect resilient cloud deployments and optimize hosting speed and cost.",
     icon: <Activity className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=1200&q=80"
   },
@@ -100,13 +101,13 @@ const VISION_STAGES: StageItem[] = [
     title: "AI Agent Marketplace",
     status: 'scheduled',
     statusLabel: "Scheduled Roadmap (2027)",
-    whatItMeans: "Establishing a curated, audited repository where developers can publish and license specialized domain-specific agent graphs.",
-    whereWeAre: "Projected for mid-2027 following the stabilization of our primary developer platform APIs and telemetry standards.",
-    description: "No single company can build specialized agents for every niche regulatory or logistics domain. The Marketplace will enable third-party software developers to package, publish, and monetize custom agent nodes. Mashnu will enforce strict static-analysis security audits to ensure all marketplace modules are entirely free of data-leak hazards.",
+    whatItMeans: "Establishing a curated, audited marketplace where developers can publish and license specialized, industry-specific agents.",
+    whereWeAre: "Projected for mid-2027 following the stabilization of our primary developer platform.",
+    description: "No single company can build specialized agents for every niche regulatory or logistics domain. The Marketplace will enable third-party developers to package, publish, and monetize custom agents. Mashnu will enforce strict security audits to ensure all marketplace listings are free of data-leak hazards.",
     unlockedCapabilities: [
-      "Standard packaging format (.mashnu) for multi-agent DAGs",
-      "Secure sandbox execution with strict outbound network limits",
-      "Decentralized licensing ledger with automatic revenue sharing"
+      "Standard packaging format for shareable automated agents",
+      "Secure sandboxed execution with strict access limits",
+      "Automatic revenue sharing for published listings"
     ],
     investorHireNote: "Venture Partners: Introduces high-margin network effects as developer ecosystems consolidate around our runtime core. Hires: You will build secure sandboxes and static analysis linting suites.",
     icon: <ShoppingBag className="w-5 h-5 text-[#2563EB]" />,
@@ -118,15 +119,15 @@ const VISION_STAGES: StageItem[] = [
     title: "AI Infrastructure",
     status: 'scheduled',
     statusLabel: "Scheduled Roadmap (2027)",
-    whatItMeans: "Engineering custom, bare-metal edge nodes and WASM-compiled model caches that bypass traditional cloud API network queues.",
-    whereWeAre: "We are currently running early feasibility tests on local container cold-start speeds and distributed caching behaviors.",
-    description: "True real-time action requires bypassing centralized commercial cloud queues. We aim to run optimized, open-weight model instances (such as Llama 3 or Mistral) inside WebAssembly (WASM) sandboxes deployed on localized edge routers. This drastically reduces roundtrip network distance and minimizes runtime overhead.",
+    whatItMeans: "Engineering our own edge infrastructure that bypasses slow, shared cloud queues to deliver near-instant responses.",
+    whereWeAre: "We are currently running early feasibility tests on response speed and reliability at scale.",
+    description: "True real-time action requires bypassing centralized, shared queues. We aim to run our own optimized infrastructure closer to the end user, drastically reducing the distance and overhead between a request and a response.",
     unlockedCapabilities: [
-      "WASM-compiled edge model generation under 15ms TTFT",
-      "Distributed cache coordination to hold weight adapters near the request source",
-      "Edge VAD signal processing bypassing high-overhead third-party streaming middleware"
+      "Near-instant response generation at the edge",
+      "Distributed caching to keep frequent requests fast",
+      "Reduced dependence on slow, high-overhead third-party middleware"
     ],
-    investorHireNote: "Venture Partners: Protects core infrastructure against cloud-provider lock-in and pricing spikes. Hires: You will write low-level C++/Rust compilation pipelines for model inference engines.",
+    investorHireNote: "Venture Partners: Protects core infrastructure against vendor lock-in and pricing spikes. Hires: You will build low-level, high-performance infrastructure for real-time systems.",
     icon: <Cpu className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80"
   },
@@ -136,13 +137,13 @@ const VISION_STAGES: StageItem[] = [
     title: "AI Research",
     status: 'scheduled',
     statusLabel: "Scheduled Roadmap (2028)",
-    whatItMeans: "Developing and publishing novel mathematical techniques for parameter-efficient fine-tuning and hybrid chunk-graph retrieval.",
-    whereWeAre: "We systematically track active machine learning literature, with formal academic collaboration budgets earmarked for 2028.",
-    description: "Instead of blindly applying generic commercial models, our research track will seek to discover efficient, specialized model architectures. We will focus on optimizing model parameter efficiency (PEFT) and structural graph embeddings to help lightweight models perform complex, multi-tiered business reasoning with a fraction of current hardware budgets.",
+    whatItMeans: "Developing and publishing novel techniques for efficient, specialized AI models and smarter search over complex data.",
+    whereWeAre: "We systematically track active research in the field, with formal academic collaboration budgets earmarked for 2028.",
+    description: "Instead of blindly applying generic commercial models, our research track will seek to discover efficient, specialized model designs, helping lightweight models perform complex, multi-tiered business reasoning at a fraction of current hardware costs.",
     unlockedCapabilities: [
-      "Proprietary parameter adapter architectures tuned for strict compliance workflows",
-      "Advanced mathematical evaluation sets for multi-agent network consensus",
-      "Novel high-density chunk-graph retrieval algorithms"
+      "Specialized model designs tuned for strict compliance workflows",
+      "Advanced evaluation methods for multi-agent coordination quality",
+      "Novel techniques for retrieving the right information faster"
     ],
     investorHireNote: "Venture Partners: Builds long-term deep-tech IP that cannot be replicated by basic API wrappers. Hires: You will conduct model training experiments, publish papers, and design custom adapters.",
     icon: <BookOpen className="w-5 h-5 text-[#2563EB]" />,
@@ -154,13 +155,13 @@ const VISION_STAGES: StageItem[] = [
     title: "Advanced Quantum AI",
     status: 'horizon',
     statusLabel: "Long-term Horizon (5-10 Year Plan)",
-    whatItMeans: "Collaborating with physical-layer researchers to design quantum-assisted neural pathways for extreme-scale logical deduction.",
-    whereWeAre: "This remains a conceptual, long-term research mandate designed to bypass classical physical silicon limits as standard microprocessors approach atomic scaling limits.",
-    description: "As the physical boundaries of silicon microprocessors are reached, traditional high-performance parallel computing will demand alternative hardware architectures. Our long-term mission includes partnering with quantum hardware providers to adapt state-routing DAGs and vector indexing mathematics to run on physical quantum computing gates, targeting near-instantaneous multi-variable decision pathways.",
+    whatItMeans: "Collaborating with hardware researchers to explore next-generation computing for extreme-scale reasoning tasks.",
+    whereWeAre: "This remains a conceptual, long-term research mandate looking beyond the limits of today's computing hardware.",
+    description: "As today's computing hardware approaches its physical limits, high-performance systems will demand alternative approaches. Our long-term mission includes partnering with hardware providers to explore what comes next, targeting near-instantaneous decision-making at massive scale.",
     unlockedCapabilities: [
-      "Quantum annealing algorithms for high-dimensional semantic clustering",
-      "Hardware-native parallel state resolution for thousands of concurrent agent networks",
-      "Near-zero energy consumption thresholds for hyper-scale enterprise calculations"
+      "Advanced algorithms for large-scale pattern recognition",
+      "Parallel processing for thousands of concurrent agent networks",
+      "Dramatically lower energy costs for enterprise-scale calculations"
     ],
     investorHireNote: "Venture Partners: Positions Mashnu as a forward-looking participant in the post-silicon computational shift. Hires: You will bridge the gap between quantum mechanics and neural architectures.",
     icon: <Binary className="w-5 h-5 text-[#2563EB]" />,
@@ -172,15 +173,15 @@ const VISION_STAGES: StageItem[] = [
     title: "Spatial AI & AR/VR",
     status: 'horizon',
     statusLabel: "Spatial Computing Horizon (2028+)",
-    whatItMeans: "Connecting spatial visual telemetry and hand-pose vectors directly to low-latency multi-agent planning loops.",
-    whereWeAre: "Developing software interfaces to stream raw visual feeds from Apple Vision Pro and Meta Quest devices directly to local model pipelines.",
-    description: "Sovereign agents should not be confined to 2D displays. By establishing real-time spatial pipelines, workers equipped with AR/VR headsets can interact with floating administrative agents that visually coordinate surgical steps, construction logs, or remote flight telemetries, utilizing low-overhead WASM compilers to update high-density 3D spatial grids.",
+    whatItMeans: "Connecting real-time spatial awareness directly to fast, coordinated agent planning.",
+    whereWeAre: "Developing software interfaces to bring AR/VR headset data directly into our agent systems.",
+    description: "Assistants shouldn't be confined to 2D displays. By establishing real-time spatial awareness, workers equipped with AR/VR headsets can interact with agents that visually coordinate surgical steps, construction logs, or remote operations.",
     unlockedCapabilities: [
-      "Seamless streaming of head-pose and gaze vector sets into active agent memory",
-      "Sub-30ms real-time spatial telemetry overlay logic",
-      "Interactive 3D structural model compilation directly from speech inputs"
+      "Seamless streaming of movement and gaze data into active agent memory",
+      "Real-time spatial overlay with minimal delay",
+      "Interactive 3D model generation directly from speech"
     ],
-    investorHireNote: "Venture Partners: Opens direct pathways into industrial manufacturing, remote surgeries, and spatial military planning. Hires: You will construct high-fidelity WebXR interfaces and low-overhead spatial matrix transformations.",
+    investorHireNote: "Venture Partners: Opens direct pathways into industrial manufacturing, remote assistance, and spatial planning. Hires: You will build high-fidelity spatial interfaces and real-time processing pipelines.",
     icon: <Eye className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=1200&q=80"
   },
@@ -190,13 +191,13 @@ const VISION_STAGES: StageItem[] = [
     title: "Neural-Interface AI (BCI)",
     status: 'horizon',
     statusLabel: "Neural Synthesis Horizon",
-    whatItMeans: "Direct cognitive routing bridging electroencephalography (EEG) signals with sub-10ms agent decision matrices.",
-    whereWeAre: "Mapping structural signal parameters and evaluating safe isolation boundaries for raw neural signal ingest.",
-    description: "The ultimate bottleneck in software utilization is physical coordinate entry and speech. We envision a future where sovereign personal assistant agents respond directly to focused mental intentions. By compiling raw cognitive EEG feeds into mathematical tasks, our agents can execute database transactions, initiate emergency phone triage, or summarize operational pipelines entirely via cognitive triggers.",
+    whatItMeans: "Direct cognitive input, bridging brain-signal interfaces with fast, reliable agent responses.",
+    whereWeAre: "Mapping the technical requirements and evaluating safe boundaries for this kind of interaction.",
+    description: "The ultimate bottleneck in software use is physical input and speech. We envision a future where a personal assistant can respond directly to focused mental intent: executing tasks, initiating emergency help, or summarizing information, entirely hands-free.",
     unlockedCapabilities: [
-      "Statistically grounded EEG vector classification for cognitive task routing",
-      "Sub-5ms mental intent triggers mapped directly to REST action nodes",
-      "Robust neuro-privacy guardrails running locally on hardware adapters"
+      "Reliable classification of intent for task routing",
+      "Fast, low-latency triggers mapped directly to real actions",
+      "Strong privacy protections built in from the start"
     ],
     investorHireNote: "Venture Partners: Establishes a radical tech moat in physical-neural interface safety software. Hires: You will collaborate with physical signal analysts and write custom digital signal processing algorithms.",
     icon: <Sparkles className="w-5 h-5 text-[#2563EB]" />,
@@ -208,15 +209,15 @@ const VISION_STAGES: StageItem[] = [
     title: "Satellite Space Mesh",
     status: 'horizon',
     statusLabel: "Interplanetary Horizon",
-    whatItMeans: "Extending localized multi-agent sovereign networks to physical space mesh topologies bypassing ground queues.",
-    whereWeAre: "Documenting protocol constraints for low Earth orbit (LEO) radio communications and distributed agent state handoffs.",
-    description: "Sovereign personal assistants and logistics agents must be resilient to terrestrial network outages. By routing model inference and key-value states over decentralized satellite arrays, Mashnu guarantees constant, unblockable intelligence access across global coordinates, marine lanes, and high-altitude space flights.",
+    whatItMeans: "Extending our personal assistant and logistics agents to work reliably beyond standard ground networks.",
+    whereWeAre: "Documenting the technical requirements for satellite-based communication and reliable agent handoffs.",
+    description: "Personal assistants and logistics agents must be resilient to network outages. By routing agent access over decentralized satellite networks, Mashnu can guarantee constant, unblockable access across global coordinates, marine lanes, and high-altitude flights.",
     unlockedCapabilities: [
-      "Decentralized space-mesh database consensus running across LEO routing nodes",
-      "Dynamic model state partitioning and routing optimization for satellite handoffs",
-      "Radiation-resilient localized software containers hosting agent logic"
+      "Resilient access across a decentralized satellite network",
+      "Dynamic routing optimization for reliable handoffs",
+      "Hardened, resilient software running at the edge"
     ],
-    investorHireNote: "Venture Partners: Unlocks completely unblockable private telemetry networks for global corporations and sovereign states. Hires: You will build high-reliability communication protocols and specialized satellite state sync engines.",
+    investorHireNote: "Venture Partners: Unlocks unblockable private access for global corporations and organizations operating in remote areas. Hires: You will build high-reliability communication protocols and resilient state sync systems.",
     icon: <Globe className="w-5 h-5 text-[#2563EB]" />,
     imageUrl: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1200&q=80"
   }
@@ -225,6 +226,12 @@ const VISION_STAGES: StageItem[] = [
 export default function Vision() {
   const [activeStageId, setActiveStageId] = useState<string>('services');
   const activeStage = VISION_STAGES.find(s => s.id === activeStageId) || VISION_STAGES[0];
+
+  useSEO({
+    title: 'Our Roadmap and Vision',
+    description: 'How Mashnu AI is engineering agent infrastructure that gets more capable over time: from production-grade automation today to research on efficient, specialized models.',
+    path: '/vision',
+  });
 
   return (
     <div className="relative min-h-screen text-[#0F172A] font-sans selection:bg-[#2563EB]/20 selection:text-[#2563EB] py-16 animate-fade-in">
@@ -265,7 +272,7 @@ export default function Vision() {
               <strong>At Mashnu AI, we operate with a completely different commitment.</strong> We are systems engineers first. We do not build throwaway, single-tenant scripts. We build reproducible, hardened autonomous building blocks.
             </p>
             <p>
-              Every database link, vector search node, and voice streaming handler we implement for our corporate clients contributes reusable logic back to our core libraries. This allows us to scale with exceptional capital efficiency, steadily migrating from high-touch custom services to a fully autonomous edge cloud platform.
+              Every integration, search capability, and voice handler we implement for our corporate clients contributes reusable logic back to our core platform. This allows us to scale with exceptional capital efficiency, steadily migrating from high-touch custom services to a fully autonomous platform.
             </p>
           </div>
         </section>
@@ -280,7 +287,7 @@ export default function Vision() {
               [PLACEHOLDER: Engineering Vision Walkthrough Video]
             </span>
             <p className="text-xs text-[#64748B] max-w-lg mx-auto leading-relaxed">
-              Requires a high-fidelity, production-grade video walkthrough from the founders detailing our bare-metal compiler optimization targets, edge adaptive model architectures, and capital efficiency projections.
+              Requires a high-fidelity, production-grade video walkthrough from the founders detailing our roadmap, technology approach, and capital efficiency projections.
             </p>
           </div>
         </section>
@@ -472,7 +479,7 @@ export default function Vision() {
             </div>
 
             <div className="mt-8 pt-4 border-t border-[#E2E8F0] flex items-center justify-between text-[10px] text-[#64748B]">
-              <span>Audit Hash: SHA-256 Verified</span>
+              <span>Reviewed & Verified</span>
               <span className="text-[#2563EB] font-semibold uppercase">Mashnu Platform Track</span>
             </div>
 

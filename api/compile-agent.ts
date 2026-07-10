@@ -17,6 +17,6 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     res.json(compileAgent(prompt));
   } catch (error: any) {
     console.error("Compilation error:", error);
-    res.status(500).json({ error: error?.message || "Failed to compile the agent pipeline." });
+    res.status(500).json({ error: "Failed to compile the agent pipeline." });
   }
 }

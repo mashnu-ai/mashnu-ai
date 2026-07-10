@@ -240,6 +240,20 @@
   to { transform: rotate(360deg); }
 }
 
+@keyframes kenBurns {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.07) translate(-0.6%, -0.8%); }
+  100% { transform: scale(1) translate(0, 0); }
+}
+
+@keyframes logoWobble {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-30deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(30deg); }
+  100% { transform: rotate(0deg); }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -252,10 +266,27 @@
   animation: spinSlow 12s linear infinite;
 }
 
+.animate-ken-burns {
+  animation: kenBurns 20s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  animation-play-state: running;
+  will-change: transform;
+}
+
+.group:hover .animate-ken-burns {
+  animation-play-state: paused;
+}
+
+.animate-logo-wobble {
+  animation: logoWobble 3.2s ease-in-out infinite;
+  transform-origin: 50% 85%;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in,
   .animate-flow-dash,
   .animate-spin-slow,
+  .animate-ken-burns,
+  .animate-logo-wobble,
   .animate-pulse,
   .animate-ping,
   .animate-bounce,

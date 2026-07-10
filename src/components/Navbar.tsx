@@ -21,7 +21,6 @@ export default function Navbar() {
     { name: 'Solutions', href: '/solutions' },
     { name: 'Platform', href: '/platform' },
     { name: 'Vision', href: '/vision' },
-    { name: 'AI Assistant', href: '/assistant' },
     { name: 'Careers', href: '/careers' },
     { name: 'Pricing', href: '/pricing' },
   ];
@@ -111,7 +110,14 @@ export default function Navbar() {
                 </Link>
               ))}
             </div>
-            <div className="pt-4 border-t border-[#E2E8F0] mt-4">
+            <div className="pt-4 border-t border-[#E2E8F0] mt-4 space-y-2">
+              <Link
+                to="/assistant"
+                onClick={() => setIsOpen(false)}
+                className="w-full py-2.5 rounded-full bg-primary-accent-light hover:bg-primary-accent/15 text-center block text-xs font-medium text-primary-accent transition-all"
+              >
+                AI Assistant
+              </Link>
               <Link
                 to="/contact"
                 onClick={() => setIsOpen(false)}

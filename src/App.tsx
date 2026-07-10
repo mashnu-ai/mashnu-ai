@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Building2, Layers, BarChart3, Landmark } from 'lucide-react';
 import { ScrollReveal } from './components/ScrollReveal';
 import CommandPalette from './components/CommandPalette';
+import { useSEO } from './components/SEO';
 
 // Modular Sections
 import Hero from './components/Hero';
@@ -29,10 +30,38 @@ import Blog from './pages/Blog';
 import Careers from './pages/Careers';
 import Contact from './pages/Contact';
 import Assistant from './pages/Assistant';
+import ROICalculator from './pages/ROICalculator';
+
+const HOMEPAGE_STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Mashnu AI',
+  url: 'https://mashnu.com/',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://mashnu.com/blog?q={search_term_string}',
+    'query-input': 'required name=search_term_string',
+  },
+};
 
 function AppLayout() {
   const [activeTab, setActiveTab] = useState<'company' | 'roadmap' | 'benchmarks' | 'vision'>('company');
   const { path } = useRouter();
+  const isHomepage = path === '/';
+
+  // Sub-pages set their own title/description/structured data; only apply
+  // the homepage's SEO tags while actually on the homepage, otherwise this
+  // would stomp whatever the active sub-page just set on every render.
+  useSEO(
+    isHomepage
+      ? {
+          title: 'Mashnu AI: Personal AI Assistant for Real Life',
+          description: 'Mashnu builds a personal AI assistant that answers calls, replies to messages, and remembers what matters to you. The same technology powers AI voice, WhatsApp, and automation agents for businesses.',
+          path: '/',
+          structuredData: HOMEPAGE_STRUCTURED_DATA,
+        }
+      : null
+  );
 
   if (path !== '/') {
     return (
@@ -58,6 +87,7 @@ function AppLayout() {
               {path === '/careers' && <Careers />}
               {path === '/contact' && <Contact />}
               {path === '/assistant' && <Assistant />}
+              {path === '/roi-calculator' && <ROICalculator />}
             </motion.div>
           </AnimatePresence>
         </div>

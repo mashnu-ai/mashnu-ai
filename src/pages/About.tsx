@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link } from '../components/Router';
-import { 
+import { useSEO } from '../components/SEO';
+import {
   Compass, ArrowRight, Code, Shield, Landmark, Terminal, Cpu, Layers, HeartHandshake
 } from 'lucide-react';
 
 export default function About() {
+  useSEO({
+    title: 'About Mashnu AI',
+    description: 'Mashnu AI was founded to replace fragile API consulting wrappers with permanent, deterministic systems engineering for AI voice, WhatsApp, and automation agents.',
+    path: '/about',
+  });
+
   return (
     <div className="relative min-h-screen text-slate-900 font-sans selection:bg-blue-500/20 selection:text-blue-900 py-16">
       

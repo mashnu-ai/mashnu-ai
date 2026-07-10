@@ -2,19 +2,21 @@ import dotenv from "dotenv";
 import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
-import { compileAgent, simulateStep, assistantChat } from "./src/server/agentLogic";
-import { notifyContact } from "./src/server/notifyContact";
+import { compileAgent, simulateStep, assistantChat, assistantChatStatus } from "./src/server/agentLogic";
+import { notifyContact, validateContactSubmission } from "./src/server/notifyContact";
+import { detectGeo } from "./src/server/geo";
+import { getModelPricing } from "./src/server/modelPricing";
 
 // Load .env.local first (real secrets, gitignored), then .env as a fallback.
 dotenv.config({ path: ".env.local" });
 dotenv.config();
 
-// This server has no external AI API dependency and no API keys required.
-// The "compiler", "simulator", "lead qualifier", and "assistant" endpoints
-// return realistic, deterministic sample content built from the request
-// inputs, so the demo works instantly and costs nothing to host.
-// Shared logic lives in src/server/agentLogic.ts so the same behavior is
-// used both here (local/Node dev server) and in api/*.ts (Vercel functions).
+// The "compiler" and "simulator" endpoints return deterministic sample
+// content built from the request inputs — no API key required.
+// The "assistant" endpoint calls the Groq API (GROQ_API_KEY) for real
+// chat responses. Shared logic lives in src/server/agentLogic.ts so the
+// same behavior is used both here (local/Node dev server) and in
+// api/*.ts (Vercel functions).
 
 async function startServer() {
   const app = express();
@@ -34,7 +36,7 @@ async function startServer() {
       res.json(compileAgent(prompt));
     } catch (error: any) {
       console.error("Compilation error:", error);
-      res.status(500).json({ error: error?.message || "Failed to compile the agent pipeline." });
+      res.status(500).json({ error: "Failed to compile the agent pipeline." });
     }
   });
 
@@ -50,41 +52,77 @@ async function startServer() {
       res.json(simulateStep(compiledAgent, userInput));
     } catch (error: any) {
       console.error("Simulation error:", error);
-      res.status(500).json({ error: error?.message || "Failed to simulate agent execution trace." });
+      res.status(500).json({ error: "Failed to simulate agent execution trace." });
     }
   });
 
   // API Route: Contact form submission — emails the submission to NOTIFY_EMAIL via Resend
+  // and persists it to Supabase (see src/server/notifyContact.ts)
   app.post("/api/contact", async (req, res) => {
+    const submission = validateContactSubmission(req.body);
+    if ("error" in submission) {
+      return res.status(400).json({ error: submission.error });
+    }
+
     try {
-      const { fullName, email, company, useCase } = req.body;
-
-      if (!useCase || !email) {
-        return res.status(400).json({ error: "Please include your email and a description of what you want to automate." });
-      }
-
-      await notifyContact({ fullName, email, company, useCase });
-
+      await notifyContact(submission);
       res.json({ received: true });
     } catch (error: any) {
       console.error("Contact form error:", error);
-      res.status(500).json({ error: error?.message || "Failed to send your message." });
+      res.status(500).json({ error: "Failed to send your message. Please try again shortly." });
     }
   });
 
   // API Route: Personal AI Assistant Multi-turn Chat
   app.post("/api/assistant/chat", async (req, res) => {
     try {
-      const { messages } = req.body;
+      const { messages, sessionId } = req.body;
 
       if (!messages || !Array.isArray(messages)) {
         return res.status(400).json({ error: "A valid array of messages is required." });
       }
 
-      res.json(assistantChat(messages));
+      res.json(await assistantChat(messages, sessionId));
     } catch (error: any) {
       console.error("Personal Assistant chat error:", error);
-      res.status(500).json({ error: error?.message || "Failed to generate chat response." });
+      res.status(500).json({ error: "Failed to generate chat response. Please try again shortly." });
+    }
+  });
+
+  // API Route: Check whether a visitor has hit the free-question limit,
+  // without sending a message (used to disable the widget on reopen/refresh).
+  app.get("/api/assistant/status", async (req, res) => {
+    try {
+      const sessionId = typeof req.query.sessionId === "string" ? req.query.sessionId : undefined;
+      res.json(await assistantChatStatus(sessionId));
+    } catch (error: any) {
+      console.error("Assistant status error:", error);
+      res.status(500).json({ error: "Failed to check assistant status." });
+    }
+  });
+
+  // API Route: Detect visitor's country + currency from IP, with live exchange rates
+  app.get("/api/geo", async (req, res) => {
+    try {
+      const forwardedFor = req.headers["x-forwarded-for"];
+      const ip = Array.isArray(forwardedFor)
+        ? forwardedFor[0]
+        : (forwardedFor as string | undefined)?.split(",")[0]?.trim() || req.socket.remoteAddress;
+
+      res.json(await detectGeo(ip));
+    } catch (error: any) {
+      console.error("Geo detection error:", error);
+      res.status(500).json({ error: "Failed to detect location." });
+    }
+  });
+
+  // API Route: Live AI model token pricing, fetched from Groq's own API
+  app.get("/api/model-pricing", async (req, res) => {
+    try {
+      res.json(await getModelPricing());
+    } catch (error: any) {
+      console.error("Model pricing error:", error);
+      res.status(500).json({ error: "Failed to fetch model pricing." });
     }
   });
 

@@ -27,7 +27,7 @@ export default function Hero({ onBookDemoClick, onSeePlatformClick }: HeroProps)
 
       <ScrollReveal yOffset={20} duration={0.24}>
         <p className="text-base sm:text-lg text-text-sub font-sans max-w-2xl mx-auto leading-relaxed">
-          Mashnu builds a personal AI assistant that remembers what matters to you, handles calls and messages on your behalf, and takes care of the small, repetitive things — so you get real time back, not another app to manage.
+          Mashnu builds a personal AI assistant that remembers what matters to you, handles calls and messages on your behalf, and takes care of the small, repetitive things, so you get real time back, not another app to manage.
         </p>
       </ScrollReveal>
 
