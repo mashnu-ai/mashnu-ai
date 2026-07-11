@@ -8,7 +8,7 @@ import {
 export default function About() {
   useSEO({
     title: 'About Mashnu AI',
-    description: 'Mashnu AI was founded to replace fragile API consulting wrappers with permanent, deterministic systems engineering for AI voice, WhatsApp, and automation agents.',
+    description: 'Mashnu AI was started to build automation that actually holds up, not fragile scripts glued together by an agency. Meet the founder and the platform-first approach behind it.',
     path: '/about',
   });
 
@@ -25,13 +25,13 @@ export default function About() {
         <section className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-800 text-[10px] font-mono uppercase tracking-widest text-slate-400">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span>Company Manifesto & DNA</span>
+            <span>Who We Are</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-slate-900">
-            Built for Long-Term Moats
+            Built to last, not to launch
           </h1>
           <p className="text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            Mashnu AI was established to replace fragile API consulting wrappers with permanent, deterministic systems engineering.
+            Mashnu AI started because too many businesses were paying agencies a lot of money for automation that broke the moment something changed underneath it. We wanted to build it the way real infrastructure gets built: to hold up.
           </p>
         </section>
 
@@ -42,13 +42,13 @@ export default function About() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 blur-[40px] pointer-events-none" />
             
             <div className="space-y-4 relative z-10">
-              <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest font-bold block">The Founder's Story</span>
-              <h2 className="text-2xl font-bold font-display tracking-tight text-slate-900">Kiran<br />CTO & Technical Founder</h2>
+              <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest font-bold block">The Founder</span>
+              <h2 className="text-2xl font-bold font-display tracking-tight text-slate-900">Kiran<br />CTO & Founder</h2>
               <p className="text-xs text-slate-400 leading-relaxed font-sans">
-                Prior to founding Mashnu, Kiran spent over a decade scaling low-latency transactional database kernels and stateful distributed routing networks.
+                Before starting Mashnu, Kiran spent over a decade building the kind of systems that aren't allowed to go down: fast, reliable databases and the networks that route traffic between them.
               </p>
               <p className="text-xs text-slate-400 leading-relaxed font-sans">
-                Frustrated by witnessing enterprise leaders being billed extreme fees by agencies to stitch fragile, temporary prompt scripts together, Kiran established Mashnu AI. The mission is simple: bring rigid database engineering integrity back to autonomous operations.
+                Watching business owners get charged a fortune for automation that was really just a few scripts glued together, held together by hope, was the reason Kiran started Mashnu. The idea is simple: bring that same "this has to actually hold up" standard to AI automation.
               </p>
             </div>
             
@@ -62,18 +62,18 @@ export default function About() {
             <div className="absolute top-0 right-0 w-48 h-48 bg-indigo-500/5 blur-[50px] pointer-events-none" />
             
             <div className="space-y-4 relative z-10">
-              <span className="text-[10px] font-mono text-indigo-400 uppercase tracking-widest font-bold block">The Philosophy</span>
-              <h3 className="text-lg font-bold font-display tracking-wide text-slate-900">Escaping the Brittle Consulting Cycle</h3>
-              
+              <span className="text-[10px] font-mono text-indigo-400 uppercase tracking-widest font-bold block">The Approach</span>
+              <h3 className="text-lg font-bold font-display tracking-wide text-slate-900">Why we don't do one-off projects</h3>
+
               <div className="space-y-4 text-xs sm:text-sm text-slate-400 leading-relaxed font-sans">
                 <p>
-                  "We built Mashnu because the modern AI market is bloated with short-sighted wrappers. Agencies charge massive hourly premiums to plug API nodes into standard templates that break the moment an underlying model updates or a carrier connection drops."
+                  "A lot of AI automation out there is a quick demo dressed up as a product. It works in the pitch, then breaks the first time a model updates or a connection drops, and there's nobody left to fix it."
                 </p>
                 <p>
-                  To eliminate this dependency, we operate with a strict commitment to engineering reciprocity. We do not design disposable scripts.
+                  We don't build one-off scripts that only work for one client, once.
                 </p>
                 <p>
-                  By treating every custom enterprise deployment as a modular addition to our shared libraries, we compile a permanent, hardened platform that guarantees security, sub-millisecond latencies, and total state residency.
+                  Every piece we build for a client becomes part of a shared, reusable platform, so it's tested, maintained, and gets more reliable over time instead of quietly rotting.
                 </p>
               </div>
             </div>
@@ -81,7 +81,7 @@ export default function About() {
             <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 text-slate-400 flex items-center gap-3 mt-6">
               <Terminal className="w-5 h-5 text-cyan-400 shrink-0" />
               <p className="text-[10px] leading-relaxed font-sans">
-                "We don't build projects. We build reproducible system components that compile directly into a unified micro-agent framework."
+                "We don't build projects. We build things once, properly, so they keep working."
               </p>
             </div>
           </div>
@@ -97,28 +97,28 @@ export default function About() {
               <Layers className="w-5 h-5 text-cyan-400" />
             </div>
             <div>
-              <h3 className="text-base font-bold font-display tracking-wide text-slate-900">Why We Build Platforms, Not Projects</h3>
-              <span className="text-[9px] font-mono text-cyan-400 uppercase tracking-widest font-bold">The Systems Engineering Stance</span>
+              <h3 className="text-base font-bold font-display tracking-wide text-slate-900">Platforms, not projects</h3>
+              <span className="text-[9px] font-mono text-cyan-400 uppercase tracking-widest font-bold">Why It Matters</span>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs sm:text-sm text-slate-400 leading-relaxed font-sans">
             <div className="space-y-3">
-              <h4 className="text-slate-800 font-bold font-display">Brittle Projects vs Permanent Platforms</h4>
+              <h4 className="text-slate-800 font-bold font-display">What most "projects" actually are</h4>
               <p>
-                A "project" is a customized, static integration written for a single-use-case. It has high maintenance overhead, relies on custom script routes, and becomes fragile as external service payloads shift.
+                A one-off project is built for exactly one client, exactly once. It's high-maintenance, held together by custom glue code, and it breaks the moment something it depends on changes.
               </p>
               <p>
-                Mashnu AI rejects custom project setups. Instead, we compile all workflows into reusable, multi-tenant state graphs inside our unified micro-agent **Platform**.
+                We don't do that. Everything we build feeds back into one shared platform, so what we learn on one client's setup makes every future build faster and more solid.
               </p>
             </div>
             <div className="space-y-3">
-              <h4 className="text-slate-800 font-bold font-display">System Integrity & Continuous Value</h4>
+              <h4 className="text-slate-800 font-bold font-display">What that means for you</h4>
               <p>
-                Because every webhook handler, vector chunk parser, and Voice VAD node we deploy for a client runs as a parameter-validated node on our platform, our clients benefit from continuous reliability, security patches, and instant hardware-level model upgrades.
+                Because the pieces we build for you run on that same platform, you get the benefit of ongoing improvements, security fixes, and better underlying models without having to redo any of the work.
               </p>
               <p>
-                That means fixes and model upgrades reach your automation without you having to rewrite your integration or your core operational rules.
+                Fixes and upgrades reach your automation on their own. You never have to rebuild anything just because we improved something elsewhere.
               </p>
             </div>
           </div>
@@ -127,21 +127,21 @@ export default function About() {
         {/* CORE ENGINEERING PHILOSOPHIES */}
         <section className="space-y-8 max-w-5xl mx-auto">
           <div className="text-center max-w-xl mx-auto space-y-2">
-            <h2 className="text-xl sm:text-2xl font-bold font-display tracking-tight text-slate-900">Our Core Disciplines</h2>
+            <h2 className="text-xl sm:text-2xl font-bold font-display tracking-tight text-slate-900">How we actually work</h2>
             <p className="text-xs text-slate-400 font-sans">
-              The non-negotiable systems engineering guidelines dictating every module we commit.
+              A few things we don't compromise on, no matter who the client is.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
+
             <div className="border border-slate-900 rounded-xl bg-white p-6 space-y-3">
               <div className="w-8 h-8 rounded bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
                 <Code className="w-4 h-4 text-cyan-400" />
               </div>
-              <h4 className="text-xs font-bold font-mono uppercase tracking-wider text-slate-900">Deterministic Graphs</h4>
+              <h4 className="text-xs font-bold font-mono uppercase tracking-wider text-slate-900">Predictable, not guesswork</h4>
               <p className="text-[11.5px] text-slate-400 leading-relaxed font-sans">
-                We reject loose, recursive LLM loops. All states, actions, and conditional branches are compiled into strict Directed Acyclic Graphs (DAGs) with explicit schema validation.
+                We don't let an AI model wing every decision. The important paths are mapped out and validated up front, so behavior stays consistent instead of surprising you.
               </p>
             </div>
 
@@ -149,9 +149,9 @@ export default function About() {
               <div className="w-8 h-8 rounded bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
                 <Shield className="w-4 h-4 text-emerald-400" />
               </div>
-              <h4 className="text-xs font-bold font-mono uppercase tracking-wider text-slate-900">Flat Pass-Through Integrity</h4>
+              <h4 className="text-xs font-bold font-mono uppercase tracking-wider text-slate-900">No markup on AI costs</h4>
               <p className="text-[11.5px] text-slate-400 leading-relaxed font-sans">
-                We never apply profit markups on raw model APIs or vector lookups. Licensing is a transparent flat-rate, meaning you pay exactly what the hardware and hosting services cost.
+                We never add a margin on top of what AI models or infrastructure actually cost. You pay the real rate, plus a transparent fee for the work.
               </p>
             </div>
 
@@ -159,9 +159,9 @@ export default function About() {
               <div className="w-8 h-8 rounded bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
                 <Landmark className="w-4 h-4 text-indigo-400" />
               </div>
-              <h4 className="text-xs font-bold font-mono uppercase tracking-wider text-slate-900">Strict Code Reciprocity</h4>
+              <h4 className="text-xs font-bold font-mono uppercase tracking-wider text-slate-900">We're selective on purpose</h4>
               <p className="text-[11.5px] text-slate-400 leading-relaxed font-sans">
-                We only partner with select, operations-driven teams because every node we build scales our underlying product catalog, keeping our efforts focused purely on real-world stability.
+                We take on clients we can genuinely help, not everyone who asks. Every build makes the platform better for the next client too, so quality matters more to us than volume.
               </p>
             </div>
 
@@ -171,17 +171,17 @@ export default function About() {
         {/* CTA */}
         <section className="border border-slate-900 rounded-2xl bg-gradient-to-br from-slate-950 via-slate-950 to-slate-900 p-8 sm:p-10 text-center space-y-5 max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold font-display tracking-tight text-white">
-            Work With a Serious Systems Team
+            Want to talk to the people actually building this?
           </h2>
           <p className="text-xs text-slate-400 max-w-xl mx-auto leading-relaxed font-sans">
-            Ready to transition your legacy operations into stateful multi-agent pipelines? Book a technical callback with one of our lead architects today.
+            No sales team standing between you and the engineers. Tell us what you're dealing with and we'll tell you honestly if we can help.
           </p>
           <div className="pt-2">
             <Link
               to="/contact"
               className="inline-flex px-5 py-2.5 rounded bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold text-xs tracking-wider transition-all items-center gap-1.5 shadow-lg shadow-cyan-500/10"
             >
-              Book Systems Briefing
+              Get in touch
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

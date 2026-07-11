@@ -241,13 +241,13 @@ export default function Vision() {
         {/* Page Title Header */}
         <section className="text-center max-w-3xl mx-auto space-y-4">
           <span className="text-[11px] font-semibold text-[#2563EB] uppercase tracking-wider block">
-            Vision Manifesto & Roadmap
+            Where We're Headed
           </span>
           <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.02em] text-[#0F172A] leading-tight">
-            Our Multi-Stage Evolution Stance
+            What we're building toward
           </h1>
           <p className="text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto">
-            We reject high-overhead throwaway AI consulting. We are executing an ambitious but strictly grounded roadmap to turn custom enterprise integrations into reusable platform infrastructure.
+            We're not interested in throwaway consulting work. Every client engagement is a step in a deliberate, grounded roadmap to turn custom automation into something reusable and lasting.
           </p>
         </section>
 
@@ -259,35 +259,20 @@ export default function Vision() {
               <Compass className="w-5 h-5 text-[#2563EB]" />
             </div>
             <div>
-              <h2 className="text-xl font-semibold tracking-tight text-[#0F172A]">Why Systems Engineering Moats Wrapper APIs</h2>
-              <span className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block mt-0.5">Stance on Tech-Sovereignty</span>
+              <h2 className="text-xl font-semibold tracking-tight text-[#0F172A]">Why we build it this way</h2>
+              <span className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block mt-0.5">Our Approach</span>
             </div>
           </div>
 
           <div className="space-y-4 text-xs sm:text-sm text-[#334155] leading-relaxed">
             <p>
-              The current intelligence market is crowded with short-sighted agencies that charge premium hourly rates to stitch basic third-party APIs together. They deliver fragile systems that suffer from extreme latency, lack rigorous compliance boundaries, and suffer from compounding failures under operational loads.
+              A lot of AI agencies charge premium rates to stitch a few third-party APIs together and call it a product. What they deliver is often slow, fragile, and falls apart the moment real usage hits it.
             </p>
             <p>
-              <strong>At Mashnu AI, we operate with a completely different commitment.</strong> We are systems engineers first. We do not build throwaway, single-tenant scripts. We build reproducible, hardened autonomous building blocks.
+              <strong>We do things differently.</strong> We think like engineers building infrastructure, not consultants shipping a one-off. We don't build throwaway scripts for a single client, we build solid, reusable building blocks.
             </p>
             <p>
-              Every integration, search capability, and voice handler we implement for our corporate clients contributes reusable logic back to our core platform. This allows us to scale with exceptional capital efficiency, steadily migrating from high-touch custom services to a fully autonomous platform.
-            </p>
-          </div>
-        </section>
-
-        {/* [PLACEHOLDER: Vision Video Presentation / Core Architecture Map] */}
-        <section className="max-w-4xl mx-auto border border-dashed border-[#CBD5E1] rounded-2xl p-6 bg-[#F1F5F9] text-center space-y-3">
-          <div className="mx-auto w-12 h-12 rounded-xl bg-white border border-[#E2E8F0] flex items-center justify-center shadow-sm">
-            <Compass className="w-5 h-5 text-[#2563EB]" />
-          </div>
-          <div className="space-y-1">
-            <span className="text-[11px] font-semibold text-[#0F172A] uppercase tracking-wider block">
-              [PLACEHOLDER: Engineering Vision Walkthrough Video]
-            </span>
-            <p className="text-xs text-[#64748B] max-w-lg mx-auto leading-relaxed">
-              Requires a high-fidelity, production-grade video walkthrough from the founders detailing our roadmap, technology approach, and capital efficiency projections.
+              Every integration, search feature, and voice handler we build for a client feeds back into our core platform. That's what lets us keep improving without starting over every time, and it's why the platform gets better with every client we take on.
             </p>
           </div>
         </section>
@@ -295,9 +280,9 @@ export default function Vision() {
         {/* ROADMAP OVERVIEW PROGRESS TRACKER (HORIZONTAL PATH) */}
         <section className="space-y-6 max-w-7xl mx-auto">
           <div className="text-center max-w-xl mx-auto space-y-1">
-            <h2 className="text-2xl font-semibold tracking-tight text-[#0F172A]">The Roadmap Sequence</h2>
+            <h2 className="text-2xl font-semibold tracking-tight text-[#0F172A]">The roadmap, stage by stage</h2>
             <p className="text-sm text-[#64748B]">
-              An active trace of our engineering objectives, from near-term service blocks to deep physical-layer integration.
+              From what's live today to where we're headed years out. Click any stage to see the detail.
             </p>
           </div>
 

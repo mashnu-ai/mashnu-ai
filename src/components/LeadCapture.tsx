@@ -6,16 +6,19 @@ import { ScrollReveal } from './ScrollReveal';
 export default function LeadCapture() {
   const [leadName, setLeadName] = useState('');
   const [leadEmail, setLeadEmail] = useState('');
+  const [leadPhone, setLeadPhone] = useState('');
   const [leadInterest, setLeadInterest] = useState('For myself');
   const [leadUseCase, setLeadUseCase] = useState('');
   const [isSubmittingLead, setIsSubmittingLead] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!leadUseCase.trim()) return;
 
     setIsSubmittingLead(true);
+    setSubmitError(null);
 
     try {
       const res = await fetch('/api/contact', {
@@ -24,6 +27,7 @@ export default function LeadCapture() {
         body: JSON.stringify({
           fullName: leadName,
           email: leadEmail,
+          phone: leadPhone,
           company: `Assistant early access, interest: ${leadInterest}`,
           useCase: leadUseCase,
           source: 'early_access',
@@ -31,12 +35,14 @@ export default function LeadCapture() {
       });
 
       if (!res.ok) {
-        throw new Error('Failed to send message.');
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || 'Failed to send message.');
       }
 
       setSubmitted(true);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
+      setSubmitError(err?.message || 'Something went wrong. Please try again.');
     } finally {
       setIsSubmittingLead(false);
     }
@@ -113,6 +119,17 @@ export default function LeadCapture() {
               </div>
 
               <div className="space-y-1.5">
+                <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Phone <span className="text-slate-600 normal-case">(optional)</span></label>
+                <input
+                  type="tel"
+                  value={leadPhone}
+                  onChange={(e) => setLeadPhone(e.target.value)}
+                  placeholder="e.g. +91 98765 43210"
+                  className="w-full px-3 py-1.5 text-xs bg-slate-50 rounded border border-slate-800 text-slate-800 focus:outline-none focus:border-cyan-500 font-sans"
+                />
+              </div>
+
+              <div className="space-y-1.5">
                 <label className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block">Who is it for?</label>
                 <select
                   value={leadInterest}
@@ -136,6 +153,8 @@ export default function LeadCapture() {
                   required
                 />
               </div>
+
+              {submitError && <p className="text-xs text-red-600">{submitError}</p>}
 
               <button
                 type="submit"

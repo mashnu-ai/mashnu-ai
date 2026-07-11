@@ -284,13 +284,13 @@ export default function Products() {
       {/* Header section with Apple-style centered presentation */}
       <header className="max-w-4xl mx-auto text-center px-4 mb-20 space-y-4 animate-fade-in">
         <span className="text-[11px] font-semibold text-[#2563EB] uppercase tracking-wider block">
-          Enterprise Catalog
+          What We Build
         </span>
         <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.02em] text-[#0F172A] leading-tight">
-          The 12-Item Product Suite
+          Every way we can take work off your plate
         </h1>
         <p className="text-lg text-[#64748B] leading-relaxed max-w-2xl mx-auto">
-          We engineer custom AI agents that connect to your existing systems (CRM, EHR, ticketing, and internal docs) instead of generic chat widgets bolted onto the front end.
+          Custom AI agents that connect to the systems you already use (CRM, EHR, ticketing, internal docs) instead of a generic chat widget bolted onto the front end.
         </p>
       </header>
 
@@ -312,13 +312,13 @@ export default function Products() {
                 {/* Phase Title Grouping */}
                 <div className="border-b border-[#E2E8F0] pb-6">
                   <span className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider block mb-1">
-                    Deployment Scope
+                    Where This Fits
                   </span>
                   <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-[#0F172A]">
                     {phase}
                   </h2>
                   <p className="text-sm text-[#64748B] mt-1.5 max-w-3xl leading-relaxed">
-                    {phaseProducts[0]?.phaseDesc || 'Tailored solutions designed for rapid integration.'}
+                    {phaseProducts[0]?.phaseDesc || 'Built to fit your team, not the other way around.'}
                   </p>
                 </div>
 
@@ -377,18 +377,18 @@ export default function Products() {
                               <span className="leading-relaxed">{product.whatItDoes}</span>
                             </div>
                             <div>
-                              <strong className="text-[#0F172A] font-medium block">Intended users:</strong>
+                              <strong className="text-[#0F172A] font-medium block">Who it's for:</strong>
                               <span className="leading-relaxed">{product.whoItsFor}</span>
                             </div>
                             <div>
-                              <strong className="text-[#0F172A] font-medium block">Technical edge:</strong>
+                              <strong className="text-[#0F172A] font-medium block">What makes it different:</strong>
                               <span className="leading-relaxed">{product.technicalDifferentiator}</span>
                             </div>
                           </div>
 
                           {/* Bulleted Specs */}
                           <div className="space-y-2 pt-3 border-t border-[#E2E8F0]/60">
-                            <span className="text-[9px] font-semibold text-[#64748B] uppercase tracking-wider block">Operational Specs</span>
+                            <span className="text-[9px] font-semibold text-[#64748B] uppercase tracking-wider block">What's Included</span>
                             <ul className="space-y-1.5">
                               {product.specs.map((spec, sIdx) => (
                                 <li key={sIdx} className="flex items-start gap-2 text-[11px] text-[#64748B] leading-relaxed">
@@ -426,24 +426,24 @@ export default function Products() {
         <section className="rounded-[32px] bg-[#F1F5F9] p-8 sm:p-12 text-center space-y-6 border border-[#E2E8F0] relative overflow-hidden">
           <div className="max-w-2xl mx-auto space-y-4">
             <h2 className="text-3xl font-semibold tracking-[-0.02em] text-[#0F172A]">
-              Integrate Mashnu AI Components Into Your Stack
+              Not sure which one you need?
             </h2>
             <p className="text-sm text-[#64748B] leading-relaxed">
-              Our capabilities are built to work together and connect cleanly with the tools you already use. Let us walk through what fits your workflow best.
+              These are built to work together and connect cleanly with the tools you already use. Tell us what's eating your team's time and we'll walk you through what fits.
             </p>
             <div className="flex flex-wrap justify-center items-center gap-4 pt-4">
               <Link
                 to="/contact"
                 className="px-6 py-2 rounded-full bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-semibold tracking-tight transition-colors flex items-center gap-1.5 shadow-sm"
               >
-                Book Discovery Call
+                Talk it through with us
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
                 to="/solutions"
                 className="px-6 py-2 rounded-full bg-[#0F172A] hover:bg-[#334155] text-white text-xs font-semibold tracking-tight transition-colors"
               >
-                Browse Industry Solutions
+                See it by industry
               </Link>
             </div>
           </div>

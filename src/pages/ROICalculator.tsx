@@ -130,10 +130,13 @@ export default function ROICalculator() {
           source: 'roi_calculator',
         }),
       });
-      if (!response.ok) throw new Error('Failed to submit.');
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data?.error || 'Failed to submit.');
+      }
       setSubmitted(true);
-    } catch (err) {
-      setSubmitError("Something went wrong. Please try again, or reach us directly.");
+    } catch (err: any) {
+      setSubmitError(err?.message || "Something went wrong. Please try again, or reach us directly.");
     } finally {
       setSubmitting(false);
     }

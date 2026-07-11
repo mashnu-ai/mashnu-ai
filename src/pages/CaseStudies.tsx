@@ -21,45 +21,45 @@ const CASE_TEMPLATES: CaseStudyTemplate[] = [
   {
     id: 'healthcare-voice-triage',
     industry: 'Healthcare & Clinical Care',
-    templateTitle: 'Inbound Medical Scheduling & Triage Automation',
+    templateTitle: 'Answering the phone so the front desk doesn\'t have to',
     metricPlaceholder: '--%',
-    metricLabel: 'Autonomous Intake Target',
-    challengeInstructions: 'To be populated with client metrics. Detail the practice size, initial monthly call volume, patient booking friction, and receptionist burnout rates that motivated automation.',
-    solutionInstructions: 'To be populated with implementation details. Describe how the voice agent was connected to patient scheduling and records systems.',
+    metricLabel: 'Calls handled without staff',
+    challengeInstructions: 'A practice is getting more calls than the front desk can handle, patients wait too long, appointments get missed, and staff are burning out on repetitive scheduling questions.',
+    solutionInstructions: 'A voice agent connects directly to the scheduling and records system, answers routine questions, books and reschedules appointments, and only hands off to a person when something actually needs one.',
     resultPoints: [
-      'Patient booking and registration inquiries resolved autonomously without staff intervention',
-      'Average reduction in inbound call queue abandon rates during peak morning bottlenecks',
-      'Operator minutes reclaimed per appointment scheduled'
+      'Share of booking and scheduling calls resolved without a staff member',
+      'Drop in how long patients wait on hold during busy hours',
+      'Staff time freed up per appointment booked'
     ],
     icon: <HeartPulse className="w-5 h-5 text-emerald-400" />
   },
   {
     id: 'dtc-whatsapp-concierge',
     industry: 'Direct-to-Consumer / E-Commerce',
-    templateTitle: 'Direct Conversational Concierge & Cart Recovery',
+    templateTitle: 'Replying to customers before they give up and leave',
     metricPlaceholder: '+--%',
-    metricLabel: 'Sales Conversion Lift',
-    challengeInstructions: 'To be populated with brand metrics. Detail the advertising spend, average customer response delays, cart abandonment rates, and peak-hour staff constraints.',
-    solutionInstructions: 'To be populated with implementation details. Describe how the WhatsApp agent was connected to inventory and CRM systems, and how it recovered abandoned carts.',
+    metricLabel: 'More sales recovered',
+    challengeInstructions: 'A growing brand can\'t answer WhatsApp fast enough during busy hours, so carts get abandoned and customer questions go unanswered until it\'s too late.',
+    solutionInstructions: 'A WhatsApp agent connects to inventory and order data, answers product questions instantly, and follows up on abandoned carts before the customer moves on.',
     resultPoints: [
-      'Conversion rate increase over baseline email/SMS recovery campaigns',
-      'Average customer answer latency reduction (milliseconds vs hours)',
-      'Monthly sales volume assisted and recorded in the CRM pipeline'
+      'More carts recovered compared to email or SMS follow-ups alone',
+      'Response time drops from hours to seconds',
+      'Sales assisted by the agent, tracked in the CRM'
     ],
     icon: <ShoppingBag className="w-5 h-5 text-cyan-400" />
   },
   {
     id: 'logistics-invoice-audit',
     industry: 'Logistics & Supply Chain',
-    templateTitle: 'Autonomous Carrier Ledger & Invoice Reconciliation',
+    templateTitle: 'Catching invoice errors before they cost you',
     metricPlaceholder: '--%',
-    metricLabel: 'AP Labor Reclaimed',
-    challengeInstructions: 'To be populated with shipping metrics. Detail the volume of monthly carrier invoices, average discrepancy percentages, and hours spent manually audits by the accounting department.',
-    solutionInstructions: 'To be populated with implementation details. Describe how invoices were read automatically and cross-checked against dispatch records.',
+    metricLabel: 'Fewer manual audit hours',
+    challengeInstructions: 'The accounts payable team is manually checking every carrier invoice against dispatch records, a slow process that still lets discrepancies slip through.',
+    solutionInstructions: "Invoices are read and cross-checked against dispatch records automatically, flagging mismatches before they're paid instead of after.",
     resultPoints: [
-      'Reduction in manual accounts payable auditing labor hours',
-      'Discharge discrepancies identified and stopped before ledger write-back',
-      'Document parsing speed acceleration (seconds vs business days)'
+      'Fewer hours spent on manual invoice auditing',
+      "Discrepancies caught before they're paid out, not after",
+      'Invoices processed in seconds instead of days'
     ],
     icon: <Truck className="w-5 h-5 text-indigo-400" />
   }
@@ -68,7 +68,7 @@ const CASE_TEMPLATES: CaseStudyTemplate[] = [
 export default function CaseStudies() {
   useSEO({
     title: 'Case Studies and Client Outcomes',
-    description: 'How Mashnu AI measures success by verified, factual transaction outcomes, not fabricated metrics. Standardized case templates for real client engagements.',
+    description: "We're early, so there are no fake numbers here, just an honest look at how we'll measure results once we're working with real clients.",
     path: '/case-studies',
   });
 
@@ -85,13 +85,13 @@ export default function CaseStudies() {
         <section className="text-center max-w-3xl mx-auto space-y-5">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-800 text-[10px] font-mono uppercase tracking-widest text-slate-400">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            <span>Operational Blueprints</span>
+            <span>What Success Looks Like</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-slate-900">
-            Technical Case Templates
+            How we'll measure your results
           </h1>
           <p className="text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            We measure system engineering by factual, verified transaction outcomes. Rather than fabricating placeholder metrics, we display our standardized case templates ready for active client data.
+            We're early, so we don't have a wall of client logos and numbers to show off yet. What we do have is exactly how we'll track and report results once we're working together, laid out honestly below.
           </p>
         </section>
 
@@ -99,10 +99,10 @@ export default function CaseStudies() {
         <section className="border border-slate-900 rounded-2xl bg-slate-50 backdrop-blur-sm p-6 max-w-4xl mx-auto space-y-3">
           <div className="flex items-center gap-2 text-cyan-400">
             <ShieldCheck className="w-5 h-5 shrink-0" />
-            <h2 className="text-xs font-bold font-mono uppercase tracking-widest">Our Credibility Directive</h2>
+            <h2 className="text-xs font-bold font-mono uppercase tracking-widest">Why these are still empty</h2>
           </div>
           <p className="text-xs text-slate-400 leading-relaxed font-sans">
-            Mashnu AI enforces a strict disclosure standard. We do not invent fictional client entities or fake performance charts to inflate our marketing presentation. The templates below outline the structural frameworks we deploy to measure automation success during active pilot sprints.
+            We won't make up client names or invent numbers to look more established than we are. What's below is the real shape of how each engagement gets measured, ready to fill in with real results as we take on real clients.
           </p>
         </section>
 
@@ -121,20 +121,18 @@ export default function CaseStudies() {
                   <div className="flex items-center gap-2">
                     <LayoutTemplate className="w-4 h-4 text-cyan-500" />
                     <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest font-bold">{tmpl.industry}</span>
-                    <span className="text-slate-700 font-mono text-xs">•</span>
-                    <span className="text-xs text-slate-500 font-mono">Template ID: {tmpl.id}</span>
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold font-display tracking-tight text-slate-900">{tmpl.templateTitle}</h2>
-                  
+
                   <div className="space-y-4 pt-3 font-sans text-xs sm:text-sm text-slate-400 leading-relaxed">
                     <div className="border-l-2 border-slate-900 pl-4 py-1">
-                      <strong className="text-slate-700 block text-xs font-mono uppercase tracking-wider mb-1">Challenge Blueprint:</strong>
+                      <strong className="text-slate-700 block text-xs font-mono uppercase tracking-wider mb-1">The problem:</strong>
                       <p className="italic text-slate-500">
                         {tmpl.challengeInstructions}
                       </p>
                     </div>
                     <div className="border-l-2 border-cyan-900/60 pl-4 py-1">
-                      <strong className="text-cyan-400/80 block text-xs font-mono uppercase tracking-wider mb-1">Solution Blueprint:</strong>
+                      <strong className="text-cyan-400/80 block text-xs font-mono uppercase tracking-wider mb-1">What we'd build:</strong>
                       <p className="italic text-slate-500">
                         {tmpl.solutionInstructions}
                       </p>
@@ -155,7 +153,7 @@ export default function CaseStudies() {
 
                 {/* Bullets List */}
                 <div className="space-y-3 pt-6 lg:pt-0">
-                  <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block font-bold">Planned Verification Metrics</span>
+                  <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest block font-bold">What we'd track</span>
                   <div className="space-y-3">
                     {tmpl.resultPoints.map((pt, i) => (
                       <div key={i} className="flex items-start gap-2.5 text-xs text-slate-400">
@@ -175,17 +173,17 @@ export default function CaseStudies() {
         {/* CTA Section */}
         <section className="border border-slate-900 rounded-2xl bg-gradient-to-br from-slate-950 via-slate-950 to-slate-900 p-8 sm:p-10 text-center space-y-5 max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold font-display tracking-tight text-white">
-            Let's Scope a Verified Success Pilot
+            Want to be one of the first real case studies?
           </h2>
           <p className="text-xs text-slate-400 max-w-xl mx-auto leading-relaxed font-sans">
-            Ready to put a coordinated automation workflow into production? Share your operational bottlenecks so our team can design a targeted feasibility report.
+            Tell us what's slowing your team down and we'll walk you through exactly how we'd measure whether it worked.
           </p>
           <div className="pt-2">
             <Link
               to="/contact"
               className="inline-flex px-5 py-2.5 rounded bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold text-xs tracking-wider transition-all items-center gap-1.5 shadow-lg shadow-cyan-500/10"
             >
-              Request Custom Appraisal
+              Tell us your situation
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

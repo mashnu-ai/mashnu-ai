@@ -6,6 +6,7 @@ import { compileAgent, simulateStep, assistantChat, assistantChatStatus } from "
 import { notifyContact, validateContactSubmission } from "./src/server/notifyContact";
 import { detectGeo } from "./src/server/geo";
 import { getModelPricing } from "./src/server/modelPricing";
+import { checkRateLimit, getClientIp } from "./src/server/rateLimit";
 
 // Load .env.local first (real secrets, gitignored), then .env as a fallback.
 dotenv.config({ path: ".env.local" });
@@ -59,6 +60,13 @@ async function startServer() {
   // API Route: Contact form submission — emails the submission to NOTIFY_EMAIL via Resend
   // and persists it to Supabase (see src/server/notifyContact.ts)
   app.post("/api/contact", async (req, res) => {
+    const ip = getClientIp(req.headers, req.socket.remoteAddress);
+    const rateLimit = checkRateLimit(`contact:${ip}`, 5, 10 * 60 * 1000);
+    if (!rateLimit.allowed) {
+      res.setHeader("Retry-After", String(rateLimit.retryAfterSeconds));
+      return res.status(429).json({ error: "Too many submissions. Please try again in a few minutes." });
+    }
+
     const submission = validateContactSubmission(req.body);
     if ("error" in submission) {
       return res.status(400).json({ error: submission.error });
@@ -75,6 +83,13 @@ async function startServer() {
 
   // API Route: Personal AI Assistant Multi-turn Chat
   app.post("/api/assistant/chat", async (req, res) => {
+    const ip = getClientIp(req.headers, req.socket.remoteAddress);
+    const rateLimit = checkRateLimit(`assistant-chat:${ip}`, 20, 5 * 60 * 1000);
+    if (!rateLimit.allowed) {
+      res.setHeader("Retry-After", String(rateLimit.retryAfterSeconds));
+      return res.status(429).json({ error: "You're sending messages too quickly. Please wait a moment and try again." });
+    }
+
     try {
       const { messages, sessionId } = req.body;
 

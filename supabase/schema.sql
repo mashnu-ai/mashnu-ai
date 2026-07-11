@@ -12,10 +12,15 @@ create table if not exists public.leads (
   source text not null default 'contact_form',
   full_name text,
   email text not null,
+  phone text,
   company text,
   use_case text not null,
   created_at timestamptz not null default now()
 );
+
+-- Adds the phone column to a leads table created before it existed.
+-- Safe to re-run; no-ops if the column is already present.
+alter table public.leads add column if not exists phone text;
 
 create index if not exists leads_created_at_idx on public.leads (created_at desc);
 

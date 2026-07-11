@@ -66,6 +66,7 @@ function LeadCaptureForm({ submitted, onSubmit }: { submitted?: boolean; onSubmi
   const [email, setEmail] = useState('');
   const [goal, setGoal] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   if (submitted) {
     return (
@@ -82,8 +83,11 @@ function LeadCaptureForm({ submitted, onSubmit }: { submitted?: boolean; onSubmi
     e.preventDefault();
     if (!email.trim() || submitting) return;
     setSubmitting(true);
+    setError(null);
     try {
       await onSubmit({ fullName, email, goal });
+    } catch (err: any) {
+      setError(err?.message || 'Something went wrong. Please try again.');
     } finally {
       setSubmitting(false);
     }
@@ -113,6 +117,7 @@ function LeadCaptureForm({ submitted, onSubmit }: { submitted?: boolean; onSubmi
         placeholder="What would you like to automate? (optional)"
         className="w-full text-xs px-3 py-2 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] outline-none focus:border-[#2563EB] transition-colors"
       />
+      {error && <p className="text-[11px] text-red-600">{error}</p>}
       <button
         type="submit"
         disabled={!email.trim() || submitting}
@@ -214,16 +219,19 @@ export default function CommandPalette() {
         }),
       });
 
-      if (!response.ok) throw new Error('Failed to reach Pari.');
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(response.status === 429 ? (errData?.error || 'Slow down a little, please try again shortly.') : 'Failed to reach Pari.');
+      }
 
       const data = await response.json();
       setMessages(prev => [...prev, { role: 'assistant', content: data.content, showContact: wantsContact || data.limitReached, time: formatTime() }]);
       if (data.limitReached) setLimitReached(true);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: "Sorry, I couldn't get that. Please try again, or reach us directly below.",
+        content: err?.message || "Sorry, I couldn't get that. Please try again, or reach us directly below.",
         showContact: true,
         time: formatTime(),
       }]);
@@ -257,7 +265,10 @@ export default function CommandPalette() {
       }),
     });
 
-    if (!response.ok) throw new Error('Failed to submit.');
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({}));
+      throw new Error(data?.error || 'Failed to submit.');
+    }
 
     setMessages(prev => prev.map((m, i) => i === messageIndex ? { ...m, leadSubmitted: true } : m));
   };

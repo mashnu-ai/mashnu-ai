@@ -521,6 +521,7 @@ export default function Careers() {
   const [applicantNote, setApplicantNote] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const toggleTrack = (id: string) => setExpandedTrackId(expandedTrackId === id ? null : id);
 
@@ -529,6 +530,7 @@ export default function Careers() {
     if (!applicantName.trim() || !applicantEmail.trim()) return;
 
     setIsSubmitting(true);
+    setSubmitError(null);
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -541,10 +543,14 @@ export default function Careers() {
           source: 'careers_internship',
         }),
       });
-      if (!res.ok) throw new Error('Failed to submit application.');
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.error || 'Failed to submit application.');
+      }
       setSubmitted(true);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
+      setSubmitError(err?.message || 'Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -901,6 +907,8 @@ export default function Careers() {
                       className="w-full bg-[#F1F5F9] border border-[#E2E8F0] rounded-lg px-3.5 py-2 text-xs sm:text-sm text-[#0F172A] focus:outline-none focus:border-[#2563EB] focus:bg-white transition-colors placeholder-[#94A3B8] resize-none"
                     />
                   </div>
+
+                  {submitError && <p className="text-xs text-red-600">{submitError}</p>}
 
                   <div className="pt-2 flex items-center justify-between">
                     <span className="text-[10px] text-[#64748B] flex items-center gap-1">
