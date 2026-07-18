@@ -229,15 +229,19 @@ export const FREE_QUESTION_LIMIT = 3;
 async function countPriorQuestions(sessionId: string | undefined): Promise<number> {
   if (!sessionId) return 0;
 
+  console.time("[perf] getSupabaseAdmin");
   const supabase = getSupabaseAdmin();
+  console.timeEnd("[perf] getSupabaseAdmin");
   if (!supabase) return 0;
 
   try {
+    console.time("[perf] countPriorQuestions query");
     const { count, error } = await supabase
       .from("chat_messages")
       .select("id", { count: "exact", head: true })
       .eq("session_id", sessionId)
       .eq("role", "user");
+    console.timeEnd("[perf] countPriorQuestions query");
 
     if (error) {
       console.error("[Assistant] Failed to count prior questions in Supabase:", error.message);
