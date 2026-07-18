@@ -1,5 +1,5 @@
 {
-  "buildCommand": "vite build && node scripts/bundle-api.mjs",
+  "buildCommand": "vite build",
   "outputDirectory": "dist",
   "framework": "vite",
   "rewrites": [
