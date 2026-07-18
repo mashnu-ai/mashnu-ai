@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { assistantChat } from "../../src/server/agentLogic";
-import { checkRateLimit, getClientIp } from "../../src/server/rateLimit";
+import { assistantChat } from "../../src/server/agentLogic.js";
+import { checkRateLimit, getClientIp } from "../../src/server/rateLimit.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {

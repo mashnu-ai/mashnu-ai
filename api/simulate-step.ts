@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { simulateStep } from "../src/server/agentLogic";
+import { simulateStep } from "../src/server/agentLogic.js";
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {

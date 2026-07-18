@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { getSupabaseAdmin } from "./supabaseClient";
+import { getSupabaseAdmin } from "./supabaseClient.js";
 
 interface ContactSubmission {
   fullName?: string;

@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { notifyContact, validateContactSubmission } from "../src/server/notifyContact";
-import { checkRateLimit, getClientIp } from "../src/server/rateLimit";
+import { notifyContact, validateContactSubmission } from "../src/server/notifyContact.js";
+import { checkRateLimit, getClientIp } from "../src/server/rateLimit.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {

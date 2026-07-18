@@ -4,7 +4,7 @@
 // the request inputs. The assistant endpoint calls the Groq API for real
 // chat responses and persists conversations to Supabase.
 
-import { getSupabaseAdmin } from "./supabaseClient";
+import { getSupabaseAdmin } from "./supabaseClient.js";
 
 export function pick<T>(arr: T[], seed: number): T {
   return arr[Math.abs(seed) % arr.length];
