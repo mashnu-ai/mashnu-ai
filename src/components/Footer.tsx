@@ -37,6 +37,9 @@ export default function Footer() {
                 <Link to="/solutions" className="text-[#64748B] hover:text-[#0F172A] transition-colors">Solutions by industry</Link>
               </li>
               <li>
+                <Link to="/ai-employees" className="text-[#64748B] hover:text-[#0F172A] transition-colors">AI Employees</Link>
+              </li>
+              <li>
                 <Link to="/platform" className="text-[#64748B] hover:text-[#0F172A] transition-colors">Platform</Link>
               </li>
               <li>

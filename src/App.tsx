@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Building2, Layers, BarChart3, Landmark } from 'lucide-react';
+import { Building2, Layers, BarChart3, Landmark, ArrowRight } from 'lucide-react';
 import { ScrollReveal } from './components/ScrollReveal';
 import CommandPalette from './components/CommandPalette';
 import { useSEO } from './components/SEO';
@@ -31,6 +31,8 @@ import Careers from './pages/Careers';
 import Contact from './pages/Contact';
 import Assistant from './pages/Assistant';
 import ROICalculator from './pages/ROICalculator';
+import AIEmployees from './pages/AIEmployees';
+import AIEmployeeCostCalculator from './pages/AIEmployeeCostCalculator';
 
 const HOMEPAGE_STRUCTURED_DATA = {
   '@context': 'https://schema.org',
@@ -88,6 +90,8 @@ function AppLayout() {
               {path === '/contact' && <Contact />}
               {path === '/assistant' && <Assistant />}
               {path === '/roi-calculator' && <ROICalculator />}
+              {path === '/ai-employees' && <AIEmployees />}
+              {path === '/ai-employee-cost-calculator' && <AIEmployeeCostCalculator />}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -182,6 +186,32 @@ function AppLayout() {
             </div>
 
           </div>
+        </ScrollReveal>
+
+        {/* AI EMPLOYEES TEASER BANNER */}
+        <ScrollReveal yOffset={25} duration={0.35}>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="border border-[#E2E8F0] rounded-3xl bg-gradient-to-r from-[#2563EB]/5 to-[#4F46E5]/5 p-6 sm:p-8 flex items-center justify-between gap-6"
+          >
+            <div className="flex-1 space-y-2">
+              <h3 className="text-lg sm:text-xl font-semibold text-[#0F172A]">
+                Meet your AI team
+              </h3>
+              <p className="text-sm text-[#64748B] leading-relaxed max-w-sm">
+                Not a dashboard. A persistent digital worker that owns a job function continuously — voice, WhatsApp, or web.
+              </p>
+            </div>
+            <a
+              href="/ai-employees"
+              className="inline-flex px-6 py-2.5 rounded-full bg-[#2563EB] hover:bg-[#1e40af] text-white text-xs font-semibold tracking-wide transition-colors items-center gap-1.5 whitespace-nowrap"
+            >
+              Explore roles
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+          </motion.div>
         </ScrollReveal>
 
         {/* LEAD ACQUISITION COMPONENT */}

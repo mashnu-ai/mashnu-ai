@@ -35,7 +35,7 @@ interface ProductItem {
   ctaText: string;
 }
 
-const PRODUCTS: ProductItem[] = [
+export const PRODUCTS: ProductItem[] = [
   {
     id: 'voice-agents',
     title: 'AI Voice Agents',
@@ -254,7 +254,7 @@ const PRODUCTS: ProductItem[] = [
   }
 ];
 
-const PRODUCT_IMAGES: Record<string, string> = {
+export const PRODUCT_IMAGES: Record<string, string> = {
   'voice-agents': voiceAgentsImg,
   'whatsapp-agents': whatsappAgentsImg,
   'ai-chatbots': aiChatbotsImg,

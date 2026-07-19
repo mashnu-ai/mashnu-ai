@@ -1,28 +1,28 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'motion/react';
 import { Link } from '../components/Router';
-import { Calculator, Clock, Users, TrendingDown, CheckCircle2, ArrowRight, Globe2 } from 'lucide-react';
+import { Calculator, TrendingDown, CheckCircle2, ArrowRight, Globe2, Users } from 'lucide-react';
 import { useSEO } from '../components/SEO';
 import { formatCurrency, currencySymbol, CURRENCY_LOCALES, CURRENCY_NAMES } from '../lib/currencyFormat';
 
-const WAGE_GROWTH_RATE = 0.04; // Assumes 4% annual salary growth if these roles stayed fully human-staffed.
+const WAGE_GROWTH_RATE = 0.04; // Assumes 4% annual salary growth for human-staffed roles
 const HOURS_PER_YEAR = 52 * 40;
 const HOURS_PER_MONTH = HOURS_PER_YEAR / 12;
-const DEFAULT_ANNUAL_SALARY_USD = 40000;
+const DEFAULT_ANNUAL_SALARY_USD = 50000;
+const DEFAULT_MONTHLY_MASHNU_COST_USD = 2500; // Typical estimate for an AI employee
 
-export default function ROICalculator() {
+export default function AIEmployeeCostCalculator() {
   useSEO({
-    title: 'ROI Calculator',
-    description: 'See what automation could save your team, based on real math, not inflated numbers.',
-    path: '/roi-calculator',
+    title: 'AI Employee Cost Calculator',
+    description: 'Compare the cost of hiring AI employees vs. human staff. See your savings over 5 years.',
+    path: '/ai-employee-cost-calculator',
     noindex: true,
   });
 
-  const [monthlyInteractions, setMonthlyInteractions] = useState(2000);
-  const [avgHandlingTime, setAvgHandlingTime] = useState(6);
-  const [numberOfStaff, setNumberOfStaff] = useState(5);
+  const [numberOfHumanStaff, setNumberOfHumanStaff] = useState(3);
+  const [numberOfAIEmployees, setNumberOfAIEmployees] = useState(3);
   const [avgAnnualSalary, setAvgAnnualSalary] = useState(DEFAULT_ANNUAL_SALARY_USD);
-  const [automationRate, setAutomationRate] = useState(70);
+  const [monthlyMashnutCost, setMonthlyMashnutCost] = useState(DEFAULT_MONTHLY_MASHNU_COST_USD);
 
   const [currencyCode, setCurrencyCode] = useState('USD');
   const [rates, setRates] = useState<Record<string, number>>({ USD: 1 });
@@ -47,6 +47,7 @@ export default function ROICalculator() {
         const rate = geo.rates?.[geo.currencyCode];
         if (rate) {
           setAvgAnnualSalary(Math.round((DEFAULT_ANNUAL_SALARY_USD * rate) / 100) * 100);
+          setMonthlyMashnutCost(Math.round((DEFAULT_MONTHLY_MASHNU_COST_USD * rate) / 100) * 100);
         }
       })
       .catch(() => {});
@@ -57,34 +58,35 @@ export default function ROICalculator() {
     const oldRate = rates[currencyCode] || 1;
     const newRate = rates[newCurrency] || 1;
     setAvgAnnualSalary((prev) => Math.round((prev * (newRate / oldRate)) / 100) * 100);
+    setMonthlyMashnutCost((prev) => Math.round((prev * (newRate / oldRate)) / 100) * 100);
     setCurrencyCode(newCurrency);
   };
 
   const results = useMemo(() => {
-    const totalMonthlyMinutes = monthlyInteractions * avgHandlingTime;
-    const automatedMonthlyMinutes = totalMonthlyMinutes * (automationRate / 100);
-    const automatedMonthlyHours = automatedMonthlyMinutes / 60;
-    const costPerHour = avgAnnualSalary / HOURS_PER_YEAR;
-    const monthlySavings = automatedMonthlyHours * costPerHour;
-    const fteEquivalent = automatedMonthlyHours / HOURS_PER_MONTH;
+    const annualHumanCost = numberOfHumanStaff * avgAnnualSalary;
+    const monthlyHumanCost = annualHumanCost / 12;
+    const annualMashnutCost = numberOfAIEmployees * monthlyMashnutCost * 12;
+    const monthlySavings = monthlyHumanCost - (numberOfAIEmployees * monthlyMashnutCost);
 
     const yearly: number[] = [];
     for (let year = 1; year <= 5; year++) {
-      const inflatedMonthlySavings = monthlySavings * Math.pow(1 + WAGE_GROWTH_RATE, year - 1);
-      yearly.push(inflatedMonthlySavings * 12);
+      const inflatedAnnualHumanCost = annualHumanCost * Math.pow(1 + WAGE_GROWTH_RATE, year - 1);
+      const costDiff = (inflatedAnnualHumanCost - annualMashnutCost);
+      yearly.push(costDiff);
     }
     const fiveYearTotal = yearly.reduce((a, b) => a + b, 0);
 
     return {
+      monthlyHumanCost,
+      annualHumanCost,
+      annualMashnutCost,
       monthlySavings,
-      automatedMonthlyHours,
-      fteEquivalent,
       yearly,
       fiveYearTotal,
     };
-  }, [monthlyInteractions, avgHandlingTime, numberOfStaff, avgAnnualSalary, automationRate]);
+  }, [numberOfHumanStaff, numberOfAIEmployees, avgAnnualSalary, monthlyMashnutCost]);
 
-  const maxYearly = Math.max(...results.yearly);
+  const maxYearly = Math.max(...results.yearly, 0);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,8 +100,8 @@ export default function ROICalculator() {
         body: JSON.stringify({
           fullName,
           email,
-          useCase: `ROI calculator result: ~${formatCurrency(results.monthlySavings, currencyCode)}/month, ~${formatCurrency(results.fiveYearTotal, currencyCode)} over 5 years. Inputs: ${monthlyInteractions}/mo interactions, ${avgHandlingTime} min avg handling time, ${numberOfStaff} staff, ${formatCurrency(avgAnnualSalary, currencyCode)} avg salary (${currencyCode}), ${automationRate}% target automation.`,
-          source: 'roi_calculator',
+          useCase: `AI Employee Cost Calculator: ${numberOfHumanStaff} human staff @ ${formatCurrency(avgAnnualSalary, currencyCode)}/yr vs. ${numberOfAIEmployees} AI employees @ ${formatCurrency(monthlyMashnutCost, currencyCode)}/mo. Estimated 5-year savings: ${formatCurrency(results.fiveYearTotal, currencyCode)}.`,
+          source: 'ai_employee_calculator',
         }),
       });
       if (!response.ok) {
@@ -122,13 +124,13 @@ export default function ROICalculator() {
         <section className="text-center max-w-2xl mx-auto space-y-4">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2563EB]/5 border border-[#2563EB]/15 text-[10px] font-mono uppercase tracking-widest text-[#2563EB]">
             <Calculator className="w-3.5 h-3.5" />
-            ROI Calculator
+            Cost Calculator
           </span>
           <h1 className="text-4xl sm:text-5xl font-semibold tracking-[-0.02em] text-[#0F172A] leading-tight">
-            See what automation could save you
+            AI Employees vs. Human Hires
           </h1>
           <p className="text-sm text-[#64748B] leading-relaxed">
-            Adjust the numbers below to match your team. We'll estimate the time and cost automation could realistically free up, no inflated numbers, just the math.
+            Compare your current team headcount to an AI-powered alternative. See the real cost difference over 5 years, accounting for salary growth.
           </p>
         </section>
 
@@ -137,38 +139,26 @@ export default function ROICalculator() {
 
           {/* Inputs */}
           <div className="lg:col-span-5 border border-[#E2E8F0] rounded-[24px] bg-white p-6 sm:p-8 space-y-5">
-            <h2 className="text-sm font-semibold text-[#0F172A] uppercase tracking-wider">Your team, today</h2>
+            <h2 className="text-sm font-semibold text-[#0F172A] uppercase tracking-wider">Your scenario</h2>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-[#334155]">Calls & messages handled per month</label>
+              <label className="text-xs font-medium text-[#334155]">Number of human staff today</label>
               <input
                 type="number"
                 min={0}
-                value={monthlyInteractions}
-                onChange={(e) => setMonthlyInteractions(Math.max(0, Number(e.target.value)))}
+                value={numberOfHumanStaff}
+                onChange={(e) => setNumberOfHumanStaff(Math.max(0, Number(e.target.value)))}
                 className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-sm outline-none focus:border-[#2563EB] transition-colors"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-medium text-[#334155]">Average handling time (minutes)</label>
+              <label className="text-xs font-medium text-[#334155]">Number of AI employees you'd hire</label>
               <input
                 type="number"
                 min={0}
-                step={0.5}
-                value={avgHandlingTime}
-                onChange={(e) => setAvgHandlingTime(Math.max(0, Number(e.target.value)))}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-sm outline-none focus:border-[#2563EB] transition-colors"
-              />
-            </div>
-
-            <div className="space-y-1.5">
-              <label className="text-xs font-medium text-[#334155]">Number of support staff</label>
-              <input
-                type="number"
-                min={0}
-                value={numberOfStaff}
-                onChange={(e) => setNumberOfStaff(Math.max(0, Number(e.target.value)))}
+                value={numberOfAIEmployees}
+                onChange={(e) => setNumberOfAIEmployees(Math.max(0, Number(e.target.value)))}
                 className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-sm outline-none focus:border-[#2563EB] transition-colors"
               />
             </div>
@@ -204,21 +194,20 @@ export default function ROICalculator() {
               )}
             </div>
 
-            <div className="space-y-2 pt-2">
-              <div className="flex items-center justify-between">
-                <label className="text-xs font-medium text-[#334155]">Target automation rate</label>
-                <span className="text-xs font-semibold text-[#2563EB]">{automationRate}%</span>
+            <div className="space-y-1.5">
+              <label className="text-xs font-medium text-[#334155]">Monthly cost per AI employee (typical estimate)</label>
+              <div className="relative">
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-[#94A3B8]">{currencySymbol(currencyCode)}</span>
+                <input
+                  type="number"
+                  min={0}
+                  value={monthlyMashnutCost}
+                  onChange={(e) => setMonthlyMashnutCost(Math.max(0, Number(e.target.value)))}
+                  className="w-full pl-8 pr-3.5 py-2.5 rounded-xl border border-[#E2E8F0] bg-[#F8FAFC] text-sm outline-none focus:border-[#2563EB] transition-colors"
+                />
               </div>
-              <input
-                type="range"
-                min={0}
-                max={100}
-                value={automationRate}
-                onChange={(e) => setAutomationRate(Number(e.target.value))}
-                className="w-full accent-[#2563EB] cursor-pointer"
-              />
               <p className="text-[10px] text-[#94A3B8]">
-                The share of interactions handled end-to-end without a person. Most Mashnu deployments land between 60-80%.
+                This is a typical estimate. Your actual cost depends on complexity, integrations, and support. We'll give you an exact quote after a call.
               </p>
             </div>
           </div>
@@ -237,21 +226,16 @@ export default function ROICalculator() {
               <p className="text-xs text-white/80">≈ {formatCurrency(results.monthlySavings, currencyCode)} saved every month, starting now</p>
             </motion.div>
 
-            <div className="grid grid-cols-3 gap-3">
-              <div className="border border-[#E2E8F0] rounded-2xl bg-white p-4 space-y-1">
-                <Clock className="w-4 h-4 text-[#2563EB]" />
-                <div className="text-lg font-semibold text-[#0F172A]">{Math.round(results.automatedMonthlyHours).toLocaleString()}</div>
-                <div className="text-[10px] text-[#64748B]">hours freed up / month</div>
-              </div>
+            <div className="grid grid-cols-2 gap-3">
               <div className="border border-[#E2E8F0] rounded-2xl bg-white p-4 space-y-1">
                 <Users className="w-4 h-4 text-[#2563EB]" />
-                <div className="text-lg font-semibold text-[#0F172A]">{results.fteEquivalent.toFixed(1)}</div>
-                <div className="text-[10px] text-[#64748B]">staff worth of time freed</div>
+                <div className="text-lg font-semibold text-[#0F172A]">{formatCurrency(results.annualHumanCost, currencyCode)}</div>
+                <div className="text-[10px] text-[#64748B]">annual cost (human team)</div>
               </div>
               <div className="border border-[#E2E8F0] rounded-2xl bg-white p-4 space-y-1">
-                <TrendingDown className="w-4 h-4 text-[#2563EB]" />
-                <div className="text-lg font-semibold text-[#0F172A]">{formatCurrency(results.yearly[0], currencyCode)}</div>
-                <div className="text-[10px] text-[#64748B]">Year 1 savings</div>
+                <TrendingDown className="w-4 h-4 text-emerald-600" />
+                <div className="text-lg font-semibold text-[#0F172A]">{formatCurrency(results.annualMashnutCost, currencyCode)}</div>
+                <div className="text-[10px] text-[#64748B]">annual cost (AI team)</div>
               </div>
             </div>
 
@@ -264,7 +248,7 @@ export default function ROICalculator() {
                     <span className="text-[9px] font-semibold text-[#334155]">{formatCurrency(val, currencyCode)}</span>
                     <motion.div
                       initial={{ height: 0 }}
-                      animate={{ height: `${Math.max(6, (val / maxYearly) * 100)}%` }}
+                      animate={{ height: `${Math.max(6, (val / Math.max(maxYearly, 1)) * 100)}%` }}
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                       className="w-full rounded-t-lg bg-gradient-to-t from-[#2563EB] to-[#60A5FA]"
                     />
@@ -273,7 +257,7 @@ export default function ROICalculator() {
                 ))}
               </div>
               <p className="text-[9px] text-[#94A3B8] leading-relaxed">
-                Assumes {(WAGE_GROWTH_RATE * 100).toFixed(0)}% annual salary growth for these roles if left fully staffed. Savings grow because automation avoids that cost, not because we inflate the numbers.
+                Assumes {(WAGE_GROWTH_RATE * 100).toFixed(0)}% annual salary growth for human staff. AI employee costs remain fixed in this estimate.
               </p>
             </div>
           </div>
@@ -286,17 +270,17 @@ export default function ROICalculator() {
               <CheckCircle2 className="w-8 h-8 text-emerald-500" />
               <h3 className="text-lg font-semibold text-[#0F172A]">Sent, thanks!</h3>
               <p className="text-xs text-[#64748B] max-w-sm">
-                We've saved your numbers and a real person will follow up within a business day with a plan tailored to your team.
+                We've saved your estimate and a real person will follow up within a business day with an exact quote and deployment plan for your team.
               </p>
             </div>
           ) : showLeadForm ? (
             <form onSubmit={handleSubmit} className="space-y-3 text-left">
-              <h3 className="text-lg font-semibold text-[#0F172A] text-center">Get a custom automation plan</h3>
+              <h3 className="text-lg font-semibold text-[#0F172A] text-center">Get an exact AI team quote</h3>
               <input
                 type="text"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                placeholder="e.g. Crispy"
+                placeholder="Your name"
                 className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] bg-white text-sm outline-none focus:border-[#2563EB] transition-colors"
               />
               <input
@@ -304,7 +288,7 @@ export default function ROICalculator() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="e.g. crispy@gmail.com"
+                placeholder="Your email"
                 className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E8F0] bg-white text-sm outline-none focus:border-[#2563EB] transition-colors"
               />
               {submitError && <p className="text-xs text-red-600">{submitError}</p>}
@@ -317,21 +301,21 @@ export default function ROICalculator() {
                     : 'bg-[#0F172A] hover:bg-[#2563EB] text-white'
                 }`}
               >
-                {submitting ? 'Sending...' : 'Send my results'}
+                {submitting ? 'Sending...' : 'Send my estimate'}
                 {!submitting && <ArrowRight className="w-3.5 h-3.5" />}
               </button>
             </form>
           ) : (
             <>
-              <h3 className="text-lg font-semibold text-[#0F172A]">Want a custom automation plan based on these numbers?</h3>
+              <h3 className="text-lg font-semibold text-[#0F172A]">Ready for an exact quote?</h3>
               <p className="text-xs text-[#64748B] max-w-sm mx-auto">
-                Leave your email and we'll send your estimate along with a realistic plan for your team. No generic pitch deck.
+                Share your estimate and we'll follow up with real pricing based on your specific roles, integrations, and support needs.
               </p>
               <button
                 onClick={() => setShowLeadForm(true)}
                 className="inline-flex px-6 py-2.5 rounded-full bg-[#0F172A] hover:bg-[#2563EB] text-white text-xs font-semibold tracking-wide transition-colors items-center gap-1.5 cursor-pointer"
               >
-                Email me my results
+                Email me a quote
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
               <div className="pt-2">

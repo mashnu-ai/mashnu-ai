@@ -20,6 +20,7 @@ export default function Navbar() {
     { name: 'Products', href: '/products' },
     { name: 'Solutions', href: '/solutions' },
     { name: 'Platform', href: '/platform' },
+    { name: 'AI Employees', href: '/ai-employees' },
     { name: 'Vision', href: '/vision' },
     { name: 'Careers', href: '/careers' },
     { name: 'Pricing', href: '/pricing' },
