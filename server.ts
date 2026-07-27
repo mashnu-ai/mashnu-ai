@@ -7,6 +7,8 @@ import { notifyContact, validateContactSubmission } from "./src/server/notifyCon
 import { detectGeo } from "./src/server/geo";
 import { getModelPricing } from "./src/server/modelPricing";
 import { checkRateLimit, getClientIp } from "./src/server/rateLimit";
+import { isTeamRequestAuthorized, runRole, runAllRoles, saveRoleResult, getRecentRuns, TeamRole } from "./src/server/teamLogic";
+import { randomUUID } from "node:crypto";
 
 // Load .env.local first (real secrets, gitignored), then .env as a fallback.
 dotenv.config({ path: ".env.local" });
@@ -138,6 +140,59 @@ async function startServer() {
     } catch (error: any) {
       console.error("Model pricing error:", error);
       res.status(500).json({ error: "Failed to fetch model pricing." });
+    }
+  });
+
+  const TEAM_VALID_ROLES: TeamRole[] = ["content_strategist", "copy_producer", "publisher", "community_rep", "growth_analyst"];
+
+  // API Route: Internal marketing "AI team" — run one role or the whole
+  // pipeline. Gated by TEAM_ADMIN_KEY (x-team-key header), not a public route.
+  app.post("/api/team/run", async (req, res) => {
+    if (!isTeamRequestAuthorized(req.headers["x-team-key"] as string | undefined)) {
+      return res.status(401).json({ error: "Unauthorized." });
+    }
+
+    const ip = getClientIp(req.headers, req.socket.remoteAddress);
+    const rateLimit = checkRateLimit(`team-run:${ip}`, 20, 10 * 60 * 1000);
+    if (!rateLimit.allowed) {
+      res.setHeader("Retry-After", String(rateLimit.retryAfterSeconds));
+      return res.status(429).json({ error: "Too many runs. Please wait a few minutes." });
+    }
+
+    const { role, approve, theme, drafts } = req.body || {};
+    const runGroupId = randomUUID();
+
+    try {
+      if (role === "all") {
+        const results = await runAllRoles(!!approve);
+        await Promise.all(results.map((r) => saveRoleResult(runGroupId, r)));
+        return res.json({ runGroupId, results });
+      }
+
+      if (!TEAM_VALID_ROLES.includes(role)) {
+        return res.status(400).json({ error: `Unknown role "${role}".` });
+      }
+
+      const result = await runRole(role, { theme, drafts, approve: !!approve });
+      await saveRoleResult(runGroupId, result, { theme, drafts, approve });
+      return res.json({ runGroupId, results: [result] });
+    } catch (error: any) {
+      console.error("[Team] Run failed:", error);
+      res.status(500).json({ error: "The run failed unexpectedly. Please try again." });
+    }
+  });
+
+  // API Route: Internal marketing "AI team" — recent run history.
+  app.get("/api/team/history", async (req, res) => {
+    if (!isTeamRequestAuthorized(req.headers["x-team-key"] as string | undefined)) {
+      return res.status(401).json({ error: "Unauthorized." });
+    }
+
+    try {
+      res.json({ runs: await getRecentRuns(40) });
+    } catch (error: any) {
+      console.error("[Team] History fetch failed:", error);
+      res.status(500).json({ error: "Failed to fetch run history." });
     }
   });
 

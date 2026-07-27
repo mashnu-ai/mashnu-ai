@@ -39,3 +39,22 @@ create table if not exists public.chat_messages (
 create index if not exists chat_messages_session_id_idx on public.chat_messages (session_id, created_at);
 
 alter table public.chat_messages enable row level security;
+
+-- Internal marketing "AI team" (src/pages/Team.tsx). Each row is one role's
+-- result from a single run; run_group_id ties together the rows produced by
+-- the same "Run All" click (or a single row for an individual role click).
+create table if not exists public.team_runs (
+  id uuid primary key default gen_random_uuid(),
+  run_group_id uuid not null,
+  role text not null check (role in ('content_strategist', 'copy_producer', 'publisher', 'community_rep', 'growth_analyst')),
+  status text not null check (status in ('done', 'needs_approval', 'needs_setup', 'error')),
+  input jsonb,
+  output jsonb,
+  message text,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists team_runs_run_group_idx on public.team_runs (run_group_id, created_at);
+create index if not exists team_runs_created_at_idx on public.team_runs (created_at desc);
+
+alter table public.team_runs enable row level security;

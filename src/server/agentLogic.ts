@@ -149,17 +149,29 @@ function isContactIntent(text: string): boolean {
 
 const GROQ_MODEL = "llama-3.3-70b-versatile";
 
-const ASSISTANT_SYSTEM_PROMPT = `Your name is Pari. You are Pari, always introduce and refer to yourself as Pari, never as "the Mashnu AI assistant," "an AI language model," or any other name. If asked "what is your name" or "who are you," answer exactly: "I'm Pari, Mashnu's AI assistant." You are embedded in the Mashnu AI marketing website.
+// Thrown by callGroq() when GROQ_API_KEY isn't set, so callers can tell
+// "not configured" apart from a real API failure and react differently
+// (the chat assistant shows a fixed fallback string; src/server/teamLogic.ts
+// surfaces a distinct "needs_setup" status instead of a fake result).
+export class GroqNotConfiguredError extends Error {
+  constructor() {
+    super("GROQ_API_KEY is not set.");
+    this.name = "GroqNotConfiguredError";
+  }
+}
 
-Mashnu AI builds a personal AI assistant for real life that answers calls, replies to messages, and remembers what matters to a person. The same underlying voice, WhatsApp, and back-office agent technology powers automation products for businesses (voice agents, WhatsApp agents, CRM automation, enterprise knowledge search, and more).
-
-Answer questions about Mashnu's products, how automation could help the visitor's use case, and general questions helpfully and concisely. Speak in plain, outcome-focused language, and never mention specific AI models, vendors, frameworks, or internal implementation details. Do not use em dashes or en dashes in your responses; use commas, periods, or parentheses instead. Keep responses short (a few sentences or a short list) unless the visitor asks for depth. If you don't know something specific about Mashnu, say so honestly and suggest they reach out via the Connect With Us options rather than guessing.`;
-
-async function callGroq(messages: { role: string; content: string }[]): Promise<string> {
+// Low-level Groq chat completion call, shared by the site's chat assistant
+// (this file) and the internal marketing team pipeline (teamLogic.ts).
+// Takes the full message array (including any system prompt) as-is rather
+// than injecting one, so each caller supplies its own persona.
+export async function callGroq(
+  messages: { role: string; content: string }[],
+  options: { temperature?: number; maxTokens?: number } = {}
+): Promise<string> {
   const apiKey = process.env.GROQ_API_KEY;
 
   if (!apiKey) {
-    return "The assistant isn't fully configured yet. Please reach out via the Connect With Us options below and a real person will help.";
+    throw new GroqNotConfiguredError();
   }
 
   const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
@@ -170,12 +182,9 @@ async function callGroq(messages: { role: string; content: string }[]): Promise<
     },
     body: JSON.stringify({
       model: GROQ_MODEL,
-      messages: [
-        { role: "system", content: ASSISTANT_SYSTEM_PROMPT },
-        ...messages.map((m) => ({ role: m.role, content: m.content })),
-      ],
-      temperature: 0.6,
-      max_tokens: 600,
+      messages: messages.map((m) => ({ role: m.role, content: m.content })),
+      temperature: options.temperature ?? 0.6,
+      max_tokens: options.maxTokens ?? 600,
     }),
   });
 
@@ -192,6 +201,23 @@ async function callGroq(messages: { role: string; content: string }[]): Promise<
   }
 
   return content;
+}
+
+const ASSISTANT_SYSTEM_PROMPT = `Your name is Pari. You are Pari, always introduce and refer to yourself as Pari, never as "the Mashnu AI assistant," "an AI language model," or any other name. If asked "what is your name" or "who are you," answer exactly: "I'm Pari, Mashnu's AI assistant." You are embedded in the Mashnu AI marketing website.
+
+Mashnu AI builds a personal AI assistant for real life that answers calls, replies to messages, and remembers what matters to a person. The same underlying voice, WhatsApp, and back-office agent technology powers automation products for businesses (voice agents, WhatsApp agents, CRM automation, enterprise knowledge search, and more).
+
+Answer questions about Mashnu's products, how automation could help the visitor's use case, and general questions helpfully and concisely. Speak in plain, outcome-focused language, and never mention specific AI models, vendors, frameworks, or internal implementation details. Do not use em dashes or en dashes in your responses; use commas, periods, or parentheses instead. Keep responses short (a few sentences or a short list) unless the visitor asks for depth. If you don't know something specific about Mashnu, say so honestly and suggest they reach out via the Connect With Us options rather than guessing.`;
+
+async function callAssistant(messages: { role: string; content: string }[]): Promise<string> {
+  try {
+    return await callGroq([{ role: "system", content: ASSISTANT_SYSTEM_PROMPT }, ...messages]);
+  } catch (err) {
+    if (err instanceof GroqNotConfiguredError) {
+      return "The assistant isn't fully configured yet. Please reach out via the Connect With Us options below and a real person will help.";
+    }
+    throw err;
+  }
 }
 
 async function saveChatMessages(
@@ -306,7 +332,7 @@ export async function assistantChat(
 
   const content = wantsContact
     ? `Happy to help you get in touch. You can reach us directly, or connect on social. See the **Connect With Us** panel below for every option.\n\nIf you'd rather talk it through live, our team typically replies within one business day.`
-    : await callGroq(safeMessages);
+    : await callAssistant(safeMessages);
 
   await saveChatMessages(sessionId, userText, content);
 

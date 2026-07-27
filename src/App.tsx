@@ -8,6 +8,7 @@ import { useSEO } from './components/SEO';
 // Modular Sections
 import Hero from './components/Hero';
 import TrustBar from './components/TrustBar';
+import ClientLogos from './components/ClientLogos';
 import CompanyOverview from './components/CompanyOverview';
 import ProductSuite from './components/ProductSuite';
 import LatencyBenchmarks from './components/LatencyBenchmarks';
@@ -33,6 +34,7 @@ import Assistant from './pages/Assistant';
 import ROICalculator from './pages/ROICalculator';
 import AIEmployees from './pages/AIEmployees';
 import AIEmployeeCostCalculator from './pages/AIEmployeeCostCalculator';
+import Team from './pages/Team';
 
 const HOMEPAGE_STRUCTURED_DATA = {
   '@context': 'https://schema.org',
@@ -92,6 +94,7 @@ function AppLayout() {
               {path === '/roi-calculator' && <ROICalculator />}
               {path === '/ai-employees' && <AIEmployees />}
               {path === '/ai-employee-cost-calculator' && <AIEmployeeCostCalculator />}
+              {path === '/team' && <Team />}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -120,6 +123,9 @@ function AppLayout() {
 
         {/* TRUST BAR */}
         <TrustBar />
+
+        {/* CLIENT LOGOS */}
+        <ClientLogos />
 
         {/* MAIN TABBED VIEW CONTAINER */}
         <ScrollReveal yOffset={25} duration={0.35}>
