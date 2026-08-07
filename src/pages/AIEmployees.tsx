@@ -111,6 +111,17 @@ export default function AIEmployees() {
                       <h3 className="text-sm font-semibold text-[#0F172A]">{roleInfo?.roleName || product.title}</h3>
                       <p className="text-xs text-[#64748B] leading-snug">{roleInfo?.tagline || product.description}</p>
                     </div>
+                    {product.id === 'voice-agents' && (
+                      <a
+                        href="https://mashnu-ai-consultant-318447960850.asia-southeast1.run.app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-[#2563EB] hover:bg-[#1e40af] text-white transition-colors mb-2"
+                      >
+                        Try our calling AI employee
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </a>
+                    )}
                     <Link
                       to="/contact"
                       className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2563EB] hover:text-[#1e40af] transition-colors"

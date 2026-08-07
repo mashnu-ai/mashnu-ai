@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 const SITE_URL = 'https://mashnu.com';
 const SITE_NAME = 'Mashnu AI';
+const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 interface SEOProps {
   title: string;
@@ -59,9 +60,11 @@ export function useSEO(props: SEOProps | null) {
     setMetaTag('property', 'og:title', fullTitle);
     setMetaTag('property', 'og:description', description);
     setMetaTag('property', 'og:url', url);
+    setMetaTag('property', 'og:image', DEFAULT_OG_IMAGE);
 
     setMetaTag('name', 'twitter:title', fullTitle);
     setMetaTag('name', 'twitter:description', description);
+    setMetaTag('name', 'twitter:image', DEFAULT_OG_IMAGE);
 
     const existing = document.getElementById(STRUCTURED_DATA_ID);
     if (existing) existing.remove();

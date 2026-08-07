@@ -9,6 +9,7 @@ import { useSEO } from './components/SEO';
 import Hero from './components/Hero';
 import TrustBar from './components/TrustBar';
 import ClientLogos from './components/ClientLogos';
+import VideoShowcase from './components/VideoShowcase';
 import CompanyOverview from './components/CompanyOverview';
 import ProductSuite from './components/ProductSuite';
 import LatencyBenchmarks from './components/LatencyBenchmarks';
@@ -193,6 +194,9 @@ function AppLayout() {
 
           </div>
         </ScrollReveal>
+
+        {/* VIDEO SHOWCASE */}
+        <VideoShowcase />
 
         {/* AI EMPLOYEES TEASER BANNER */}
         <ScrollReveal yOffset={25} duration={0.35}>
