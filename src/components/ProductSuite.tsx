@@ -1,5 +1,6 @@
 import React from 'react';
 import { TrendingUp, Ear, HeartHandshake, ArrowRight } from 'lucide-react';
+import TiltCard from './TiltCard';
 
 const PROMISES = [
   {
@@ -38,18 +39,17 @@ export default function ProductSuite() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto" style={{ perspective: 1000 }}>
         {PROMISES.map(({ icon: Icon, title, description }) => (
-          <div
-            key={title}
-            className="rounded-2xl border border-slate-200 bg-white p-6 space-y-3 hover:border-cyan-500/40 transition-colors"
-          >
-            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center">
-              <Icon className="w-5 h-5 text-cyan-500" />
+          <TiltCard key={title} maxTilt={6} className="group">
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 space-y-3 hover:border-cyan-500/40 hover:shadow-xl hover:shadow-slate-900/5 transition-[border-color,box-shadow] duration-300 overflow-hidden">
+              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center">
+                <Icon className="w-5 h-5 text-cyan-500" />
+              </div>
+              <h3 className="text-sm font-bold font-display text-slate-900">{title}</h3>
+              <p className="text-xs text-slate-400 leading-relaxed font-sans">{description}</p>
             </div>
-            <h3 className="text-sm font-bold font-display text-slate-900">{title}</h3>
-            <p className="text-xs text-slate-400 leading-relaxed font-sans">{description}</p>
-          </div>
+          </TiltCard>
         ))}
       </div>
 

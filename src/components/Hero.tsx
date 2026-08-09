@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Layers, Phone, MessageSquare, Brain, Volume2, VolumeX } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
+import TiltCard from './TiltCard';
 import heroVisual from '../assets/hero-visual.jpg';
 
 interface HeroProps {
@@ -84,27 +85,30 @@ export default function Hero({ onBookDemoClick, onSeePlatformClick }: HeroProps)
         </div>
 
         <ScrollReveal yOffset={20} duration={0.3}>
-          <div className="relative mx-auto max-w-md lg:max-w-none">
+          <div className="relative mx-auto max-w-md lg:max-w-none" style={{ perspective: 1200 }}>
             <div className="absolute -inset-6 bg-primary-accent/10 blur-3xl rounded-full" aria-hidden="true" />
-            <video
-              ref={videoRef}
-              src="/videos/mashnu-intro.mp4"
-              poster={heroVisual}
-              autoPlay
-              muted={muted}
-              loop
-              playsInline
-              preload="auto"
-              aria-label="Mashnu AI introduction"
-              className="relative rounded-3xl shadow-2xl w-full object-cover"
-            />
-            <button
-              onClick={toggleSound}
-              aria-label={muted ? 'Unmute video' : 'Mute video'}
-              className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm flex items-center justify-center text-white transition-colors cursor-pointer"
-            >
-              {muted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-            </button>
+            <TiltCard maxTilt={5} className="group">
+              <video
+                ref={videoRef}
+                src="/videos/mashnu-intro.mp4"
+                poster={heroVisual}
+                autoPlay
+                muted={muted}
+                loop
+                playsInline
+                preload="auto"
+                aria-label="Mashnu AI introduction"
+                className="relative rounded-3xl shadow-2xl w-full object-cover"
+              />
+              <button
+                onClick={toggleSound}
+                aria-label={muted ? 'Unmute video' : 'Mute video'}
+                className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm flex items-center justify-center text-white transition-colors cursor-pointer"
+                style={{ transform: 'translateZ(20px)' }}
+              >
+                {muted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+              </button>
+            </TiltCard>
           </div>
         </ScrollReveal>
       </div>
