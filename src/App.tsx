@@ -20,6 +20,7 @@ import LeadCapture from './components/LeadCapture';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { RouterProvider, useRouter } from './components/Router';
+import aiOrbVisual from './assets/ai-orb-visual.jpg';
 import { ThemeProvider } from './components/ThemeContext';
 import Products from './pages/Products';
 import Solutions from './pages/Solutions';
@@ -204,9 +205,16 @@ function AppLayout() {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="border border-[#E2E8F0] rounded-3xl bg-gradient-to-r from-[#2563EB]/5 to-[#4F46E5]/5 p-6 sm:p-8 flex items-center justify-between gap-6"
+            className="relative overflow-hidden border border-[#E2E8F0] rounded-3xl bg-gradient-to-r from-[#2563EB]/5 to-[#4F46E5]/5 p-6 sm:p-8 flex items-center justify-between gap-6"
           >
-            <div className="flex-1 space-y-2">
+            <img
+              src={aiOrbVisual}
+              alt=""
+              aria-hidden="true"
+              className="absolute right-0 top-1/2 -translate-y-1/2 h-[220%] max-w-none opacity-[0.14] sm:opacity-20 pointer-events-none select-none"
+              style={{ maskImage: 'linear-gradient(to left, black 40%, transparent 85%)', WebkitMaskImage: 'linear-gradient(to left, black 40%, transparent 85%)' }}
+            />
+            <div className="relative flex-1 space-y-2">
               <h3 className="text-lg sm:text-xl font-semibold text-[#0F172A]">
                 Meet your AI team
               </h3>
@@ -216,7 +224,7 @@ function AppLayout() {
             </div>
             <a
               href="/ai-employees"
-              className="inline-flex px-6 py-2.5 rounded-full bg-[#2563EB] hover:bg-[#1e40af] text-white text-xs font-semibold tracking-wide transition-colors items-center gap-1.5 whitespace-nowrap"
+              className="relative inline-flex px-6 py-2.5 rounded-full bg-[#2563EB] hover:bg-[#1e40af] text-white text-xs font-semibold tracking-wide transition-colors items-center gap-1.5 whitespace-nowrap"
             >
               Explore roles
               <ArrowRight className="w-3.5 h-3.5" />
