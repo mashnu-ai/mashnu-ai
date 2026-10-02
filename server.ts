@@ -5,7 +5,6 @@ import { createServer as createViteServer } from "vite";
 import { compileAgent, simulateStep, assistantChat, assistantChatStatus } from "./src/server/agentLogic";
 import { notifyContact, validateContactSubmission } from "./src/server/notifyContact";
 import { detectGeo } from "./src/server/geo";
-import { getModelPricing } from "./src/server/modelPricing";
 import { checkRateLimit, getClientIp } from "./src/server/rateLimit";
 import { isTeamRequestAuthorized, runRole, runAllRoles, saveRoleResult, getRecentRuns, TeamRole } from "./src/server/teamLogic";
 import { randomUUID } from "node:crypto";
@@ -134,14 +133,6 @@ async function startServer() {
   });
 
   // API Route: Live AI model token pricing, fetched from Groq's own API
-  app.get("/api/model-pricing", async (req, res) => {
-    try {
-      res.json(await getModelPricing());
-    } catch (error: any) {
-      console.error("Model pricing error:", error);
-      res.status(500).json({ error: "Failed to fetch model pricing." });
-    }
-  });
 
   const TEAM_VALID_ROLES: TeamRole[] = ["content_strategist", "copy_producer", "publisher", "community_rep", "growth_analyst"];
 

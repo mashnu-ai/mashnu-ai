@@ -8,13 +8,14 @@ import { useSEO } from './components/SEO';
 // Modular Sections
 import Hero from './components/Hero';
 import TrustBar from './components/TrustBar';
-import ClientLogos from './components/ClientLogos';
+import IndustriesServed from './components/IndustriesServed';
 import VideoShowcase from './components/VideoShowcase';
 import CompanyOverview from './components/CompanyOverview';
 import ProductSuite from './components/ProductSuite';
 import LatencyBenchmarks from './components/LatencyBenchmarks';
 import VisionTimeline from './components/VisionTimeline';
 import LeadCapture from './components/LeadCapture';
+import AlwaysOn from './components/AlwaysOn';
 
 // Global Layout & Page Imports
 import Navbar from './components/Navbar';
@@ -61,8 +62,8 @@ function AppLayout() {
   useSEO(
     isHomepage
       ? {
-          title: 'Mashnu AI: Personal AI Assistant for Real Life',
-          description: 'Mashnu builds a personal AI assistant that answers calls, replies to messages, and remembers what matters to you. The same technology powers AI voice, WhatsApp, and automation agents for businesses.',
+          title: 'Mashnu AI: AI Employees for Your Business',
+          description: 'Mashnu builds AI employees that answer your calls, run your WhatsApp line, and keep your CRM in order, around the clock.',
           path: '/',
           structuredData: HOMEPAGE_STRUCTURED_DATA,
         }
@@ -126,8 +127,8 @@ function AppLayout() {
         {/* TRUST BAR */}
         <TrustBar />
 
-        {/* CLIENT LOGOS */}
-        <ClientLogos />
+        {/* INDUSTRIES */}
+        <IndustriesServed />
 
         {/* MAIN TABBED VIEW CONTAINER */}
         <ScrollReveal yOffset={25} duration={0.35}>
@@ -195,6 +196,9 @@ function AppLayout() {
 
           </div>
         </ScrollReveal>
+
+        {/* ALWAYS-ON PROOF */}
+        <AlwaysOn />
 
         {/* VIDEO SHOWCASE */}
         <VideoShowcase />

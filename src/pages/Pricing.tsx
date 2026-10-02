@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from '../components/Router';
 import { useSEO } from '../components/SEO';
-import {
-  Check, CalendarClock, Zap, ArrowDownUp
-} from 'lucide-react';
+import { Check, CalendarClock } from 'lucide-react';
 
 const PRICING_FAQ_STRUCTURED_DATA = {
   '@context': 'https://schema.org',
@@ -36,39 +34,13 @@ const PRICING_FAQ_STRUCTURED_DATA = {
   ],
 };
 
-interface ModelPricing {
-  modelName: string;
-  contextWindow: number;
-  inputPricePerMillion: number;
-  outputPricePerMillion: number;
-  asOf: string;
-  live: boolean;
-}
-
-function formatPerMillion(n: number): string {
-  return `$${n.toFixed(2)}`;
-}
-
 export default function Pricing() {
-  const [pricing, setPricing] = useState<ModelPricing | null>(null);
-
   useSEO({
     title: 'Pricing: A Flat Fee, Plus What You Actually Use',
     description: 'No per-seat pricing, no markup on model or infrastructure costs. A fixed build fee, a flat monthly retainer, and the raw pass-through cost of whatever AI models your agent uses.',
     path: '/pricing',
     structuredData: PRICING_FAQ_STRUCTURED_DATA,
   });
-
-  useEffect(() => {
-    let cancelled = false;
-    fetch('/api/model-pricing')
-      .then((res) => res.json())
-      .then((data: ModelPricing) => {
-        if (!cancelled && data?.modelName) setPricing(data);
-      })
-      .catch(() => {});
-    return () => { cancelled = true; };
-  }, []);
 
   return (
     <div className="relative min-h-screen text-slate-900 font-sans selection:bg-blue-500/20 selection:text-blue-900 py-16">
@@ -117,42 +89,6 @@ export default function Pricing() {
               <p>Model tokens and vector database usage are billed at the provider's actual cost. We don't add a margin on top of your AI spend.</p>
             </div>
           </div>
-
-          {/* Live model pricing proof — real numbers, not a claim */}
-          {pricing && (
-            <div className="pt-2">
-              <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 sm:p-5 space-y-3">
-                <div className="flex items-center justify-between flex-wrap gap-2">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 flex items-center gap-1.5">
-                    <Zap className="w-3 h-3" />
-                    Live from our model provider
-                  </span>
-                  {pricing.live && (
-                    <span className="text-[9px] font-mono text-slate-500">
-                      Updated {new Date(pricing.asOf).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })}
-                    </span>
-                  )}
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-                  <div className="space-y-0.5">
-                    <span className="text-slate-500">Model in production</span>
-                    <div className="text-white font-semibold">{pricing.modelName}</div>
-                  </div>
-                  <div className="space-y-0.5">
-                    <span className="text-slate-500 flex items-center gap-1"><ArrowDownUp className="w-3 h-3 rotate-90" />Input tokens</span>
-                    <div className="text-white font-semibold">{formatPerMillion(pricing.inputPricePerMillion)} / 1M tokens</div>
-                  </div>
-                  <div className="space-y-0.5">
-                    <span className="text-slate-500 flex items-center gap-1"><ArrowDownUp className="w-3 h-3 -rotate-90" />Output tokens</span>
-                    <div className="text-white font-semibold">{formatPerMillion(pricing.outputPricePerMillion)} / 1M tokens</div>
-                  </div>
-                </div>
-                <p className="text-[10px] text-slate-500 leading-relaxed">
-                  This is the exact per-token rate the provider charges us, the same rate that gets passed through to you, dollar for dollar, on every agent we run.
-                </p>
-              </div>
-            </div>
-          )}
 
           <div className="pt-4 flex justify-center">
             <Link

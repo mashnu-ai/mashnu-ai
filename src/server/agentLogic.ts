@@ -147,7 +147,10 @@ function isContactIntent(text: string): boolean {
   return CONTACT_KEYWORDS.some((kw) => lower.includes(kw));
 }
 
-const GROQ_MODEL = "llama-3.3-70b-versatile";
+// Groq decommissioned llama-3.3-70b-versatile (it disappeared from their
+// /models list, and every completion request 404'd), which took the site's
+// chat assistant down. Keep this in sync with modelPricing.ts.
+const GROQ_MODEL = "openai/gpt-oss-120b";
 
 // Thrown by callGroq() when GROQ_API_KEY isn't set, so callers can tell
 // "not configured" apart from a real API failure and react differently
@@ -185,6 +188,14 @@ export async function callGroq(
       messages: messages.map((m) => ({ role: m.role, content: m.content })),
       temperature: options.temperature ?? 0.6,
       max_tokens: options.maxTokens ?? 600,
+      // gpt-oss is a reasoning model, and reasoning tokens are billed against
+      // max_tokens before any visible content is produced. At Groq's default
+      // ("medium") a short budget is spent entirely on reasoning: the reply
+      // comes back with finish_reason "length" and an empty content string,
+      // which this function then rejects as an empty response. teamLogic.ts
+      // calls in with maxTokens as low as 200, so "low" is what keeps those
+      // callers working.
+      reasoning_effort: "low",
     }),
   });
 
@@ -200,10 +211,40 @@ export async function callGroq(
     throw new Error("Groq API returned an empty response.");
   }
 
-  return content;
+  return normalizeDashes(content);
+}
+
+// Both brand prompts forbid em dashes, and gpt-oss obeys that only most of the
+// time (it reached for one in roughly a third of sampled replies), so the rule
+// is enforced here rather than left to the model.
+//
+// Two different substitutions, because these are two different characters:
+//   - U+2010/2011/2012 stand in for a plain hyphen inside compound words
+//     ("phone‑queue"), so an ASCII hyphen is always the right swap.
+//   - Em and en dashes are almost always parenthetical ("the result—a 40%
+//     drop—was clear"), which is exactly the case a comma replaces cleanly,
+//     and is what the prompts already tell the model to use instead.
+// The trailing passes clean up the doubled punctuation that a dash sitting
+// next to existing punctuation would otherwise leave behind.
+function normalizeDashes(text: string): string {
+  return text
+    .replace(/[‐‑‒]/g, "-")
+    // A dash between two numbers is a range ("10-20 minutes"), never an aside,
+    // so it has to become a hyphen. Turning it into a comma would silently
+    // change what the sentence claims.
+    .replace(/(\d)\s*[—–]\s*(\d)/g, "$1-$2")
+    .replace(/\s*[—–]\s*/g, ", ")
+    .replace(/,\s*,/g, ",")
+    .replace(/\s+,/g, ",")
+    .replace(/,\s*([.!?,;:])/g, "$1")
+    // A dash that ended the string leaves a dangling comma behind.
+    .replace(/,\s*$/, "")
+    .trim();
 }
 
 const ASSISTANT_SYSTEM_PROMPT = `Your name is Pari. You are Pari, always introduce and refer to yourself as Pari, never as "the Mashnu AI assistant," "an AI language model," or any other name. If asked "what is your name" or "who are you," answer exactly: "I'm Pari, Mashnu's AI assistant." You are embedded in the Mashnu AI marketing website.
+
+The company name is spelled exactly "Mashnu" (M-a-s-h-n-u). Never write it any other way.
 
 Mashnu AI builds a personal AI assistant for real life that answers calls, replies to messages, and remembers what matters to a person. The same underlying voice, WhatsApp, and back-office agent technology powers automation products for businesses (voice agents, WhatsApp agents, CRM automation, enterprise knowledge search, and more).
 

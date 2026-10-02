@@ -1,41 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@400;500;600;700&family=Press+Start+2P&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
-/* Configure Tailwind v4 manual class-based dark mode */
 @variant dark (&:where(.dark, .dark *));
 
 /*
-  Mashnu AI design system — professional enterprise SaaS.
-  Near-white surfaces, near-black graphite text, one confident indigo
-  accent. Modeled on trust-first B2B software (Stripe/Linear register),
-  engineered for real light-theme contrast — not a dark-theme palette
-  swap. JetBrains Mono retained only for telemetry/data labels.
+  Mashnu AI design system — "Neon Atrium".
+
+  Retro-futurism for an enterprise buyer: a deep void backdrop lit by a
+  slow aurora, frosted-glass surfaces, holographic accents, and a pixel
+  display face used *only* for small eyebrow labels. The brief asked for
+  futuristic + retro + glass + pixel + surreal at once; mixing all five at
+  full strength produces noise, so each is assigned one job and one job
+  only:
+
+    futuristic -> the palette and the glow
+    retro      -> the pixel eyebrows and the faint CRT scanlines
+    glass      -> every surface/card
+    surreal    -> the drifting aurora and chrome orbs
+    pixel      -> labels at 10px, never body copy (it is unreadable at
+                  paragraph length, which is an accessibility floor, not
+                  a taste call)
 */
 :root, .dark {
-  --color-bg-main: #F8FAFC;          /* page background */
-  --color-bg-card: #FFFFFF;          /* card / surface */
-  --color-bg-subtle: #F1F5F9;        /* recessed panel / input fill */
-  --color-border-main: #E2E8F0;      /* hairline */
-  --color-border-hover: #CBD5E1;
-  --color-text-main: #0F172A;        /* graphite ink, headings */
-  --color-text-sub: #334155;         /* body copy */
-  --color-text-muted: #64748B;       /* secondary / captions */
-  --color-text-bright: #020617;
+  --color-bg-main: #06060F;
+  --color-bg-card: #0E0E1D;
+  --color-bg-subtle: #12122473;
+  --color-border-main: rgba(255, 255, 255, 0.10);
+  --color-border-hover: rgba(255, 255, 255, 0.20);
+  --color-text-main: #F5F6FF;
+  --color-text-sub: #C3C8E8;
+  --color-text-muted: #9099C2;
+  --color-text-bright: #FFFFFF;
 
-  --color-primary-accent: #2563EB;         /* Mashnu blue */
-  --color-primary-accent-hover: #1D4ED8;
-  --color-primary-accent-light: rgba(37, 99, 235, 0.08);
+  /* Electric cyan leads, magenta is the counterpoint, violet binds them. */
+  --color-primary-accent: #35E6FF;
+  --color-primary-accent-hover: #7DF0FF;
+  --color-primary-accent-light: rgba(53, 230, 255, 0.12);
+  --color-accent-magenta: #FF4D9D;
+  --color-accent-violet: #A78BFA;
+  --color-accent-lime: #C6FF4D;
 
-  --color-success: #059669;
-  --color-warning: #B45309;
-  --color-info: #7C3AED;
-  --color-danger: #DC2626;
+  --color-success: #34D399;
+  --color-warning: #FBBF24;
+  --color-info: #A78BFA;
+  --color-danger: #FB7185;
 }
 
 @theme {
   --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  --font-display: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", "Plus Jakarta Sans", -apple-system, sans-serif;
+  --font-pixel: "Press Start 2P", "Courier New", monospace;
 
   --color-bg-main: var(--color-bg-main);
   --color-bg-card: var(--color-bg-card);
@@ -48,252 +63,508 @@
   --color-primary-accent: var(--color-primary-accent);
   --color-primary-accent-hover: var(--color-primary-accent-hover);
   --color-primary-accent-light: var(--color-primary-accent-light);
+  --color-accent-magenta: var(--color-accent-magenta);
+  --color-accent-violet: var(--color-accent-violet);
+  --color-accent-lime: var(--color-accent-lime);
 
   --color-white: #FFFFFF;
 
   /*
-    Remap the legacy dark-theme slate scale used throughout older
-    components onto real light-theme values. Order preserved from
-    Tailwind's actual slate scale (50 = lightest, 950 = darkest) so
-    opacity-modified utilities (bg-slate-900/40, border-slate-800/60)
-    keep sensible relative contrast instead of inverting on a light bg.
+    The slate scale is inverted, not merely re-tinted: components written
+    for the old light theme say text-slate-900 for a heading and
+    text-slate-400 for muted copy. Flipping the ramp end-for-end keeps
+    every one of those readable on the void without touching the markup.
+    Values are chosen for contrast against #06060F, not for prettiness:
+    slate-400 lands near 6.5:1 because it carries real body copy.
   */
-  --color-slate-50: #F8FAFC;
-  --color-slate-100: #F1F5F9;
-  --color-slate-200: #E2E8F0;
-  --color-slate-300: #CBD5E1;
-  --color-slate-400: #64748B; /* darkened for 4.5:1 body-copy contrast on the glass backdrop */
-  --color-slate-500: #64748B;
-  --color-slate-600: #475569;
-  --color-slate-700: #334155;
-  --color-slate-800: #1E293B;
-  --color-slate-900: #0F172A;
-  --color-slate-950: #020617;
+  --color-slate-50: #0A0A16;
+  --color-slate-100: #0E0E1D;
+  /* Opaque, legible values — these two are used as text as well as as
+     hairlines, and a translucent white token makes text-slate-300 render
+     at 18% alpha (1.6:1, effectively invisible). The hairline look is
+     restored on the border-* utilities below instead, where it belongs. */
+  --color-slate-200: #C9CEE8;
+  --color-slate-300: #AEB5D6;
+  --color-slate-400: #9099C2;
+  --color-slate-500: #A3AACB;
+  --color-slate-600: #BFC5E2;
+  --color-slate-700: #D6DAEF;
+  --color-slate-800: #E9EBFA;
+  --color-slate-900: #F5F6FF;
+  --color-slate-950: #FFFFFF;
 
-  /* Accent families → single Mashnu blue system */
-  --color-cyan-300: #60A5FA;
+  --color-cyan-300: #7DF0FF;
   --color-cyan-400: var(--color-primary-accent);
   --color-cyan-500: var(--color-primary-accent);
   --color-cyan-600: var(--color-primary-accent-hover);
 
-  --color-indigo-400: #7C3AED;
-  --color-indigo-500: var(--color-primary-accent);
-  --color-indigo-600: var(--color-primary-accent-hover);
+  /* The 50/100 tints are the easy ones to miss: nothing in the markup
+     flags them, they simply stay Tailwind's default near-white and then
+     a remapped mid-tone sits on top of them. That is exactly how the
+     "In Active R&D" badge on /vision ended up at 3.8:1. */
+  --color-indigo-50: #171436;
+  --color-indigo-100: #201B4A;
+  --color-indigo-400: var(--color-accent-violet);
+  --color-indigo-500: var(--color-accent-violet);
+  --color-indigo-600: #C4B5FD;
   --color-indigo-950: #1E1B4B;
 
-  --color-purple-400: #7C3AED;
-  --color-violet-50: #F5F3FF;
+  --color-cyan-50: #06202B;
+  --color-cyan-100: #082C3B;
+  --color-teal-50: #062521;
+  --color-pink-50: #2B0A17;
+  --color-pink-100: #3A0E1F;
+  --color-purple-50: #1A1033;
+  --color-purple-100: #241648;
+  --color-orange-50: #2A1705;
+
+  --color-purple-400: var(--color-accent-violet);
+  --color-violet-50: #1A1633;
   --color-violet-300: #C4B5FD;
-  --color-violet-400: #7C3AED;
-  --color-violet-500: #7C3AED;
-  --color-violet-700: #5B21B6;
+  --color-violet-400: var(--color-accent-violet);
+  --color-violet-500: var(--color-accent-violet);
+  --color-violet-700: #7C3AED;
 
   --color-teal-400: var(--color-success);
   --color-teal-500: var(--color-success);
 
-  /* Status hues */
-  --color-emerald-50: #ECFDF5;
-  --color-emerald-100: #D1FAE5;
+  --color-emerald-50: #06251C;
+  --color-emerald-100: #073329;
   --color-emerald-300: #6EE7B7;
   --color-emerald-400: var(--color-success);
   --color-emerald-500: var(--color-success);
-  --color-emerald-600: #047857;
-  --color-emerald-700: #065F46;
+  --color-emerald-600: #10B981;
+  --color-emerald-700: #34D399;
 
-  --color-amber-50: #FFFBEB;
+  --color-amber-50: #2A1F05;
   --color-amber-300: #FCD34D;
   --color-amber-400: var(--color-warning);
   --color-amber-500: var(--color-warning);
-  --color-amber-700: #92400E;
+  --color-amber-700: #FCD34D;
   --color-orange-400: var(--color-warning);
 
-  --color-rose-50: #FFF1F2;
+  --color-rose-50: #2B0A17;
   --color-rose-300: #FDA4AF;
-  --color-rose-400: #E11D48;
-  --color-rose-500: #E11D48;
-  --color-rose-700: #9F1239;
+  --color-rose-400: var(--color-accent-magenta);
+  --color-rose-500: var(--color-accent-magenta);
+  --color-rose-700: #FB7185;
   --color-rose-950: #4C0519;
-  --color-pink-400: #E11D48;
-  --color-pink-500: #E11D48;
+  --color-pink-400: var(--color-accent-magenta);
+  --color-pink-500: var(--color-accent-magenta);
 
-  --color-blue-50: #EFF6FF;
-  --color-blue-100: #DBEAFE;
-  --color-blue-300: #93C5FD;
+  --color-blue-50: #0A1430;
+  --color-blue-100: #0E1C40;
+  --color-blue-300: #7DF0FF;
   --color-blue-400: var(--color-primary-accent);
   --color-blue-500: var(--color-primary-accent);
   --color-blue-600: var(--color-primary-accent-hover);
-  --color-blue-700: #1E40AF;
+  --color-blue-700: #35E6FF;
 
-  --color-red-50: #FEF2F2;
-  --color-red-100: #FEE2E2;
+  --color-red-50: #2B0A0A;
+  --color-red-100: #3B0D0D;
   --color-red-300: #FCA5A5;
-  --color-red-400: #F87171;
+  --color-red-400: var(--color-danger);
   --color-red-500: var(--color-danger);
-  --color-red-600: #B91C1C;
-  --color-red-700: #991B1B;
-  --color-red-950: #450A0A;
+  --color-red-600: #FB7185;
+  --color-red-700: #FDA4AF;
 }
+
+/*
+  ---------------------------------------------------------------------
+  Arbitrary-value remap.
+
+  Roughly 940 literal hexes (text-[#0F172A], border-[#E2E8F0], ...) are
+  baked into the components from the light theme. Tailwind compiles each
+  to a class whose name is the hex, so they can be re-pointed here
+  instead of editing ~940 call sites by hand. Un-layered on purpose, so
+  these beat @layer utilities.
+
+  Social brand hexes (#25D366 WhatsApp, #0A66C2 LinkedIn, #E1306C
+  Instagram, #1877F2 Facebook, #FF4500 Reddit) are deliberately absent —
+  those are other companies' trademarks and must not be recoloured.
+  --------------------------------------------------------------------- */
+
+/* Ink -> light */
+.text-\[\#0F172A\] { color: #F5F6FF; }
+.text-\[\#334155\]  { color: #C3C8E8; }
+.text-\[\#64748B\]  { color: #9099C2; }
+.text-\[\#94A3B8\]  { color: #868FB8; }
+.text-\[\#CBD5E1\]  { color: #BFC5E2; }
+.text-\[\#FFFFFF\]  { color: #FFFFFF; }
+
+/* Accent blue -> electric cyan */
+.text-\[\#2563EB\], .text-\[\#1D4ED8\], .text-\[\#1e40af\], .text-\[\#60A5FA\] { color: #35E6FF; }
+.text-\[\#4F46E5\], .text-\[\#7C3AED\] { color: #A78BFA; }
+
+/* Surfaces */
+.bg-\[\#F8FAFC\], .bg-\[\#F1F5F9\] {
+  background-color: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(12px) saturate(1.3);
+  -webkit-backdrop-filter: blur(12px) saturate(1.3);
+}
+.bg-\[\#0F172A\] { background-color: #0E0E1D; }
+.bg-\[\#0B1120\] { background-color: #06060F; }
+.bg-\[\#E2E8F0\] { background-color: rgba(255, 255, 255, 0.10); }
+.bg-\[\#2563EB\] { background-color: #35E6FF; color: #04040C; }
+.bg-\[\#1D4ED8\], .bg-\[\#1e40af\] { background-color: #7DF0FF; color: #04040C; }
+
+/* Gradient stops. These compile to --tw-gradient-* custom properties
+   rather than to a background-color, so the .bg-[...] rules above do not
+   reach them and they would otherwise stay the old flat marketing blue
+   while everything around them turned neon.
+
+   These stay DARK on purpose. Every solid panel using this pair also
+   sets text-white (the CTA blocks on /ai-employees, /roi-calculator,
+   /ai-employee-cost-calculator and the command palette header), so
+   filling them with the bright cyan used elsewhere would drop that text
+   to about 1.3:1. The neon reads through the border and glow instead of
+   the fill. The /5 opacity variants compile to their own class names and
+   are deliberately left alone — those are faint tint washes, not
+   text backings. */
+.from-\[\#2563EB\] { --tw-gradient-from: #5B21B6; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent); }
+/* #0C5A73 rather than a brighter teal: these panels carry text-white/80,
+   which lands at 4.04 on #0E7490 and 5.57 here. Measured, not eyeballed. */
+.to-\[\#4F46E5\]   { --tw-gradient-to: #0C5A73; }
+.to-\[\#60A5FA\]   { --tw-gradient-to: #7DF0FF; }
+.to-\[\#F8FAFC\]   { --tw-gradient-to: rgba(255, 255, 255, 0.05); }
+
+/*
+  Solid bright accent => dark ink.
+
+  In the light theme these chips were filled with a dark blue and
+  inherited text-slate-900 (near-black) from a parent, which read fine.
+  Inverting the ramp turned that inherited colour near-white while the
+  fills became genuinely bright, dropping labels like the latency
+  breakdown on /ai-employees to about 1.4:1. Pinning the colour on the
+  filled element itself fixes every such chip at once and is simply true:
+  nothing legible sits light-on-neon.
+*/
+.bg-cyan-300, .bg-cyan-400, .bg-cyan-500, .bg-cyan-600,
+.bg-emerald-300, .bg-emerald-400, .bg-emerald-500,
+.bg-violet-300, .bg-violet-400, .bg-violet-500,
+.bg-indigo-400, .bg-indigo-500, .bg-purple-400,
+.bg-amber-300, .bg-amber-400, .bg-amber-500,
+.bg-pink-400, .bg-pink-500, .bg-rose-400, .bg-rose-500,
+.bg-blue-300, .bg-blue-400, .bg-blue-500, .bg-blue-600,
+.bg-teal-400, .bg-teal-500,
+.bg-primary-accent {
+  color: #04040C;
+}
+
+/*
+  The one place a straight inversion is wrong.
+
+  slate-900/950 do double duty in this codebase: the darkest *ink*
+  (text-slate-900 headings) and the darkest *surface* (bg-slate-950
+  panels). Flipping the ramp is right for the ink and backwards for the
+  surface — it turned a 434x571 panel on /platform pure white with pale
+  text on it. Splitting the two by property keeps both correct, which a
+  single token value cannot do.
+*/
+.bg-slate-950 { background-color: #05050D; color: #F5F6FF; }
+.bg-slate-900 { background-color: #0B0B18; color: #F5F6FF; }
+.bg-slate-800 { background-color: #12121F; color: #F5F6FF; }
+
+/* …and the same split again for the opacity variants, which compile to
+   their own class names. bg-slate-900/60 was rendering as 60% near-white
+   — the washed-out panel behind the live token rates on /pricing, where
+   the figures themselves became unreadable. */
+.bg-slate-900\/60 { background-color: rgba(255, 255, 255, 0.05); color: #F5F6FF; }
+
+/*
+  Third and last place the ink/surface split has to be repeated:
+  gradient stops. `from-slate-950 via-slate-950 to-slate-900` resolved to
+  an all-white gradient and painted the main /pricing card solid white.
+  The bg-* rules above cannot reach these — Tailwind emits them as
+  --tw-gradient-* custom properties, not as a background-color.
+
+  Worth stating plainly because it bit three times: inverting a ramp fixes
+  text and breaks surfaces, and every utility family that can read a
+  colour token (bg-, from-, via-, to-, and each /opacity variant) needs
+  its own correction.
+*/
+.from-slate-950 { --tw-gradient-from: #06060F; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via, var(--tw-gradient-to, transparent)), var(--tw-gradient-to, transparent); }
+.via-slate-950  { --tw-gradient-via: #08081296; }
+.to-slate-900   { --tw-gradient-to: #0E0E1D; }
+.from-white     { --tw-gradient-from: rgba(255, 255, 255, 0.06); }
+.from-white\/10 { --tw-gradient-from: rgba(255, 255, 255, 0.05); }
+
+/* Opacity variants of the light surface hexes — the 40%-white pill behind
+   the "Scheduled Roadmap" badges on /vision. */
+.bg-\[\#F1F5F9\]\/40 { background-color: rgba(255, 255, 255, 0.05); }
+.bg-\[\#F8FAFC\]\/50 { background-color: rgba(255, 255, 255, 0.04); }
+
+/* A bright gradient is a bright fill: the lead-capture submit button runs
+   cyan -> violet and inherited near-white label text, landing at 1.4:1.
+   Same invariant as the solid accents above. */
+.from-cyan-400.to-indigo-500 { color: #04040C; }
+
+/*
+  Opacity variants compile to their own class names, so the plain
+  .bg-white rule never reached them. The sticky navbar was bg-white/70 —
+  a 70%-white bar across the top of a black page.
+*/
+.bg-white\/90, .bg-white\/85, .bg-white\/80, .bg-white\/70, .bg-white\/60 {
+  background-color: rgba(14, 14, 29, 0.82);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+}
+.bg-white\/40 { background-color: rgba(255, 255, 255, 0.06); }
+.bg-white\/15 { background-color: rgba(255, 255, 255, 0.07); }
+.bg-white\/10 { background-color: rgba(255, 255, 255, 0.05); }
+.border-white\/60 { border-color: rgba(255, 255, 255, 0.12); }
+.border-white\/40 { border-color: rgba(255, 255, 255, 0.10); }
+.border-white\/30 { border-color: rgba(255, 255, 255, 0.09); }
+.border-white\/25 { border-color: rgba(255, 255, 255, 0.08); }
+
+/* Hairlines. The slate-200/300 tokens are opaque so they stay readable as
+   text; the faint-divider appearance lives here, on the border utilities
+   alone, which is the only place it was ever wanted. */
+.border-slate-200 { border-color: rgba(255, 255, 255, 0.10); }
+.border-slate-300 { border-color: rgba(255, 255, 255, 0.16); }
+.border-\[\#E2E8F0\] { border-color: rgba(255, 255, 255, 0.10); }
+.border-\[\#CBD5E1\] { border-color: rgba(255, 255, 255, 0.18); }
+.border-\[\#2563EB\] { border-color: rgba(53, 230, 255, 0.45); }
+
+/* Hover variants carried along */
+.hover\:bg-\[\#1e40af\]:hover, .hover\:bg-\[\#1D4ED8\]:hover { background-color: #7DF0FF; color: #04040C; }
+.hover\:text-\[\#0F172A\]:hover { color: #FFFFFF; }
+.hover\:text-\[\#2563EB\]:hover { color: #35E6FF; }
+.hover\:border-\[\#CBD5E1\]:hover { border-color: rgba(255, 255, 255, 0.28); }
+.hover\:border-\[\#2563EB\]:hover { border-color: rgba(53, 230, 255, 0.5); }
 
 @layer base {
   body {
+    background-color: #06060F;
     /*
-      Glassmorphism backdrop: a soft, fixed gradient mesh the frosted
-      surfaces above it can blur. Kept pastel so dark ink text on
-      translucent white stays well above 4.5:1 contrast.
+      The aurora is four offset radials rather than one gradient so the
+      hues cross and interfere, which is what reads as depth. It is
+      fixed-attachment so content scrolls through the light rather than
+      dragging it along.
     */
-    background-color: #EDF2F9;
     background-image:
-      radial-gradient(40rem 40rem at 12% 8%, rgba(37, 99, 235, 0.16), transparent 60%),
-      radial-gradient(36rem 36rem at 88% 18%, rgba(124, 58, 237, 0.13), transparent 60%),
-      radial-gradient(44rem 44rem at 48% 75%, rgba(14, 165, 233, 0.13), transparent 65%),
-      radial-gradient(30rem 30rem at 88% 95%, rgba(16, 185, 129, 0.10), transparent 60%);
+      radial-gradient(42rem 42rem at 10% 2%, rgba(53, 230, 255, 0.16), transparent 62%),
+      radial-gradient(38rem 38rem at 92% 12%, rgba(255, 77, 157, 0.14), transparent 62%),
+      radial-gradient(46rem 46rem at 48% 72%, rgba(167, 139, 250, 0.15), transparent 66%),
+      radial-gradient(30rem 30rem at 85% 96%, rgba(53, 230, 255, 0.10), transparent 60%);
     background-attachment: fixed;
     color: var(--color-text-main);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
+  /*
+    Film grain and CRT scanlines, both pinned above the backdrop and
+    below the content. Grain kills the banding that large dark gradients
+    show on 8-bit panels; the scanlines are the retro nod, kept at 0.015
+    alpha so they register as texture and never as stripes over text.
+  */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.22;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.015) 0px,
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  }
+
+  #root { position: relative; z-index: 1; }
+
+  /*
+    Decorative glows are deliberately drawn past their parents
+    (absolute -inset-8, blurred aurora discs, the hero orb). On a 375px
+    viewport that bled 16px past the right edge and gave the homepage a
+    real horizontal scroll.
+
+    `clip` rather than `hidden`: clip suppresses the overflow without
+    creating a scroll container, so the sticky navbar keeps working.
+    `hidden` here would silently break it.
+
+    It must sit on <html> as well as <body>: <html> is the scrolling
+    element, so clipping <body> alone leaves the document's own
+    scrollWidth intact and the scrollbar stays.
+  */
+  html, body { overflow-x: clip; }
+
   h1, h2, h3 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
   }
 
   :focus-visible {
     outline: 2px solid var(--color-primary-accent);
     outline-offset: 2px;
+    border-radius: 4px;
   }
 
   ::selection {
-    background-color: rgba(37, 99, 235, 0.16);
-    color: var(--color-text-bright);
+    background-color: rgba(53, 230, 255, 0.28);
+    color: #FFFFFF;
   }
 }
 
 /*
-  Frosted glass surfaces. Only the *background* utilities are made
-  translucent — the --color-white token itself stays #FFFFFF because
-  text-white / border-white must remain fully opaque.
-  These rules are un-layered, so they win over @layer utilities.
+  Frosted glass. Only backgrounds go translucent — text-white and
+  border-white must stay opaque, so --color-white is untouched.
+  The inset highlight is what sells the "pane of glass" read: a bright
+  top edge and a dark bottom edge imply a lit sheet with thickness.
 */
 .bg-white,
 .bg-bg-card {
-  background-color: rgba(255, 255, 255, 0.62);
-  backdrop-filter: blur(14px) saturate(1.6);
-  -webkit-backdrop-filter: blur(14px) saturate(1.6);
+  background-color: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(16px) saturate(1.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.09),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.35);
 }
 
-.bg-\[\#F1F5F9\] {
-  background-color: rgba(241, 245, 249, 0.55);
-  backdrop-filter: blur(10px) saturate(1.4);
-  -webkit-backdrop-filter: blur(10px) saturate(1.4);
-}
+.bg-slate-50 { background-color: rgba(255, 255, 255, 0.03); }
 
-.bg-slate-50 {
-  background-color: rgba(248, 250, 252, 0.55);
-}
-
-/* Accessibility: honor users who ask for less transparency */
 @media (prefers-reduced-transparency: reduce) {
-  .bg-white,
-  .bg-bg-card {
-    background-color: #FFFFFF;
+  .bg-white, .bg-bg-card, .bg-\[\#F1F5F9\], .bg-\[\#F8FAFC\] {
+    background-color: #12121F;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
-  .bg-\[\#F1F5F9\] {
-    background-color: #F1F5F9;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-  .bg-slate-50 {
-    background-color: #F8FAFC;
-  }
+  .bg-slate-50 { background-color: #0E0E1D; }
+  body::before, body::after { display: none; }
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+/* ------------------------- Retro-futurist kit ------------------------- */
+
+/* Pixel eyebrow. Capped at 10px and always tracked out; this face has no
+   lowercase rhythm and collapses into noise at paragraph length. */
+.pixel {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  line-height: 1.8;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
-::-webkit-scrollbar-track {
-  background: var(--color-bg-main);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-border-hover);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-muted);
+@media (min-width: 640px) { .pixel { font-size: 10px; } }
+
+/* Holographic fill. Needs a fallback colour first: if a browser skips
+   background-clip:text the gradient is ignored and the text would
+   otherwise render transparent and vanish entirely. */
+.holo-text {
+  color: #35E6FF;
+  background: linear-gradient(104deg, #35E6FF 0%, #A78BFA 38%, #FF4D9D 68%, #35E6FF 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: holoShift 9s ease-in-out infinite;
 }
 
-/* Utility animations */
+.neon-ring {
+  box-shadow:
+    0 0 0 1px rgba(53, 230, 255, 0.28),
+    0 0 26px -6px rgba(53, 230, 255, 0.55),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.10);
+}
+
+/* Chrome sphere, built from stacked gradients: a hard specular highlight
+   up-left, an iridescent conic band for the oil-slick sheen, and a dark
+   terminator bottom-right. */
+.chrome-orb {
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.35) 9%, transparent 32%),
+    conic-gradient(from 210deg at 50% 50%, #35E6FF, #A78BFA, #FF4D9D, #C6FF4D, #35E6FF),
+    radial-gradient(circle at 72% 78%, rgba(0, 0, 0, 0.75), transparent 52%);
+  border-radius: 9999px;
+  filter: saturate(1.25);
+}
+
+.grid-floor {
+  background-image:
+    linear-gradient(rgba(53, 230, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(53, 230, 255, 0.16) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, transparent, #000 45%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 45%, transparent);
+}
+
+/* --------------------------- Animations ------------------------------ */
+
+@keyframes holoShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+@keyframes auroraDrift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33%      { transform: translate3d(3%, -4%, 0) scale(1.08); }
+  66%      { transform: translate3d(-3%, 3%, 0) scale(0.95); }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+
+.animate-aurora { animation: auroraDrift 22s ease-in-out infinite; will-change: transform; }
+.animate-float  { animation: floatY 7s ease-in-out infinite; }
+.animate-glow   { animation: glowPulse 3.4s ease-in-out infinite; }
+
+/* Pre-existing animations relied on by current components — keep. */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
-@keyframes flowDash {
-  to { stroke-dashoffset: -40; }
-}
-
-@keyframes spinSlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
+@keyframes flowDash { to { stroke-dashoffset: -40; } }
+@keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 @keyframes kenBurns {
-  0% { transform: scale(1) translate(0, 0); }
-  50% { transform: scale(1.07) translate(-0.6%, -0.8%); }
+  0%   { transform: scale(1) translate(0, 0); }
+  50%  { transform: scale(1.07) translate(-0.6%, -0.8%); }
   100% { transform: scale(1) translate(0, 0); }
 }
-
 @keyframes logoWobble {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(-30deg); }
-  50% { transform: rotate(0deg); }
-  75% { transform: rotate(30deg); }
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(-30deg); }
+  50%  { transform: rotate(0deg); }
+  75%  { transform: rotate(30deg); }
   100% { transform: rotate(0deg); }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
+.animate-fade-in   { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-flow-dash { animation: flowDash 1.2s linear infinite; }
+.animate-spin-slow { animation: spinSlow 12s linear infinite; }
+.animate-ken-burns { animation: kenBurns 20s cubic-bezier(0.45, 0, 0.55, 1) infinite; will-change: transform; }
+.group:hover .animate-ken-burns { animation-play-state: paused; }
+.animate-logo-wobble { animation: logoWobble 3.2s ease-in-out infinite; transform-origin: 50% 85%; }
 
-.animate-flow-dash {
-  animation: flowDash 1.2s linear infinite;
-}
-
-.animate-spin-slow {
-  animation: spinSlow 12s linear infinite;
-}
-
-.animate-ken-burns {
-  animation: kenBurns 20s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-  animation-play-state: running;
-  will-change: transform;
-}
-
-.group:hover .animate-ken-burns {
-  animation-play-state: paused;
-}
-
-.animate-logo-wobble {
-  animation: logoWobble 3.2s ease-in-out infinite;
-  transform-origin: 50% 85%;
-}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #06060F; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.16); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(53, 230, 255, 0.5); }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-fade-in,
-  .animate-flow-dash,
-  .animate-spin-slow,
-  .animate-ken-burns,
-  .animate-logo-wobble,
-  .animate-pulse,
-  .animate-ping,
-  .animate-bounce,
-  .animate-spin {
+  .animate-fade-in, .animate-flow-dash, .animate-spin-slow, .animate-ken-burns,
+  .animate-logo-wobble, .animate-aurora, .animate-float, .animate-glow,
+  .holo-text, .animate-pulse, .animate-ping, .animate-bounce, .animate-spin {
     animation: none !important;
   }
-  * {
-    transition-duration: 0.01ms !important;
-  }
+  * { transition-duration: 0.01ms !important; }
 }
